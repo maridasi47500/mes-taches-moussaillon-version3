@@ -1,0 +1,8 @@
+<%=form_with model: @post do |form|%>
+<div>
+<%=form.select("post_type_ids", PostType.all.collect {|p| [ p.name, p.id ] }, { include_blank: true},{multiple:true,size:10 })%>
+</div>
+<div>
+<%=form.submit%>
+</div>
+<%end%>

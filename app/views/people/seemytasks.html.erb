@@ -1,0 +1,24 @@
+<% if @tasks.count > 0%>
+<table>
+    <tr>
+        <th class="alignright">Task</th>
+        <th>Nb Sailors of this task</th>
+        <th>tasks</th>
+    </tr>
+<% @person.sailorjobs.each do |tache|%>
+    <tr>
+        <td class="alignright"><%= link_to tache.task.name, tache.task %></td> 
+        <td><%= t('sailors',count: tache.task.sailors.length)%></td>
+        <td><%= link_to 'Voir', tache.task%></td>
+<td>
+<%=button_to 'delete a task',deleteasailorfromtask_people_path(id: tache.id), method: :delete, onclick: "return confirm('etes vous sur de vouoir supprimer ce moussaillon de la tache ?');"%>
+
+
+</td>
+
+
+
+    </tr>
+<%end%>
+</table>
+<%end%>

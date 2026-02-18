@@ -1,0 +1,20 @@
+<%=link_to "ajouter des moussaillons", grouptaskaddsailors_task_path(@task.id, grouptask_id: @grouptask.id)%>
+(<%=@grouptask.title%>)
+<ul>
+    
+<% @grouptask.sailorgrouptasks.each do |person|%>
+    <li><ul>
+            <%if person.things.length > 0%>
+    <li><%=t('display.tachesailorthings', sailor: person.person.name, things: person.things.map{|f|f.name}.to_sentence, tasks: person.taskactions.map{|x|x.name}.to_sentence)%></li>
+<%else%>
+<li><%=t('display.tachesailor', sailor: person.person.name, tasks: person.taskactions.map{|x|x.name}.to_sentence)%></li>
+
+    
+   <%end%>
+<li><%=link_to "edit this sailor's task details", grouptaskseesailor_task_path(person_id: person.person.id, grouptask_id: @grouptask.id)%>
+</li>
+</ul></li>
+<%end%>
+</ul>
+<br>
+<%= link_to 'Back to task', task_path %>

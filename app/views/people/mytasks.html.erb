@@ -1,0 +1,12 @@
+<%=fields_for :post, @post do |form|%>
+<%=form.fields_for :postlikecomments, @postlikecomment do |ff|%>
+<%=ff.fields_for :setoftask, @setoftask do |f|%>
+<%=f.collection_check_boxes(:task_ids, @tasks, :id, :name,{include_hidden: false},{checked: true,form:"form-post"})%>
+<%if !@setoftask.new_record?%>
+<%=f.text_field(:title, placeholder: "Title for this set of task")%>
+<%=f.label(:title, "Please chose a title for this set of task")%>
+
+<%end%>
+<%end%>
+<%end%>
+<%end%>

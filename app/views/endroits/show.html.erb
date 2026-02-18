@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @endroit.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @endroit.image %>
+</p>
+
+<%= link_to 'Edit', edit_endroit_path(@endroit) %> |
+<%= link_to 'Back', endroits_path %>

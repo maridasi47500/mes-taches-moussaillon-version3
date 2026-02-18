@@ -1,0 +1,15 @@
+<%= form_with(model: photo, local: true) do |form| %>
+<%=form.fields_for :photocomments, Photocomment.new do |f|%>
+    <div>
+  <%=f.label 'content_'+I18n.locale.to_s%>
+  <%=f.text_area 'content_'+I18n.locale.to_s%>
+
+</div>
+
+<%end%>
+
+  <div class="actions">
+    <%= form.submit "comment"%>
+  </div>
+<% end %>
+

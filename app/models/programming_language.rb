@@ -1,0 +1,3 @@
+class ProgrammingLanguage < Artobject
+  
+end

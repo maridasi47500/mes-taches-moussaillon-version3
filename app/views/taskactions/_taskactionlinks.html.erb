@@ -1,0 +1,10 @@
+<div class="card">
+<h5><%=taskaction.name%></h5>
+<%if taskaction.image%>
+<p><%=image_tag "/assets/"+taskaction.image, class: "imageprofilethread"%></p>
+<%end%>
+<%if t && t.people.length > 0%>
+<p><%=t('display.withsailor', sailor: t.people.take(3).pluck(:name).to_sentence)%></p>
+<%end%>
+<p><%=link_to "ajouter des moussaillons",taskactionsailorjob_tasks_path(taskaction_id: taskaction.id, sailorjob_id: sailorjob_id, taskactionsailorjob_id: t.id)%></p>
+</div>

@@ -1,0 +1,11 @@
+
+<h1>Hack with collections
+
+</h1>
+  <%= form_with(model: @post, url: submitmypost_path, local: true, html: {id: "form-post",onsubmit: "$.ajax({url:$(this).attr('action')+'?'+$(this).serialize(),type:'post',success:function(data) {$('#myposts').prepend(data);}});return false;"}) do |form| %>
+
+<%= render 'formwithcollections', form: form, post: @post, currentpostid: nil %>
+<%end%>
+  <%= content_for :jsforrecorder do %>
+<%= render "javascriptpouraudiovideo" %>
+<%end%>

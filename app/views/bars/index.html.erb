@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Musicalscore</th>
+      <th>Correct</th>
+      <th>Description</th>
+      <th>Nb</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bars.each do |bar| %>
+      <tr>
+        <td><%= bar.musicalscore_id %></td>
+        <td><%= bar.correct_id %></td>
+        <td><%= bar.description %></td>
+        <td><%= bar.nb %></td>
+        <td><%= link_to 'Show', bar %></td>
+        <td><%= link_to 'Edit', edit_bar_path(bar) %></td>
+        <td><%= link_to 'Destroy', bar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bar', new_bar_path %>
+<%if Bar.precedent(params[:page])%>
+<%=link_to "Precedent", bars_path(page: (params[:page].to_i-1))%>
+<%end%>
+<%if Bar.suivant(params[:page])%>
+<%=link_to "suivant", bars_path(page: (params[:page].to_i+1))%>
+<%end%>
+
+

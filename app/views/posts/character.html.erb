@@ -1,0 +1,8 @@
+          <h2>Ajouter un pseudo</h2>
+  <%= form_with(model: post, local: true, html: {id: "form-post"}) do |form| %>
+<%= render partial: "posts/avatars", locals: {form: form} %>
+  <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+
+<%end%>

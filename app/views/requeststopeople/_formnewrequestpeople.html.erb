@@ -1,0 +1,28 @@
+<%=form_with model: requeststoperson do |form|%>
+<%=form.fields_for :requestpeople,k do |f|%>
+
+<div class="field">
+<%=render "form/radiobuttonhidden", form: f, fieldname: "persona_id", collec: [], mesmodele:"persona"%>
+
+</div>
+<div class="field">
+<%=render "form/radiobuttonhidden", form: f, fieldname: "personb_id", collec: [], mesmodele:"personb"%>
+
+</div>
+
+
+<%end%>
+<div>
+<%=form.submit%>
+</div>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,personjson_albums_path,personjson_albums_path]%>
+<%@select=[personabis_requeststoperson_path(requeststoperson.id),personbbis_requeststoperson_path(requeststoperson.id),aliases_requeststopeople_path]%>
+
+<%@nom=['persona','personb','aliases']%>
+<%=render partial:"form/functionjsonmember", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

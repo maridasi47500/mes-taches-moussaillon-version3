@@ -1,0 +1,64 @@
+
+<br>
+<p>
+  <strong>Filiere</strong>
+  <%= sector.name %>
+</p>
+<%if sector.bacseries.length > 0%>
+<p>
+  <strong>Bacc</strong>
+  <%= sector.bacseries.pluck(:name).join(', ') %>
+</p>
+<%end%>
+
+<p>
+  <strong>Description:</strong>
+  <%= sector.description %>
+</p>
+
+<%if sector.field%>
+<p>
+  <strong>Domaine</strong>
+  <%= sector.field.name %>
+</p>
+<%end%>
+
+
+<p>
+  <strong>Location</strong>
+<%if sector.cities.length > 0%>
+  <%= sector.cities.pluck(:name).join(', ') %>
+<%else%>
+<br>
+-
+<%end%>
+</p>
+
+
+<p>
+  <strong>Ouverture inscription:</strong>
+  <%= sector.open_signup || '-' %>
+</p>
+
+<p>
+  <strong>Admission</strong>
+  <%if sector.admission_exam %>
+  Concours d'entree. Date du concours : <%= sector.admission_exam_date %>
+  <%else%>
+<br>
+  -
+  <%end%>
+</p>
+<%if sector.admissionfiles.length > 0%>
+<p>
+  <strong>Dossier</strong>
+<ul>
+<% sector.admissionfiles.each do |a|%>
+<li><%=a.name%></li>
+<ul>
+  <%end%>
+</p>
+
+<%end%>
+<%= link_to 'Edit', edit_sector_path(sector) %> |
+<%= link_to 'Back', sectors_path %>

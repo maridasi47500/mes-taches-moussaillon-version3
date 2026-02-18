@@ -1,0 +1,25 @@
+<%=notice%>
+<%= form_with(model: @player,url: addnewplayer_musicalinstruments_path, local: true) do |form| %>
+  
+
+ 
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "person", collec: [], mesmodele:"person"%>
+</div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "instrument", collec: [], mesmodele:"instrument"%>
+</div>
+<%=form.hidden_field :city_id, value: params[:city_id]%>
+  <div class="actions">
+    <%= form.submit "Add a new player" %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,json_musicalinstruments_path]%>
+<%@select=[player1_musicalinstruments_path,instrument1_musicalinstruments_path]%>
+<%@nom=['person','instrument']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

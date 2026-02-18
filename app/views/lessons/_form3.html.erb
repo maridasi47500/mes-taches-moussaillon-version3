@@ -1,0 +1,65 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+        <% lesson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+<%if params[:id]%>
+<button type="button" onclick="$.ajax({url:'<%=words_lessons_path%>',success:function(data){words.innerHTML+=data;}});return false;">Add new word for sentence from exercise.</button>
+
+<div id="words">
+</div>
+<%lesson.lesson_contents.each do |content|%>
+<%=form.fields_for :lesson_samplecontents,content do |f|%>
+<%=f.fields_for :lesson_samplerecordings,(content.myrecordings(current_user)||Recording.new(user:current_user)) do |g|%>
+<%=render partial: "formrecord/recordrecordingtable", locals: {sot: @sot, am: @am, mylabel: "record the phrase like woman", myfield: "recordmyphrasesandwords1", form: g, modelderails: lesson}%>
+<%=render partial: "formrecord/recordrecordingtable", locals: {sot: @sot, am: @am, mylabel: "record the phrase like man", myfield: "recordmyphrasesandwords2", form: g, modelderails: lesson}%>
+
+<%=g.hidden_field :user_id%>
+
+<%end%>
+<%end%>
+<%end%>
+<!--
+
+<button type="button" onclick="$.ajax({url:'<%=recordings_lessons_path%>',success:function(data){recordings.innerHTML+=data;}});return false;">Add new recording  for this sentence.</button>
+<div id="recordings">
+</div>
+
+<button type="button" onclick="$.ajax({url:'<%=words_lessons_path%>',success:function(data){words.innerHTML+=data;}});return false;">record this sentence from recording.</button>
+
+<div id="samplerecordings">
+</div>-->
+
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

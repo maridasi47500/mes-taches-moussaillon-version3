@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @salutmilitaire %>
+</p>
+<%=render partial: 'tickets/ticket',collection: @salutmilitaire.tickets,spacer_template: 'backtoline'%>
+<%=render 'salutmilitaires/form',salutmilitaire: @salutmilitaire%>
+
+
+
+<%= link_to 'Edit', edit_salutmilitaire_path(@salutmilitaire) %> |
+<%= link_to 'Back', salutmilitaires_path %>

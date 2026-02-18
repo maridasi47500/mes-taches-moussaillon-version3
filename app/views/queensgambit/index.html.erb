@@ -1,0 +1,38 @@
+<%=form_with html: {method:'get',id: "mypostsqg"} do |f| %>
+  <%=f.select(:postscats, ["Beth Harmon/Benny Watts","Cleo (The Queen's Gambit)","Beth Harmon"].map { |value| [ value, value ] }, {prompt: "select the posts you want",selected: @posts},{onchange: "$('#mypostsqg').submit();"})%>
+<%end%>
+<div class="row row-cols-3 row-cols-md-3 g-4">
+<%@arts.to_a.each do |i,art|%>
+  <%next if art.length < 5%>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%=art[0]%></h5>
+        <p class="card-text">par <%=art[1]%> le <%=art[2].to_date%></p>
+        <p class="card-text">Tags : <%=art[3].join(' - ')%></p>
+
+        <p class="card-text"><%=art[4]%></p>
+        <p class="card-text">  <%= form_with(model: Post.new, local: true, html: {id: "form-post"}) do |form| %>
+        <%=form.hidden_field :title, value: art[0]%>
+        <%=form.hidden_field "content_en", value: art[1..-1].join(' ')%>
+        <%=form.hidden_field "content_fr", value: art[1..-1].join(' ')%>
+        <%=form.submit "créer comme un post"%>
+
+      <%end%> 
+          </p>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item <%if @page.to_i <= 1%>disabled<%end%>"><a class="page-link" href="/queensgambit?page=<%=@page.to_i > 1 ? @page.to_i - 1 : 1%><%=@myparams%>">Previous</a></li>
+    <%1.upto(@lastpage) do |page|%>
+      <li class="page-item <%if @page.to_i == page%>active<%end%>"><a class="page-link" href="/queensgambit?page=<%=page%><%=@myparams%>"><%=page%></a></li>
+  <%end%>
+  <li class="page-item <%if @page.to_i == 24%>disabled<%end%>"><a class="page-link" href="/queensgambit?page=<%=@page.to_i + 1%><%=@myparams%>">Next</a></li>
+  </ul>
+</nav>

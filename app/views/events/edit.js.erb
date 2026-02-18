@@ -1,0 +1,32 @@
+<%if params[:cid]%>
+var displayarea = $('.fields_select_people');
+if ($('#collect<%=@cid.id%>').toArray().length === 0){
+displayarea.append(`
+
+    <%= label :event_sailor_ids, @cid.name %>
+
+    <%= select("event","sailor_ids", @cid.people.collect {|p| [ p.name, p.id ] },{prompt: 'select people to hack'}, {class:'selectpeopleform', id: "collect#{@cid.id}", size: 5,multiple: true,onclick: "$.ajax({url:window.location.pathname+'.js?ids='+$(this).val()+'&hpt=sailor_ids', success:function(){}});" }) %>
+`);
+}
+<%end%>
+<%if @ids%>
+<%@ids.each do |p|%>
+
+<%if p.todojobs.count > 0%>
+
+var selectedpeople = $('.selectedpeople.relatedtask_ids');
+if ($('#eventsforthisperson<%=p.id%>').toArray().length === 0) {
+selectedpeople.append(`
+<div hidden id="eventsforthisperson<%=p.id%>"></div>
+<br/><%= p.name %>'s events
+<%=collection_check_boxes(:event, :relatedtask_ids, p.todojobs.last(5), :id, :name) do |b| %>
+  <%= b.label { b.check_box(checked: false) + b.text } %> 
+<% end %>
+`);
+}
+<%end%>
+
+
+<%end%>
+<%end%>
+

@@ -1,0 +1,18 @@
+<p><%=notice%></p>
+<%=render @city%>
+<%=fields_for :person do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people",label: 'cette personne'%>
+
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[lookforperson_cities_path(city_id: @city.id)]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsoncity", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

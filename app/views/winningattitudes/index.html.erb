@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Winningattitudes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @winningattitudes.each do |winningattitude| %>
+      <tr>
+        <td><%= winningattitude.content %></td>
+        <td><%= link_to 'Show', winningattitude %></td>
+        <td><%= link_to 'Edit', edit_winningattitude_path(winningattitude) %></td>
+        <td><%= link_to 'Destroy', winningattitude, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Winningattitude', new_winningattitude_path %>

@@ -1,0 +1,35 @@
+<%= form.fields_for :proposals do |proposal|%>
+    <% Proposal.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= proposal.label column, "make a new proposition" %>
+    <%= proposal.text_area column, class: 'contentpost' %>
+
+</div>
+
+  <% end %>
+
+  <div class="field">
+<%=  proposal.label("await", "attend le plus de oui")%>
+
+<%=  proposal.label("await", " oui")%>
+<%=  proposal.radio_button("await", 'yes')%>
+      </div>
+
+        <div class="field">
+<%=  proposal.label("await", " non")%>
+
+<%=  proposal.radio_button("await", 'no')%>
+</div>
+
+<%end%>
+<input type="hidden" name="proposal" value="new"></input>
+  <script>
+      function addproposal(){
+        $('form').last().attr('action','');
+        $('form').submit();
+        return false;
+      };
+  </script>
+<a id="mybtn" href="#" onclick="addproposal();return false;">add a new proposition</a>
+
+

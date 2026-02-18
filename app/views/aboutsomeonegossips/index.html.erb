@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All the gossips about someone</h1>
+
+  <div class="card-group">
+
+    <% @aboutsomeonegossips.each do |aboutsomeonegossip| %>
+            <div class="card"  style="float:left;min-width: 12rem;max-width: 15rem;">
+  <div class="card-header bg-transparent border-success">rumeur</div>
+<div class="card-body text-success">
+
+        <p class="card-text"><%= aboutsomeonegossip.content %></p>
+        <p class="card-text"><%= link_to 'Show', aboutsomeonegossip %></p>
+        <p class="card-text"><%= link_to 'Edit', edit_aboutsomeonegossip_path(aboutsomeonegossip) %></p>
+        <p class="card-text"><%= button_to 'Destroy', aboutsomeonegossip, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      
+</div>
+</div>
+    <% end %>
+  </div>
+
+
+<br>
+
+<%= link_to 'New gossip by a professional reporter', new_aboutsomeonegossip_path %>
+
+<%=render "indexpage/pagination",g:@g, modelname: Aboutsomeonegossip,mypath: aboutsomeonegossips_path+'?'%>

@@ -1,0 +1,45 @@
+<style>
+
+
+
+
+</style>
+<img src="/assets/siteicon1.png" width=70 height=70 />
+<h1>Mes tâches moussaillon</h1>
+<h6>Le site moussaillon</h6>
+<hr>
+S'inscrire : rentrer un login et un mot de passe, en se connectant on peut ajouter plus d'infos ensuite<%=link_to 'inscription','/users/sign_up'%>
+
+<hr>
+<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<hr>
+Ce site permet de se présenter selon ses besoins comme un moussaillon
+<hr>
+ajouter facilement d'autres moussaillons
+<hr>
+ajouter facilement des items
+
+<hr>
+Ce site utilise une base de données locale qui sauvegarde tout depuis l'insription
+<hr>
+Ce site enregistre les image en local 
+<hr>
+inscrivez vous facilement

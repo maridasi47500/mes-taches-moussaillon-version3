@@ -1,0 +1,20 @@
+<%=form_with url: addpeoplejob_cities_path(city_id: params[:city_id], job_id: params[:job_id]) do |form|%>
+<p><%=notice%></p>
+<%=fields_for :person do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people",label: 'cette personne'%>
+
+</div>
+<%end%>
+
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[lookforpeople_cities_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

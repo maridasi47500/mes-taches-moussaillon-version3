@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @create_webpage.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @create_webpage.url %>
+</p>
+
+<%= link_to 'Edit', edit_create_webpage_path(@create_webpage) %> |
+<%= link_to 'Back', create_webpages_path %>

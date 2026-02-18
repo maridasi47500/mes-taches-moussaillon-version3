@@ -1,0 +1,2 @@
+class Makeupstyle < Thing
+end

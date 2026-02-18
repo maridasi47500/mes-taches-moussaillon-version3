@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Linkspousepeople</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Otherperson</th>
+      <th>Spouselink</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @linkspousepeople.each do |linkspouseperson| %>
+      <tr>
+        <td><%= linkspouseperson.person.name %></td>
+        <td><%= linkspouseperson.otherperson.name %></td>
+        <td><%= linkspouseperson.spouselink.name %></td>
+        <td><%= link_to 'Show', linkspouseperson %></td>
+        <td><%= link_to 'Edit', edit_linkspouseperson_path(linkspouseperson) %></td>
+        <td><%= link_to 'Destroy', linkspouseperson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Linkspouseperson', new_linkspouseperson_path %>

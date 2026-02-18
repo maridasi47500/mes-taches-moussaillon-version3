@@ -1,0 +1,52 @@
+<%= form_with(model: olympicperson, local: true) do |form| %> <% if olympicperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(olympicperson.errors.count, "error") %> prohibited this olympicperson from being saved:</h2>
+
+      <ul>
+        <% olympicperson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<%if olympicperson.twoperson.alreadyexist%>
+<%=form.select :twoperson_id, options_for_select([olympicperson.twoperson.alreadyexist].collect {|x|[x.person.name+" "+x.otherperson.name,x.id]},olympicperson.twoperson.alreadyexist.id), {prompt: "please select the two people"}%>
+<%else%>
+
+
+      <%= form.fields_for :twoperson do |f|%>
+
+  <div class="field">
+<%=render "form/radiobutton", form: f, fieldname: 'person_id', collec: Person.findbyid(olympicperson.person_id), mesmodele:"people"%>
+</div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: f, fieldname: 'otherperson_id', collec: Person.findbyid(olympicperson.otherperson_id), mesmodele:"otherpeople"%>
+</div>
+<%end%>
+<%end%>
+   <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'skill_id', collec: Skill.findbyid(olympicperson.skill_id), mesmodele:"skills"%>
+</div>
+   <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'event_ids', collec: olympicperson.events, mesmodele:"events"%>
+</div>
+
+
+<%=form.hidden_field :user_id%>
+  <div class="actions">
+    <%= form.submit t("helpers.submit.create",model: translated_model_name('olympicperson')) %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_olympicpeople_path,otherpeople_olympicpeople_path,skills_olympicpeople_path,events_olympicpeople_path]%>
+<%@search=[personjson_albums_path,personjson_albums_path,json_skills_path,json_events_path]%>
+<%@nom=['people','otherpeople','skills','events']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+

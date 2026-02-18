@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<%=content_for :mylittlecss do%>
+body {
+text-align:center;
+}
+<%end%>
+<p><%=@heroadventure.content%></p>
+<%if @nextadventure && @heroadventure.image%>
+<%=form_with url: story_heroadventure_path(story_id: @story.id, id: @nextadventure.id), method: :get do |form|%>
+<input id="image" type="image" width="300" height="300" alt="<%=t('showpage.story.suite')%>"
+       src="/assets/<%=@heroadventure.image%>">
+<%end%>
+<%elsif @heroadventure.image%>
+<img  width="300" height="300" alt="<%=t('showpage.story.fin')%>"
+       src="/assets/<%=@heroadventure.image%>">
+
+<%end%>
+<br>
+
+<%if @previousadventure%>	
+<%=link_to t('showpage.heroadventure.previousadventure'), story_heroadventure_path(story_id: @story.id, id: @previousadventure.id)%> |
+<%end%>
+<%= link_to t('editpage.heroadventure'), edit_heroadventure_path(@heroadventure) %> |
+<%if @story%>
+<%= link_to t('editpage.back.storyheroadventure'), story_path(@story.id) %>
+<%end%>

@@ -1,0 +1,19 @@
+<h1>Mes filieres</h1>
+
+<table>
+
+  <tbody>
+    <% @sectors.each do |sector| %>
+      <tr>
+        <td><%= sector.name %>
+<%if sector.cities.length > 0%>
+<br>
+<small><%=sector.cities.map(&:name).join(', ')%></small>
+<%end%>
+</td>
+        <td><%= link_to 'Show', showmytorolanana_path(sector.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,13 @@
+<p><%= form_with(model: post,url:"/posts/#{post.id}/edit",method:'post', local: true) do |form| %>
+<div>Edit</div>
+<%@var||=0%>
+<%@var+=1%>
+      <%=select_tag "collection", options_from_collection_for_select(Collection.all, :id, :name),{id:'select'+@var.to_s,prompt:'select collection'}%>
+
+          <%=grouped_collection_select(:post,:actions, EventType.all, :tasks, :name, :id, :name,{ :include_blank =>  'select task' },{id:'selecteventtype'+@var.to_s})%>
+
+
+
+    <%= form.submit "edit this post" %>
+  <% end %></p>
+

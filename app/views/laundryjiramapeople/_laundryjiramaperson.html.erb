@@ -1,0 +1,9 @@
+<%if @epoch%>
+<%if laundryjiramaperson.alias.user== current_user%>
+<%=t('display.laundryjiramayou',grade:laundryjiramaperson.grade.nom,sailor:laundryjiramaperson.alias.alias.name,epochurl: polymorphic_url(@epoch)).html_safe%>
+<%else%>
+<%=t('display.laundryjirama',user:laundryjiramaperson.user.name,grade:laundryjiramaperson.grade.nom,sailor:laundryjiramaperson.alias.person.name,epochurl: polymorphic_url(@epoch)).html_safe%>
+<%end%>
+<%else%>
+<%=t('display.laundryjiramanoepoch',user:laundryjiramaperson.alias.user.name,grade:laundryjiramaperson.grade.nom,sailor:laundryjiramaperson.alias.alias.name).html_safe%>
+<%end%>

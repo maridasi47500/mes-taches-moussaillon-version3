@@ -1,0 +1,14 @@
+<%=fields_for :post, @post do |form|%>
+<%=form.fields_for :postlikecomments, Postlikecomment.new do |ff|%>
+<%=ff.fields_for :attitude, Attitude.new do |f|%>
+<%=f.text_field(:name, placeholder: "What's your/his/her attitude for this particular task?")%>
+<%=f.label :didit, "Have you done that attitude yet? Yes"%>
+<%=f.label :didit, "Have you done that attitude yet?", for: "yesattitude"%>
+
+<%= f.radio_button :didit, "1", id: "yesattitude" %>
+<%=f.label :didit, "Have you done that attitude yet? no", for: "noattitude"%>
+
+<%= f.radio_button :didit, "0", id: "noattitude" %>
+<%end%>
+<%end%>
+<%end%>

@@ -1,0 +1,78 @@
+<%= form_with(model: basic_guyacadeau, local: true) do |form| %>
+<% if basic_guyacadeau.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(basic_guyacadeau.errors.count, "error") %> prohibited this basic_guyacadeau from being saved:</h2>
+
+<ul>
+<% basic_guyacadeau.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+
+<%=render "form/radiobutton", form: form, fieldname: "address_id", collec: [], mesmodele:"address"%>
+<div class="field" id="myaddress">
+<%= form.fields_for :address do |f|%>
+<div>
+<%= f.fields_for :city do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+<div>
+<%= f.fields_for :country do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+<div>
+<%= f.fields_for :state do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+
+<%= f.fields_for :place do |ff|%>
+<div>
+<%=ff.label :name%>
+<%=ff.text_field :name%>
+</div>
+<div>
+<%=ff.hidden_field :image%>
+<%=ff.label :image%>
+<%=ff.file_field :image%>
+</div>
+<%end%>
+
+<div>
+<%=f.label :address%>
+<%=f.text_field :address%>
+</div>
+<%end%>
+</div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "person_id", collec: Person.findbyid(basic_guyacadeau.person_id), mesmodele:"person"%>
+
+
+</div>
+
+
+<div class="field">
+<%= form.label :price %>
+<%= form.number_field :price %>
+</div>
+
+<div class="actions">
+<%= form.submit %>
+</div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,json_addresses_path]%>
+<%@select=[person_basic_guyacadeaux_path,address_basic_guyacadeaux_path]%>
+
+<%@nom=%w[person address]%>
+<%=render partial:"form/functionjsonguya", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

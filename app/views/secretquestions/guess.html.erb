@@ -1,0 +1,30 @@
+<%if @answertrue%>
+<p>g.g. !</p>
+<%else%>
+<p>try again ! right answers =</p>
+<ul>
+<%@secretquestion.answers.where(good: true).each do |secretq|%>
+<li>
+<%=secretq.text%>
+</li>
+<%end%>
+</ul>
+<%end%>
+<br>
+<ul>
+<%@secretquestion.usersecretquestions.each do |t|%>
+<li>
+<%=t.user.name%>
+<%=t('display.nbrep', count: t.answersecretquestions.length)%>
+<%if t.answersecretquestions.length > 0%>
+<ul>
+<% t.answersecretquestions.each do |u|%>
+<li>
+<%=u.secretanswer.text%>
+</li>
+<%end%>
+</ul>
+<%end%>
+</li>
+<%end%>
+</ul>

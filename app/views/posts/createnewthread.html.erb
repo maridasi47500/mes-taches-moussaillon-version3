@@ -1,0 +1,5 @@
+<%=fields_for :post, @post do |form|%>
+<%=form.fields_for :threads, @post.threads do |mypost|%>
+<%= mypost.text_field :title, placeholder: "Titre du thread"%>
+<%end%>
+<%end%>

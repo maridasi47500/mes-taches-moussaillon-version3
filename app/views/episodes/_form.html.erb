@@ -1,0 +1,30 @@
+<%= form_with(model: episode, local: true) do |form| %>
+  <% if episode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(episode.errors.count, "error") %> prohibited this episode from being saved:</h2>
+
+      <ul>
+        <% episode.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "episodehaveactor_ids", collec: episode.episodehaveactors, mesmodele:"actors"%>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+<%@search=[myactors_episodes_path]%>
+<%@select=[actors_episodes_path]%>
+
+<%@nom=['actors']%>
+<%=render partial:"form/functionjsonwithparams", collection: @nom.zip(@search, @select), as: :t%>
+
+</script>
+<%end%>

@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<p><%=@citynews.city.name%></p>
+<p><%=@citynews.content%></p>
+<%= link_to 'Edit', edit_citynews_path(@citynews) %> |
+<%= link_to 'Back', citynews_index_path %>

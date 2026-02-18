@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lifestateshaverequests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Personhavelifestate</th>
+      <th>Requeststoperson</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lifestateshaverequests.each do |lifestateshaverequest| %>
+      <tr>
+        <td><%= lifestateshaverequest.personhavelifestate_id %></td>
+        <td><%= lifestateshaverequest.requeststoperson_id %></td>
+        <td><%= link_to 'Show', lifestateshaverequest %></td>
+        <td><%= link_to 'Edit', edit_lifestateshaverequest_path(lifestateshaverequest) %></td>
+        <td><%= link_to 'Destroy', lifestateshaverequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lifestateshaverequest', new_lifestateshaverequest_path %>

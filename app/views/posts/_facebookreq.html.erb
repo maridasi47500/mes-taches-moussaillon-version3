@@ -1,0 +1,33 @@
+
+        <div class=" googlereqandres" role="tabpanel" aria-labelledby="nav10">
+    
+            <h2>Add facebook requests</h2>
+            <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addagooglerequest=true'});">add a facebook request</button>
+
+    <%= form.fields_for :facebook_requests do |surname| %>
+        <%= surname.label :name, "facebook requests that you mentioned" %>
+        <%= surname.text_field :name %>
+
+    Delete this facebook request : <%= surname.check_box :_destroy %>
+      <%=surname.fields_for :googleresults do |googleres|%>
+          <div>
+        <%= googleres.label :title, "title for this facebook result" %>
+        <%= googleres.text_field :title %>
+      </div>
+          <div>
+        <%= googleres.label :content, "description for this facebook result" %>
+        <%= googleres.text_field :content %>
+      </div>
+          <div>
+        <%= googleres.label :date, "date for this facebook result" %>
+        <%= googleres.text_field :date %>
+      </div>
+          <div>
+        <%= googleres.label :url, "url for this facebook result" %>
+        <%= googleres.text_field :url %>
+      </div>
+
+    <%end%>
+    <%end%>
+     
+        </div>

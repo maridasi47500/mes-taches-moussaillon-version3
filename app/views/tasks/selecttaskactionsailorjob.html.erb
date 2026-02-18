@@ -1,0 +1,25 @@
+<%=render @sailorjob%>
+<%@sailorjob.taskactionsailorjobs.each do |t|%>
+<%=render 'taskactions/taskactionlinks',t:t, taskaction: t.taskaction, sailorjob_id: @sailorjob.id%>
+<%end%>
+<%=form_with url: selecttaskactionsailorjob_tasks_path do |form|%>
+<%=form.hidden_field :taskid, value: @task.id%>
+<%=form.hidden_field :personid, value: @person.id%>
+<%if @taskactionsailorjob%>
+<%=form.hidden_field :taskactionsailorjob_id, value: @taskactionsailorjob.id%>
+<%end%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskactionidd', collec: [], mesmodele:"people"%>
+</div>
+
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskactionidd_tasks_path]%>
+<%@search =[json_taskactions_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

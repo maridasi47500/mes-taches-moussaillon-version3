@@ -1,0 +1,1 @@
+<%=t('display.optiontask',task: optiontask.followingtask.name,othertasks:optiontask.task.followingtasks.where.not(id: optiontask.followingtask_id).map{|x|x.name}.to_sentence(last_word_connector: I18n.t('connectwords.ou'),two_words_connector: I18n.t('connectwords.ou')))%>

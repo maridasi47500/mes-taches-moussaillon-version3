@@ -1,0 +1,145 @@
+<%= form_with(model: photo, local: true) do |form| %>
+  <% if photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+        <% photo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%if @album%>
+<%=hidden_field_tag :albumid, @album.id%>
+<%else%>
+<%=hidden_field_tag :albumid, params[:albumid]%>
+<%end%>
+  <div class="field">
+<%= form.hidden_field :name %>
+
+    <%= form.label :name %>
+    <%= form.file_field :name %>
+  </div>
+<div id="photo">
+<%if photo.name%>
+
+<%=render photo%>
+<%end%>
+</div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+<%if photo.erreursailors%>
+<%photo.photohavesailors.each_with_index do |p,w|%>
+<%=form.fields_for :photohavesailors, p do |f|%>
+  <div class="field">
+    <%= f.label :person_id, "who's on the photo?" %>
+    <%= f.collection_radio_buttons :person_id, Person.where(id: p.person_id), :id,:name %>
+
+<%=text_field_tag "allpeople#{w}", "",placeholder:"tell me the most famous person on this photo", id: "allpeople#{w}",class:"largetextfield", onchange:"cherchersailors(this, allsailors#{w});return false;"%>
+<select id="allsailors<%=w%>" multiple="true" size="20" onchange="selectsailors(this,greatsailor<%=w%>,<%=w%>);return false;"></select>
+<div id="greatsailor<%=w%>"></div>
+  </div>
+    <%= f.hidden_field :tagx%>
+    <%= f.hidden_field :tagy%>
+  <div class="field">
+    <%= f.label :emotion_id %>
+    <%= f.collection_radio_buttons :emotion_id, Emotion.where(id: p.emotion_id),:id, :name %>
+
+
+<%=text_field_tag "myemotions#{w}", "",placeholder:"myemotions#{w}", id: "myemotions#{w}",class:"largetextfield", onchange:"chercheremotions(this, allemotions#{w});return false;"%>
+<select id="allemotions<%=w%>" multiple="true" size="20" onchange="selectemotions(this,greatemotion<%=w%>,<%=w%>);return false;"></select>
+<div id="greatemotion<%=w%>"></div>
+  </div>
+<%end%>
+<%end%>
+<%else%>
+  <div class="field">
+    <%= form.label :sailor_ids, "who's on the photos?" %>
+    <%= form.collection_check_boxes :sailor_ids, Person.where(id: photo.sailor_ids),:id, :name %>
+
+<%=text_field_tag :allpeople, "",placeholder:"tell me the most famous person on this photo", id: "allpeople",class:"largetextfield", onchange:"cherchersailors(this, allsailors);return false;"%>
+<select id="allsailors" multiple="true" size="20" onchange="selectsailors(this,greatppl);return false;"></select>
+<div id="greatppl"></div>
+  </div>
+<%end%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "thing_ids", collec: photo.things, mesmodele:"things"%>
+</div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%if photo.erreursailors%>
+
+<%@paths=[albumpeople_photos_path,albumemotions_photos_path]%>
+<%@paths2=[personjson_albums_path,json_emotions_path]%>
+<%['sailors','emotions'].each_with_index do |t,i|%>
+
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name || data[i].name_en;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople,nth){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value+'&nth='+nth, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+<%else%>
+<%@paths=[people_photos_path]%>
+<%@paths2=[personjson_albums_path]%>
+<%['sailors'].each_with_index do |t,i|%>
+
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+<%end%>
+</script>
+<%end%>
+
+
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_things_path]%>
+<%@select=[things_photos_path]%>
+
+<%@nom=['things']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,12 @@
+<button type="button" onclick="offbasket();return false;">i'm done</button>
+<button type="button" onclick="clearbasket();return false;">vider la mallette</button>
+<%@peoplebasket.group_by {|x| x.type }.to_a.each do |x,y|%>
+<h3><%=x.pluralize.titleize%></h3>
+  <%=@peoplebasket && @peoplebasket.length > 0 ? (render partial: "things/addbasket", collection: y, as: :thing) : ""%>
+  <%end%>
+  <%@basketevents.group_by {|x| x.type }.to_a.each do |x,y|%>
+<h3><%=x.pluralize.titleize%></h3>
+
+  <%=@basketevents && @basketevents.length > 0 ? (render partial: "events/addbasket", collection: y, as: :event) : ""%>
+
+<%end%>

@@ -1,0 +1,32 @@
+
+<%=form_with url: mysearch_people_path, model: person do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'city_ids', collec: person.cities, mesmodele:"city"%>
+</div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'thing_ids', collec: person.things.to_a, mesmodele:"stuff"%>
+</div>
+
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'todojob_ids', collec: person.todojobs, mesmodele:"task1"%>
+
+</div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'action_ids', collec: person.actions, mesmodele:"task2"%>
+</div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'musicalinstrument_ids', collec: person.musicalinstruments, mesmodele:"music"%>
+</div>
+<div class="actions">
+<%=form.submit "chercher" %>
+</div>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[json_cities_path,json_things_path,json_countries_path,json_tasks_path,json_taskactions_path,json_musicalinstruments_path]%>
+<%@choisis=[searchmycities_people_path,searchmystuff_people_path,searchmycountries_people_path,searchmytasks_people_path,searchmytaskactions_people_path,searchmymusicinstruments_people_path]%>
+<%@nom=["city","stuff","pays","task1","task2","music"]%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>
+

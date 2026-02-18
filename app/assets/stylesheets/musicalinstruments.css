@@ -1,0 +1,26 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+.mymusicalinstruments:hover {
+animation-name:slideIn;
+animation-delay:0s;
+animation-duration:1s;
+    border:black 1px solid;
+}
+@keyframes slideIn {
+  0%, 100% {
+    transform: translate(0px) rotate(0deg);
+    color: red;
+
+  }
+  40% {
+    transform: translate(0px) rotate(30deg);
+    color: green;
+  }
+  60% {
+    transform: translate(0px) rotate(-30deg);
+    color: green;
+  }
+}
+

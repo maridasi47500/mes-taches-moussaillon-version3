@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Question:</strong>
+  <%= @rightaboutsomeone.question %>
+</p>
+
+
+<p>
+  <strong>Description:</strong>
+  <%= @rightaboutsomeone.description %>
+</p>
+
+<%= link_to 'which is true and which is bnot true', telltruth_rightaboutsomeone_path(@rightaboutsomeone.id) %> |
+<%= link_to 'start a game', startgame_rightaboutsomeone_path(@rightaboutsomeone.id) %> |
+<%= link_to 'Edit', edit_rightaboutsomeone_path(@rightaboutsomeone) %> |
+<%= link_to 'Back', rightaboutsomeones_path %>

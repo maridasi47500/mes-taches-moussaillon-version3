@@ -1,0 +1,5 @@
+<%if @s.length > 0%>
+<%=render partial:'reactions_texts/reactions_text', collection: @s, as: :reactions_text, spacer_template: "newline"%>
+<%else%>
+<p>Aucune phrase ne correspond à votre recherche.</p>
+<%end%>

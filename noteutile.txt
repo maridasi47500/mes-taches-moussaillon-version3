@@ -1,0 +1,2 @@
+faire ls -lrt pour faire s'afficher la liste du repository dan l'ordre anti chronologique !!
+ls -lt dans l'ordre chrono!!

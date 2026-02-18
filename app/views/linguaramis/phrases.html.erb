@@ -1,0 +1,9 @@
+<%=fields_for :linguarami do |form|%>
+<%=form.collection_check_boxes(:phrase_ids, @phrases, :id, :content) do |b| %> 
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render partial: 'linguaramis/linguaramiphrase', collection: Phrase.where(id: b.value),as: :phrase%>
+<% end %> 
+<% end %> 
+<% end %> 
+

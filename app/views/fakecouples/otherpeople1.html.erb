@@ -1,0 +1,11 @@
+<%=fields_for :fakecouple, Fakecouple.new do |farm|%>
+<%=farm.fields_for :otherperson do |form|%>
+<%=form.collection_radio_buttons(:otherperson_id, @people, :id, :name) do |b| %> 
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render Person.find(b.value)%>
+<%end%>
+
+<% end %> 
+<% end %> 
+<% end %> 

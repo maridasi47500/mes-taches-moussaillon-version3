@@ -1,0 +1,29 @@
+<div class="header__item header__item--top-nav-locale">
+					<div class="header__sub-item">
+						<div class="locale js-locale" data-locale='{"expandedClass": "locale--expanded"}'>
+	<button class="locale__toggle js-locale-toggle">
+		<%=@locale.icon.html_safe%>
+			<span class="locale__part locale__part--country"><%=@locale.name%></span>
+			<span class="locale__part locale__part--currency"><%=@locale.currency%></span><span class="reader-only">
+			Changer de pays/de langue</span>
+		<i class="locale__expand locale__expand--open icon icon--expand-open"></i>
+		<i class="locale__expand locale__expand--close icon icon--expand-close"></i>
+	</button>
+	<ol class="locale__list">
+            <%@otherlocales.each do |loc|%>
+		<li class="locale__item">
+                    
+						<a href="<%=loc.currentpath(request.path)%>">
+									<%=loc.icon.html_safe%>
+
+			<span class="locale__part locale__part--country"><%=loc.name%></span>
+			<span class="locale__part locale__part--currency"><%=loc.currency%></span></a>
+					</li>
+                                        <%end%>
+							
+        </ol>
+</div>
+
+
+</div>
+				</div>

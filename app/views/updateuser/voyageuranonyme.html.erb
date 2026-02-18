@@ -1,0 +1,27 @@
+<%if current_user.aliases.length == 0%>
+<%=form_with url: whoid_path do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people",label: t('display.whobooks')%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+<%else%>
+<p><%=t('display.whobooks')%></p>
+<%=form_with url: whoid_path do |form|%>
+<%current_user.aliases.each do |person|%>
+<input id="<%=person.name.parameterize+person.id.to_s%>" name="<%=person.id%>person" type="image" width="100" height="100" alt="<%=person.name%>"
+title="<%=person.name%>"
+       src="<%=person.image%>">
+<%end%>
+<%end%>
+
+<%end%>

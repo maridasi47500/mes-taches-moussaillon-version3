@@ -1,0 +1,10 @@
+<p>Sélectionner le type de la tâche</p>
+
+<%=form_with url: addmytypetask_task_path(@task.id) do |form|%>
+<%Tasktype.all.each do |thing|%>
+<input id="<%=thing.name.parameterize+thing.id.to_s%>" name="<%=thing.id%>thing" type="image" width="100" height="100" alt="<%=thing.name%>" style="float:left;padding:10px;"
+       src="<%=thing.image%>">
+
+
+<%end%>
+<%end%>

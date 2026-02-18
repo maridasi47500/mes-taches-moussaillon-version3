@@ -1,0 +1,2 @@
+class Endroit < Thing
+end

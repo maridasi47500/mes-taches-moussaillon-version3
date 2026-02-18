@@ -1,0 +1,7 @@
+
+<%=form_with url: polymorphic_url(season),html:{method: :get} do |form|%>
+<input id="<%=season.name.parameterize+season.id.to_s%>" type="image" width="300" height="300" alt="<%=season.name%>"
+title="<%=season.name%>"
+       src="/assets/<%=season.image%>">
+<%end%>
+

@@ -1,0 +1,254 @@
+<%= form_with(model: song, local: true) do |form| %>
+  <% if song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+        <% song.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%if params[:addacouplet]%>
+    <%=form.fields_for :couplets, Couplet.new do |couplet|%>
+    <%=couplet.label :orderid, "numéro de couplet"%>
+    <%=couplet.number_field :orderid%>
+      <%=couplet.fields_for :contents, Content.new do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column%>
+        <%=content.text_field column%>
+        </div>
+  <% end %>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+  <%elsif params[:nocoupletid]%>
+    <%=render Couplet.find(params[:nocoupletid])%>
+    <%=form.fields_for :couplets, Couplet.find(params[:nocoupletid]) do |refrain|%>
+      <%=refrain.fields_for :contents do |content|%>
+        <div>
+  <% Content.locale_columns(:content).each do |column| %>
+        <%=content.label column%>
+        <%=content.text_field column, readonly: true%>
+      <%end%>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+  <%elsif params[:norefrainid]%>
+    <%=render Refrain.find(params[:norefrainid])%>
+    <%=form.fields_for :refrains, Refrain.find(params[:norefrainid]) do |refrain|%>
+      <%=refrain.fields_for :contents do |content|%>
+        <div>
+  <% Content.locale_columns(:content).each do |column| %>
+        <%=content.label column%>
+        <%=content.text_field column%>
+   <%end%>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+  <%elsif params[:orderrefrain]%>
+    <%=render Refrain.find(params[:orderrefrain])%>
+    <%=form.fields_for :refrains, Refrain.find(params[:orderrefrain]) do |refrain|%>
+    <%=refrain.label :orderid, "numéro de refrain"%>
+    <%=refrain.number_field :orderid%>
+  <%end%>
+  <%elsif params[:norefrains]%>
+    <%=render @song.refrains.order(:orderid)%>
+    <%=form.fields_for :refrains, @song.refrains.order(:orderid) do |refrain|%>
+    <%=refrain.label :orderid, "numéro de refrain"%>
+    <%=refrain.number_field :orderid%>
+  <%end%>
+  <%elsif params[:nocouplets]%>
+    <%=render @song.couplets.order(:orderid)%>
+    <%=form.fields_for :couplets, @song.couplets.order(:orderid) do |refrain|%>
+    <%=refrain.label :orderid, "numéro de couplet"%>
+    <%=refrain.number_field :orderid%>
+  <%end%>
+  <%elsif params[:ordercouplet]%>
+    <%=render Couplet.find(params[:ordercouplet])%>
+    <%=form.fields_for :refrains, Couplet.find(params[:ordercouplet]) do |refrain|%>
+    <%=refrain.label :orderid, "numéro de couplet"%>
+    <%=refrain.number_field :orderid%>
+  <%end%>
+  <%elsif params[:addarefrain]%>
+    <%=form.fields_for :refrains, Refrain.new do |refrain|%>
+    <%=refrain.label :orderid, "numéro de refrain"%>
+    <%=refrain.number_field :orderid%>
+      <%=refrain.fields_for :contents, Content.new do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column, "contenu du nouveau refrain"%>
+        <%=content.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+  <%elsif params[:addalinetocouplet]%>
+    <%=form.fields_for :couplets, Couplet.find(params[:addalinetocouplet]) do |refrain|%>
+      <%=refrain.fields_for :contents, Content.new do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column%> 
+<%=content.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+  <%elsif params[:mycoupletid]%>
+    <%=render partial: "contents/coupletcontent", collection: Couplet.ok2(params[:mycoupletid],current_user.id), as: :couplet %>
+    <%=form.fields_for :couplets,Content.find(params[:mycoupletid]).couplets do |content1|%>
+
+    <%=content1.fields_for :couplethavecomposedcontents,Couplethavecomposedcontent.new(composedcontent: Composedcontent.new) do |content|%>
+    <%=content.hidden_field :userid, value: current_user.id%>
+    <%=content.hidden_field :compoid, value: params[:cid]%>
+
+
+    <%=content.fields_for :composedcontent, Couplet.ok(params[:mycoupletid],current_user.id) do |compo|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=compo.label column, "contenu du refrain"%>
+        <%=compo.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=compo.label :lineid, "numéro de ligne"%>
+        <%=compo.number_field :lineid%>
+        </div>
+    <%end%>
+    <%end%>
+    <%end%>
+  <%elsif params[:myrefrainid]%>
+    <%=render partial: "contents/refraincontent", collection: Refrain.ok2(params[:myrefrainid],current_user.id), as: :refrain %>
+    <%=form.fields_for :refrains,Content.find(params[:myrefrainid]).refrains do |content1|%>
+
+    <%=content1.fields_for :refrainhavecomposedcontents, Refrainhavecomposedcontent.new(composedcontent: Composedcontent.new) do |content|%>
+    <%=content.hidden_field :userid, value: current_user.id%>
+    <%=content.hidden_field :compoid, value: params[:cid]%>
+
+    <%=content.fields_for :composedcontent, Refrain.ok(params[:myrefrainid],current_user.id) do |compo|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=compo.label column, "contenu du refrain"%>
+        <%=compo.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=compo.label :lineid, "numéro de ligne"%>
+        <%=compo.number_field :lineid%>
+        </div>
+    <%end%>
+    <%end%>
+    <%end%>
+  <%elsif params[:editlinerefrain]%>
+    <%=form.fields_for :contenurefrains, Content.find(params[:editlinerefrain]) do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column%>
+        <%=content.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+    <%end%>
+  <%elsif params[:editlinecouplet]%>
+    <%=form.fields_for :contenucouplets, Content.find(params[:editlinecouplet]) do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column, "contenu du couplet"%>
+        <%=content.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+    <%end%>
+  <%elsif params[:addalinetorefrain]%>
+    <%=form.fields_for :refrains, Refrain.find(params[:addalinetorefrain]) do |refrain|%>
+      <%=refrain.fields_for :contents, Content.new do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <div>
+        <%=content.label column, "contenu du nouveau refrain"%>
+        <%=content.text_field column%>
+        </div>
+<%end%>
+        <div>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+        </div>
+      <%end%>
+    <%end%>
+<%else%>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+    <%=form.fields_for :artists, (song.artists[0]||Artist.new) do |art|%>
+  <div class="field">
+        <%=art.label :name, "name of the original composer"%>
+        <%=art.text_field :name%>
+  </div>
+  <div class="field">
+        <%=art.label :image, "Pic of the original composer"%>
+        <%=art.file_field :image%>
+  </div>
+    <%end%>
+  <div class="field">
+    <%= form.label :image, "cover image of the album of the song" %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+    <%=form.fields_for :couplets do |couplet|%>
+      <%=couplet.fields_for :contents do |content|%>
+  <% Content.locale_columns(:content).each do |column| %>
+        <%=content.label column%>
+        <%=content.text_field column%>
+   <%end%>
+        <%=content.label :lineid, "numéro de ligne"%>
+        <%=content.number_field :lineid%>
+      <%end%>
+    <%end%>
+<%end%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "hotel_ids", collec: song.hotels, mesmodele:"hotels"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "person_ids", collec: song.people, mesmodele:"people"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "radio_ids", collec: song.radios, mesmodele:"radios"%>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_hotels_path,personjson_albums_path,json_radios_path]%>
+<%@select=[hotels_songs_path, people_songs_path, radios_songs_path]%>
+
+<%@nom=['hotels','people','radios']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

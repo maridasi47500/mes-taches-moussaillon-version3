@@ -1,0 +1,23 @@
+  <h2><%=defined?(mylabel) ? mylabel : "Add audio"%></h2>
+
+<%= button_tag "record", type: "button", class: "record#{myfield}"%>
+      <%= button_tag "stop", class: "stop#{myfield}", type:"button"%>
+  <div class="field">
+    <%= form.label myfield %>
+    <%= form.file_field myfield, multiple: true %>
+    <%= form.text_field "content#{myfield}", value: textcontent %>
+  </div>
+
+  <table>
+          <thead>
+                  <tr>
+                      <td>Audio Word/ phrase</td>
+                      <td>Identify It / Write it by yourself</td>
+              </tr>
+      </thead>
+  <tbody class="recordingsfield<%=myfield%>">
+  </tbody>
+  </table>
+  <%=button_tag "empty audio file field", onclick: "window.list#{myfield.to_s}=[];task_#{myfield}.value='';return false;", type: "button"%>
+
+<%=render partial: "formrecord/javascriptrecordaudiospecial", locals: {fieldaudio: myfield, form: form, modelderails: modelderails}%>

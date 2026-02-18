@@ -1,0 +1,2 @@
+module M17nphrasesHelper
+end

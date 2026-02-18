@@ -1,0 +1,10 @@
+<%=fields_for :person do |form|%>
+<%=form.collection_radio_buttons(:myprofilepic_id, @profilepictures,:id, :title, {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label do%>
+<%=render partial: 'profilepictures/ppic', collection:@profilepictures.where(id:rad.value), as: :profilepicture%>
+<%end%>
+
+<%end%>
+<%end%>
+

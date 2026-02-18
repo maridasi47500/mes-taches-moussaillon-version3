@@ -1,0 +1,35 @@
+<%if @hotel%>
+<%=t('display.reservationrecaphotel', sailor:@sailor.name, hotel: @hotel.name, ville:@city.name)%>
+<%elsif @resto%>
+<%=t('display.reservationrecapresto', sailor:@sailor.name, resto: @resto.name, ville:@city.name)%>
+<%end%>
+<%=form_with url: mareservation_path do |form|%>
+<%=form.hidden_field :personid, value: params[:personid]%>
+<%=form.hidden_field :cityid, value: params[:cityid]%>
+<%if @resto%>
+<%=form.hidden_field "restoid", value: @resto.id%>
+<%elsif @hotel%>
+<%=form.hidden_field "hotelid", value: @hotel.id%>
+<%end%>
+<div>
+<%=form.label :du, I18n.t('display.datesdu')%>
+<%=form.date_field :du%>
+</div>
+<div>
+<%=form.label :au, I18n.t('display.datesau')%>
+<%=form.date_field :au%>
+</div>
+<%=form.submit I18n.t('display.datesreserver')%>
+<%end%>
+<%=form_with url: cherchelogementresto_path do |form|%>
+<%=form.hidden_field :personid, value: params[:personid]%>
+<%=form.hidden_field :cityid, value: params[:cityid]%>
+<%if params[:restoid].to_i > 0%>
+<%=form.hidden_field "resto.x", value: params[:restoid]%>
+<%=form.submit I18n.t('display.revenirauxrestos',ville:@city.name)%>
+<%elsif params[:hotelid]%>
+<%=form.hidden_field "hotel.x", value: params[:hotelid]%>
+<%=form.submit I18n.t('display.revenirauxhotels', ville: @city.name)%>
+<%end%>
+<%end%>
+

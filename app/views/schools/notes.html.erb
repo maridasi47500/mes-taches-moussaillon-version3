@@ -1,0 +1,18 @@
+
+<%if @school.beautifulschools.length > 0%>
+
+<ul>
+<%=render collection: @school.beautifulschools,as: :school,partial:'beautifulschool'%>
+</ul>
+<%else%>
+<p>
+L'école n'a pas encore été notée.
+</p>
+<%end%>
+
+<br>
+<ul>
+<li>
+<%=link_to "retour à l'école", school_path(@school.id)%>
+</li>
+</ul>

@@ -1,0 +1,9 @@
+                  <%=form.label :comicbook_ids, "All the comic books"%>
+<%= form.collection_check_boxes(:comicbook_ids, @post.mycomicbooks, :id, :title) do |stuff| %>
+              <div class="">
+
+      <%=stuff.check_box%><%= render Comicbook.find(stuff.value) %>
+
+          </div>
+                                    <%end%>
+

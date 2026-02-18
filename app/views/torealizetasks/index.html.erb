@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('indexpage.torealizetask')%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%=t('columntable.torealizetask.task')%></th>
+      <th><%=t('columntable.torealizetask.user')%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @torealizetasks.each do |torealizetask| %>
+      <tr>
+        <td><%= torealizetask.task.name %></td>
+        <td><%= torealizetask.user.name %></td>
+        <td><%= link_to 'Show', torealizetask %></td>
+        <td><%= link_to 'Edit', edit_torealizetask_path(torealizetask) %></td>
+        <td><%= link_to 'Destroy', torealizetask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('newpage.torealizetask'), new_torealizetask_path %>

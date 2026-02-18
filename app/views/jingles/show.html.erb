@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @jingle.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <h1><% @jingle.people.each do |p| %>
+c'est <%=p.name%>, 
+<%end%>
+  (<%= @jingle.content %>)
+</h1>
+
+
+</p>
+  <% if @jingle.people.length > 0 %>
+<p>
+  <strong>Qui dit ce jingle:</strong>
+  <%= render @jingle.people %>
+</p>
+<%end%>
+  <%= render @jingle.reactions %>
+
+  <% if @jingle.audiencemembers.length > 0 %>
+<p>
+  <strong>Qui veut l'ecouter/ce jingle est pour qui:</strong>
+  <%= render @jingle.audiencemembers %>
+</p>
+<%end%>
+
+  <% if @jingle.posts_surname %>
+<p>
+  <strong>Posts surname:</strong>
+
+  <%= render @jingle.posts_surname %>
+
+
+</p>
+<%end%>
+  <% if @jingle.radios.length > 0 %>
+<p>
+
+  <%= render @jingle.radios%>
+
+
+</p>
+<%end%>
+  <%if @jingle.tasks.length > 0 %>
+<p>
+  <strong>Parce que j'ai fait ca :</strong>
+  <%= render @jingle.tasks %>
+</p>
+<%end%>
+        <%= link_to 'Tweeter avec ce jingle', newpostwithcollections_posts_path(jingleid: @jingle.id) %> |
+
+<%= link_to 'Edit', edit_jingle_path(@jingle) %> |
+<%= link_to 'Back', jingles_path %>

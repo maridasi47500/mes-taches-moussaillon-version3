@@ -1,0 +1,19 @@
+<%=render @attitude1%>
+
+<%=fields_for nil do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people",label: "chercher une autre attitude"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[chercherattitude_attitudes_path]%>
+<%@search =[attitudejson_attitudes_path]%>
+<%@nom=['people']%>
+<%@nom.zip(@search, @select).each do |j|%>
+<%=render "form/functionjsonalbumwithparams", t: j,attr: "&attitudesailor1=#{params[:attitudesailor1]}&attitudeamateur1=#{params[:attitudeamateur1]}"%>
+<%end%>
+</script>
+<%end%>
+

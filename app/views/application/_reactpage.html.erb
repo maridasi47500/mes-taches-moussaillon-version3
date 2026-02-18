@@ -1,0 +1,33 @@
+<div id="react" class="field">
+
+<div id="reactpage">
+
+
+    <div class="field reactions-list">
+    </div>
+
+  <%= form.fields_for :reactions do |pokemon| %>
+    <div class="field">
+        <%= pokemon.label :groupby %>
+        <%= pokemon.select("groupby", "1".upto("10").to_a, { include_blank: true }) %>
+    <%= pokemon.label :surname, "Add him/her surname" %>
+<%=pokemon.text_field("surname")%>
+    <%= pokemon.label :name, "Name of this reaction" %>
+<%=pokemon.select("name", Reaction.ofallkind, { include_blank: true })%>
+<%= pokemon.label :reactingperson_ids %>
+    <%= pokemon.select("reactingperson_ids", (@post.reactingpeoplegrouped+@peoplesearched).collect {|p| [ p.name, p.id ] },{prompt: 'select a collection'}, { size: 5,multiple: true , onchange: "$.ajax({url:window.location.pathname+'.js?cud='+$(this).val(), success:function(){}});"}) %>
+    Delete: <%= pokemon.check_box :_destroy %>
+    The order is reversed: <%= pokemon.check_box :opposite %>
+    </div>
+    <button type="button" class="renderareactionwithoutid" data-reaction-id="">add this reaction to the text</button>
+  <% end %>
+   
+<div class="field">
+  <button type="button" onclick="off();return false;">ok</button>
+</div>
+    
+     </div>
+    </div>
+<div class="field">
+<button type="button" onclick="on();return false;">react</button>
+</div>

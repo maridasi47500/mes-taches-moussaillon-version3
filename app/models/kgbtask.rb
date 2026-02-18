@@ -1,0 +1,2 @@
+class Kgbtask < Task
+end

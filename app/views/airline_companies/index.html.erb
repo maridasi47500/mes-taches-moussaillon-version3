@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Airlines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @airline_companies.each do |airline_company| %>
+      <tr>
+        <td><%= render airline_company %></td>
+        <td><%= link_to 'Show', airline_company %></td>
+        <td><%= link_to 'Edit', edit_airline_company_path(airline_company) %></td>
+        <td><%= link_to 'Destroy', airline_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Airline Company', new_airline_company_path %>

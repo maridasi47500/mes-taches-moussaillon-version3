@@ -1,0 +1,12 @@
+<%=fields_for modelname do |form|%>
+<%=form.fields_for attributes do |farm|%>
+<%=farm.collection_radio_buttons(fieldname, collec, :id, columnname) do |b| %>
+       <%=b.radio_button(name: modelname.to_s+'['+attributes.to_s+'_attributes]['+number.to_s+']['+fieldname.to_s+']')%>
+<%=b.label do%>
+<%=render l, ln => b.object%>
+<%end%>
+
+<% end %>
+<% end %>
+<% end %>
+

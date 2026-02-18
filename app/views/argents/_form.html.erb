@@ -1,0 +1,42 @@
+<%= form_with(model: argent, local: true) do |form| %>
+  <% if argent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(argent.errors.count, "error") %> prohibited this argent from being saved:</h2>
+
+      <ul>
+        <% argent.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mois %>
+    <%= form.text_field :mois %>
+  </div>
+
+  <div class="field">
+    <%= form.label :annee %>
+    <%= form.number_field :annee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paye %>
+    <%= form.number_field :paye %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apayer %>
+    <%= form.number_field :apayer %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

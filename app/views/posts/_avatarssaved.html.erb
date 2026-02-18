@@ -1,0 +1,38 @@
+
+
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+
+
+
+
+
+
+
+
+<div id="maprofilpic">
+<%= f.fields_for :profilepic do |g| %>
+<div class="field">
+<%=g.label :name, "Add a profile pic for him/her"%>
+  <%=g.file_field("name")%>
+</div>    
+<div class="field">
+<%=g.label :nameimage, "What's on the pic?"%>
+  <%=g.text_field("nameimage")%>
+</div>    
+
+<%end%>
+</div>
+          <%=link_to "chercher des photos de profil", "", onclick: "$.ajax({type: 'post',url: '#{myavatars_posts_path}?profilepic='+$('#maphotodeprofil').val(),success: function(code) {$('#maprofilpic').html(code);}});return false;"%>
+
+
+      <div>
+        <%= label :maprofilepic, "chercher une photo de profil" %>
+        <%= text_field_tag :maprofilepic, nil, id: 'maphotodeprofil' %>
+      </div>
+
+
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+
+<%end%>
+

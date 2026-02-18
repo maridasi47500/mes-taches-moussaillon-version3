@@ -1,0 +1,45 @@
+<%= form_with(model: lifestate, local: true) do |form| %>
+  <% if lifestate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lifestate.errors.count, "error") %> prohibited this lifestate from being saved:</h2>
+
+      <ul>
+        <% lifestate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "person_ids", collec: lifestate.people, mesmodele:"players"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path]%>
+<%@select=[people_lifestates_path]%>
+<%@nom=['players']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

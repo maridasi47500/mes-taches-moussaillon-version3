@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fakecomments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fakecomments.each do |fakecomment| %>
+      <tr>
+        <td><%= fakecomment.author %></td>
+        <td><%= fakecomment.content %></td>
+        <td><%= link_to 'Show', fakecomment %></td>
+        <td><%= link_to 'Edit', edit_fakecomment_path(fakecomment) %></td>
+        <td><%= link_to 'Destroy', fakecomment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fakecomment', new_fakecomment_path %>

@@ -1,0 +1,28 @@
+
+
+var metonymies = `<%=fields_for 'post[metonymies_attributes][0]' do |f|%>
+        <div class="field">
+
+        <%= f.label :thing_id, "Stuff " %>
+        <%= f.hidden_field :post_id, value:post.id %>
+        <%Thing.all.each_slice(6).to_a.each do |st|%>
+        <div class="card-deck">
+        <%= f.collection_radio_buttons(:thing_id, st, :id, :name) do |ff| %>
+        <div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+        <%end%>
+        </div>
+        <%end%>
+`;
+function replaceForm(str,nb) {
+  return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+var eladded = "post[metonymies_attributes]",i;
+for (i=0;i<30;i++) {
+if ($(eladded+'['+String(i)+']').length == 0) {
+replaceForm(synonyms,i);
+break;
+}
+}
+
+
+$('.addstuff').append(metonymies);

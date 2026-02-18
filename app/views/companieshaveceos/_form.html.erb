@@ -1,0 +1,46 @@
+<%= form_with(model: companieshaveceo, local: true) do |form| %>
+  <% if companieshaveceo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(companieshaveceo.errors.count, "error") %> prohibited this companieshaveceo from being saved:</h2>
+
+      <ul>
+        <% companieshaveceo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'ceo_id', collec: Person.findbyid(companieshaveceo.ceo_id), mesmodele:"ceos"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'job_id', collec: Job.findbyid(companieshaveceo.job_id), mesmodele:"jobs"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'company_id', collec: Company.findbyid(companieshaveceo.company_id), mesmodele:"companies"%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'nationality_id', collec: Nationality.findbyid(companieshaveceo.nationality_id), mesmodele:"nationalities"%>
+  </div>
+
+    <%= form.hidden_field :user_id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[ceo_companieshaveceos_path,job_companieshaveceos_path,company_companieshaveceos_path,nationality_companieshaveceos_path]%>
+<%@search=[personjson_albums_path, json_jobs_path,json_companies_path,json_nationalities_path]%>
+<%@nom=['ceos','jobs','companies','nationalities']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

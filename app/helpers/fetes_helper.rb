@@ -1,0 +1,2 @@
+module FetesHelper
+end

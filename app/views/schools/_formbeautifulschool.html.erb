@@ -1,0 +1,12 @@
+<%=form_with url: note_school_path(school.id) do |f|%>
+<div>
+<input type="image" width="70px" height="70px" id="image1" alt="Login" name="image1" src="/assets/starrum.png">
+<input type="image" width="70px" height="70px" id="image2" alt="Login" name="image2" src="/assets/starrum.png">
+<input type="image" width="70px" height="70px" id="image3" alt="Login" name="image3" src="/assets/starrum.png">
+<input type="image" width="70px" height="70px" id="image4" alt="Login" name="image4" src="/assets/starrum.png">
+<input type="image" width="70px" height="70px" id="image5" alt="Login" name="image5" src="/assets/starrum.png">
+</div>
+<%=f.fields_for :mysurname,PostsSurname.new do |ff| %>
+<%=render "formsurname", f: ff,post: PostsSurname.new%>
+<%end%>
+<%end%>

@@ -1,0 +1,216 @@
+
+ <%if @taskselected%> 
+    <h2>about <%=@taskselected.name%></h2>
+
+ 
+  <%end%> 
+
+  
+   <div id="formpourpost">
+
+    <div class="w-100">
+
+    
+    <button type="button" onclick="$.ajax({url: '<%=createnewthread_posts_path%>',success:function(data){$('.mythread').html(data);}});">Add the thread title</button>
+    </div>       
+    <div class="mythread">
+</div>
+      <% if params[:jingleid] %>
+
+                <%=form.collection_check_boxes(:jingle_ids, @jingles, :id, :content) do |b|%>
+                  <%=b.label do %>
+    <%=render Jingle.find(b.value)%>
+              <%=b.check_box(checked: true) %>
+            <%end%>
+            <%end%>
+
+  <% end %>
+      <% if params[:gossipid] %>
+           <%=form.fields_for :displaygossip, Displaygossip.new(post: post) do |f|%>                                                                                            
+                   <%#=f.hidden_field :Gossipid, value: aboutsomeonegossip.id %>                                                                                                           
+                         <%=f.label :Display, 'how to display your gossip' %>                                                                                                                   
+                         <%=f.select("Display", ['1','2'], { include_blank: true })%>                                                                                                           
+                                   <%end%>                                                                                                                                                                  
+
+
+                <%=form.collection_check_boxes(:aboutsomeonegossip_ids, Aboutsomeonegossip.where(id: params[:gossipid]), :id, :content) do |b|%>
+                  <%=b.label do %>
+    <%=render Aboutsomeonegossip.find(b.value)%>
+              <%=b.check_box(checked: true) %>
+            <%end%>
+            <%end%>
+
+  <% end %>
+
+    <%=render partial: "addpeoplefromcollections", locals: {form: form}%>
+    <p><%=link_to "add a word with meaning", addword_path(params[:id])%></p>
+    <p><%=link_to "talk about a dish", adddish_path(params[:id])%></p>
+    <%= form.label "title", "titre du post" %>
+    <%= form.text_field "title" %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if params[:supportsailortaskno] %>
+
+                <%=form.collection_check_boxes(:supporttask_ids, Task.where(id: params[:supportsailortaskno]), :id, :name) do |b|%>
+                  <h3>Support <%=render Task.find(b.value).sailors%></h3>
+    <%=render Task.find(b.value)%>
+              <%=b.check_box(checked: true) %>
+            <%end%>
+
+  <% end %>
+
+
+
+  <div class="apercu"></div>
+    <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+  <div class="field">
+            <%=form.collection_check_boxes(:mylayout_ids, Mylayout.all, :id, :title) do |b|%>
+
+              <%=b.check_box %><%=b.label%>
+            <%end%>
+  </div>
+
+
+  <% Post.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost' %>
+          
+</div>
+
+  <% end %>
+  <div class="field">
+      <%=label :addsupplementaryavatar, "Add other avatar"%>
+      <%=check_box_tag :addsupplementaryavatar%>
+      <button type="button" onclick="$('form').prop('action','');$('form').prop('method','post');$('form').submit();"> edit this post with other surnames  </button>
+
+</div>
+            <%= render partial: "posts/myownrecordings", locals: {form: form, post: post} %>
+            <%# render partial: "posts/avatars", locals: {form: form, post: post} %>
+            <ul>
+            <%=form.collection_check_boxes(:photo_ids, post.photos, :id, :name) do |b|%>
+
+              <li><%=b.check_box %><%=render Photo.find(b.value)%></li>
+            <%end%>
+            </ul>
+
+
+
+
+  </div>
+
+<div id="myposts"></div>
+<script>
+  function mysetoftasks(){
+    $.ajax({url: '<%=setoftasks_tasks_path%>?'+$('[name^=\'post[postlikecomment\']').serialize(),success:function(data){$('#mytasks').html(data);}});
+  }
+function createnewavatar(){
+  var val=$("[name^='anyname[colid]']:checked").val();
+  $.ajax({url: '<%=collectionofpeopleforpost_collections_path%>?colid='+val+'&colname='+$('#mycollectionname').val(),
+                    success:function(data){
+                      $('.mycollectionsformyposts').html(data);
+                      $('.containerofmypeople').append(`
+                                                                  <div class="col-12 text-md-right ">
+
+                <a class="btn btn-secondary-outline next2" href="" onclick="next2();return false;" title="more">suivant</a>
+
+                                <a class="btn btn-secondary-outline prev2" href=""  onclick="prev2();return false;" title="go back">précédent</a>
+
+        </div>`);
+          
+
+                      }});
+                    return false;
+}
+function chercherunecollection(){
+  $.ajax({url: '<%=findthiscollection_collections_path%>?colname='+$('#mycollectionname').val(),
+                    success:function(data){
+                      $('.findthiscollection').html(data);
+          
+
+                      }});
+                    return false;
+}
+function chercherunecollectionmoussaillon(){
+  $.ajax({url: '<%=findthiscollectionmoussaillon_collections_path%>?colname='+$('#mycollectionnamemoussaillon').val(),
+                    success:function(data){
+                      $('.macollectionmoussaillon').html(data);
+                                $('.macollectionmoussaillonbtn').html(`
+                                                                  <div class="row ">
+
+                <a class="btn next4" href="" onclick="next4();return false;" title="more">suivant</a>
+
+                                <a class=" prev4" href=""  onclick="prev4();return false;" title="go back">précédent</a>
+                                <button type="button" onclick="sailorfromthiscollection();">afficher les moussaillons de cette collections</a>
+
+        </div>`);
+
+
+                      }});
+                    return false;
+}
+function chercherunecollectiontask(){
+  $.ajax({url: '<%=findthiscollectiontask_collections_path%>?colname='+$('#mycollectionnametask').val(),
+                    success:function(data){
+                      console.log(data);
+                      $('.findthiscollectionoftasks').html(data);
+          
+
+                      }});
+                    return false;
+}
+function sailorfromthiscollection(){
+  $.ajax({url: '/chercherunmoussaillon?colid='+$("[name='anyname[colidmoussaillon]']:checked").val(),
+                    success:function(data){
+                      console.log(data);
+                      $('#monmoussaillon').append(data);
+          
+
+                      }});
+                    return false;
+}
+function mysailorstasks() {
+  //open a modal present to me all the tasks of this sailor, you can add one by one the tasks
+  //to the set of tasks
+    var secondval=$("[name^='anyname[colidtask]']:checked").val();
+      var myvalue=$("[name=mysailorname]:checked").val();
+
+    $.ajax({url: '<%=showcollections_tasks_path%>?personid='+myvalue+'&coltaskid='+secondval,success:function(data){
+        
+            $('#mycardcontent').html(`<button type="button" onclick="offcard();return false;">i'm done</button>`);
+            $('#mycardcontent').append(data);
+    oncard();
+
+      }
+    });
+}
+function myfunction() {
+  //load the tasks of this sailors and collection as a set of tasks at once
+  // you could only uncheck the tasks
+  var secondval=$("[name^='anyname[colidtask]']:checked").val();
+
+  var myvalue=$("[name=mysailorname]:checked").val();
+  $.ajax({url: '<%=myattitude_people_path%>?id='+myvalue,success:function(data){$('#myattitude').html(data);}});
+  $.ajax({url: '<%=myfeeds_tweets_path%>?userid='+myvalue,success:function(data){$('#myfeed').html(data);}});
+  $.ajax({url: '<%=mytask_people_path%>?id='+myvalue+'&coltaskid='+secondval,success:function(data){
+      $('#mytask').prepend(data);
+      $('#mytask')[0].children[0].remove();
+    }});
+  $.ajax({url: '<%=mytasks_people_path%>?id='+myvalue+'&coltaskid='+secondval,success:function(data){
+      $('#mytasks').prepend(data);
+      $('#mytasks')[0].children[0].remove();
+    }});
+}
+</script>

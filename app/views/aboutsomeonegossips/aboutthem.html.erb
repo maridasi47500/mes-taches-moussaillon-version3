@@ -1,0 +1,10 @@
+<%=fields_for :aboutsomeonegossip do |form|%>
+<%=form.collection_check_boxes(:aboutthoseperson_ids, @people,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render Person.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+

@@ -1,0 +1,24 @@
+<div class="col monpost">
+<div class="card">
+<div class="card-body">
+<p class="card-text">my i18n phrase</p>
+
+<%=i18nphrase.content%>
+<%if i18nphrase.people.length > 0%>
+<p>gens liés</p>
+<%= render i18nphrase.people%>
+<%end%>
+<%if i18nphrase.places.length > 0%>
+<%= render i18nphrase.places%>
+<%end%>
+<%if i18nphrase.things.length > 0%>
+<%= render i18nphrase.things%>
+<%end%>
+<%if i18nphrase.otheri18nphrases.length > 0%>
+<%= render i18nphrase.otheri18nphrases%>
+<%end%>
+
+<p class="card-text"><%=link_to "voir", i18nphrase%></p>
+</div>
+</div>
+</div>

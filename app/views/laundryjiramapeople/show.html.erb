@@ -1,0 +1,21 @@
+<%=render @person%>
+<%=render @epoch%>
+<p><%=t('display.recallepochgrade',grade: @grade.name).html_safe%></p>
+<%=render @laundry%>
+<br>
+
+<%=form_with url: capitaine_laundryjiramaperson_path(@laundry.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'laundryid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[jiramapeople_epoch_grade_person_user_armygrade_laundryjiramapeople_path(user_id: @user.id, epoch_id:@epoch.id,person_id:@person.id,armygrade_id:@armygrade.id)]%>
+<%@search =[jsonjirama_epoch_grade_person_user_armygrade_laundryjiramapeople_path(user_id: @user.id, epoch_id:@epoch.id,person_id:@person.id,armygrade_id:@armygrade.id)]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonlaundrypeople", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

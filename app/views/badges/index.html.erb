@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Badges</h1>
+<%=render "mydoc"%>
+
+    <% @badges.each_slice(2).to_a.each do |site| %>
+<div class="row">
+
+    <% site.each do |badge| %>
+  <div class="col-sm-6">
+
+        <p><%= badge.name %></p>
+<p>
+<%begin%>
+        <%= image_tag asset_path(badge.image), style: "width:100px;" %>
+<%rescue%>
+<%end%>
+</p>
+        <p><%= badge.description %></p>
+        <p><%= link_to 'Show', badge %></p>
+        <p><%= link_to 'Edit', edit_badge_path(badge) %></p>
+        <p><%= button_to 'Destroy', badge, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+    <% end %>
+      </div>
+    <% end %>
+
+<br>
+
+<%= link_to 'New Badge', new_badge_path %>

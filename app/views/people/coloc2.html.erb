@@ -1,0 +1,17 @@
+<p><%=t('display.colocwith',sailor: @person.name)%></p>
+<%=form_with url: coloctask_people_path do |form|%>
+<%=form.hidden_field :mypersonid, value: @person.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

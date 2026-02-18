@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @bar.musicalscore %>
+
+</p>
+<p>
+  <%= image_tag "/assets/"+@bar.image %>
+</p>
+
+<p>
+  <strong>Correct sample:</strong>
+  <%= render @bar.correct %>
+</p>
+
+  <%if @bar.description.length > 0 %>
+<p>
+  <strong>Details:</strong>
+  <%= @bar.description %>
+</p>
+<%end%>
+
+  <%if @bar.nb %>
+<p>
+  <strong>No. de mesure:</strong>
+  <%= @bar.nb %>
+</p>
+<%end%>
+<ul>
+
+<%if @bar.barattempts.length > 0%>
+<h4>Attempts to play the bar</h4>
+<%=render @bar.barattempts%>
+<%end%>
+</ul>
+
+
+</br>
+<%=link_to "essayer de jouer cette mesure", new_barattempt_path(barid: @bar.id), class: "nav-item2"%>
+</br>
+
+<%= link_to 'revenir a la partition', musicalscore_path(@bar.musicalscore_id), class:"nav-item2" %>
+
+
+<%= link_to 'add a criteria to play the bar the best way you can', new_barcriterion_path(barid: @bar.id), class:"nav-item1" %> 
+<%= link_to 'Edit', edit_bar_path(@bar) %> |
+<%= link_to 'Back', bars_path %>

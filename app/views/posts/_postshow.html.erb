@@ -1,0 +1,19 @@
+<div class="col monpost">
+<div class="card">
+<%if post.photos[0]%><img class="responsive" src="/assets/<%=post.photos[0].name%>"/><%end%>
+
+<div class="card-body">
+<p class="card-text"><%=link_to "voir ce post", post%></p>
+<p class="card-text"><%=simple_format(post.mycontent.html_safe)%></p>
+<p class="card-text"><%=link_to "edit this post", edit_post_path(post.id)%></p>
+
+<%if post.my_posts_surnames.count > 0%>
+<%if post.meanings.count == 0%>
+<%=render partial: "posts_surnames/mypostssurnames", collection: post.my_posts_surnames,as: :person%>
+<%else%>
+<%=render partial: "posts_surnames/mypostssurnameswithlegend", collection: post.my_posts_surnames,as: :person%>
+<%end%>
+<%end%>
+</div>
+</div>
+</div>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<%if @i18nphrase.aliases.length > 0%>
+<p>
+<%= t('display.heshesaid',people: @i18nphrase.aliases.map{|x|(render 'aliases/alias', a: x)}.to_sentence,count: @i18nphrase.aliases.count)%>
+</p>
+<%end%>
+<p>
+  <strong>Phrase:</strong>
+  <%= @i18nphrase.content %>
+</p>
+        <%if @i18nphrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if @i18nphrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if @i18nphrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+<%end%>
+
+<%if @i18nphrase.people.length > 0%>
+<p>gens liés</p>
+<%= render @i18nphrase.people%>
+<%end%>
+<%if @i18nphrase.places.length > 0%>
+<%= render @i18nphrase.places%>
+<%end%>
+<%if @i18nphrase.things.length > 0%>
+<%= render @i18nphrase.things%>
+<%end%>
+<%if @i18nphrase.otheri18nphrases.length > 0%>
+<%= render @i18nphrase.otheri18nphrases%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_i18nphrase_path(@i18nphrase) %> |
+<%= link_to 'Back', i18nphrases_path %>

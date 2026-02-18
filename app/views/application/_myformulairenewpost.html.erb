@@ -1,0 +1,11 @@
+  <form action="/posts/new" method="post">
+
+  <%if person.tvseries.length > 0%>
+    <input type="hidden" name="personids" value="<%=person.id%>">
+  <%else%>
+    <input type="hidden" name="personid" value="<%=person.id%>">
+  <%end%>
+
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=person.name%> dans un post">
+</form>
+

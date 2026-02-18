@@ -1,0 +1,2 @@
+class Strength < Heroattitude
+end

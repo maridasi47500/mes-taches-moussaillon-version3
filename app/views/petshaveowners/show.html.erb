@@ -1,0 +1,16 @@
+<%=content_for :mylittlecss do %>
+.mycarousel {
+width: 100%;
+padding: 20px;
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+
+<%=render @petshaveowner%>
+<%=render 'moncarousel', photos: @petshaveowner.photos if @petshaveowner.photos.length > 0%>
+<ul>
+<li><%= link_to "aller au propriétaire", @petshaveowner.person %></li>
+<li><%= link_to "revenir à l'animal de compagnie", @petshaveowner.pet %></li>
+<li><%= link_to 'Edit', edit_petshaveowner_path(@petshaveowner) %></li>
+<li><%= link_to 'Back', petshaveowners_path %></li>
+</ul>

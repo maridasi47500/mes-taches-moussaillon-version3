@@ -1,0 +1,15 @@
+
+  <div class="field">
+<%=form.label fieldname, (label rescue nil) %>
+<%=form.collection_check_boxes(fieldname, collec, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{mesmodele}","", placeholder:true,onchange:"chercher#{mesmodele}(this,cherche#{mesmodele});return false;", id: "cherchons#{mesmodele}ici",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=mesmodele%>(this,att<%=mesmodele%>);return false;" id="cherche<%=mesmodele%>"></select>
+<div id="att<%=mesmodele%>"></div>
+
+

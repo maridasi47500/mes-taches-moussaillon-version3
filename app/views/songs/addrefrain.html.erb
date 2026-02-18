@@ -1,0 +1,18 @@
+<%=form_with url: addonerefrain_songs_path do |form|%>
+<%=form.text_area :content%>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'songid', collec: [], mesmodele:"people"%>
+</div>
+
+<%=form.submit 'ok'%>
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[songid_songs_path]%>
+<%@search =[json_songs_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fakelinksfamilypeople</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Twoperson</th>
+      <th>Familylink</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fakelinksfamilypeople.each do |fakelinksfamilyperson| %>
+      <tr>
+        <td><%= fakelinksfamilyperson.twoperson_id %></td>
+        <td><%= fakelinksfamilyperson.familylink_id %></td>
+        <td><%= fakelinksfamilyperson.user_id %></td>
+        <td><%= link_to 'Show', fakelinksfamilyperson %></td>
+        <td><%= link_to 'Edit', edit_fakelinksfamilyperson_path(fakelinksfamilyperson) %></td>
+        <td><%= link_to 'Destroy', fakelinksfamilyperson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fakelinksfamilyperson', new_fakelinksfamilyperson_path %>

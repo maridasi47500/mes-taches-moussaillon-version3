@@ -1,0 +1,8 @@
+<%=fields_for :perso do |form|%>
+<%=form.collection_check_boxes(:personid,@people, :id, :name) do |b| %>
+     <%=b.check_box(checked:true, class: '') %>
+      <%=b.label do%> 
+      <%=render partial: 'people/personsimple', collection: [Person.find(b.value)], as: :person%>
+<% end %>
+<% end %>
+<%end%>

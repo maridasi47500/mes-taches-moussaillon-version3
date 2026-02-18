@@ -1,0 +1,10 @@
+<%=fields_for :aboutsomeonegossip do |form|%>
+<%=form.collection_check_boxes(:duringgossip_ids, @reactions,:id, :content, {include_hidden:false}) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render Reaction.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+

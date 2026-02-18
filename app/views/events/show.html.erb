@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<h1><%=@event.name%></h1>
+
+<p>
+  <%= t("de_a", from: l(@event.start_at, format: :mytime), to: l(@event.end_at, format: :mytime)) %>
+</p>
+
+<p>Durée : <%=distance_of_time_in_words(@event.start_at, @event.end_at)%></p>
+
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @event.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @event.latitude %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @event.city_id %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @event.state_id %>
+</p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+<ul>
+<%=render @event.tasks%>
+</ul>
+    <div>
+        <h2>Sailors for this event</h2>
+  <%=render @event.sailors%>
+</div>
+
+<%= link_to 'Ajouter une tache à cet évènement', tasks_event_path(@event.id) %> |
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

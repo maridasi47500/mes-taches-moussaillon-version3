@@ -1,0 +1,5 @@
+<%if @people.length > 0%>
+<%=render partial:'people/personfamous', collection: @people, as: :person%>
+<%else%>
+<p>Aucun moussaillon ne correspond à votre recherche.</p>
+<%end%>

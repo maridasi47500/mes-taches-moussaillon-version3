@@ -1,0 +1,2 @@
+class Faketask < Task
+end

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Twopeoplemeets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @twopeoplemeets.each do |twopeoplemeet| %>
+      <tr>
+        <td><%= render twopeoplemeet %></td>
+        <td><%= link_to 'Show', twopeoplemeet %></td>
+        <td><%= link_to 'Edit', edit_twopeoplemeet_path(twopeoplemeet) %></td>
+        <td><%= link_to 'Destroy', twopeoplemeet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Twopeoplemeet', new_twopeoplemeet_path %>

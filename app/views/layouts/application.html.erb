@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+  <head> <!-- Required meta tags --> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- Bootstrap CSS -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="icon" type="image/x-icon" href="/assets/myfavicon002.png">
+<%#=stylesheet_link_tag "myform"%>
+<link href="/assets/<%=params[:controller]%>.css" rel="stylesheet">
+
+
+
+    <title><%=yield :mytitle%><%=t('monmenu.motto')%> - <%=t('monmenu.titre')%></title>
+<%=yield :csslink%>
+<style>
+<%=yield :csscode%>
+
+<%=yield :mylittlecss%>
+
+.imageprofilethread {
+width:40px;
+height:40px;
+}
+
+body {
+
+}
+background-image:url("<%=@background.image%>");
+    <%if @background.mytype == "photo"%>
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+    <%end%>
+
+}
+
+@media screen and (max-device-width: 500px) {
+  body,main{
+font-size:50px;
+max-width:100vw;
+overflow-wrap: break-word;
+overflow-x:none;
+overflow-y:scroll;
+}
+html {
+width:100vw;
+}
+}
+</style>
+
+  </head>
+  <body >
+<script>
+window.onload=function(){
+alert(document.body.style.width)
+}
+</script>
+<nav id="nav4" style="display:none;" class=" navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#SecteurnavbarSupportedContent" aria-controls="SecteurnavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="SecteurnavbarSupportedContent">
+    <ul class="manav navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=mytorolanana_path%>"><%=t('monmenu.formations')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=sectors_path%>"><%=t('monmenu.secteurs')%></a>
+      </li>
+</ul>
+</div>
+</div>
+</nav>
+
+<nav id="nav3" style="display:none;" class=" navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#FoyernavbarSupportedContent" aria-controls="FoyernavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="FoyernavbarSupportedContent">
+    <ul class="manav navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=madagascar_menage_path%>"><%=t('monmenu.menudufoyer')%></a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="#" onclick="$(mainnav).toggle();$(nav2).toggle();">< <%=t('monmenu.revenir_au_menu_principal')%></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%=jirama_path%>"><%=t('monmenu.addjiramaspend')%></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%=cotisation_path%>"><%=t('monmenu.addcotisation')%></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%=transacs_path%>"><%=t('monmenu.transactions')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=menus_path%>"><%=t('monmenu.menus')%></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="<%=depenses_path%>"><%=t('monmenu.depenses')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=argent_index_path%>"><%=t('monmenu.argent')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=repas_index_path%>"><%=t('monmenu.repas')%></a>
+      </li>
+</ul>
+</div>
+</div>
+</nav>
+<nav id="nav2" style="display:none;" class=" navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="manav navbar-nav">
+
+      <li class="nav-item ">
+        <a class="nav-link" href="#" onclick="$(mainnav).toggle();$(nav2).toggle();">< <%=t('monmenu.revenir_au_menu_principal')%></a>
+      </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=war_weapons_path%>"><%=t('display.war_weapons')%></a>
+        </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=tasktypes_path%>"><%=t('monmenu.task_types')%></a>
+      </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=armycompagnies_path%>"><%=t('display.armycompagnies')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=navettes_path%>"><%=t('display.navettes')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=salutmilitaire_laundryjiramapeople_path%>"><%=t('display.salutmilitaire')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=salutmilitaires_path%>"><%=t('display.toussalutmilitaires')%></a>
+
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=myarmygrades_armygrades_path%>"><%=t('monmenu.lesgradesdelarmee')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=armygrades_path%>"><%=t('monmenu.armygrades')%></a>
+
+      </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=cles_path%>"><%=t('display.clessemaine')%></a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=integrearmee_path%>"><%=t('monmenu.integrearmee')%></a>
+
+      </li>
+</ul>
+</div>
+</div>
+</nav>
+<nav id="mainnav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+ <a class="navbar-brand" href="<%=posts_path%>"><marquee behavior="scroll"><%=t('menu.welcome')%> ************************ <%=l(Date.today, format: :fulldate)%>
+<%#=render "some1birthday"%>
+</marquee></a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="manav navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="#" onclick="$(mainnav).toggle();$(nav2).toggle();"><%=t('monmenu.armee')%> ></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#" onclick="$(mainnav).toggle();$(nav3).toggle();"><%=t('monmenu.gestion_du_foyer')%> ></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#" onclick="$(mainnav).toggle();$(nav4).toggle();"><%=t('monmenu.mon_metier')%> ></a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=tasktypes_path%>"><%=t('monmenu.task_types')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_post_path%>"><%=t('monmenu.newpost')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_person_path%>"><%=t('monmenu.newperson')%></a>
+      </li>
+</ul>
+</div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="manav navbar-nav">
+
+<%=yield :fieldstoadd%>
+
+<li class="nav-item">
+            <a class="nav-link" href="/citynews/"><%=t('display.nouvellesdelaville')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="/citymayors/"><%=t('display.mairsdelaville')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="/mymenus/"><%=t('display.mes_menushtml')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="/basic_guyacadeaux/"><%=t('display.mes_guyacadeaux')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="/people/mysearch"><%=t('display.chercher_des_moussaillons')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="/users/edit"><%=t('display.edit_my_user_info')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=styleofmusics_path%>"><%=t('display.styleofmusic')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=fakecouples_path%>"><%=t('display.fakecouples')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=vehicles_path%>"><%=t('display.vehicles')%></a>
+        </li>
+
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=withorwithoutyous_path%>"><%=t('display.withorwithoutyous')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=badges_path%>"><%=t('display.badges')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=athletemedals_path%>"><%=t('display.olympicathletes')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=olympicmedals_countries_path%>"><%=t('display.olympicmedals')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=fakelinksfamilypeople_path%>"><%=t('display.liensdelafamille_fakes')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=olympiccountries_path%>"><%=t('display.olympiccountries')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=religions_path%>"><%=t('display.religions')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=etnicities_path%>"><%=t('display.ethnicities')%></a>
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=editions_path%>"><%=t('display.editionsofolympicgames')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=states_path%>"><%=t('display.states')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=newssailors_people_path%>"><%=t('display.newssailors')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=computingstuffs_path%>"><%=t('display.computingstuffs')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=factoryservices_path%>"><%=t('display.factoryservices')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=collections_path%>"><%=t('display.collections')%></a>
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=videogames_path%>"><%=t('display.videogames')%></a>
+
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=pets_path%>"><%=t('display.pets')%></a>
+
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=websites_path%>"><%=t('display.websites')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=leslaureats_path%>"><%=t('display.leslaureats')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=trophies_path%>"><%=t('display.trophies')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=tvshows_path%>"><%=t('display.tvshows')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=technologies_path%>"><%=t('display.technologies')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=lifestates_path%>"><%=t('display.lifestates')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=fetes_path%>"><%=t('display.fetes')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=peoplearecoders_programminglanguages_path%>"><%=t('display.peoplearecoders')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=emails_path%>"><%=t('display.emails')%></a>
+
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=factories_path%>"><%=t('display.factories')%></a>
+
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=traveltickets_path%>"><%=t('display.traveltickets')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=peoplearemusicians_musicalinstruments_path%>"><%=t('display.peoplearemusicians')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=peoplehavecities_cities_path%>"><%=t('display.peoplehavecities')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=allpeopleincouple_linkspousepeople_path%>"><%=t('monmenu.allpeopleincouple')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=concerts_path%>"><%=t('monmenu.concerts')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=requeststopeople_path%>"><%=t('monmenu.requeststopeople')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=lovers_tvseries_index_path%>"><%=t('monmenu.couplesalatele')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=filmparodies_path%>"><%=t('monmenu.filmparodies')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=tvseriesparodies_path%>"><%=t('monmenu.tvseriesparodies')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=webpages_path%>"><%=t('monmenu.webpages')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=rivals_path%>"><%=t('monmenu.rivals')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=newspapers_path%>"><%=t('monmenu.newspapers')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=programminglanguages_path%>"><%=t('monmenu.programminglanguages')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=accomplishmyduty_tasks_path%>"><%=t('monmenu.accomplishmyduty')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=schools_path%>"><%=t('monmenu.schools')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=prejudices_path%>"><%=t('monmenu.prejudices')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=prides_path%>"><%=t('monmenu.prides')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=rightaboutsomeones_path%>"><%=t('monmenu.rightaboutsomeones')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=guessaswho_posts_path%>"><%=t('monmenu.guessaswho')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=choosesailorpost1_posts_path%>"><%=t('monmenu.choosesailorpost1')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=emoticons_path%>"><%=t('monmenu.emoticons')%></a>
+
+        </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=conditionnotneglectedtasks_tasks_path%>"><%=t('monmenu.conditionnotneglectedtasks')%></a>
+
+        </li>
+
+<li class="nav-item">
+            <a class="nav-link" href="<%=conditionwelldonetasks_tasks_path%>"><%=t('monmenu.conditionwelldonetasks')%></a>
+
+        </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=winningattitudes_path%>"><%=t('monmenu.winningattitudes')%></a>
+
+      </li>
+<li class="nav-item">
+            <a class="nav-link" href="<%=sailorclothing1_people_path%>"><%=t('monmenu.sailorclothing1')%></a>
+
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="<%=coloc1_people_path%>"><%=t('monmenu.roommates')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=dupontsurnames_path%>"><%=t('monmenu.dupontsurnames')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=realfacts_path%>"><%=t('monmenu.realfacts')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=loveisland1_path%>"><%=t('monmenu.loveisland1')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=candlelight1_path%>"><%=t('monmenu.candlelight1')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=rsmawrongtask1_path%>"><%=t('monmenu.wrongttask1')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=sailorclothing1_people_path%>"><%=t('monmenu.sailorclothing1')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=aidememoires_path%>"><%=t('monmenu.reminders')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=postrange_posts_path%>"><%=t('monmenu.postrangeposts')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=justeca_tasks_path%>"><%=t('monmenu.tasksjusteca')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=person1_twopeople_path%>"><%=t('monmenu.persontwopeopleechange')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=chercherlavilledeqn_people_path%>"><%=t('monmenu.chercherlavilledeqn')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=peoplehavetasks_people_path%>"><%=t('monmenu.chercherpersonnetache')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=seasons_path%>"><%=t('monmenu.seasons')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=artists_path%>"><%=t('monmenu.artists')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=films_path%>"><%=t('monmenu.films')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=mybookings_path%>"><%=t('monmenu.mesreservations')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=restaurants_path%>"><%=t('monmenu.restaurants')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=hotels_path%>"><%=t('monmenu.hotels')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=voyageuranonyme_path%>"><%=t('monmenu.voyageuranonyme')%></a>
+
+      </li>
+
+                                      <li class="nav-item">
+        <a class="nav-link" href="<%=mesjeux_quiestrobot_path%>"><%=t('monmenu.trouvelenomdurobot')%></a>
+
+      </li>
+                                      <li class="nav-item">
+        <a class="nav-link" href="<%=mesjeux_index_path%>"><%=t('monmenu.trouverunrobot')%></a>
+
+      </li>
+                                      <li class="nav-item">
+        <a class="nav-link" href="<%=post_types_path%>"><%=t('monmenu.posts_types')%></a>
+
+      </li>
+                                      <li class="nav-item">
+        <a class="nav-link" href="<%=searchtaskticket_tasks_path%>"><%=t('monmenu.addsailorjobticket')%></a>
+
+      </li>
+                                      <li class="nav-item">
+        <a class="nav-link" href="<%=forcefaiblesse_linkspousepeople_path%>"><%=t('monmenu.ajouterforcefaiblesse')%></a>
+
+      </li>
+
+                              <li class="nav-item">
+        <a class="nav-link" href="<%=addrefrain_songs_path%>"><%=t('monmenu.addrefrain')%></a>
+
+      </li>
+
+                      <li class="nav-item">
+        <a class="nav-link" href="<%=addcouplet_songs_path%>"><%=t('monmenu.addcouplet')%></a>
+
+      </li>
+
+                      <li class="nav-item">
+        <a class="nav-link" href="<%=tendances_path%>"><%=t('monmenu.tendances')%></a>
+
+      </li>
+
+
+              <li class="nav-item">
+        <a class="nav-link" href="<%=addtaskactiontosailorfortask_tasks_path%>"><%=t('monmenu.addtaskactiontosailorfortask')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=addcousin_linkfamilypeople_path%>"><%=t('monmenu.addcousin')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=addsisterbrother_linkfamilypeople_path%>"><%=t('monmenu.addsisterbrother')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=comparesailors_tasks_path%>"><%=t('monmenu.compare')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=chosesailortask_tasks_path%>"><%=t('monmenu.chosesailortask')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=languages_path%>"><%=t('monmenu.languages')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=searchtweets_twitteraccounts_path%>"><%=t('monmenu.searchtweets')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=personstates_path%>"><%=t('monmenu.personstate')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=categorythings_path%>"><%=t('monmenu.categorything')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=clothes_path%>"><%=t('monmenu.clothes')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=sports_path%>"><%=t('monmenu.sports')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=drinks_path%>"><%=t('monmenu.drinks')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=foods_path%>"><%=t('monmenu.foods')%></a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<%=jeudesacteurs_tvseries_index_path%>"><%=t('monmenu.jeuacteurs')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=moviescenes_path%>"><%=t('monmenu.moviescenes')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=becausetasks_path%>"><%=t('monmenu.becausetask')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=hernothers_path%>"><%=t('monmenu.hernother')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=thistasknotthistasks_path%>"><%=t('monmenu.thistasknotthistask')%></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=twopeoplemeets_path%>"><%=t('monmenu.twopeoplemeets')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=hackertasks_path%>"><%=t('monmenu.hackertasks')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=attitudephotos_path%>"><%=t('monmenu.attitudephotos')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=socialmovements_path%>"><%=t('monmenu.socialmvmt')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=traits_path%>"><%=t('monmenu.traits')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=grades_path%>"><%=t('monmenu.grades')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=stories_path%>"><%=t('monmenu.stories')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=torealizetasks_path%>"><%=t('monmenu.torealizetasks')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=instructions_path%>"><%=t('monmenu.instructions')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=radios_path%>"><%=t('monmenu.radios')%></a>
+      </li>
+<%if user_signed_in?%>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=destroy_user_session_path%>"><%=t('monmenu.signout')%></a>
+      </li>
+<%end%>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=tqg_path%>"><%=t('monmenu.poststqg')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=airline_companies_path%>"><%=t('monmenu.airlinecompanies')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=shaktistatements_path%>"><%=t('monmenu.shaktistatements')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=companieshaveemployees_path%>"><%=t('monmenu.companieshaveemployees')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=companieshavecustomers_path%>"><%=t('monmenu.companieshavecustomers')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=companieshaveceos_path%>"><%=t('monmenu.companieshaveceos')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=companies_path%>"><%=t('monmenu.companies')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=facebook_requests_path%>"><%=t('monmenu.facebookrequests')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=googleresults_path%>"><%=t('monmenu.googleresults')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=google_requests_path%>"><%=t('monmenu.googlerequests')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=weaknesses_path%>"><%=t('monmenu.weaknesses')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=strengths_path%>"><%=t('monmenu.strengths')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=peoplehaveweaknesses_path%>"><%=t('monmenu.peoplehaveweaknesses')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=peoplehavestrengths_path%>"><%=t('monmenu.peoplehavestrengths')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=dishes_path%>"><%=t('monmenu.dishes')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=planets_path%>"><%=t('monmenu.planets')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=bodyparts_path%>"><%=t('monmenu.bodyparts')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=cars_path%>"><%=t('monmenu.cars')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=robots_path%>"><%=t('monmenu.robots')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=invites_path%>"><%=t('monmenu.invitations')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=familylinks_path%>"><%=t('monmenu.familylinks')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=linkfamilypeople_path%>"><%=t('monmenu.familypeople')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=m17nphrases_path%>"><%=t('monmenu.expr17n')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=i18nphrases_path%>"><%=t('monmenu.expr18n')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=nationalities_path%>"><%=t('monmenu.nationalities')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=githubaccounts_path%>"><%=t('monmenu.githubaccounts')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=githubrepos_path%>"><%=t('monmenu.githubrepos')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=events_path%>"><%=t('monmenu.events')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=selfies_path%>"><%=t('monmenu.selfies')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=dessinerqch_path%>"><%=t('monmenu.dessiner')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=dessinerqchfeuille_path%>"><%=t('monmenu.dessinerqchfeuille')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=olympicpeople_path%>"><%=t('monmenu.olympicpeople')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=skills_path%>"><%=t('monmenu.skills')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=historicalevents_path%>"><%=t('monmenu.historicalevents')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=socialmovements_path%>"><%=t('monmenu.socialmovements')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=secretquestions_path%>"><%=t('monmenu.secretquestions')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=questions_path%>"><%=t('monmenu.questions')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=countries_path%>"><%=t('monmenu.countries')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=jeu_countries_path%>"><%=t('monmenu.jeugeopays')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_selfie_path%>"><%=t('monmenu.newselfie')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=betterpeople_path%>"><%=t('monmenu.contest')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=musicalkeys_path%>"><%=t('monmenu.musicalkeys')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=musicalinstruments_path%>"><%=t('monmenu.musicalinstrument')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=musicalscores_path%>"><%=t('monmenu.musicalscores')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=taskactions_path%>"><%=t('monmenu.taskactions')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://application.fr:<%=request.port%><%=request.path%>"><%=image_tag "/assets/frenchguianaflag0001.png", class: "imageprofilethread"%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://application.nl:<%=request.port%><%=request.path%>"><%=image_tag "/assets/surinameflag0001.png", class: "imageprofilethread"%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://application.en:<%=request.port%><%=request.path%>"><%=image_tag "/assets/britishflag.png", class: "imageprofilethread"%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://application.fr:<%=request.port%><%=request.path%>"><%=image_tag "/assets/roundfrenchflag.png", class: "imageprofilethread"%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="http://application.de:<%=request.port%><%=request.path%>"><%=image_tag "/assets/germanflag.jpeg", class: "imageprofilethread"%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=musicalcompositions_path%>"><%=t('monmenu.musiccompo')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_place_path%>"><%=t('monmenu.newplace')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_task_path%>"><%=t('monmenu.newtask')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_worktwo_path%>"><%=t('monmenu.newworktwo')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_photo_path%>"><%=t('monmenu.newphoto')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=albums_path%>"><%=t('monmenu.albums')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=tweets_path%>"><%=t('monmenu.alltweets')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=twitteraccounts_path%>"><%=t('monmenu.twitteraccounts')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_song_path%>"><%=t('monmenu.newsong')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_attitude_path%>"><%=t('monmenu.newattitude')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_profilepicture_path%>"><%=t('monmenu.newprofilepicture')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_job_path%>"><%=t('monmenu.newjob')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=peoplerelations_path%>"><%=t('monmenu.peoplerel')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=mistralfm_index_path%>"><%=t('monmenu.mistralfm')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_jingle_path%>"><%=t('monmenu.newjingle')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_ticket_path%>"><%=t('monmenu.nouveauticket')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_reactions_text_path%>"><%=t('monmenu.newreactiontext')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=tvseries_index_path%>"><%=t('monmenu.tvseries')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_city_path%>"><%=t('monmenu.city')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_surname_path%>"><%=t('monmenu.surname')%></a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=edit_user_registration_path%>"><%=t('monmenu.edituser')%></a>
+      </li>
+ 
+    
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=epochs_path%>"><%=t('monmenu.epochs')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=aboutsomeonegossips_path%>"><%=t('monmenu.aboutsomeonegossip')%></a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=spouselinks_path%>"><%=t('monmenu.lovelinks')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=linkspousepeople_path%>"><%=t('monmenu.newloverel')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_posts_surname_path%>"><%=t('monmenu.newpostsurname')%></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="<%=new_post_path%>"><%=t('monmenu.newpost')%></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<main>
+<%=yield%>
+</main>
+
+
+<script src="/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<%=yield :myjscode%>
+
+<script>
+window.onload=function(){
+/*$('.nav-link').each(function(x){
+console.log(x,$(this))
+var xx=$(this)[0];
+
+$.ajax({url: '/myroute',type:"post",data:{myurl: encodeURI(xx.href)},success:function(data){$(xx.parentElement).append(data)}})
+
+})*/
+$.expr[':'].icontains = function(a,i,m){
+return $(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+}
+
+}
+function searchonpage1(){
+var s=$("a:icontains('"+searchonpage.value+"')")[0];
+if (s){
+s.focus();
+};
+}
+
+
+</script>
+
+<%@notice= notice%>
+<%if @notice%>
+<%=render "mynotice", notice: @notice%>
+<%end%>
+
+  </body>
+</html>

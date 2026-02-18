@@ -1,0 +1,9 @@
+  <li><%=task.name%> - <%=task.date_and_time%>
+    <%if task.validations.count > 0%>
+      validé car 
+    <%task.validations.each do |valid|%>
+      <%=valid.name%>,
+    <%end%>
+    <%end%>
+  </li>
+

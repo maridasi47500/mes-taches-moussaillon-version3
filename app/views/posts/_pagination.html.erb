@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= !params[:page] || params[:page] == "0" ? "disabled" : ""%>">
+      <a class="page-link" href="/posts/page/<%= params[:page].to_i - 1%>" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    <%@pagination.each_with_index do |page,i|%>
+      <%if @allposts[page]%>
+
+        <li class="page-item <%=page == params[:page].to_i ? "active" : ""%>"><a class="page-link" href="/posts/page/<%=page%>"><%=page%></a></li>
+  <%end%>
+  <%end%>
+    <li class="page-item <%= @allposts[params[:page].to_i - 1] ? "" : "disabled"%>">
+      <a class="page-link" href="/posts/page/<%= params[:page].to_i + 1%>">Next</a>
+    </li>
+  </ul>
+</nav>
+

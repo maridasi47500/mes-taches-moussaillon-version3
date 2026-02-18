@@ -1,0 +1,31 @@
+    <div class="recordings-posts">
+              <%if post.recordings.count > 0%>
+Audio recordings  
+        <%= render partial: "posts/recordings", collection: post.recordings, as: :recording %>
+<br/>
+
+    <%end%>
+
+        
+</div>
+    <div>
+              <%if post.videos.count > 0%>
+Video recording  
+        <%= render partial: "posts/videos", collection: post.videos, as: :video %>
+<br/>
+
+    <%end%>
+
+        
+</div>
+    <div>
+              <%if post.photos.count > 0%>
+Pics  
+        <%= render partial: "posts/photos", collection: post.photos, as: :photo %>
+
+<br/>
+    <%end%>
+
+        
+</div>
+

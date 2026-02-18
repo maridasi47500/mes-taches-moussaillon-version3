@@ -1,0 +1,33 @@
+<div class="tooltipcomment">
+Comment n° <%= comment.id %> 
+ "<%=  comment.content %>"
+  
+            <%if comment.usurpations.count > 0%>
+de 
+        <%= render partial: "people", collection: comment.usurpations, as: :person %>
+    <%end%>
+<%if comment.destinataires.count > 0%>
+en s'adressant à
+        <%= render partial: "people", collection: comment.destinataires, as: :person %>
+    <%end%>
+<%if comment.commeelles.count > 0%>
+à la manière de
+
+        <%= render partial: "people", collection: comment.commeelles, as: :person %>
+    <%end%>
+            <%if comment.hackedpeople.count > 0%>
+en réponse à
+
+        <%= render partial: "people", collection: comment.hackedpeople, as: :person %>
+
+
+    <%end%>
+
+            <%if comment.usurpationrelatedpeople.count > 0%>
+pour
+        <%= render partial: "people", collection: comment.usurpationrelatedpeople, as: :person %>
+
+
+    <%end%>
+
+</div>

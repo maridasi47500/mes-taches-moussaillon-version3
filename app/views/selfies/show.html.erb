@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @selfie.title %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= image_tag "/assets/"+@selfie.name %>
+</p>
+  <% if @selfie.selfiehavesailors.length > 0 %>
+<p><%=t('selfieisee')%>
+  <%= @selfie.selfiehavesailors.map{ |p| t('sailormood', sailor: (render p.person),mood: (render p.emotion))}.to_sentence.html_safe%>
+
+</p>
+<%end%>
+
+
+<%= link_to 'Edit', edit_selfie_path(@selfie) %> |
+<%= link_to 'Back', selfies_path %>

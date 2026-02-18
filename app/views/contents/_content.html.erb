@@ -1,0 +1,3 @@
+
+<%=@post.content%>
+<%=render partial: "contents/postsimages", collection: @post.photos[1..-1], as: :image%>

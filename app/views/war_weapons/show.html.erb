@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= render @war_weapon.becomes(Thing) %>
+</p>
+
+<%= link_to 'Edit', edit_war_weapon_path(@war_weapon) %> |
+<%= link_to 'Back', war_weapons_path %>

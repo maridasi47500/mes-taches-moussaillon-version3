@@ -1,0 +1,2 @@
+module CategorythingsHelper
+end

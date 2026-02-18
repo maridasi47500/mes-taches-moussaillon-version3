@@ -1,0 +1,9 @@
+<%= form_with(model: tvseries, local: true) do |form| %>
+
+
+<%=render "fieldsforepisodes", form: form, episodes: Episode.new%>
+<div class="send">
+<%=form.submit%>
+</div>
+
+<%end%>

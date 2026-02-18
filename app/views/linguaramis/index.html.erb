@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Linguaramis</h1>
+
+    <% if @linguaramis.length > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Creation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @linguaramis.each do |linguarami| %>
+      <tr>
+        <td><%= linguarami.user ? linguarami.user.name : "" %></td>
+        <td><%= linguarami.created_at %></td>
+        <td><%= link_to 'Show', linguarami %></td>
+        <td><%= link_to 'Edit', edit_linguarami_path(linguarami) %></td>
+        <td><%= link_to 'Destroy', linguarami, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%else%>
+<p>
+Il n'y a pas de linguarami. oulez voulez apprendre a creer un linguarami ? essayez d'assembler des morceaux de phrases (cherchez une carte dans toutes les langues est permis), il doit y avoir le sens!
+</p>
+<%end%>
+
+<br>
+
+<%= link_to 'New Linguarami', new_linguarami_path %>

@@ -1,0 +1,28 @@
+<%= form_with(model: aidememoire, local: true) do |form| %>
+  <% if aidememoire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(aidememoire.errors.count, "error") %> prohibited this aidememoire from being saved:</h2>
+
+      <ul>
+        <% aidememoire.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :recordedphrase_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: 'phrase',mylabel: "record phrase", myfield: "myownphrasesandwords1", form: form, modelderails: aidememoire}%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :recordingword_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: 'phrase',mylabel: "record phrase", myfield: "myownphrasesandwords2", form: form, modelderails: aidememoire}%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

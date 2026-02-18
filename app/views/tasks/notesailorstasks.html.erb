@@ -1,0 +1,14 @@
+<ul>
+<%@task.sailorjobs.each do |t|%>
+<li>
+<%if t.sailorjobhaveratings.length > 0%>
+<ul>
+<li>
+<%=render partial: 'sailorjobhaveratings/sailorjobhaverating', collection: t.sailorjobhaveratings, spacer_template: 'listbullet'%>
+</li>
+</ul>
+<%end%>
+<%=render 'sailorjobhaveratings/form', sailorjobhaverating: Sailorjobhaverating.new(sailorjob: t)%>
+</li>
+<%end%>
+</ul>

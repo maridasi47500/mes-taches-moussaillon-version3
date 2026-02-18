@@ -1,0 +1,102 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+        <% lesson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+<%if !lesson.id%>
+  <div class="field">
+    <%= form.hidden_field :user_id, value:current_user.id %>
+  </div>
+<%end%>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div> 
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: lesson.title,mylabel: "record title of lesson like a woman", myfield: "recordmyphrasesandwords1", form: form, modelderails: lesson}%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: lesson.title,mylabel: "record the title of the lesson like a man", myfield: "recordmyphrasesandwords2", form: form, modelderails: lesson}%>
+
+
+<%if params[:id]%> 
+
+
+
+
+
+<%if lesson.lesson_languages.length > 0%>
+<%lesson.lesson_languages.each do |from|%>
+<%lesson.lesson_sentences.each do |content|%>
+<%=form.fields_for :lesson_contents,content do |firm|%>
+<h3>my content</h3>
+
+<% LessonContent.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= firm.label column %>
+    <%= firm.text_area column, class: 'contentpost'%>
+
+</div>
+  <% end %>
+
+
+
+
+
+
+
+  <% end %>
+  <% end %>
+
+<div id="contents">
+</div>
+
+<div id="samplecontents">
+</div>
+
+
+<%lesson.lesson_applications.each do |content|%>
+<%=form.fields_for :lesson_applications,content do |firm| %>
+<h3>my sample content</h3>
+<% LessonApplication.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= firm.label column %>
+    <%= firm.text_area column, class: 'contentpost'%>
+
+</div>
+  <% end %>
+
+<p><%=content["content_#{from.to.locale}"]%></p>
+
+
+
+<%end%>
+<%end%>
+<%end%>
+<%end%>
+<%else%>
+<p>
+ajoutez des langues
+</p>
+<%end%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

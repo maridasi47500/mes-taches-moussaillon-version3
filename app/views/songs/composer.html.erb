@@ -1,0 +1,47 @@
+<%=link_to "new composition","?compoid=new"%>
+<%=select_tag :compoid, options_for_select(@song.mymusicalcompositions.collect {|x|[x.title, x.mycompoid]},@cid), {include_blank: "Select your composition", onchange: "window.location=window.location.pathname+'?compoid='+this.value"}%>
+<%if @cid%>
+  <h1>Editing Title of musical composition</h1>
+
+<%= render 'musicalcompositions/form', musicalcomposition: @musicalcomposition %>
+
+<%@song.couplets.order(:orderid).each_with_index do |c,i|%>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdowncouplet<%=c.id%>" data-bs-toggle="dropdown" aria-expanded="false">
+    Couplet <%=i+1%>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdowncouplet<%=c.id%>">
+    <%c.contents.each do |d|%>
+      <li><a class="dropdown-item" onclick="sendcouplet(<%=@song.id%>,<%=d.id%>);return false;" href=""><%=d.content%></a></li>
+      
+      
+  <%end%>
+  </ul>
+</div>
+<%end%>
+<%@song.refrains.order(:orderid).each_with_index do |c,i|%>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdowncouplet<%=c.id%>" data-bs-toggle="dropdown" aria-expanded="false">
+    Refrain <%=i+1%>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownrefrains<%=c.id%>">
+    <%c.contents.each do |d|%>
+      <li><a class="dropdown-item" onclick="sendrefrain(<%=@song.id%>,<%=d.id%>);return false;" href=""><%=d.content%></a></li>
+      
+      
+  <%end%>
+  </ul>
+</div>
+<%end%>
+<div id="editsong">
+</div>
+
+  <script>
+    function sendcouplet(x,y) {
+      $.ajax({type:'get',url: "/songs/"+x+"/edit?ok=true&cid=<%=@cid%>&mycoupletid="+y, success:function(data){editsong.innerHTML=data;}});
+    }
+    function sendrefrain(x,y) {
+      $.ajax({type:'get',url: "/songs/"+x+"/edit?ok=true&cid=<%=@cid%>&myrefrainid="+y, success:function(data){editsong.innerHTML=data;}});
+    }
+  </script>
+<%end%>

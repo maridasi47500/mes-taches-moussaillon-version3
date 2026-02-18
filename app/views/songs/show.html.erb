@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+
+<%=render partial: "musicalcompositions/musicalcomposition", collection: Musicalcomposition.refrain(@song,@cid), as: :song%>
+    </div>
+<p>
+  <%= render @song %>
+</p>
+<%if @song.people.length > 0%>
+<br>
+<p>Amis qui m'ont conseillé la chanson</p>
+<%=render @song.people%>
+<br>
+<%end%>
+<%if @song.hotels.length > 0%>
+
+<br>
+<p>Hôtels où j'ai pû écouter la chanson</p>
+<%=render @song.hotels%>
+<br>
+<%end%>
+<%if @song.radios.length > 0%>
+
+<br>
+<p>Radios où j'ai entendu la chanson</p>
+<%=render @song.radios%>
+<br>
+<%end%>
+
+<%=form_with url: composer_song_path(@song.id), html: {method: "get"} do |form| %>
+<p>Clique sur le compositeur pour passer en mode composition</p>
+<input id="imageattitudecomposses" type="image" width="100" height="100" alt="composer attitude" title="attitude de compositeur ou compositrice" name="attitudemusician"
+       src="/assets/composerofficiallogo.png">
+<%end%>
+
+  <p><%=link_to "changer order des refrains", edit_song_path(@song.id, norefrains: true)%></p>
+  <p><%=link_to "changer ordre des couplets", edit_song_path(@song.id, nocouplets: true)%></p>
+<%@song.refrains.order(:orderid => :asc).each_with_index do |a,i|%>
+  <b>Refrain n°<%=i+1%></b>
+  <p><%=link_to "destroy refrain n°\"#{i+1}\"", destroyconfirm_song_path(@song.id, refrainid: a.id)%></p>
+  <p><%=link_to "changer les numéros des lignes du refrain n°\"#{i+1}\"", edit_song_path(@song.id, norefrainid: a.id)%></p>
+  <p><%=link_to "changer l'ordre du refrain n°\"#{i+1}\"", edit_song_path(@song.id, orderrefrain: a.id)%></p>
+
+  <%a.contents.group(:lineid).order(:lineid => :asc).each do |refrain|%>
+    <p><%=refrain.content%><%=link_to "edit this line of refrain", edit_song_path(@song.id, editlinerefrain: refrain.id) %></p>
+    <p><%=link_to "destroy \"#{refrain.content}\"", destroyconfirm_song_path(@song.id, contentid: refrain.id)%>
+  <%end%>
+
+  <p><%=link_to "add a line to this refrain", edit_song_path(@song.id, addalinetorefrain: a.id)%></p>
+
+  <%end%>
+  <p><%=link_to "add a refrain", edit_song_path(@song.id, addarefrain: true)%></p>
+
+</p>
+<%@song.couplets.order(:orderid=>:asc).each_with_index do |a,i|%>
+  <b>Couplet n°<%=i+1%></b>
+  <p><%=link_to "destroy couplet n°\"#{i+1}\"", destroyconfirm_song_path(@song.id, coupletid: a.id)%></p>
+  <p><%=link_to "changer les numéros des lignes du couplet n°\"#{i+1}\"", edit_song_path(@song.id, nocoupletid: a.id)%></p>
+  <p><%=link_to "changer l'ordre du couplet n°\"#{i+1}\"", edit_song_path(@song.id, ordercouplet: a.id)%></p>
+  <%a.contents.group(:lineid).order(:lineid => :asc).each do |couplet|%>
+    <p><%=couplet.content%><%=link_to "edit this line of couplet", edit_song_path(@song.id, editlinecouplet: couplet.id) %></p>
+
+  <p><%=link_to "add a line to this couplet", edit_song_path(@song.id, addalinetocouplet: a.id)%></p>
+  <p><%=link_to "destroy \"#{couplet.content}\"", destroyconfirm_song_path(@song.id, contentid: couplet.id)%>
+  <%end%>
+  <%end%>
+  <%=link_to "add a couplet", edit_song_path(@song.id, addacouplet: true)%>
+<%if @song.musicalcompositions.length > 0%>
+</br>
+<h4>Mes compositions musicales à partir de cette chanson</h4>
+<%=render partial: 'musicalcompositions/musicalcomposition', collection: @song.mymusicalcompositions, as: :song%>
+<%end%>
+
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>

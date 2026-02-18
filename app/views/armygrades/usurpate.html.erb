@@ -1,0 +1,13 @@
+<p><%=notice%></p><%=render @grade%>
+<%=t('display.usurpategrade',sailor:@person.name)%>
+
+<%=form_with url: usurpatewithgrade_epoch_grade_person_user_armygrades_path(user_id: @user.id,grade_id:@grade.id, epoch_id:@epoch.id,person_id:@person.id) do |form|%>
+<%=form.hidden_field :gradeid, value: @grade.id%>
+<%@grades.each_with_index do |g,i|%>
+<input id="image<%=i%>" type="image" name="grade<%=g.id%>" width="100" height="100" alt="grade"
+       src="/assets/<%=g.image%>">
+<%end%>
+
+
+<%end%>
+

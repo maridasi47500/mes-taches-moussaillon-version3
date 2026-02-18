@@ -1,0 +1,9 @@
+
+                  <%=form.label :historical_character_ids, "All the historical characters you are mentioning in this post"%>
+<%= form.collection_check_boxes(:historical_character_ids, HistoricalCharacter.last(10)+@post.historical_characters, :id, :name ) do |stuff| %>
+              <div class="">
+
+      <%=stuff.check_box%><%= render HistoricalCharacter.find(stuff.value) %>
+
+          </div>
+                                    <%end%>

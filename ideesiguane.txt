@@ -1,0 +1,9 @@
+comparer un taskhavesailor
+ou 
+comparer un efforthavesailor
+
+faire la moyenne des notes de 2 taches dans thistasknotthistask et ajouter un message
+
+Houra sailor a fait comme sailor1 pas sailor2
+new table : person + this task not this task (bonne puis mauvaise tache)(comparer les taches (meilleurenote))
+fiction/pas fiction

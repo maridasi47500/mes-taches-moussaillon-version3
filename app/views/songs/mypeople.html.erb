@@ -1,0 +1,20 @@
+<%=fields_for :musicalcomposition,Musicalcomposition.find(params[:compoid]) do |form|%>
+
+  <%=form.fields_for :compohaverecipients,Compohaverecipient.new(surname: Surname.new, person_id: Person.new) do |f|%>
+    <%=f.fields_for :surname do |surname|%>
+      <div>
+      <%=surname.label :name%>
+      <%=surname.text_field :name%>
+      </div>
+
+    <%end%>
+      <div>
+<%=f.collection_radio_buttons(:person_id, @people, :id, :name, include_hidden: false)%>
+      </div>
+
+    <%end%>
+
+<%end%>
+
+
+

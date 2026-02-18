@@ -1,0 +1,47 @@
+<ul>
+    <li><%= @grouptasksailor.grouptask.title%></li>
+
+    <li>
+        <%if @grouptasksailor.things.length > 0%>
+        <ul>
+    <li><%=t('display.tachesailorthings', sailor: @grouptasksailor.person.name, things: @grouptasksailor.things.map{|f|f.name}.to_sentence, tasks: @grouptasksailor.taskactions.map{|x|x.name}.to_sentence)%></li>
+<%else%>
+<li><%=t('display.tachesailor', sailor: @grouptasksailor.person.name, tasks: @grouptasksailor.taskactions.map{|x|x.name}.to_sentence)%></li>
+<%end%>
+        </ul>  
+    </li>
+
+</ul>
+<%=form_with url: grouptasksailoraddaction_task_path(@task.id, person_id: @person.id, grouptask_id: @grouptask.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'thingid', collec: [], mesmodele:"tasks",label: "ajouter une tache"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskactionidd_tasks_path]%>
+<%@search =[json_taskactions_path]%>
+<%@nom=['tasks']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+
+
+<%=form_with url: grouptasksailoraddthing_task_path(@task.id, person_id: @person.id, grouptask_id: @grouptask.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'thingid', collec: [], mesmodele:"things",label: "ajouter une chose"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[thingid_tasks_path]%>
+<%@search =[json_things_path]%>
+<%@nom=['things']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+<%=link_to "revenir à la tâche", task_path%>

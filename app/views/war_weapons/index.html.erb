@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>War Weapons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @war_weapons.each do |war_weapon| %>
+      <tr>
+        <td><%= war_weapon.name %></td>
+        <td><%= war_weapon.image %></td>
+        <td><%= link_to 'Show', war_weapon %></td>
+        <td><%= link_to 'Edit', edit_war_weapon_path(war_weapon) %></td>
+        <td><%= link_to 'Destroy', war_weapon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New War Weapon', new_war_weapon_path %>

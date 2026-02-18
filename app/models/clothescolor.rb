@@ -1,0 +1,2 @@
+class Clothescolor < Thing
+end

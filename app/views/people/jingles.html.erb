@@ -1,0 +1,10 @@
+<h1>Edit <%= @person.name%>'s profile</h1>
+  
+<%= render 'form', person: @person, editperson: true %><br/>
+<br/>
+
+  <%= content_for :jsforrecorder do %>
+<%= render "javascriptpouraudiovideo", jingles: true %>
+<%= render "javascriptpouraudiovideo", jingles: true, thisisjingles: true %>
+<%end%>
+

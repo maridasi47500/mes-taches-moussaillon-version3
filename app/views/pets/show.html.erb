@@ -1,0 +1,19 @@
+<%=content_for :mylittlecss do %>
+.pet1 {
+border: 2px dotted darkgrey;
+text-align:center;
+margin: 20px;
+
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+
+
+<p class="pet1">
+  <%= render @pet %>
+</p>
+<br>
+  <%= render @pet.petshaveowners %>
+
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= link_to 'Back', pets_path %>

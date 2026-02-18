@@ -1,0 +1,6 @@
+<div>
+<input id="laundry<%=@laundry.id.to_s%>" name="<%=@laundry.id%>laundry" type="image" width="100" height="100" alt="<%=@laundry.alias.alias.name%>"
+       src="<%=@laundry.alias.alias.image%>">
+<%=render 'laundryjiramapeople/laundry',laundryjiramaperson: @laundry%>
+</div>
+

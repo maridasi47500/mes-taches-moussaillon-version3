@@ -1,0 +1,19 @@
+
+
+          <%= form_with model: @tweetrails, remote: true, local: true do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'tweetcontent' %>
+  </div>
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_area :username, class: 'tweetcontent' %>
+  </div>
+  <div class="field">
+    <%= f.label :place %>
+    <%= f.text_area :place, class: 'tweetcontent' %>
+  </div>
+
+          <p><%= f.datetime_field :created_at%></p>
+          <p><%= f.submit :edit_tweet %></p>
+        <%end%>

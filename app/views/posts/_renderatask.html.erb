@@ -1,0 +1,4 @@
+<%=link_to task do%>
+<button type="button" class="btn btn-success"><%= task.name %> <%= task.description %> 
+
+</button><%= render task.sailors.uniq%><%end%>   

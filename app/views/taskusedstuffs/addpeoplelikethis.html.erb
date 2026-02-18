@@ -1,0 +1,25 @@
+<%=form_with url: whouse_categorything_taskusedstuff_path(@taskusedstuff.id,categorything_id: @categorything.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people",label: I18n.t('pagesshow.task.questionusefortaskwithoutsailor',task:@taskusedstuff.task.name,count: @taskusedstuff.use, thing:@taskusedstuff.thing.name)+' '+'('+@taskusedstuff.people.pluck(:name).to_sentence+')'%>
+</div>
+<%end%>
+<%@taskusedstuff.tasksailorusedstuffs.each do |y|%>
+<p>
+<%if y.people.length > 0%>
+<%=t('display.exceptfor', sailor: t.people.pluck(:name).to_sentence)%>
+
+<%end%>
+<%=link_to t('pagesshow.task.questionusefortaskwithonesailor',sailor: y.person.name, task:@taskusedstuff.task.name,count: @taskusedstuff.use, thing:@taskusedstuff.thing.name), addpeopleforwho_categorything_taskusedstuff_tasksailorusedstuff_path(categorything_id:@categorything.id,taskusedstuff_id:@taskusedstuff.id,id:y.id)%>
+</p>
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

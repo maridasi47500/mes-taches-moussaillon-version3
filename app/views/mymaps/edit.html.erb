@@ -1,0 +1,6 @@
+<h1>Editing Mymap</h1>
+
+<%= render 'form', mymap: @mymap %>
+
+<%= link_to 'Show', post_mymap_path(@mymap.id, post_id: params[:post_id]) %> |
+<%= link_to 'Back', post_mymaps_path(post_id: params[:post_id]) %>

@@ -1,0 +1,19 @@
+<p><%=render 'sailorjobs/sailorjobvariant', sailorjob: @sailorjob%>, 
+<%=t('display.subtask',sailor: @sailorjob.sailor.name,subtask: @taskaction.name)%></p>
+<%=render partial: 'tasksailorjob', collection: @o.taskhavetaskactiontwosailorjobs, as: :t%>
+
+<%=form_with url: taskactionsailorjobaddsailor_tasks_path(taskactionsailorjob_id: params[:taskactionsailorjob_id],taskaction_id: @taskaction.id, sailorjob_id: @sailorjob.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

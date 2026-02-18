@@ -1,0 +1,2 @@
+module RealfactsHelper
+end

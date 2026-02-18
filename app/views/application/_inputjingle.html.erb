@@ -1,0 +1,23 @@
+  <h2><%=title%></h2>
+
+<%= button_tag "record", type: "button", class:"record"%>
+      <%= button_tag "stop", class:"stop", type:"button"%>
+  <%=form.fields_for :jingles do |jingle|%>
+  <div class="field">
+    <%= jingle.label :name, "audio file for this jingle" %>
+    <%= jingle.file_field :name %>
+  </div>
+      <div class="field">
+
+      <%= jingle.label :content, "text for this jingle" %>
+    <%= jingle.text_field :content %>
+  </div>
+        <div class="field">
+
+    Delete this jingle: <%= jingle.check_box :_destroy %>
+        </div>
+  <%end%>
+        <button type="button" class="addajingle">add a jingle</button>
+
+  <div class="recordingsfield">
+  </div>

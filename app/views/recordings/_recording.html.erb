@@ -1,0 +1,20 @@
+    <div class="col">
+<div class="card">
+    <div class="card-header">
+    My recording
+  </div>
+
+<div class="card-body">
+<p class="card-text"><audio controls src="<%= asset_path  "/assets/#{recording.name}" %>"></audio>
+                <%if recording.authors.count > 0%>
+  
+        <%= render partial: "user", collection: recording.authors, as: :user %>
+dit : 
+
+    <%end%>
+
+<%=recording.content%>
+</p>
+</div>
+    </div>
+        </div>

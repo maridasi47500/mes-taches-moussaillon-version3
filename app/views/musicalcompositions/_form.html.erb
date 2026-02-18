@@ -1,0 +1,73 @@
+<%= form_with(model: musicalcomposition, local: true) do |form| %>
+  <% if musicalcomposition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(musicalcomposition.errors.count, "error") %> prohibited this musicalcomposition from being saved:</h2>
+
+      <ul>
+        <% musicalcomposition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%=form.label :recipient%>
+  <%=form.text_field :composedfor, value:"", placeholder: true, onchange: "$.ajax({url: '#{mypeople_songs_path}?compoid=#{musicalcomposition.id}&name='+this.value,success:function(data){musicpeople.innerHTML=data;}});"%>
+  <div id="musicpeople">
+  <%=form.fields_for :compohaverecipients do |f|%>
+    <%=f.label :_destroy, "remove this recipient"%>
+    <%=f.check_box :_destroy%>
+    <%=f.fields_for :surname do |surname|%>
+      <div>
+      <%=surname.label :name%>
+      <%=surname.text_field :name%>
+      </div>
+
+    <%end%>
+      <div>
+  <%=f.collection_radio_buttons(:person_id,musicalcomposition.recipients, :id, :name)%>
+      </div>
+
+    <%end%>
+
+
+  </div>
+  <%= form.fields_for :composer, (musicalcomposition.composer||Composer.new) do |f|%>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+<% end %>
+
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'song_ids', collec: musicalcomposition.songs, mesmodele:"songs"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[json_songs_path]%>
+<%@choisis=[songs_musicalcompositions_path]%>
+<%@nom=['songs']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>
+

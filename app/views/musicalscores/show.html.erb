@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <%= @musicalscore.name %>
+  <%= image_tag @musicalscore.image, class: "musicalscore" %>
+</div>
+  <%if @musicalscore.musicalkeys.length > 0 %>
+<p><%=render @musicalscore.musicalkeys%></p>
+<%end%>
+  <%if @musicalscore.musicalinstruments.length > 0 %>
+<p><%=render @musicalscore.musicalinstruments%></p>
+<%end%>
+
+
+  <%if @musicalscore.description.to_s.strip.length > 0 %>
+<p>
+  <strong>Description:</strong>
+  <%= @musicalscore.description %>
+</p>
+<%end%>
+  <%if @musicalscore.scorecriteria.length > 0 %>
+<h4>Critères pour jouer la partition</h4>
+<%=render @musicalscore.scorecriteria%>
+<%end%>
+  <%if @musicalscore.bars.length > 0 %>
+<h4>Toutes les mesures de la partition</h4>
+<%=render @musicalscore.bars%>
+<%end%>
+
+<%= link_to 'Edit this score\'s info', edit_musicalscore_path(@musicalscore), class:"nav-item1" %> 
+<br>
+<%= link_to 'Back', musicalscores_path, class: "nav-item2"  %>
+<br>
+<%= link_to 'Add a musical bar to this score', new_bar_path(scoreid: @musicalscore.id), class: "nav-item2"  %>
+<br>

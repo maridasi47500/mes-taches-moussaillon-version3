@@ -1,0 +1,7 @@
+<%=render @person%>
+<form target="_blank" method="post" action="<%=opinion_path(params[:id])%>">
+
+<input id="image" type="image" width="40" height="70" alt="rbs" title="il est de la communauté bracelets rouges" name="rbs"
+       src="/assets/braceletrouge1.png">
+<input type="hidden" name="userid" value="<%=current_user.id%>" />
+</div>

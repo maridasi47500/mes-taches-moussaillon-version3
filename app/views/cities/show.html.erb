@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @city.name %>
+</p>
+<p><%=@city.nationality.try(:name)%></p>
+<p><%=@city.state.try(:name)%></p>
+<p><%=@city.country.try(:name)%></p>
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>

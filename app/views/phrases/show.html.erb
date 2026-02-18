@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @phrase.content %>
+</p>
+<p>
+<%if @phrase.lg%>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+<%end%>
+<%if @phrase.lsb%>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+<%end%>
+
+</p>
+
+<%= link_to 'Edit', edit_phrase_path(@phrase) %> |
+<%= link_to 'Back', phrases_path %>

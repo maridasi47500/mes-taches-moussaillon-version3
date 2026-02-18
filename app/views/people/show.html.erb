@@ -1,0 +1,324 @@
+<%=content_for :mylittlecss do%>
+
+.mycolorhair {
+width:20px;
+height:10px;
+}
+
+<%end%>
+
+<%=content_for :title do%><%=@person.name%> - <%end%>
+
+<%= content_for :fieldstoadd do %>
+      <li class="nav-item">
+ <a class="nav-link" href="<%= tasks_person_path(@person.id)%>">creer une tache en relation avec cette personne</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= events_person_path(@person.id)%>">creer un évènement en relation avec cette personne</a>
+      </li>
+<%end%>
+<%=notice%>
+<h1>No. <%=@person.id%> - <%=@person.name%> </h1>
+<%if @person.sexe =='F'%>
+<p><%=t('pagesshow.person.tonsexe', sexe: t('pagesshow.person.fille'))%></p>
+<%elsif @person.sexe == 'M'%>
+<p><%=t('pagesshow.person.tonsexe', sexe: t('pagesshow.person.gars'))%></p>
+<%end%>
+<p><%=t('display.someonelive',sailor: @person.name,city: ([@person.city]+@person.cities).select{|y|y}.map{|y|y.name+" ("+link_to("voir les photos de son village", villagephotos_city_path(y.id))+")"}.to_sentence).html_safe%></p>
+<p><%= link_to "Editer ses infos",jingles_person_path(@person.id)%> </p>
+
+<%if @person.beautifulpeople.length > 0%>
+<ul>
+<%@person.beautifulpeople.each do |y|%>
+<li> <%=y.notemeaning%> selon <%=y.user.name%> </li>
+<%end%>
+</ul>
+<%end%>
+<%if user_signed_in? and current_user.mode == 1%>
+  <div id="maillot">
+<%= image_tag(@person.imagemaillot, class: "imagemaillot", alt:"profile pic")%>
+<%= image_tag(@person.image, class: "tetemaillot imageprofilethread", alt:"profile pic")%>
+
+  </div>
+<%elsif user_signed_in? and current_user.mode == 2%>
+  <div id="maillot">
+<%= image_tag(@person.imagechevalier, class: "imagemaillot", alt:"profile pic")%>
+<%= image_tag(@person.image, class: "tetemaillot imageprofilethread", alt:"profile pic")%>
+
+  </div>
+<%else%>
+<%= image_tag(@person.image, class: "profilepicshow imageprofilethread", alt:"profile pic")%>
+<%end%>
+<%=link_to "complète ton auto-portrait de star", selfportrait_person_path(@person.id)%>
+
+<%if @person.marquevoituregens.length > 0%>
+<br>
+<h2>Voitures</h2>
+<%=render @person.marquevoituregens%>
+<br>
+<%end%>
+<%if @person.musicalinstruments.length > 0%>
+<br>
+<h2>Musical instruments</h2>
+<%=render @person.musicalinstruments%>
+<br>
+<%end%>
+<%if @person.schools.length > 0%>
+<h3>Ecoles</h3>
+<ul>
+<%@person.schools.each do |y|%>
+<li><%=y.name%> (<%=link_to "voir les photos de son école", voirlesphotos_school_path(y.id)%>)</li>
+<%end%>
+</ul>
+<%end%>
+<%=render 'showpersonstates',person: @person%>
+<%if @person.pcities.length > 0%>
+<br>
+<h2>Villes où tu habites/as habité :</h2>
+<%=render @person.pcities%>
+<br>
+<%end%>
+<%if @person.newspapers.length > 0%>
+<br>
+<h2>Journaliste dans les journaux :</h2>
+<%=render @person.newspapers%>
+<br>
+<%end%>
+<%if @person.sosies.length > 0%>
+<br>
+<h2>Sosies</h2>
+<%=render @person.sosies%>
+<br>
+<%end%>
+<br>
+<%=render @person.interestedpeople%>
+<%if @person.dateofbirth%>
+<p><%=t('activerecord.attributes.person.dateofbirth')%>: <%=l @person.dateofbirth, format: :long%></p>
+<%end%>
+<%=link_to "voir les écarts d'âge de #{@person.name} avec d'autres membres de sa famille", comparage_person_path(@person.id)%>
+<table>
+<%@person.aken.to_a.each do |t,q|%>
+<p><%=t('aken', sailor: @person.name, sailors: Person.findbyid(q.map{|x|x[0]}).map{|x|link_to(x.name,x)}.to_sentence, skill: link_to(t.name,t)).html_safe%></p>
+<%end%>
+<%@person.jealous.to_a.each do |t,q|%>
+<%if @person.sexe == "F"%>
+<p><%=t('jealous', sailor: @person.name, sailors: Person.findbyid(q.map{|x|x[0]}).map{|x|link_to(x.name,x)}.to_sentence, skill: link_to(t.name,t)).html_safe%></p>
+<%else%>
+<p><%=t('jealous', sailor: @person.name, sailors: Person.findbyid(q.map{|x|x[0]}).map{|x|link_to(x.name,x)}.to_sentence, skill: link_to(t.name,t)).html_safe%></p>
+<%end%>
+<%end%>
+<%if @person.eyescolor != "#000000"%>
+<tr>
+<td>Couleur des yeux</td><td class="mycolorhair" style="background-color:<%=@person.eyescolor%>;"></td>
+<tr>
+<%end%>
+
+<%if @person.colorhair != "#000000"%>
+</tr>
+<td>Color hair</td><td class="mycolorhair" style="background-color:<%=@person.colorhair%>;"></td>
+</tr>
+<%end%>
+</table>
+  <%if @person.tvserieshaveactors.length > 0%>
+<ul>
+<li>
+<%=t('actorplays', sailor: @person.name)%>
+  <%@person.tvserieshaveactors.each do |actor|%>
+<%=t('acteurdansserie',sailor: (actor.surname ? (actor.surname.name) : ''), tvseries: link_to(actor.tvseries.name,actor.tvseries)).html_safe%>
+<%end%>
+  <%if @person.phavefilms.length > 0%>
+  <%if @person.tvserieshaveactors.length > 0%>
+,
+<%end%>
+  <%@person.phavefilms.map{|actor|t('acteurdansserie',sailor: (actor.surname ? (actor.surname.name) : ''), tvseries: link_to(actor.film.title,actor.film)).html_safe}.to_sentence%>
+<%end%>
+
+</li>
+</ul>
+  <%end%>
+
+
+<%#image_tag(@person.image, class: "monimagedeprofile")%>
+
+
+
+
+
+  <%if @person.mynames.length > 0%>
+  <p>My names <%=render @person.mynames%></p>
+  <%end%>
+  
+  
+<p><%=@person.fullname%></p>
+<%if @person.nationality%>
+  <p> 
+  <%=@person.nationality.name%>
+  </p>
+<%end%>
+<%if @person.phonenumber.to_s.length > 0%>
+  <p> Phone number : 
+  <%=@person.phonenumber%>
+  </p>
+<%end%>
+
+<%if @person.facebook%>
+  <p>
+  <%=image_tag "/assets/myfb"%>
+<%=link_to @person.facebook, @person.facebook,  target: "_blank"%>
+  </p>
+<%end%>
+<%@person.githubaccounts.each do |ta|%>
+  <p><%=image_tag '/assets/githubicon', class:"imageprofilethread"%><%=link_to "#{ta.nameowner} (#{ta.username})", ta.accounturl,target: "_blank"%></p>
+<%end%>
+<%@person.twitteraccounts.each do |ta|%>
+  <p><%=image_tag '/assets/twitter', class:"imageprofilethread"%><%=link_to "#{ta.name} (#{ta.username})", tweets_path(taccount: ta.id)%></p>
+<%end%>
+<%if @person.sisters.length > 0%>
+<p><%=t('sister',sailor: @person.name, count: @person.sisters.count)%>
+(<%= @person.sisters.map {|h|link_to(h.name, h)}.to_sentence.html_safe%>)</p>
+<%end%>
+<%if @person.brothers.length > 0%>
+<p><%=t('brother',sailor: @person.name, count: @person.brothers.count)%>
+(<%= @person.brothers.map {|h|link_to(h.name, h)}.to_sentence.html_safe%>)</p>
+<%end%>
+
+<%if @person.girlfriends.length > 0%>
+<p><%=t('girlfriend',sailor: @person.name, count: @person.girlfriends.length)%>
+(<%= @person.girlfriends.map {|h|link_to(h.name, h)}.to_sentence.html_safe%>)</p>
+<%end%>
+<%if @person.boyfriends.length > 0%>
+<p><%=t('girlfriend',sailor: @person.name, count: @person.boyfriends.length)%>
+(<%= @person.boyfriends.map {|h|link_to(h.name, h)}.to_sentence.html_safe%>)</p>
+<%end%>
+  <%if @person.size%>
+<p><%=t('pagesshow.person.size', sailor: @person.name, size: @person.sizeinm)%></p>
+<%end%>
+  <%if @person.jobs.length > 0%>
+<h4><%=t('pagesshow.person.job')%></h4>
+<p><%=@person.jobs.map {|x| link_to(x.name,x)}.to_sentence.html_safe%></p>
+<br>
+<br>
+<br>
+<%end%>
+  <%if @person.dreamjobs.length > 0%>
+<h4><%=t('pagesshow.person.traumberuf')%></h4>
+<%=@person.dreamjobs.map {|x| link_to(x.name,x)}.to_sentence.html_safe%>
+<%end%>
+  <%if @person.skills.length > 0%>
+  <section>
+
+<h4>Compétences notables de ce moussaillon</h4>
+ <%=render @person.skills%></section>
+  <%end%>
+<p><%=link_to "noter ce membre", noterlapersonne_person_path(@person.id)%></p>
+<p><%=link_to "add a twitter account", jingles_person_path(@person.id, twitteraccount: 'new')%></p>
+<p><%=link_to "add a github account", jingles_person_path(@person.id, githubaccount: 'new')%></p>
+
+<p><%#=render @person.profilepictures%></p>
+<%if @person.month_met.to_i > 0 && @person.year_met.to_i > 0%>
+<p>Met in <%=@person.month_met%> <%=@person.year_met%></p>
+<%end%>
+<%if @person.description.to_s.strip.length > 0%>
+<p>Infos : <%=@person.description%></p>
+<%end%>
+
+  <p><%=link_to "create new permanent posts surnames", newsurname_person_path(@person.id)%></p>
+  <p><%=link_to "c'est aussi moi", cestmoi_person_path(@person.id)%></p>
+
+<!--<%@person.name.split(' ').each do |partname|%>
+<div class="myowncontainer">
+  <%# image_tag @person.image, class: "myownimage", alt: partname %>
+  <div class="myownoverlay">My Name is <%=partname.humanize%></div>
+</div>
+<%end%>-->
+
+  <%if @person.jingles.length > 0 %>
+<div class="jingles-comment">
+  <%= render partial: "posts/recordings", collection: @person.jingles, as: :recording %></div>
+<%end%>
+<form action="/posts/new" method="post">
+  <%if @person.tvseries.length > 0%>
+    <input type="hidden" name="personids" value="<%=@person.id%>">
+  <%else%>
+    <input type="hidden" name="personid" value="<%=@person.id%>">
+  <%end%>
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=@person.name%> dans un post">
+</form>
+ <a class="nav-link" href="<%= tasks_person_path(@person.id)%>">creer une tache en relation avec cette personne</a>
+ <a class="nav-link" href="<%= events_person_path(@person.id)%>">creer un évènement en relation avec cette personne</a>
+<p><%= link_to "Edit lovers",editlovers_person_path(@person.id)%> </p>
+<p><%= link_to "add lovers",addlovers_person_path(@person.id)%> </p>
+<p><%= link_to "Add new profile pic",addprofilepic_person_path(@person.id)%> </p>
+<p><%= link_to "Utiliser la photo de profile par défaut",defaultprofilepic_person_path(@person.id)%> </p>
+<p><%= link_to "See posts for this person",posts_person_path(@person.id)%> </p>
+<p><%= link_to "lui créer un album photo",new_album_path(personid: @person.id)%> </p>
+<p><%= link_to "Sa page wikipédia",wikipedia_person_path(@person.id)%> </p>
+<p><%= link_to "Son plus gros hit sur youtube",youtube_person_path(@person.id)%> </p>
+
+<%#if @person.jingles.count > 0 %>
+<!--<h2>Ses jingles</h2>-->
+<%#=render @person.jingles %>
+<%#= render partial: "posts/recordings", collection: @person.jingles, as: :recording %>
+<%#end%>
+
+
+<%=link_to "voir les tâches de #{@person.name}", seemytasks_person_path(@person.id)%>
+<%if @person.facts.count > 0%>
+<h2><%= @person.name%>'s facts</h2>
+
+<%= render @person.facts%>
+<%end%>
+<%if defined?(@person.celebrity) && @person.celebrity%>
+<p id="mynews">I am a celeb, i have news articles</p>
+<%else%>
+<p id="mynews">I am not a celeb, i don't have news articles</p>
+<%end%>
+
+            
+  <%if @person.permanentprofilepictures.length > 0%>
+  <div class="">
+<h5>Autres photos</h5>
+  <p><%=render @person.permanentprofilepictures%></p>
+  </div>
+<%end%>
+            
+            <%=content_for :javascripts do %>
+<script>
+/*  $(function(){
+  $('.postcontent').each(function(){
+
+    let texts = ["elle","lui"];
+    for (var i=0;i<texts.length;i++){
+      var texttoreplace = texts[i];
+      $(this).html($(this).html().replaceAll(texttoreplace, `<%=@person.name%> `));
+    }
+  });
+  });*/
+</script>
+<%end%>
+
+<%=content_for :myjscode do %>
+<script>
+function seekthosepeople(field,my){
+
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+if (data.length > 0) {
+my.style.display="block";
+my.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+my.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+} else {
+my.style.display="none";
+}
+}});
+};
+</script>
+
+<%end%>
+

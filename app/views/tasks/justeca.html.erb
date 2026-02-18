@@ -1,0 +1,6 @@
+<%@tasks.each do |task|%>
+<%task.thingsijustsaid(current_user.id).each do |t|%>
+<p><%=t('display.justeca',task:task.name,sailor: t.people.pluck(:name).take(3).to_sentence, bodypart:t.thing.name)%></p>
+<%end%>
+<%end%>
+

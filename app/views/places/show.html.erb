@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<h1><%=render @place%></h1>
+<%if @place.my_posts_surnames.length > 0%>
+<h1>Surnoms pour posts en rapport avec ce lieu </h1>
+<%render partial:"places/postssurname", collection:@place.my_posts_surnames, as: :p%>
+<%end%>
+<%if @place.tasks.length > 0%>
+<h2>Tâches associées</h2>
+<%=render @place.tasks%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>

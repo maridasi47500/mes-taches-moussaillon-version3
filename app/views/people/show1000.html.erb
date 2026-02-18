@@ -1,0 +1,283 @@
+<%=content_for :title do%><%=@person.name%> - <%end%>
+
+<%= content_for :fieldstoadd do %>
+      <li class="nav-item">
+ <a class="nav-link" href="<%= tasks_person_path(@person.id)%>">creer une tache en relation avec cette personne</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= events_person_path(@person.id)%>">creer un évènement en relation avec cette personne</a>
+      </li>
+<%end%>
+<%=notice%>
+<h1>No. <%=@person.id%> - <%=@person.name%> </h1>
+<form method="post">
+<input type="hidden" name="userid" value="<%=current_user.id%>" />
+<input type="text" name="personname" placeholder="chercher une personne" value="" onchange="seekthosepeople(this, mylist);return false;" />
+<select name="personid" id="mylist" class="invisfield"></select>
+
+
+<input id="image" type="image" width="40" height="70" alt="lgbt" title="il est de la communauté lgbt" name="lgbt"
+       src="/assets/flaggaypride.gif">
+<input id="image" type="image" width="40" height="70" alt="robot" title="c'est un(e) robot(e)" name="robot"
+       src="/assets/robotatlas.png">
+<input id="image" type="image" width="70" height="70" alt="car" title="c'est une voiture" name="car"
+       src="/assets/voiturerouge.png">
+<input id="image" type="image" width="40" height="70" alt="sauve" title="il est sauvé" name="saved"
+       src="/assets/lifebuoyatthesea.png">
+<input id="image" type="image" width="30" height="70" alt="dontlike" name="aimepas"
+
+       src="/assets/coeurbriserum.png">
+<br>
+<p>selectionnez sa voiture</p>
+<%=select_tag :voitureid, options_for_select(Car.all.collect {|x| [x.name, x.id]})%>
+<%=submit_tag "selectionner"%>
+<br>
+<%@love=['un peu','beaucoup','passionnement','a la folie','pas du tout']%>
+<%(1..5).to_a.each_with_index do |h,i|%>
+<input id="image<%=h%>loveyou" type="image" width="100" height="30" title="love intensity (<%=@love[i]%>)" alt="Login" name="aime<%=h%>"
+
+       src="/assets/coeurrum.png">
+<%end%>
+
+</form>
+<%if @person.lgbtgens.length > 0%>
+<span title="<%=@person.lgbtgens.pluck(:name).join(', ') %>">
+<%=@person.lgbtgens.length%>
+<%="personne".pluralize(@person.lgbtgens.length)%>
+</span>
+<%="pense que".pluralize(@person.lgbtgens.length)%>
+<%=@person.name%> 
+fait partie de la communauté lgbt.
+<%end%>
+<%if @person.voituregens.length > 0%>
+<span title="<%=@person.voituregens.pluck(:name).join(', ') %>">
+<%=@person.voituregens.length%>
+<%="personne".pluralize(@person.voituregens.length)%>
+</span>
+<%="pense que".pluralize(@person.voituregens.length)%>
+<%=@person.name%> 
+est une voiture.
+<%end%>
+<%if @person.robotgens.length > 0%>
+<span title="<%=@person.robotgens.pluck(:name).join(', ') %>">
+<%=@person.robotgens.length%>
+<%="personne".pluralize(@person.robotgens.length)%>
+</span>
+<%="pense que".pluralize(@person.robotgens.length)%>
+<%=@person.name%> 
+est un robot.
+<%end%>
+<%if @person.croyantgens.length > 0%>
+<span title="<%=@person.croyantgens.pluck(:name).join(', ') %>">
+<%=@person.croyantgens.length%>
+<%="personne".pluralize(@person.croyantgens.length)%>
+</span>
+<%="pense que".pluralize(@person.croyantgens.length)%>
+<%=@person.name%> 
+est croyant(e).
+<%end%>
+<%if @person.sauvegens.length > 0%>
+<span title="<%=@person.sauvegens.pluck(:name).join(', ') %>">
+<%=@person.sauvegens.length%>
+<%="personne".pluralize(@person.sauvegens.length)%>
+</span>
+<%="pense que".pluralize(@person.sauvegens.length)%>
+<%=@person.name%> est sauvé(e).
+<%end%>
+<%@person.inloves.group_by {|x|x.intensity}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.pluck(:name).join(', ') %>">
+<%=z.length%>
+<%="personne".pluralize(z.length)%>
+</span>
+<%="pensent que".pluralize(z.length)%>
+<%=Person.where(id: z.pluck(:otherperson_id)).distinct.pluck(:name).join(', ')%>
+<%="aime".pluralize(Person.where(id: z.pluck(:otherperson_id)))%>
+
+<%=@person.name%>
+<%=@love[(y.to_i-1)]%>
+.
+<%end%>
+<%@person.peoplelike.group_by {|x|x.intensity}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).pluck(:name).join(', ') %>">
+<%=z.length%>
+<%="personne".pluralize(z.length)%>
+</span>
+<%="aime".pluralize(z.length)%>
+<%=@person.name%>
+<%=@love[(y.to_i-1)]%>
+.
+<%end%>
+
+<%if @person.aimepasgens.length > 0%>
+<span title="<%=@person.aimepasgens.pluck(:name).join(', ') %>">
+<%=@person.aimepasgens.length%>
+<%="personne".pluralize(@person.aimepasgens.length)%>
+</span>
+<%="n'aime pas".pluralize(@person.aimepasgens.length)%>
+<%=@person.name%>.
+<%end%>
+
+<%if user_signed_in? and current_user.mode == 1%>
+  <div id="maillot">
+<%= image_tag(@person.imagemaillot, class: "imagemaillot", alt:"profile pic")%>
+<%= image_tag(@person.image, class: "tetemaillot imageprofilethread", alt:"profile pic")%>
+
+  </div>
+<%elsif user_signed_in? and current_user.mode == 2%>
+  <div id="maillot">
+<%= image_tag(@person.imagechevalier, class: "imagemaillot", alt:"profile pic")%>
+<%= image_tag(@person.image, class: "tetemaillot imageprofilethread", alt:"profile pic")%>
+
+  </div>
+<%else%>
+<%= image_tag(@person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%end%>
+
+
+<%#image_tag(@person.image, class: "monimagedeprofile")%>
+  <p><%=link_to "create new permanent posts surnames", newsurname_person_path(@person.id)%></p>
+  <p><%=link_to "c'est aussi moi", cestmoi_person_path(@person.id)%></p>
+  <div class="">
+  <p><%=render @person.permanentprofilepictures%></p>
+  </div>
+<%=render partial: "posts_surnames/mypostssurnames", collection:  @person.my_posts_surnames,as: :person%>
+
+  <%if @person.mynames.length > 0%>
+  <p>My names <%=render @person.mynames%></p>
+  <%end%>
+  <%if @person.phrases.length > 0%>
+
+  <p>My phrases <%=render @person.phrases%></p>
+  <%end%>  
+  <%if @person.aidememoires.length > 0%>
+
+  <p>My phrases and words <%=render @person.aidememoires%></p>
+  <%end%>
+  
+  
+<p><%=@person.fullname%></p>
+<%if @person.phonenumber.to_s.length > 0%>
+  <p> Phone number : 
+  <%=@person.phonenumber%>
+  </p>
+<%end%>
+<%if @person.facebook%>
+  <p>
+  <%=image_tag "/assets/myfb"%><%=link_to @person.facebook, @person.facebook,  target: "_blank"%>
+  </p>
+<%end%>
+<%@person.twitteraccounts.each do |ta|%>
+  <p><%=image_tag '/assets/twitter', class:"imageprofilethread"%><%=link_to "#{ta.name} (#{ta.username})", tweets_path(taccount: ta.id)%></p>
+<%end%>
+<p>Collections : <%=render @person.collections%></p>
+<p><%=link_to "add a twitter account", jingles_person_path(@person.id, twitteraccount: 'new')%></p>
+<p><%=@person.collections.length == 0 ? (link_to "ajoutez moi à une collection", new_collection_path) : ""%></p>
+
+<p><%#=render @person.profilepictures%></p>
+<%if @person.month_met.to_i > 0 && @person.year_met.to_i > 0%>
+<p>Met in <%=@person.month_met%> <%=@person.year_met%></p>
+<%end%>
+<p><%=@person.description%></p>
+<!--<%@person.name.split(' ').each do |partname|%>
+<div class="myowncontainer">
+  <%# image_tag @person.image, class: "myownimage", alt: partname %>
+  <div class="myownoverlay">My Name is <%=partname.humanize%></div>
+</div>
+<%end%>-->
+<div class="jingles-comment">
+  <%= render partial: "posts/recordings", collection: @person.jingles, as: :recording %></div>
+<form action="/posts/new" method="post">
+  <%if @person.tvseries.length > 0%>
+    <input type="hidden" name="personids" value="<%=@person.id%>">
+  <%else%>
+    <input type="hidden" name="personid" value="<%=@person.id%>">
+  <%end%>
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=@person.name%> dans un post">
+</form>
+ <a class="nav-link" href="<%= tasks_person_path(@person.id)%>">creer une tache en relation avec cette personne</a>
+ <a class="nav-link" href="<%= events_person_path(@person.id)%>">creer un évènement en relation avec cette personne</a>
+<p><%= link_to "Edit this person's info",jingles_person_path(@person.id)%> </p>
+<p><%= link_to "Add new profile pic",addprofilepic_person_path(@person.id)%> </p>
+<p><%= link_to "Utiliser la photo de profile par défaut",defaultprofilepic_person_path(@person.id)%> </p>
+<p><%= link_to "See posts for this person",posts_person_path(@person.id)%> </p>
+<p><%= link_to "lui créer un album photo",new_album_path(personid: @person.id)%> </p>
+<p><%= link_to "Sa page wikipédia",wikipedia_person_path(@person.id)%> </p>
+<p><%= link_to "Son plus gros hit sur youtube",youtube_person_path(@person.id)%> </p>
+
+<%#if @person.jingles.count > 0 %>
+<!--<h2>Ses jingles</h2>-->
+<%#=render @person.jingles %>
+<%#= render partial: "posts/recordings", collection: @person.jingles, as: :recording %>
+<%#end%>
+
+
+<% if @tasks.count > 0%>
+<table>
+    <tr>
+        <th class="alignright">Task</th>
+        <th>Number of times task done</th>
+        <th>Sailors of this task</th>
+        <th>tasks</th>
+    </tr>
+<% @tasks.each do |tache|%>
+    <tr>
+        <td class="alignright"><%= link_to tache.name, tache %></td> 
+        <td><%= tache.nbtimes %></td> 
+        <td><% tache.sailors.each do |sailor|%><%= link_to sailor.name, sailor %>, <%end%></td> 
+    </tr>
+<%end%>
+</table>
+<%end%>
+<%if @person.facts.count > 0%>
+<h2><%= @person.name%>'s facts</h2>
+
+<%= render @person.facts%>
+<%end%>
+<%if defined?(@person.celebrity) && @person.celebrity%>
+<p id="mynews">I am a celeb, i have news articles</p>
+<%else%>
+<p id="mynews">I am not a celeb, i don't have news articles</p>
+<%end%>
+
+            
+            
+            <%=content_for :javascripts do %>
+<script>
+/*  $(function(){
+  $('.postcontent').each(function(){
+
+    let texts = ["elle","lui"];
+    for (var i=0;i<texts.length;i++){
+      var texttoreplace = texts[i];
+      $(this).html($(this).html().replaceAll(texttoreplace, `<%=@person.name%> `));
+    }
+  });
+  });*/
+</script>
+<%end%>
+
+<%=content_for :myjscode do %>
+<script>
+function seekthosepeople(field,my){
+
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+if (data.length > 0) {
+my.style.display="block";
+my.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+my.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+} else {
+my.style.display="none";
+}
+}});
+};
+</script>
+
+<%end%>
+

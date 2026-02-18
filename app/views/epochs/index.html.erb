@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('indexpage.epoch')%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%=t('columntable.epoch.name')%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @epochs.each do |epoch| %>
+      <tr>
+        <td><%= epoch.nomdecetteepoque %></td>
+        <td><%= link_to 'Show', epoch %></td>
+        <td><%= link_to 'Edit', edit_epoch_path(epoch) %></td>
+        <td><%= link_to 'Destroy', epoch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('newpage.epoch'), new_epoch_path %>

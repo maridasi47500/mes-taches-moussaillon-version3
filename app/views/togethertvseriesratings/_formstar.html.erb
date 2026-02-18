@@ -1,0 +1,57 @@
+<%=render togethertvseriesrating.tvserieshaveactor%>
+
+<%= form_with(model: togethertvseriesrating, local: true) do |form| %>
+  <% if togethertvseriesrating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(togethertvseriesrating.errors.count, "error") %> prohibited this togethertvseriesrating from being saved:</h2>
+
+      <ul>
+        <% togethertvseriesrating.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.hidden_field :tvserieshaveactor_id %>
+
+    <%= form.hidden_field :user_id %>
+
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "person_ids", collec: togethertvseriesrating.people, mesmodele:"peopletvseries"%>
+</div>
+
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_area :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_area :content_de %>
+  </div>
+
+  <div class="field">
+<%(1..5).to_a.each do |g|%>
+<input id="imagerating<%=g%>" type="image" width="50" height="50" alt="attitude" title="" name="<%=g%>rating"
+       src="/assets/starrum.png">
+<%end%>
+
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_togethertvseriesratings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['peopletvseries']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

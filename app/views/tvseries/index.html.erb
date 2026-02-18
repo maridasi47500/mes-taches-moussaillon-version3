@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New Tvseries', new_tvseries_path %>
+<h1>Tvseries</h1>
+
+
+<div>
+          <%=form_with url: searchpost_path, method: "get" do |f|%>
+          <%= f.label :q, "Search an actor:" %> <%= f.text_field :qa, value: "" %>
+          <%=f.submit "search" %>
+          <%end%>
+
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>tv serie</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tvseries.each do |tvseries| %>
+      <tr>
+        <td><%= tvseries.name %></td>
+        <td><%= tvseries.description %></td>
+        <td><%= render partial: "things/addstufftobasket", collection: [tvseries], as: :thing %></td>
+        <td><%= link_to 'Show', tvseries %></td>
+<td>
+<%if tvseries.actors.length > 0%>
+<%= link_to 'Edit roles', editroles_tvseries_path(tvseries.id) %> |
+<%end%>
+
+
+</td>
+        <td><%= link_to 'Edit', edit_tvseries_path(tvseries) %></td>
+        <td><%= link_to 'Destroy', tvseries, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h2>Les meilleurs avis</h2>
+<%Attitudetvseries.where('note like 4 or note like 5').order('note desc').group_by {|x|x.attitude_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.map{|x|x.name}.to_sentence %>">
+<%=z.pluck(:user_id).uniq.length%>
+<%="personne".pluralize(z.pluck(:user_id).uniq.length)%>
+</span>
+<%="pensent que".pluralize(z.pluck(:user_id).uniq.length)%>
+
+<%=Person.where(id: z.pluck(:person_id)).distinct.map{|x|x.name}.to_sentence %>
+<%="joue le rôle le plus".pluralize(z.pluck(:person_id).uniq) %>
+<%=Attitude.find(y).name%>
+(dans <%=Tvseries.where(id: z.pluck(:tvseries_id)).distinct.map{|x|x.name}.to_sentence%>
+)
+
+.
+<%end%>
+<h2>Les avis moins bons</h2>
+<%Attitudetvseries.where('note like 1 or note like 2 or note like 3').order('note desc').group_by {|x|x.attitude_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.pluck(:name).to_sentence %>">
+<%=z.pluck(:user_id).uniq.length%>
+<%="personne".pluralize(z.pluck(:user_id).uniq.length)%>
+</span>
+<%="pensent que".pluralize(z.pluck(:user_id).uniq.length)%>
+
+<%=Person.where(id: z.pluck(:person_id)).distinct.pluck(:name).to_sentence %>
+<%="ne joue pas le rôle le plus".pluralize(z.pluck(:person_id).uniq) %>
+<%=Attitude.find(y).name%>
+(dans <%=Tvseries.where(id: z.pluck(:tvseries_id)).distinct.pluck(:name).to_sentence%>)
+
+.
+<%end%>
+
+<%= link_to 'New Tvseries', new_tvseries_path %>

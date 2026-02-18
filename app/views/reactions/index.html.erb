@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Create New sentence with sailors', new_reaction_path %>
+
+
+<h1>sentence with sailors</h1>
+<table>
+  <thead>
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reactions.each do |reaction| %>
+      <tr>
+        <td><%= render reaction %></td>
+        <td><%= link_to 'Show', reaction %></td>
+        <td><%= link_to 'Edit', edit_reaction_path(reaction) %></td>
+        <td><%= link_to 'Destroy', reaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%=render "indexpage/pagination",g:params[:page].to_i, modelname: Reaction,mypath: reactions_path+'?'%>
+

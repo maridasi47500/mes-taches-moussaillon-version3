@@ -1,0 +1,16 @@
+<p><%= form_with(model: post,method:'post', local: true) do |form| %>
+<%@var||=0%>
+<%@var+=1%>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+      <%=select_tag "collection", options_from_collection_for_select(Collection.all, :id, :name),{id:'select'+@var.to_s,prompt:'select collection'}%>
+
+          <%=grouped_collection_select(:post,:actions, EventType.all, :tasks, :name, :id, :name, { :prompt => 'Select event or task',id:'selecteventtype'+@var.to_s })%>
+
+
+    <%= form.hidden_field :post_id, value: currentpostid %>
+
+    <%= form.text_area :content, required: true %>
+
+    <%= form.submit %>
+  <% end %></p>
+

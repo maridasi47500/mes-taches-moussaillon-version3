@@ -1,0 +1,16 @@
+
+<%=fields_for :torealizetask do |form|%>
+<%=form.fields_for :attitudetakentasks do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "torealizetask[attitudetakentasks_attributes][#{params[:n]}]", fieldname: 'attitude_id', collec: [], mesmodele:"attitudes",m:params[:n]%>
+
+  </div>
+  <div class="field">
+<%=ff.label :real%>
+<%=ff.check_box :real,name:"torealizetask[attitudetakentasks_attributes][#{params[:n]}][real]"%>
+
+  </div>
+
+<%end%>
+<%end%>
+

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recordingreviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Correctsampleid</th>
+      <th>Incorrectsample</th>
+      <th>Gooduser</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recordingreviews.each do |recordingreview| %>
+      <tr>
+        <td><%= recordingreview.correctsampleid %></td>
+        <td><%= recordingreview.incorrectsample_id %></td>
+        <td><%= recordingreview.gooduser_id %></td>
+        <td><%= link_to 'Show', recordingreview %></td>
+        <td><%= link_to 'Edit', edit_recordingreview_path(recordingreview) %></td>
+        <td><%= link_to 'Destroy', recordingreview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recordingreview', new_recordingreview_path %>

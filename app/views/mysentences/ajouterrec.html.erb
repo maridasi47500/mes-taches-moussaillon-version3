@@ -1,0 +1,6 @@
+<%=fields_for :mysentence,Mysentence.new do |form|%>
+<%=form.fields_for :recordings, Recording.new, :child_index => params[:myid] do |f|%>
+<h2>Add Audio</h2>
+<%=render partial: "formrecord/record_mysentence", locals: {mylabel: "record what you wrote", myfield: "recordings", form: f, modelderails: Mysentence.new}%>
+<%end%>
+<%end%>

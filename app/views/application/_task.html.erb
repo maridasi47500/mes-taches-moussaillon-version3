@@ -1,0 +1,7 @@
+<li><%=task.name%> | <%= link_to "Edit", edit_task_path(task.id)%> | <%= link_to 'Show', task %>
+    
+    <ul><%= render partial: "people", collection: task.sailors, as: :person %>
+</ul>
+    <ul><%= render partial: "task", collection: task.relatedtasks, as: :task %>
+</ul>
+</li>

@@ -1,0 +1,14 @@
+<% I18n.with_locale("#{I18n.locale}images") do %>
+
+<%@task.notetasks.group_by {|x|x.myscore}.each do |score, att|%>
+<h5>
+<%=t('task.boutons.notetask.sentence', score: score).html_safe%>
+<h5>
+<ul>
+<%att.map {|x|x.user}.uniq.each do |user|%>
+<li><%=link_to user.name, user%></li>
+<%end%>
+</ul>
+<br>
+<%end%>
+<%end%>

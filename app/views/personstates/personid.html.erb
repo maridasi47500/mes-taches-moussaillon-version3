@@ -1,0 +1,8 @@
+<%=collection_check_boxes(:personstate, :personid, @people,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.check_box(name: 'personid[]')%>
+<%=rad.label do%>
+<%=render partial: 'people/personsimple', collection:[Person.find(rad.value)], as: :person%>
+<%end%>
+
+<%end%>
+

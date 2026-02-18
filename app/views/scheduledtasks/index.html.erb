@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scheduledtasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date and time</th>
+      <th>Name</th>
+      <th>Person</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scheduledtasks.each do |scheduledtask| %>
+      <tr>
+        <td><%= scheduledtask.date_and_time %></td>
+        <td><%= scheduledtask.name %></td>
+        <td><%= scheduledtask.person_id %></td>
+        <td><%= link_to 'Show', scheduledtask %></td>
+        <td><%= link_to 'Edit', edit_scheduledtask_path(scheduledtask) %></td>
+        <td><%= link_to 'Destroy', scheduledtask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scheduledtask', new_scheduledtask_path %>

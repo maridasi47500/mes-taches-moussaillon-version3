@@ -1,0 +1,28 @@
+<%=form_with model: @post do |firm|%>
+<%=firm.fields_for :addresses,@post.addresses do |form|%>
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.select :city_id, options_for_select(City.all.collect {|x| [x.name,x.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.select :country_id, options_for_select(Country.all.collect {|x| [x.name,x.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_id %>
+    <%= form.select :state_id, options_for_select(State.all.collect {|x| [x.name,x.id]}) %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+<%end%>
+  <div class="field">
+    <%= firm.submit "sauvegarder ces adresses" %>
+  </div>
+
+<%end%>

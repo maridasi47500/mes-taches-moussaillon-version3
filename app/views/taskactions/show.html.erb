@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @taskaction.name %>
+</p>
+  <%if @taskaction.sailorandactions.length > 0 %>
+<p>Moussaillons</p>
+  <%= render partial: 'taskactionpeople', collection: @taskaction.sailorandactions, as: :a %>
+<%end%>
+  <%if @taskaction.categorythings.length > 0 %>
+<div>
+<%=t('display.byheart',action: @taskaction.name)%>
+  <%= render @taskaction.categorythings %>
+</div>
+<%end%>
+
+<%= link_to 'Edit', edit_taskaction_path(@taskaction) %> |
+<%= link_to 'Back', taskactions_path %>

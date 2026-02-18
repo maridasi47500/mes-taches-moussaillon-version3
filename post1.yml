@@ -1,0 +1,41 @@
+---
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 1
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: uhekglku
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: je suis le plus beau
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: validated
+    value_before_type_cast: 0
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: user_id
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: uhekglku
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: je suisleplus moche peut etre?
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: validated
+    value_before_type_cast: 0
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: user_id
+  new_record: false
+  active_record_yaml_version: 2

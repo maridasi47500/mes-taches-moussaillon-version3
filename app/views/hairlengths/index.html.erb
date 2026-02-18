@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hairlengths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hairlengths.each do |hairlength| %>
+      <tr>
+        <td><%= hairlength.name %></td>
+        <td><%= link_to 'Show', hairlength %></td>
+        <td><%= link_to 'Edit', edit_hairlength_path(hairlength) %></td>
+        <td><%= link_to 'Destroy', hairlength, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hairlength', new_hairlength_path %>

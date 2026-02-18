@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mysentences</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content fr</th>
+      <th>Content en</th>
+      <th>Content de</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mysentences.each do |mysentence| %>
+      <tr>
+        <td><%= mysentence.content_fr %></td>
+        <td><%= mysentence.content_en %></td>
+        <td><%= mysentence.content_de %></td>
+        <td><%= link_to 'Show', mysentence %></td>
+        <td><%= link_to 'Edit', edit_mysentence_path(mysentence) %></td>
+        <td><%= link_to 'Destroy', mysentence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mysentence', new_mysentence_path %>

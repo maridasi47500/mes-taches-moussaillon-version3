@@ -1,0 +1,27 @@
+<%= form_with(model: optiontask, local: true) do |form| %>
+  <% if optiontask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(optiontask.errors.count, "error") %> prohibited this optiontask from being saved:</h2>
+
+      <ul>
+        <% optiontask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :task_id %>
+    <%= form.text_field :task_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :optiontask_id %>
+    <%= form.text_field :optiontask_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

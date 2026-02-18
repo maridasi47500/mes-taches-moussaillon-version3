@@ -1,0 +1,2 @@
+module GoogleRequestsHelper
+end

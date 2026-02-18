@@ -1,0 +1,2 @@
+class PhotosWikipediaPage < ApplicationRecord
+end

@@ -1,0 +1,41 @@
+<%= form_with(model: githubrepo, local: true) do |form| %>
+  <% if githubrepo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(githubrepo.errors.count, "error") %> prohibited this githubrepo from being saved:</h2>
+
+      <ul>
+        <% githubrepo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :reponame %>
+    <%= form.text_field :reponame%>
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'githubaccount_id', collec: Githubaccount.findbyid(githubrepo.githubaccount_id), mesmodele:"githubaccounts"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'programminglanguage_ids', collec: Programminglanguage.findbyid(githubrepo.programminglanguage_ids), mesmodele:"programminglanguages"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'place_ids', collec: githubrepo.places, mesmodele:"places"%>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[json_githubaccounts_path,json_programminglanguages_path,json_places_path]%>
+<%@choisis=[githubaccounts_githubrepos_path,programminglanguages_githubrepos_path,places_githubrepos_path]%>
+<%@nom=['githubaccounts','programminglanguages','places']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>
+

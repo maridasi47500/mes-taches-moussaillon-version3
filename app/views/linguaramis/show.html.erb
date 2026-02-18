@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+<%=render partial: 'linguaramis/linguaramiphrase', collection: @linguarami.phrases,as: :phrase%>
+
+<%= link_to 'Edit', edit_linguarami_path(@linguarami) %> |
+<%= link_to 'Back', linguaramis_path %>

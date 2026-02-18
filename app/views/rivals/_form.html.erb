@@ -1,0 +1,37 @@
+<%= form_with(model: rival, local: true) do |form| %>
+  <% if rival.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rival.errors.count, "error") %> prohibited this rival from being saved:</h2>
+
+      <ul>
+        <% rival.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "reallover_id", collec: Person.findbyid(rival.reallover_id), mesmodele:"reallover"%>
+</div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "fakelover_id", collec: Person.findbyid(rival.fakelover_id), mesmodele:"fakelover"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "rivalperson_ids", collec: Person.findbyid(rival.rivalperson_ids), mesmodele:"rivalpeople"%>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[reallover_rivals_path, fakelover_rivals_path,rivalpeople_rivals_path]%>
+<%@search=[personjson_albums_path,personjson_albums_path,personjson_albums_path]%>
+<%@nom=['reallover','fakelover','rivalpeople']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

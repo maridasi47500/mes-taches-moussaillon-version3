@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Opened:</strong>
+  <%= @edition.opened %>
+</p>
+
+<p>
+  <strong>Closed:</strong>
+  <%= @edition.closed %>
+</p>
+
+<p>
+  <strong>Competition:</strong>
+  <%= @edition.competition %>
+</p>
+
+<%=link_to "Swimming", showpagewithcode_edition_path(id: @edition.id, code: "SWM")%>
+<%= link_to 'Edit', edit_edition_path(@edition) %> |
+<%= link_to 'Back', editions_path %>

@@ -1,0 +1,36 @@
+<%@margin=0%>
+<%@comment=comment%>
+<%while @comment.article do%>
+  <%@comment = @comment.article%>
+  <%@margin+=20%>
+<%end%>
+<div style="margin-left: <%=@margin%>px;">
+  Comment n° <%= comment.id %> 
+<%= render 'commentedit', post: comment, currentpostid: comment.id,style:"float:left;margin-left: #{@margin}px;" %>
+
+| (<%= link_to "See",post_path(comment.id)%>)<br/>
+<%=render comment %>
+        <%= render partial: "posts/renderatask", collection: comment.actions, as: :task %>
+
+<%comment.photos.each do |pic|%>
+<%if pic.name && pic.name.length > 0%>
+
+<p><%=image_tag '/assets/'+pic.name, class: 'commentpic' %><%=pic.title%></p>
+<%end%>
+<%end%>
+ <br/> 
+<div class='recordings-posts'>
+              <%if comment.recordings.count > 0%>
+Recordings  
+
+        <%= render partial: "recordings", collection: comment.recordings, as: :recording %>
+
+
+    <%end%>
+</div>
+
+ 
+<%= render 'formanswer', post: Post.new, currentpostid: comment.id,style:"float:left;margin-left: #{@margin}px;" %>
+
+</div>
+        <%= render partial: "comment", collection: comment.comments, as: :comment %>

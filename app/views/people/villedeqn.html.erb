@@ -1,0 +1,6 @@
+<%=form_with url: cherchersaville_person_path(@person.id) do |form|%>
+<input id="<%=@person.name.parameterize+@person.id.to_s%>" name="<%=@person.id%>person" type="image" width="100" height="100" alt="<%=@person.name%>"
+title="<%=@person.name%>"
+       src="<%=@person.image%>">
+
+<%end%>

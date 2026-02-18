@@ -1,0 +1,28 @@
+<%=form.fields_for :contents do |content|%>
+
+  <div>
+    <%=content.label :content%>
+    <%=content.text_area :content%>
+
+  </div>
+  <div class="field">
+    <%= content.label :photos %>
+    <%= content.file_field :photos, multiple: true %>
+  </div>
+
+<div class="photosfield"></div>
+<%= content.fields_for :photos do |photo|%>
+  <div class="field">
+
+<%= photo.label :file, "Nouvelle photo"%>
+    <%= photo.file_field :file %>
+  </div>
+
+  <div class="field">
+<%= photo.label :title,"Titre"%>
+    <%= photo.text_field :title %>
+  </div>
+
+<%end%>
+
+<%end%>

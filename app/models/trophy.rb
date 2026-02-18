@@ -1,0 +1,2 @@
+class Trophy < Thing
+end

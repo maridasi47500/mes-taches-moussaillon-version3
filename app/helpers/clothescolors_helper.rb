@@ -1,0 +1,2 @@
+module ClothescolorsHelper
+end

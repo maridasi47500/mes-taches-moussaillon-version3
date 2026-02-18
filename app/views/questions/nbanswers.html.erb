@@ -1,0 +1,5 @@
+<form action="<%=new_question_path%>" method="get">
+<%=label :nb, "Nombre reponses entre 1 et 20"%>
+<%=number_field_tag :nb,'', min: 1, max: 20%>
+</form>
+

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Barreviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Barattempt</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @barreviews.each do |barreview| %>
+      <tr>
+        <td><%= barreview.user_id %></td>
+        <td><%= barreview.barattempt_id %></td>
+        <td><%= barreview.description %></td>
+        <td><%= link_to 'Show', barreview %></td>
+        <td><%= link_to 'Edit', edit_barreview_path(barreview) %></td>
+        <td><%= link_to 'Destroy', barreview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Barreview', new_barreview_path %>

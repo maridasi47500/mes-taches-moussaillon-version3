@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Websites</h1>
+
+    <% @websites.each_slice(2).to_a.each do |site| %>
+<div class="row">
+
+    <% site.each do |website| %>
+  <div class="col-sm-6">
+
+
+        <p><%= website.name %></p>
+        <p><%= website.image %></p>
+        <p><%= link_to 'Show', website %></p>
+        <p><%= link_to 'Edit', edit_website_path(website) %></p>
+        <p><%= link_to 'Destroy', website, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</div>
+    <% end %>
+
+</div>
+
+<br>
+
+<%= link_to 'New Website', new_website_path %>

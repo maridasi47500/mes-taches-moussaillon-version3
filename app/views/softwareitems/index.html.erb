@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Softwareitems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @softwareitems.each do |softwareitem| %>
+      <tr>
+        <td><%= softwareitem.name %></td>
+        <td><%= softwareitem.image %></td>
+        <td><%= link_to 'Show', softwareitem %></td>
+        <td><%= link_to 'Edit', edit_softwareitem_path(softwareitem) %></td>
+        <td><%= link_to 'Destroy', softwareitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Softwareitem', new_softwareitem_path %>

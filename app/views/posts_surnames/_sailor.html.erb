@@ -1,0 +1,45 @@
+<section class="surname">
+
+<%= posts_surname.surname ? (render posts_surname.surname) : "" %>
+    
+      
+
+      <%= posts_surname.person ? (image_tag(asset_path(posts_surname.person.image), class: "imageprofilethread", alt:"profile pic")) : ""%>
+<%=posts_surname && posts_surname.surname && posts_surname.surname.name && posts_surname.surname.name.length > 0 ? (posts_surname.fakename ? "#{posts_surname.surname.my_relation_surname} #{posts_surname.surname.name}" : "") : "" %>
+
+    <%if posts_surname.profilepic && posts_surname.profilepic.nameimage.length > 0 %>
+      <%= render posts_surname.profilepic%>
+    
+    <%end%>
+    <%if posts_surname.avatar && posts_surname.avatar != posts_surname.person%> 
+      c'est 
+      <%= render posts_surname.avatar%> 
+    <%if posts_surname.stranger %>
+      (<%= render partial: "people/personsimple", collection: [posts_surname.avatar], as: :person%>
+    <%if posts_surname.destinataire%> ou
+      <%= render posts_surname.destinataire%>
+    <%if posts_surname.surnamedestinataire%>
+
+      <%= render partial: "people/personsimple", collection: [person.surnamedestinataire], as: :person %>                                  
+
+    <%end%>
+    <%end%>
+
+does not know who is/what is
+      <%= render partial: "people/personsimple", collection: [posts_surname.stranger], as: :person%> )
+    <%end%>
+      
+    <%end%>
+    <%if posts_surname.destinataire%> à 
+      <%= render posts_surname.destinataire%>
+      <%= posts_surname.surnamedestinataire ? (render posts_surname.surnamedestinataire) : ""%> 
+    
+    <%end%>
+
+    <%=link_to posts_surname do%>
+<%= image_tag("/assets/flagblack.gif", class: "pirate", alt:"profile pic")%>
+  <%end%>
+  <%=posts_surname.content.to_s.html_safe%>
+<%=link_to "write a post","",onclick:"$.ajax({url:'/posts/new?monpostsurnameid=#{posts_surname.id}&ajax=true',success:function(data){newps#{posts_surname.id}.innerHTML=data;}});return false;"%>
+<div id="newps<%=posts_surname.id%>"></div>
+</section>

@@ -1,0 +1,9 @@
+<%=fields_for :posts_surname do |form|%>
+<div class="field">
+  <%=form.label :inverse_hacking, "avatar"%>
+  <%= form.collection_radio_buttons(:posts_surname_id, @people, :psid, :myname1,{include_hidden: false}) do |b|%>
+    <%=b.radio_button(checked: true) %><%=render partial: "posts_surnames/mypostssurnames", collection: PostsSurname.where(id: b.value),as: :person%>
+  <%end%>
+</div>
+  <%end%>
+

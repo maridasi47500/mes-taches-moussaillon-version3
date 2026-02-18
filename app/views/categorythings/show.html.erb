@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @categorything %>
+</p>
+<%if @categorything.thingsisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%@categorything.thingsisaid(current_user.id).each do |t|%>
+<p><%=t('pagesshow.task.usefortaskwithoutsailor',task:t.task.name,count: t.use, thing:t.thing.name)%> (<%=t.people.pluck(:name).to_sentence%>)</p>
+<p><%=link_to I18n.t('pagesshow.task.questionusefortaskwithoutsailor',task:t.task.name,count: t.use, thing:t.thing.name), addpeoplelikethis_categorything_taskusedstuff_path(t.id,categorything_id: @categorything.id)%></p>
+<%end%>
+<%end%>
+
+
+<%=link_to t('monmenu.categorythingsqty'), qty_categorything_path(@categorything.id)%>
+<%= link_to 'Edit', edit_categorything_path(@categorything) %> |
+<%= link_to 'Back', categorythings_path %>

@@ -1,0 +1,19 @@
+html,main {
+background: black;
+color:white;
+
+}
+h1 {
+color:grey;
+text-align:center;
+}
+th {
+display:none;
+}
+table {
+width:100%;
+}
+img {
+height:50px;
+width:50px;
+}

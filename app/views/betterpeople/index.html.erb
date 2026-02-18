@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Betterpeople</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question du jeu</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @betterpeople.each do |betterperson| %>
+      <tr>
+        <td>
+<%if betterperson.attitude.sailors.length > 0%>
+<%=t('entrecesdeuxpersonattitudesleadersailors', sailors: [betterperson.person.name, betterperson.otherperson.name].to_sentence, attitude: betterperson.attitude.name,leaders: betterperson.attitude.sailors.pluck(:name).to_sentence)%>
+<%else%>
+<%=t('entrecesdeuxpersonattitudessailors',sailors: [betterperson.person.name, betterperson.otherperson.name].to_sentence, attitude: betterperson.attitude.name)%>
+<%end%>
+
+
+</td>
+        <td><%= link_to 'Show', betterperson %></td>
+        <td><%= link_to 'Edit', edit_betterperson_path(betterperson) %></td>
+        <td><%= link_to 'Destroy', betterperson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('betterpeople.new'), new_betterperson_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mylayouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Typelayout</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mylayouts.each do |mylayout| %>
+      <tr>
+        <td><%= mylayout.name %></td>
+        <td><%= mylayout.title %></td>
+        <td><%= mylayout.typelayout %></td>
+        <td><%= link_to 'Show', mylayout %></td>
+        <td><%= link_to 'Edit', edit_mylayout_path(mylayout) %></td>
+        <td><%= link_to 'Destroy', mylayout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mylayout', new_mylayout_path %>

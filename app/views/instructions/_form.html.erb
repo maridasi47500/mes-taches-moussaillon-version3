@@ -1,0 +1,66 @@
+<%= form_with(model: instruction, local: true) do |form| %>
+  <% if instruction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(instruction.errors.count, "error") %> prohibited this instruction from being saved:</h2>
+
+      <ul>
+        <% instruction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_field :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_field :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_field :content_de %>
+  </div>
+
+
+    <%= form.fields_for :otherinstruction, (params[:addinstruction] ? Instruction.new : instruction.otherinstruction) do |ff| %>
+
+  <% Instruction.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= ff.label column %>
+    <%= ff.text_field column %>
+  </div>
+
+    <% end %>
+  <div class="field">
+    <%= ff.label :_destroy %>
+    <%= ff.check_box :_destroy %>
+  </div>
+
+
+    <% end %>
+
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "alias_ids", collec: instruction.aliases, mesmodele:"aliases"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path]%>
+<%@select=[aliases_instructions_path]%>
+
+<%@nom=['aliases']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

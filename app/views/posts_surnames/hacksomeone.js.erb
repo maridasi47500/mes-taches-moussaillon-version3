@@ -1,0 +1,94 @@
+
+var content=`
+<%= fields_for "posts_surname[posts_surnames_attributes][0]", PostsSurname.new(posts_surname: @ps) do |f|%>
+
+
+<div class="field">
+
+
+      </div>
+
+
+        <div>
+            <%= f.hidden_field :posts_surname_id %>
+    <%= f.fields_for "surname_attributes" do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+        </div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name%>
+                                            <div class="field">
+                                          <%=f.fields_for "thing_attributes" do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+                        </div>
+
+            <div>
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="field">
+
+                </div>
+                <div class="field">
+        <%= f.hidden_field :post_id,value: @ps.post_id %>
+
+      <%= f.label :person_id, "Sailors " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%  @moussaillons.each do |ff| %>
+                        <%=f.radio_button :person_id, ff.id %><%=render ff %>
+                        <%end%>
+                        <%=  f.radio_button( "person_id", value: nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>
+
+      </div>
+    
+
+</div>
+
+      <div class="field">
+        <%= f.label :people_hacked_ids, "Hacking sailor N°_0_ " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_radio_buttons(:people_hacked_ids, @moussaillons, :id, :name) do |ff| %>
+                        <%=ff.radio_button%><%=render Person.find(ff.value)%>
+                        <%end%>
+      </div>
+        </div>
+
+
+
+    </div>
+</div>
+<%end%>
+`;
+function replaceForm(str,nb) {
+  return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+
+for (var ui=0;ui<20;ui++){
+if ($('[name*="posts_surname[posts_surnames_attributes]['+ui.toString()+']"]').length === 0) {
+var rep = replaceForm(content,ui.toString());
+$('.divtohacksomeone').append(rep);
+break;
+}
+}

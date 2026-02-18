@@ -1,0 +1,175 @@
+<%= form_with(model: attitudephoto, local: true) do |form| %>
+  <% if attitudephoto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attitudephoto.errors.count, "error") %> prohibited this attitudephoto from being saved:</h2>
+
+      <ul>
+        <% attitudephoto.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=link_to t('links.addmessage'), "",data: {nb: attitudephoto.tickets.length},onclick:"gettickets(this);return false;", id: "addtick"%>
+<%=link_to t('links.addtrait'), "",data: {nb: attitudephoto.photopeoplehavetraits.length},onclick:"gettraits(this);return false;", id: "addst"%>
+<%=link_to t('links.addattitude'), "",data: {nb: attitudephoto.photopeoplehaveattitudes.length},onclick:"getattitudes(this);return false;", id: "addatt"%>
+
+
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at, start_year: 1700 %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at, start_year: 1700 %>
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :name, form: form,n: "attitudephoto", fieldname: 'person1', collec: [], mesmodele:"people1",m:0%>
+
+  </div>
+  <div class="field">
+    <%= form.label :ageperson1 %>
+    <%= form.number_field :ageperson1 %>
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :name, form: form,n: "attitudephoto", fieldname: 'person2', collec: [], mesmodele:"people2",m:0%>
+
+  </div>
+  <div class="field">
+    <%= form.label :ageperson2 %>
+    <%= form.number_field :ageperson2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_fr %>
+    <%= form.text_field :title_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_en %>
+    <%= form.text_field :title_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_de %>
+    <%= form.text_field :title_de %>
+  </div>
+<div id="addtrait">
+<%attitudephoto.photopeoplehavetraits.each_with_index do |trait,i|%>
+<%=form.fields_for :photopeoplehavetraits, trait do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehavetraits_attributes][#{i}]", fieldname: 'person_id', collec: Person.findbyid(trait.person_id), mesmodele:"peopletraits",m:i%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehavetraits_attributes][#{i}]", fieldname: 'trait_id', collec: Trait.findbyid(trait.trait_id), mesmodele:"traits",m:i%>
+
+
+
+  </div>
+
+<%end%>
+<%end%>
+
+</div>
+<div id="addattitude">
+<%attitudephoto.photopeoplehaveattitudes.each_with_index do |attitude,i|%>
+<%=form.fields_for :photopeoplehaveattitudes, attitude do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehaveattitudes_attributes][#{i}]", fieldname: 'person_id', collec: Person.findbyid(attitude.person_id), mesmodele:"peopleattitudes",m:i%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehaveattitudes_attributes][#{i}]", fieldname: 'attitude_id', collec: Attitude.findbyid(attitude.attitude_id), mesmodele:"attitudes",m:i%>
+
+
+
+  </div>
+
+
+<%end%>
+<%end%>
+
+</div>
+<%=t('display.attachmessage')%>
+<div id="addticket">
+<%attitudephoto.tickets.each_with_index do |ticket,i|%>
+<%=form.fields_for :tickets, ticket do |ff|%>
+  <div class="field">
+<%=render "form/checkboxcolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[tickets_attributes][#{i}]", fieldname: 'sender_ids', collec: ticket.senders, mesmodele:"senders",m:i%>
+
+  </div>
+  <div class="field">
+<%=render "form/checkboxcolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[tickets_attributes][#{i}]", fieldname: 'recipient_ids', collec: ticket.recipients, mesmodele:"recipients",m:i%>
+
+
+
+  </div>
+  <% Ticket.locale_columns(:content).each do |column| %>
+  <div class="field">
+<%=ff.label column, name: "attitudephoto[tickets_attributes][#{i}]["+column.to_s+']'%>
+<%=ff.text_area column, name: "attitudephoto[tickets_attributes][#{i}]["+column.to_s+']'%>
+  </div>
+
+<%end%>
+
+<div>
+<%=ff.label :_destroy%>
+<%=ff.check_box :_destroy%>
+</div>
+
+<%end%>
+<%end%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[attitudes_attitudephotos_path, traits_attitudephotos_path,persontraits_attitudephotos_path,personattitudes_attitudephotos_path,person1_attitudephotos_path,person2_attitudephotos_path,senders_attitudephotos_path,recipients_attitudephotos_path] %>
+<%@search=[attitudejson_attitudes_path,json_traits_path,personjson_albums_path,personjson_albums_path,datebirthjson_people_path,datebirthjson_people_path,personjson_albums_path,personjson_albums_path]%>
+<%@nom=['attitudes','traits','peopletraits','peopleattitudes','people1','people2','senders','recipients']%>
+<%=render partial:"form/functionjsonwithvariable", collection: @nom.zip(@search, @select), as: :t%>
+function getattitudes(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=addattitude_attitudephotos_path%>?n="+String(mynb)+"&userid=<%=current_user.id%>",
+success: function(data) {
+$(addattitude).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+function gettraits(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=addtrait_attitudephotos_path%>?n="+String(mynb)+"&userid=<%=current_user.id%>",
+success: function(data) {
+$(addtrait).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+function gettickets(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=addtickets_attitudephotos_path%>?n="+String(mynb)+"&userid=<%=current_user.id%>",
+success: function(data) {
+$(addticket).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+
+</script>
+<%end%>
+

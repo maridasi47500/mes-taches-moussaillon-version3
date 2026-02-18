@@ -1,0 +1,7 @@
+path person => items
+pouvoir les noter
+annonces
+
+
+commentaires a propos d'un ojet qui porte sur quelqu'un
+faire un commentaire a propos d'une personne qui commence par le nom de l'objet qui parle delui

@@ -1,0 +1,180 @@
+<%=content_for :mylittlecss do%>
+.carteidee {
+padding: 10px;
+margin: 10px;
+border: dashed green 2px;
+}
+p, .card {
+margin: 10px;
+}
+<%end%>
+<h1>Mistralfm tous les its</h1>
+
+<%=label_tag :allthepeople, "All the people"%>
+      <div><%= text_field_tag :cherchonsparici, "",onchange:"cherchertasks(this,chercheparla);return false;", id: "cherchonsparici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selecttasks(this,avattasks);return false;" id="chercheparla" data-field="action_ids"></select>
+<div id="avattasks"></div>
+
+<%=label_tag :alltheits, "All the its"%>
+      <div><%= text_field_tag :cherchonshits, "",onchange:"chercherhits(this,cherchehits);return false;", id: "cherchonshits",class:"mysearchfieldavatars" %></div>
+        <select onchange="selecthits(this,allthehits);return false;" id="cherchehits" data-field="action_ids"></select>
+<div id="allthehits"></div>
+<br>
+<br>
+<p class="card carteidee">
+<%=t('display.carteideetvseries', user: current_user.name).html_safe%>
+
+</p>
+<%=label_tag :alltheits, "All the actors"%>
+<%=select_tag :filmid, options_for_select(Film.all.collect {|x| [x.title, x.id]}), {prompt: 'Selectionnez le film de l\'acteur/actrice',id:"searchfilmid"}%>
+<%=select_tag :seriesid, options_for_select(Tvseries.all.collect {|x| [x.name, x.id]}), {prompt: 'Selectionnez la serie TV de l\' acteur(actrice)',id:"searchtvseriesid",onchange: "chercheractors(null,chercheactors,this,null);return false;"}%>
+
+      <div><%= text_field_tag :cherchonsactors, "",onchange:"chercheractors(this,chercheactors,searchtvseriesid,searchfilmid);return false;", id: "cherchonsactors",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectactors(this,alltheactors,searchtvseriesid,searchfilmid);return false;" id="chercheactors" data-field="action_ids"></select>
+<div id="alltheactors"></div>
+
+<%=content_for :myjscode do%>
+<script>
+function chercheractors(field,all,serieid,myfilmid){
+$.ajax({url: '<%=alltheactors_path%>?name='+(field ? field.value : '')+"&tvseriesid="+serieid.value+"&filmid="+(myfilmid ? myfilmid.value : ''), 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function chercherhits(field,all){
+$.ajax({url: '<%=allthepplhits_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function cherchertasks(field,all){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectactors(field,greatpeople,serieid,myfilmid){
+$.ajax({url: '<%=allactors_path%>?id='+field.value+"&tvseriesid="+serieid.value+"&filmid="+myfilmid.value, 
+success:function(data){
+greatpeople.innerHTML=data;
+}});
+};
+function selecthits(field,greatpeople){
+$.ajax({url: '<%=allthehits_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML=data;
+}});
+};
+function selecttasks(field,greatpeople){
+if (field.value.length > 0){
+$.ajax({url: '<%=theits_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML=data;
+}});
+}
+};
+</script>
+<%end%>
+
+<%=content_for :myjscode do %>
+<script>
+function seekanswers(field,my){
+
+$.ajax({url: '<%=answers_questions_path%>?id='+field.value, 
+success:function(data){
+if (data.length > 0) {
+my.style.display="block";
+my.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].text;
+qtype=data[i].qtype;
+if (qtype=='u'){
+my.multiple = false;
+my.name = "ansid";
+}else{
+my.multiple = true;
+my.name = "ansid[]";
+};
+my.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+} else {
+my.style.display="none";
+}
+}});
+};
+function chercherustensiles(id,field,al){
+$.ajax({url: '<%=mesustensiles_path(id: '')%>'+id+'?uid='+field.value, 
+success:function(data){
+al.innerHTML=data;
+}
+});
+};
+function chercherinstruments(id,field,al){
+$.ajax({url: '<%=mesinstruments_path(id: '')%>'+id+'?iid='+(field.value || field.dataset.id), 
+success:function(data){
+al.innerHTML=data;
+}
+});
+};
+function chercherlangage(id,field,al){
+$.ajax({url: '<%=meslangages_path(id: '')%>'+id+'?iid='+(field.value || field.dataset.id), 
+success:function(data){
+al.innerHTML=data;
+}
+});
+};
+function chercherattitudes(field,al){
+$.ajax({url: '<%=attitudejson_attitudes_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+
+function seekthosepeople(field,my){
+
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+if (data.length > 0) {
+my.style.display="block";
+my.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+my.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+} else {
+my.style.display="none";
+}
+}});
+};
+</script>
+
+<%end%>
+

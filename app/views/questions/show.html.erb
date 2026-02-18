@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @question.text %>
+
+</p>
+<ul>
+  <%@question.answers.each do |a| %>
+<li>
+<%=a.text%>
+<%if a.good%>
+(学霸 xué bà)
+<%else%>
+(学渣xué zhā)
+
+<%end%>
+</li>
+<%end%>
+</ul>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

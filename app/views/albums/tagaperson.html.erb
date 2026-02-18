@@ -1,0 +1,24 @@
+<%=form_with scope: "" do |form|%>  
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'personid', collec: Person.findbyid(params[:sailorid]), mesmodele:"people"%>
+</div>
+<%end%>
+
+<%@album.photos.each do |photo|%>
+<%=render 'albums/formtagperson',album:@album, photo: photo%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[mytaggedpeople_albums_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+<%if params[:sailorid]%>
+window.onload = function() {
+$('[name=personid]').val(<%=params[:sailorid]%>);
+}
+<%end%>
+</script>
+<%end%>
+
+

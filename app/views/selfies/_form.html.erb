@@ -1,0 +1,130 @@
+<%= form_with(model: selfie, local: true) do |form| %>
+  <% if selfie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(selfie.errors.count, "error") %> prohibited this selfie from being saved:</h2>
+
+      <ul>
+        <% selfie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%= form.hidden_field :name %>
+
+    <%= form.label :name %>
+    <%= form.file_field :name, id: "myselfie1" %>
+  </div>
+<%if selfie.name%>
+<h2>Salut ! C'est moi !</h2>
+<img src="/assets/<%=selfie.name%>"/>
+<%end%>
+<div class="selfie">
+</div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+        <%= render "appareilphoto/inputphotoswebcamselfie", form: form %>
+
+<div class="selfie">
+</div>
+<%if selfie.erreursailors%>
+<%selfie.selfiehavesailors.each_with_index do |p,w|%>
+<%=form.fields_for :selfiehavesailors, p do |f|%>
+  <div class="field">
+    <%= f.label :person_id, "who's on the selfie?" %>
+    <%= f.collection_radio_buttons :person_id, Person.where(id: p.person_id), :id,:name %>
+
+<%=text_field_tag "allpeople#{w}", "",placeholder:true, id: "allpeople#{w}",class:"largetextfield", onchange:"cherchersailors(this, allsailors#{w});return false;"%>
+<select id="allsailors<%=w%>" multiple="true" size="20" onchange="selectsailors(this,greatsailor<%=w%>,<%=w%>);return false;"></select>
+<div id="greatsailor<%=w%>"></div>
+  </div>
+  <div class="field">
+    <%= f.label :emotion_id %>
+    <%= f.collection_radio_buttons :emotion_id, Emotion.where(id: p.emotion_id),:id, :name %>
+
+
+<%=text_field_tag "myemotions#{w}", "",placeholder:true, id: "myemotions#{w}",class:"largetextfield", onchange:"chercheremotions(this, allemotions#{w});return false;"%>
+<select id="allemotions<%=w%>" multiple="true" size="20" onchange="selectemotions(this,greatemotion<%=w%>,<%=w%>);return false;"></select>
+<div id="greatemotion<%=w%>"></div>
+  </div>
+<%end%>
+<%end%>
+<%else%>
+  <div class="field">
+    <%= form.label :sailor_ids, "who's on the selfies?" %>
+    <%= form.collection_check_boxes :sailor_ids, Person.where(id: selfie.sailor_ids),:id, :name %>
+
+<%=text_field_tag :allpeople, "",placeholder:"tell me the most famous person on this selfie", id: "allpeople",class:"largetextfield", onchange:"cherchersailors(this, allsailors);return false;"%>
+<select id="allsailors" multiple="true" size="20" onchange="selectsailors(this,greatppl);return false;"></select>
+<div id="greatppl"></div>
+  </div>
+<%end%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%if selfie.erreursailors%>
+
+<%@paths=[albumpeople_selfies_path,albumemotions_selfies_path]%>
+<%@paths2=[personjson_albums_path,json_emotions_path]%>
+<%['sailors','emotions'].each_with_index do |t,i|%>
+
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name || data[i].name_en;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople,nth){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value+'&nth='+nth, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+<%else%>
+<%@paths=[people_selfies_path]%>
+<%@paths2=[personjson_albums_path]%>
+<%['sailors'].each_with_index do |t,i|%>
+
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+<%end%>
+</script>
+
+        <%= render "appareilphoto/javascriptpouraudiovideoselfie" %>
+
+<%end%>
+

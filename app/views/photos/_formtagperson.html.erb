@@ -1,0 +1,8 @@
+<%=form_with url: tagsomeone_photo_path(photo.id) do |form|%>
+<%=form.hidden_field :personid%>
+<%=form.hidden_field :photoid,value: photo.id%>
+<input id="image<%=photo.id%>" type="image" width="500" height="300" alt="Login"
+       src="/assets/<%=photo.name%>" name="tag">
+
+<%end%>
+

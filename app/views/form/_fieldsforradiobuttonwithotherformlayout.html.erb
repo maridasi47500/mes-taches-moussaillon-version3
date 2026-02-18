@@ -1,0 +1,12 @@
+<%=fields_for modelname do |firm|%>
+<%=firm.fields_for sousmodel.to_s+'_attributes' do |form|%>
+<%=form.collection_radio_buttons(fieldname, collec, :id, columnname,{include_hidden: false}) do |b| %>
+       <%=b.radio_button(name: modelname.to_s+'['+sousmodel.to_s+'_attributes][0]['+fieldname.to_s+']')%>
+<%=b.label do%>
+<%=render l, ln => b.object%>
+<%end%>
+
+<% end %>
+<% end %>
+<% end %>
+

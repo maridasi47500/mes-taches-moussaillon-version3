@@ -1,0 +1,26 @@
+<div class="card">
+<div class="card-body">
+<p class="card-text">Bienvenue au <%=hotel.name%></p>
+<p class="card-text">
+<%= (hotel.image && hotel.image.length > 0) ? image_tag("/assets/"+hotel.image.to_s, class: "imageprofilethread", alt:"image of this place") : ""%>
+</p>
+
+<%if hotel.city%>
+<p>
+<%=hotel.city.name%>
+</p>
+<%end%>
+<%if hotel.country%>
+<p>
+<%=hotel.country.name%>
+</p>
+<%end%>
+<%if hotel.state%>
+<p>
+<%=hotel.state.name%>
+</p>
+<%end%>
+
+</div>
+</div>
+

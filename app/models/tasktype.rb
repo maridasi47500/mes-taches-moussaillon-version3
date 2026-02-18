@@ -1,0 +1,2 @@
+class Tasktype < Thing
+end

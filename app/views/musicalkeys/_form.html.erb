@@ -1,0 +1,39 @@
+<%= form_with(model: musicalkey, local: true) do |form| %>
+  <% if musicalkey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(musicalkey.errors.count, "error") %> prohibited this musicalkey from being saved:</h2>
+
+      <ul>
+        <% musicalkey.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <% Musicalkey.locale_columns(:code).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

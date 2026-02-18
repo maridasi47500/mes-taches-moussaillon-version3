@@ -1,0 +1,19 @@
+<%if params[:checkbox] == "true"%>
+<%= label @objectname.to_s+@fieldname.to_s, "avec l'image de profil de " %>
+<%= collection_check_boxes(@objectname.to_s, @fieldname.to_s, @objects, :id, :name,{include_hidden: true}) do |ff| %>
+<%=ff.label do %>
+        <%=ff.check_box%><%=render @myclassname.find(ff.value)%>
+                            <%end%>
+                            <%end%>
+
+<%else%>
+<%= label @objectname.to_s+@fieldname.to_s, "avec l'image de profil de " %>
+<%= collection_radio_buttons(@objectname.to_s, @fieldname.to_s, @objects, :id, :name,{include_hidden: true}) do |ff| %>
+<%=ff.label do %>
+        <%=ff.radio_button%><%=render @myclassname.find(ff.value)%>
+                            <%end%>
+                            <%end%>
+
+<%=  radio_button_tag( @objectname.to_s+@fieldname.to_s, nil)%><%= label @objectname.to_s+@fieldname.to_s, "personne"%>
+<%end%>
+

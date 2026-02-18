@@ -1,0 +1,15 @@
+<%=form_with model: Attitude.new, scope: "", url: searchforattitudes_path do |form|%>
+  <% if attitude.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+        <% attitude.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%=form.label :s%>
+<%=form.text_field :s%>
+<%end%>

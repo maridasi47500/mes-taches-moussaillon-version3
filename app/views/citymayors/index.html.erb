@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Citymayors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ville</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @citymayors.each do |citymayor| %>
+      <tr>
+        <td>ville de <%= citymayor.city.name %></td>
+        <td><%= link_to 'Show', citymayor %></td>
+        <td><%= link_to 'Edit', edit_citymayor_path(citymayor) %></td>
+        <td><%= link_to 'Destroy', citymayor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Citymayor', new_citymayor_path %>

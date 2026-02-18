@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @surname.name %>
+</p>
+  <%= render @surname.people %>
+  <%= render @surname.nationalities %>
+  <%= render @surname.schools %>
+<br>
+  <%= render @surname.internetpseudonyms %>
+<br>
+
+<%= link_to 'Edit', edit_surname_path(@surname) %> |
+<%= link_to 'Back', surnames_path %>

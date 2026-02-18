@@ -1,0 +1,9 @@
+<%@person.comparages.distinct.each do |f|%>
+<%if @person.dateofbirth && f.dateofbirth && @person.dateofbirth < f.dateofbirth%>
+<p><%=t('pagesshow.person.ecartdage', sailor: @person.name, othersailor: link_to(f.name,f),ecartdage: distance_of_time_in_words(@person.dateofbirth, f.dateofbirth)).html_safe%>
+(<%=t('pagesshow.person.oldest'+(@person.sexe||'F'), sailor: @person.name)%>)</p>
+<%elsif @person.dateofbirth && f.dateofbirth && @person.dateofbirth > f.dateofbirth%>
+<p><%=t('pagesshow.person.ecartdage', sailor: @person.name, othersailor: link_to(f.name,f),ecartdage: distance_of_time_in_words(f.dateofbirth, @person.dateofbirth)).html_safe%>
+(<%=t('pagesshow.person.oldest'+(f.sexe||'F'), sailor: f.name)%>)</p>
+<%end%>
+<%end%>

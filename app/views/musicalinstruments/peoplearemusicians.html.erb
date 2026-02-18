@@ -1,0 +1,10 @@
+<div class="row row-cols-3 row-cols-md-3 g-4">
+
+
+<%= render partial: 'musicalinstrumentshaveplayers/a', collection: @musicalinstrumentshaveplayers, as: :aa %>
+
+
+</div>
+
+<%=render "indexpage/paginationnbpeople",g:params[:page].to_i, modelname: Musicalinstrument,mypath: peoplearemusicians_musicalinstruments_path+'?'%>
+

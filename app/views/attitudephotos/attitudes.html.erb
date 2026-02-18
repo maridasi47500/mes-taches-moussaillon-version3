@@ -1,0 +1,9 @@
+<%=fields_for :attitudephoto do |form|%>
+<%=form.fields_for :photopeoplehaveattitudes do |ff|%>
+  <div class="field">
+<%=render "form/fieldsforradiobuttoncolumnwithvariable",n:"attitudephoto[photopeoplehaveattitudes_attributes][#{params[:n]}]",columnname: :name, form: ff, fieldname: 'attitude_id', collec: @attitudes, mesmodele:"attitudes",m:params[:n]%>
+
+</div>
+<%end%>
+<%end%>
+

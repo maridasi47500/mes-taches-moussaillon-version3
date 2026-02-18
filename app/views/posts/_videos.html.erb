@@ -1,0 +1,10 @@
+<article class="clip">
+    <video width="160" height="120" controls src="<%= asset_path  "/assets/#{video.name}" %>"></video>
+                <%if video.authors.count > 0%>
+par  
+        <%= render partial: "user", collection: video.authors, as: :user %>
+
+
+    <%end%>
+
+</article>

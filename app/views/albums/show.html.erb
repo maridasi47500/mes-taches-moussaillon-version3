@@ -1,0 +1,44 @@
+<%=content_for :mylittlecss do%>
+area:focus {
+  outline-color: #fff;
+
+
+
+}
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+var areas = document.getElementsByTagName( 'area' );
+for( var index = 0; index < areas.length; index++ ) {    
+    areas[index].addEventListener( 'mouseover', function () {this.focus();}, false );
+    areas[index].addEventListener( 'mouseout', function () {this.blur();}, false );
+};
+
+</script>
+<%end%>
+
+<p id="notice"><%= notice %></p>
+<%@album.sailors.distinct.each do |sailor|%>
+<%= link_to "Retagger #{sailor.name} dans les photos", tagaperson_album_path(@album.id,sailorid: sailor.id) %> |
+<%end%>
+
+<p>
+  <strong>Person:</strong>
+  <%if @album.person %>
+  <%= render @album.person %>
+  <%end%>
+</p>
+
+<h1>
+<%= @album.title %>
+</h1>
+<% @album.photos.each do |photo|%>
+<%=render 'photos/photowithtag', photo: photo%>
+<%end%>
+
+<%=link_to "discuter de cet album dans un post",new_post_path(albumid: @album.id)%>
+<%=link_to "ajouter des photos à cet album",addphotos_album_path(@album.id)%>
+
+<%= link_to "Tagger les photos", tagaperson_album_path(@album.id) %> |
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

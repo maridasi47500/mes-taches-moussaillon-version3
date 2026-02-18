@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('indexpage.story')%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%=t('columntable.title')%></th>
+      <th><%=t('columntable.user')%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%= story.title %></td>
+        <td><%= story.user.name %></td>
+        <td><%= link_to t('indexpage.show'), story %></td>
+        <td><%= link_to t('indexpage.edit'), edit_story_path(story) %></td>
+        <td><%= link_to t('indexpage.destroy'), story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('newpage.story'), new_story_path %>

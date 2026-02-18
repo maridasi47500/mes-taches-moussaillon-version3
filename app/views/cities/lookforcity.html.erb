@@ -1,0 +1,7 @@
+<%=form_with url: jobcity_person_city_path(person_id: params[:person_id],id:params[:id]) do |form|%>
+<input id="<%=@city.name.parameterize+@city.id.to_s%>" name="<%=@city.id%>person" type="image" width="100" height="100" alt="<%=@city.name%>"
+title="<%=@city.name%>"
+       src="<%=@city.image%>">
+
+
+<%end%>

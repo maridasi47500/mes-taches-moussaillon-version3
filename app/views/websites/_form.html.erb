@@ -1,0 +1,30 @@
+<%= form_with(model: website, local: true) do |form| %>
+  <% if website.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(website.errors.count, "error") %> prohibited this website from being saved:</h2>
+
+      <ul>
+        <% website.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% Website.locale_columns(:name).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

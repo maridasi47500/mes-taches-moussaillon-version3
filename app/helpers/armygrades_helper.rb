@@ -1,0 +1,2 @@
+module ArmygradesHelper
+end

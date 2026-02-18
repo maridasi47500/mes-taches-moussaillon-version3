@@ -1,0 +1,26 @@
+<i><%=requeststoperson.content%></i>
+<%=form_with url: askso_requeststoperson_path(requeststoperson.id) do |form|%>
+<div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :myuniquename, form: form, fieldname: 'alias_id', collec: Alias.findbyid(params[:alias_id]), mesmodele:"aliases"%>
+</div>
+<div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :title, form: form, fieldname: 'emoticon_id', collec: Emoticon.findbyid(params[:emoticon_id]), mesmodele:"emoticons"%>
+</div>
+
+
+<%if params[:requeststopersonhaverequestperson_id]%>
+<%= render partial: 'requeststopersonhaverequestpeople/reqa', collection: requeststoperson.requeststopersonhaverequestpeople.where(id: params[:requeststopersonhaverequestperson_id]),as: :requeststopersonhaverequestperson %>
+<%else%>
+<%= render partial: 'requeststopersonhaverequestpeople/reqa', collection: requeststoperson.requeststopersonhaverequestpeople,as: :requeststopersonhaverequestperson %>
+<%end%>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[myaliases_requeststopeople_path,emoticons_requeststopeople_path]%>
+<%@search =[personjson_albums_path,json_emoticons_path]%>
+<%@nom=['aliases','emoticons']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

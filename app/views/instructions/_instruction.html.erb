@@ -1,0 +1,22 @@
+<%if instruction.aliases.length > 0%><p>Instructions pour <%=instruction.aliases.map{|x|(render 'aliases/alias',a: x)}.to_sentence.html_safe%></p><%end%>
+<ul>
+<li class="<%= instruction.otherinstruction ? "" : "redborder"%>">
+<%if false#!instruction.myinstruction%>
+<%=t('showpages.instruction.dabord')%>
+<%elsif false#!instruction.otherinstruction%>
+<%=t('showpages.instruction.enfin')%>
+<%elsif instruction.myinstruction%>
+<%=t('showpages.instruction.then')%>
+<%end%>
+<%=instruction.content%>
+<%if instruction.otherinstruction%>
+<%=render instruction.otherinstruction%> 
+
+<%if !instruction.otherinstruction.otherinstruction%>
+<%=link_to "Ajouter une instruction suivante",edit_instruction_path(instruction.otherinstruction, addinstruction: true)%>
+
+<%end%>
+<%end%>
+
+</li>
+</ul>

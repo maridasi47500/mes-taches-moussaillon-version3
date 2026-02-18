@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Secretoccupations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content fr</th>
+      <th>Content en</th>
+      <th>Content de</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @secretoccupations.each do |secretoccupation| %>
+      <tr>
+        <td><%= secretoccupation.content_fr %></td>
+        <td><%= secretoccupation.content_en %></td>
+        <td><%= secretoccupation.content_de %></td>
+        <td><%= link_to 'Show', secretoccupation %></td>
+        <td><%= link_to 'Edit', edit_secretoccupation_path(secretoccupation) %></td>
+        <td><%= link_to 'Destroy', secretoccupation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Secretoccupation', new_secretoccupation_path %>

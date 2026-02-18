@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%=t('pagesshow.job.name')%></strong>
+  <%= @job.name %>
+</p>
+
+<%if @job.people.length > 0%>
+<%=render @job.people%>
+<%end%>
+<%if @job.thingsisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%@job.thingsisaid(current_user.id).each do |t|%>
+<p><%=t('pagesshow.job.useforjobwithoutsailor',job:@job.name,count: t.use, thing:t.thing.name)%></p>
+<%if t.nb.to_i > 0%>
+<p><%=t('pagesshow.job.qtymoy',job:@job.name,count: t.nb, thing:t.thing.name.pluralize(t.nb))%></p>
+<%end%>
+<%end%>
+<%end%>
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

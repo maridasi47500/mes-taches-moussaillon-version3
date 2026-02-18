@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('display.allthe', model: Taskaction.model_name.human(count: 10))%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taskactions.each do |taskaction| %>
+      <tr>
+        <td><%= taskaction.name %></td>
+        <td><%= link_to 'Show', taskaction %></td>
+        <td><%= link_to 'Edit', edit_taskaction_path(taskaction) %></td>
+        <td><%= link_to 'Destroy', taskaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Taskaction', new_taskaction_path %>

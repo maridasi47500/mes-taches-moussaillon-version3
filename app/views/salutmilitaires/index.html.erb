@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Salutmilitaires</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tickets attributes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @salutmilitaires.each do |salutmilitaire| %>
+      <tr>
+        <td><%= render salutmilitaire %></td>
+        <td><%= link_to 'Show', salutmilitaire %></td>
+        <td><%= link_to 'Edit', edit_salutmilitaire_path(salutmilitaire) %></td>
+        <td><%= link_to 'Destroy', salutmilitaire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Salutmilitaire', new_salutmilitaire_path %>

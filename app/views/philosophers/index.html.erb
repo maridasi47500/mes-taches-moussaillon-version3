@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Philosophers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @philosophers.each do |philosopher| %>
+      <tr>
+        <td><%= render partial: "things/addstufftobasket", collection: [philosopher], as: :thing %></td>
+        <td><%= philosopher.image %></td>
+        <td><%= link_to 'Show', philosopher %></td>
+        <td><%= link_to 'Edit', edit_philosopher_path(philosopher) %></td>
+        <td><%= link_to 'Destroy', philosopher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Philosopher', new_philosopher_path %>

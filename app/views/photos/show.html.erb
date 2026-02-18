@@ -1,0 +1,83 @@
+<%=content_for :mylittlecss do%>
+area:focus {
+  outline-color: #fff;
+
+
+
+}
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+var areas = document.getElementsByTagName( 'area' );
+for( var index = 0; index < areas.length; index++ ) {    
+    areas[index].addEventListener( 'mouseover', function () {this.focus();}, false );
+    areas[index].addEventListener( 'mouseout', function () {this.blur();}, false );
+};
+
+</script>
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+  <% if @photo.name %>
+<p>
+  <%= render 'photos/photowithtag',photo: @photo %>
+
+</p>
+<%end%>
+
+
+<h4>
+  <%= @photo.title %>
+</h4>
+  <% if @photo.photohavesailors.length > 0 %>
+<p><%=t('photoisee')%>
+  <%= @photo.photohavesailors.map{ |p| t('sailormood', sailor: (render p.person),mood: (render p.emotion))}.to_sentence.html_safe%>
+
+
+</p>
+<%end%>
+<%if @album && @photo.nextphoto%>
+
+<%@photo.sailors.distinct.each do |sailor|%>
+<%= link_to "Retagger #{sailor.name} dans la photo suivante", tagaperson_album_path(@album.id,sailorid: sailor.id)+"#image#{@photo.nextphoto.id}" %> |
+<%end%>
+
+<%end%>
+
+<%if @album%>
+<%= link_to "Revenir à l'album", polymorphic_url(@album) %> |
+<%@photo.sailors.distinct.each do |sailor|%>
+<%= link_to "Retagger #{sailor.name} dans les photos de l'album", tagaperson_album_path(@album.id,sailorid: sailor.id) %> |
+<%end%>
+
+<%end%>
+<%if @photo.things.length > 0%>
+<p>
+<%=t('display.icanmaybesee',things: @photo.photoshavethings.map {|x|(render x.thing)+(x.owners.length > 0 ? I18n.t('display.displaythingphoto',thing: x.thing.name, owner: x.owners.map{|y|y.name}.to_sentence) : '')}.to_sentence).html_safe%>
+
+</p>
+<%end%>
+<%if @photo.photocomments.length > 0%>
+<ul>
+<%@photo.photocomments.each do |comment|%>
+<li>
+<%=l(comment.created_at, format: :long)%> - <%=comment.content%>
+</li>
+<%end%>
+</ul>
+<%end%>
+  <%= render 'formphotocomment',photo: @photo %>
+<%=link_to_if (@photo.things.length > 0), t('monmenu.photobelonging'), belongings_photo_path(@photo.id)%>
+<ul>
+<li>
+
+<%= link_to "Tagger une personne sur la photo", tagaperson_photo_path(@photo.id) %> </li>
+<li>
+<%= link_to "Tagger un objet sur la photo", tagathing_photo_path(@photo.id) %> </li>
+<li>
+<%= link_to 'Edit', edit_photo_path(@photo) %>
+</li>
+<li><%= link_to 'Back', photos_path %></li>
+</ul>
+

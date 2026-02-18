@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<%=content_for :csscode do%>
+.mycard {
+width:100px;
+}
+.mycard img,.mycard .myaudio {
+width:100%;
+}
+ 
+.mysentence div {
+   padding-left: 6px;
+}
+.mysentence {
+ display: flex;
+            align-items: flex-start;
+  flex-wrap: wrap;
+            flex-direction:row;
+}
+<%end%>
+
+<p>
+  <strong>Content fr:</strong>
+  <%= @mysentence.content_fr %>
+</p>
+
+<p>
+  <strong>Content en:</strong>
+  <%= @mysentence.content_en %>
+</p>
+
+<p>
+  <strong>Content de:</strong>
+  <%= @mysentence.content_de %>
+</p>
+<div class="mysentence">
+<%@mysentence.my_name_parts.each_with_index do |x,i|%>
+<%x.split(" ").each do |y|%>
+<div> <%=" "+y%></div>
+<%end%>
+<%if @mysentence.myinfo[i]%>
+<%=render 'mysentences/mycard',card:@mysentence.myinfo[i]%>
+<%end%>
+
+<%end%>
+</div>
+
+<%= link_to 'Edit other info ', editother_mysentence_path(@mysentence) %> |
+<%= link_to 'Edit', edit_mysentence_path(@mysentence) %> |
+<%= link_to 'Back', mysentences_path %>

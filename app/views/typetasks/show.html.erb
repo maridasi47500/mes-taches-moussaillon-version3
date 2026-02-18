@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @typetask.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @typetask.image %>
+</p>
+
+<%= link_to 'Edit', edit_typetask_path(@typetask) %> |
+<%= link_to 'Back', typetasks_path %>

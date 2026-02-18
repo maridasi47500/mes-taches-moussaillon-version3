@@ -1,0 +1,4 @@
+<%=form_with model: Attitude.new, scope: "", url: searchforattitudes_path do |form|%>
+<%=form.label :s%>
+<%=form.text_field :s, placeholder: true%>
+<%end%>

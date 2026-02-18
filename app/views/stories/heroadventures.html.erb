@@ -1,0 +1,33 @@
+<%=fields_for :story, Story.new do |form|%>
+<%=form.fields_for :heroadventures, [Heroadventure.new(user_id: params[:userid])] do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :content, form: ff,n: "story[heroadventures_attributes][#{params[:n]}]", fieldname: 'previousstoryevent_id', collec: [], mesmodele:"adventures",m:params[:n]%>
+
+  </div>
+  <div class="field">
+
+
+<%=ff.label :image%>
+<%=ff.file_field :image,name:"story[heroadventures_attributes][#{params[:n]}][image]"%>
+
+  </div>
+
+  <div class="field">
+
+  <% Heroadventure.locale_columns(:content).each do |column| %>
+
+<%=ff.label column%>
+<%=ff.text_field column,name:"story[heroadventures_attributes][#{params[:n]}][#{column}]"%>
+<%end%>
+
+  </div>
+  <div class="field">
+<%=ff.label :_destroy%>
+<%=ff.check_box :_destroy,name:"story[heroadventures_attributes][#{params[:n]}][_destroy]"%>
+
+  </div>
+<%=ff.hidden_field :user_id,name:"story[heroadventures_attributes][#{params[:n]}][user_id]"%>
+
+<%end%>
+<%end%>
+

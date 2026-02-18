@@ -1,0 +1,2 @@
+class Bodypart < Thing
+end

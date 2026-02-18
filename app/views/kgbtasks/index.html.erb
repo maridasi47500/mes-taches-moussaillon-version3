@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gudu tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>name task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @Kgbtasks.each do |kgbtask| %>
+      <tr>
+        <td><%= kgbtask.name %></td>
+        <td><%= link_to 'Show', kgbtask %></td>
+        <td><%= link_to 'Edit', edit_kgbtask_path(kgbtask) %></td>
+        <td><%= link_to 'Destroy', kgbtask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New gudu task', new_kgbtask_path %>

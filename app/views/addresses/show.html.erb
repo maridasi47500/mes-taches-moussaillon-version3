@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<%=render @address%>
+<%if @address.posts.length > 0%>
+<h4>Posts lies a cette adresse</h4>
+<ul>
+<%@address.posts.each do |post|%>
+<li style="overflow:ellipsis;"><%= link_to post.content,post%></li>
+<%end%>
+</ul>
+<%end%>
+<p>
+  <strong>Place:</strong>
+  <%= @address.place_id %>
+</p>
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

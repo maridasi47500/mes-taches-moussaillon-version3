@@ -1,0 +1,12 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+
+<%=form.fields_for :lesson_languages do |ff|%>
+      <%=ff.label :locale_from_id, "langue maternelle"%>
+      <%=ff.select(:locale_from_id, options_from_collection_for_select(Language.all, :id, :name), {include_blank:'select a language'})%>
+      <%=ff.label :locale_to_id, "langue etrangere"%>
+      <%=ff.select :locale_to_id, options_from_collection_for_select(Language.all, :id, :name), {include_blank:'select a language'}%>
+
+<%end%>
+<%=form.submit "edit languages"%>
+<%end%>
+

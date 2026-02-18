@@ -1,0 +1,10 @@
+<h1>New Person</h1>
+
+<%= render 'form', person: @person %>
+
+<%= link_to 'Back', people_path %>
+  <%= content_for :jsforrecorder do %>
+<%= render "javascriptpouraudiovideo", jingles: true %>
+<%= render "javascriptpouraudiovideo", jingles: true, thisisjingles: true %>
+<%end%>
+

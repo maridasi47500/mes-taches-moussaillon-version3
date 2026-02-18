@@ -1,0 +1,3 @@
+<%if Person.birthdaytoday.length > 0%> ******************<%=t('wish.hbto',sailor: Person.birthdaytoday.map{|x|link_to(x.name,x)}.to_sentence).html_safe%><%end%>
+<%if Fete.festivaltoday.length > 0%> ******************<%=t('wish.fete',fete: Fete.festivaltoday.map{|x|link_to(x.name,x)}.to_sentence).html_safe%><%end%>
+

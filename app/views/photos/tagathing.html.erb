@@ -1,0 +1,16 @@
+<%=form_with scope: "" do |form|%>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'thingid', collec: [], mesmodele:"things"%>
+</div>
+<%end%>
+
+<%=render 'formtagthing', photo: @photo%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[mytaggedthings_albums_path]%>
+<%@search =[json_things_path]%>
+<%@nom=['things']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,39 @@
+
+<h1>New Task related this person</h1>
+
+<%= form_with(model: @person, local: true) do |form| %>
+  <%=form.fields_for :scheduledtasks do |task|%>
+    <div class="field">
+      <%=task.label :name, "Task name"%>
+      <%=task.text_field :name%>
+    </div>
+    <div class="field">
+      <%=task.label :date_and_time, "Task schedule"%>
+      <%=task.datetime_select(:date_and_time, order: [:year, :month,:day])%>
+      
+    </div>
+    <div class="field">
+      <%=task.label :validation_ids,"If" %>
+      <%=task.collection_check_boxes(:validation_ids, Validation.all, :id, :name_with_initial)%>
+      <%=link_to "New Validation", new_validation_path%>
+
+    </div>
+    <div class="field">
+      <%=task.label :validation_ids,"Other sailors" %>
+      <%=task.collection_check_boxes(:person_ids, Collection.find(params[:collection]).people, :id, :name) do |people|%>
+        <%=people.check_box%><%=render Person.find(people.value)%>
+      <%end%>
+      <%=link_to "New Validation", new_validation_path%>
+
+    </div>
+
+    <%= task.check_box '_destroy' %>
+    <%= task.label '_destroy','Destroy this task' %>
+  <%end%>
+  <div class="actions">
+    <%= form.submit "Add Those Jingles" %>
+  </div>
+
+<%end%>
+
+<%= link_to 'Back', posts_path %>

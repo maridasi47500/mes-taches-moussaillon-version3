@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Idolcomments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tvserieshaveactor</th>
+      <th>Alias</th>
+      <th>Content fr</th>
+      <th>Content de</th>
+      <th>Content en</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @idolcomments.each do |idolcomment| %>
+      <tr>
+        <td><%= idolcomment.tvserieshaveactor_id %></td>
+        <td><%= idolcomment.alias_id %></td>
+        <td><%= idolcomment.content_fr %></td>
+        <td><%= idolcomment.content_de %></td>
+        <td><%= idolcomment.content_en %></td>
+        <td><%= link_to 'Show', idolcomment %></td>
+        <td><%= link_to 'Edit', edit_idolcomment_path(idolcomment) %></td>
+        <td><%= link_to 'Destroy', idolcomment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Idolcomment', new_idolcomment_path %>

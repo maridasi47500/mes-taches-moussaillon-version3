@@ -1,0 +1,14 @@
+<%=fields_for :rightaboutsomeone do |form|%>
+<%=form.fields_for :phrases do |f|%>
+
+<%Phrase.locale_columns(:content).each do |t|%>
+<div>
+<%=f.label t%>
+<%=f.text_area t, name: "rightaboutsomeone[phrases_attributes][#{params[:myid]}]#{t}"%>
+
+</div>
+<%end%>
+
+
+<%end%>
+<%end%>

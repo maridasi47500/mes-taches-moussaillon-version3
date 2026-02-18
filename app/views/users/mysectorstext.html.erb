@@ -1,0 +1,15 @@
+<%=fields_for :user,User.new do |f|%>
+<%=f.fields_for :usersjobs,Usersjob.new(user: current_user,job: Job.new) do |form|%>
+<div class="field">
+       <%=form.fields_for :sectors,Sector.new,child_index: params[:id] do |fff|%>
+<p>Nouveau secteur</p>
+<%=fff.label :name%>
+<%=fff.text_field :name%>
+
+
+<%end%>
+</div>
+
+<%end%>
+<%end%>
+

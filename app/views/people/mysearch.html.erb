@@ -1,0 +1,21 @@
+<%=render "formmysearch", person: @person%>
+<div id="searchform">
+  <%=render partial:'posts/formwithcollections'%>
+</div>
+<p><%=@people[0] ? @people[0][1][0].countall : 0%> result(s)</p>
+<ul>
+<%@people.each do |title, people|%>
+<li>
+<%=title%>
+<ul>
+<%people.each do |h|%>
+<li>
+<%=render h%>
+</li>
+<%end%>
+</ul>
+
+</li>
+<%end%>
+</ul>
+

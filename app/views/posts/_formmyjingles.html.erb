@@ -1,0 +1,39 @@
+<%=form_with model: post do |form|%>
+  <div class="field">
+<%=form.collection_check_boxes(:jingle_ids, post.jingles, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Jingle.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherjingle(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectjingle(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+<%=form.submit "envoyer"%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherjingle(field,al){
+$.ajax({url: '<%=json_jingles_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].jingleid;
+name=String(data[i].sender)+'to'+String(data[i].recipient);
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectjingle(field,greatpeople){
+$.ajax({url: '<%=jingles_posts_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

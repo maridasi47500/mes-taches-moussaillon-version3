@@ -1,0 +1,89 @@
+<%= form_with(model: attitude, local: true) do |form| %>
+  <% if attitude.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attitude.errors.count, "error") %> prohibited this attitude from being saved:</h2>
+
+      <ul>
+        <% attitude.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div>
+<%=form.label :image%>
+<%=render "form/imagefield", form: form, myfield: "image", apercu: "apercu"%>
+</div>
+
+  <% Attitude.locale_columns(:name).each do |column| %>
+
+<div>
+<%=form.label column%>
+<%=form.text_area column%>
+</div>
+<%end%>
+<div class="mypeople">
+      <%= form.label :sailor_ids %>
+      <%= form.collection_check_boxes(:sailor_ids, Person.where(id:attitude.sailor_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render Person.find(ff.value)%>
+                            <%end%>
+      </div>
+      <div><%= form.text_field :ssailor, value: "", placeholder: true,onchange:"chercherpeople(this,chercheparla);return false;", id: "cherchonsparici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,avattasks);return false;" id="chercheparla" data-field="action_ids"></select>
+<div id="avattasks"></div>
+</div>
+<div class="myfollowers">
+      <%= form.label :amateur_ids %>
+      <%= form.collection_check_boxes(:amateur_ids, Person.where(id:attitude.amateur_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render Person.find(ff.value)%>
+                            <%end%>
+      </div>
+      <div><%= form.text_field :ssailor, value: "", placeholder: true,onchange:"chercheramateurs(this,chercheamateurs);return false;", id: "cherchonsamateurs",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectamateurs(this,avatamateurs);return false;" id="chercheamateurs" data-field="action_ids"></select>
+<div id="avatamateurs"></div>
+</div>
+<%=link_to "voir plus de champs", "#", onclick: "$('#myfields').toggle();return false;"%>
+<div style="display:none;">
+  <div class="field" id="myfields">
+<%=render "form/checkbox", form: form, fieldname: "peoplebuyclothing_ids", collec: attitude.peoplebuyclothes, mesmodele:"peoplebuyclothes"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "peoplebuytravelticket_ids", collec: attitude.peoplebuytraveltickets, mesmodele:"peoplebuytraveltickets"%>
+</div>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[personjson_people_path,personjson_people_path,jsonpeoplebuyclothes_attitudes_path,jsonpeoplebuytraveltickets_attitudes_path]%>
+
+<%@choisis=[mysailors_attitudes_path,myfollowers_attitudes_path,peoplebuyclothes_attitudes_path,peoplebuytraveltickets_attitudes_path]%>
+<%['people', 'amateurs','peoplebuyclothes','peoplebuytraveltickets'].each_with_index do |q,i|%>
+function chercher<%=q%>(field,all){
+$.ajax({url: '<%=@cherche[i]%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=q%>(field,greatpeople){
+$.ajax({url: '<%=@choisis[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+</script>
+<%end%>
+

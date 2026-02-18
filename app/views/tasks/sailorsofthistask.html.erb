@@ -1,0 +1,20 @@
+<%=form_with url: sailorsofthistask_tasks_path do |form|%>
+<%=form.hidden_field :taskid, value: @task.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+<%=render @task%>
+<%if @task.sailorjobs.length > 0%>
+<p><%=render partial: 'people/personlinkjobimage', collection: @task.sailorjobs, as: :person%></p>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

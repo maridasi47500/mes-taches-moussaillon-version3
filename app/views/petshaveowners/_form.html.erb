@@ -1,0 +1,31 @@
+<%= form_with(model: petshaveowner, local: true) do |form| %>
+  <% if petshaveowner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(petshaveowner.errors.count, "error") %> prohibited this petshaveowner from being saved:</h2>
+
+      <ul>
+        <% petshaveowner.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: "title", form: form, fieldname: "photo_ids", collec: petshaveowner.photos, mesmodele:"photos"%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_photos_path]%>
+<%@select=[photos_petshaveowners_path]%>
+
+<%@nom=['photos']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

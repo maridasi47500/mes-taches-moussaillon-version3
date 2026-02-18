@@ -1,0 +1,12 @@
+<h1>Ajouter des photos</h1>
+<%=form_with model: @album do |form|%>
+<div>
+<%=form.label :mytitle, "Nommer toutes les photos"%>
+<%=form.text_field :mytitle%>
+</div>
+<div>
+<%=form.label :myphotos, "Ajouter plusieurs photos à votre album"%>
+<%=form.file_field :myphotos, multiple: true%>
+</div>
+<%=form.submit%>
+<%end%>

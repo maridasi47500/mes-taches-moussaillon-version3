@@ -1,0 +1,13 @@
+$('#formpourpost')[0].outerHTML = `
+<%=render partial: "posts/form", locals: {post: @post}%>
+`;
+try {
+  //$('[data-toggle="tooltip"]').tooltip();
+}
+catch(e){
+}
+      $('#myTab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+<%=render partial: "application/scriptjs"%>

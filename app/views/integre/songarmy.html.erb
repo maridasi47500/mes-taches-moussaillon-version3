@@ -1,0 +1,13 @@
+<%=t('armyq.song')%>
+<%=form_with do |form|%>
+<%@songs.each do |grade|%>
+<input id="imagesong<%=grade.id%>" type="image" width="100" height="100" alt="grade"
+       src="/assets/<%=grade.artists[0].image rescue grade.image%>" name="song<%=grade.id%>">
+<%=grade.name%>
+
+<%end%>
+<%end%>
+
+<%=render 'footer'%>
+
+

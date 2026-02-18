@@ -1,0 +1,66 @@
+
+<p>A sailor has accomplished a task...
+</p>
+<%=form_with model: Taskshaveaccomplishment.new do |form|%>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "task_id", collec: [], mesmodele:"tasks"%>
+</div>
+<div class="field">
+<%=render "form/radiobuttonpeople", form: form, fieldname: "sailor_id", collec: [], mesmodele:"sailor"%>
+</div>
+
+<%=form.fields_for :ticket,Ticket.new do |f|%>
+<%Ticket.locale_columns(:content).each do |i|%>
+<div class="field">
+<%=f.label i%>
+<%=f.text_area i%>
+</div>
+<%end%>
+<%end%>
+
+<div class="actions">
+<%=form.submit 'ok'%>
+</div>
+<%end%>
+
+
+<%=content_for :myjscode do%>
+<script>
+
+function cherchertasks(field,al){
+$.ajax({url: '<%=json_tasks_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name||data[i].name_<%=I18n.locale%>;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selecttasks(field,greatpeople){
+$.ajax({url: '<%=taskaccomplishment_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+$.ajax({url: '<%=sailoraccomplishment_tasks_path%>?id='+field.value, 
+success:function(data){
+mypeople.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name||data[i].name_<%=I18n.locale%>;
+mypeople.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectsailor(field,greatpeople){
+$.ajax({url: '<%=accomplishsailors_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+}
+</script>
+<%end%>
+

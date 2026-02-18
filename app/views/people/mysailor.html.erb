@@ -1,0 +1,5 @@
+<%=fields_for :post, @post do |form|%>
+<%=form.fields_for :postlikecomments, Postlikecomment.new do |ff|%>
+<%=ff.collection_radio_buttons(:sailor_id, @people, :id, :name,{},{form:"form-post"})%>
+<%end%>
+<%end%>

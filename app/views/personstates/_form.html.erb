@@ -1,0 +1,48 @@
+<%= form_with(model: personstate, local: true) do |form| %>
+  <% if personstate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(personstate.errors.count, "error") %> prohibited this personstate from being saved:</h2>
+
+      <ul>
+        <% personstate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :state_fr %>
+    <%= form.text_field :state_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_en %>
+    <%= form.text_field :state_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_de %>
+    <%= form.text_field :state_de %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'food_ids', collec: personstate.foods, mesmodele:"foods"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'drink_ids', collec: personstate.drinks, mesmodele:"drinks"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[foods_personstates_path,drinks_personstates_path]%>
+<%@search=[json_foods_path,json_drinks_path]%>
+<%@nom=['foods','drinks']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

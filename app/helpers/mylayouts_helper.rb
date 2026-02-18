@@ -1,0 +1,2 @@
+module MylayoutsHelper
+end

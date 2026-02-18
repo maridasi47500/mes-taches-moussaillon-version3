@@ -1,0 +1,28 @@
+---
+- !ruby/object:User
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 1
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: uhekglku
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: image
+    value_before_type_cast: m.jpg
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: email
+    value_before_type_cast: salutcmoi@moi
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: encrypted_password
+    value_before_type_cast: "$2a$12$0voFiCQjFf04zzokIj/DROqpGP6IcnhVc4Zocs9m4VOdNP2hTTm9e"
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: reset_password_token
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: reset_password_sent_at
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: remember_created_at
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: person_id
+  new_record: false
+  active_record_yaml_version: 2

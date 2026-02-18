@@ -1,0 +1,12 @@
+<%=fields_for :post, Post.new do |form|%>  
+<%=form.fields_for "dishes_attributes[#{@id}]", Dish.new do |dish|%>  
+<div class="field">
+    <%= dish.label :image, "give a pic for this dish" %>
+    <%= dish.file_field :image %>
+  </div>
+  <div class="field">
+    <%= dish.label :name, "name this dish" %>
+    <%= dish.text_field :name %>
+  </div>
+    <%end%>
+    <%end%>

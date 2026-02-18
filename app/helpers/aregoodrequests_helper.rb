@@ -1,0 +1,2 @@
+module AregoodrequestsHelper
+end

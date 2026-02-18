@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @answerinvite.person_id %>
+</p>
+
+<p>
+  <strong>Invite:</strong>
+  <%= @answerinvite.invite_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @answerinvite.content %>
+</p>
+
+<%= link_to 'Edit', edit_answerinvite_path(@answerinvite) %> |
+<%= link_to 'Back', answerinvites_path %>

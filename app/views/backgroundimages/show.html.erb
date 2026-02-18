@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @backgroundimage.image %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @backgroundimage.url %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @backgroundimage.type %>
+</p>
+
+<%= link_to 'Edit', edit_backgroundimage_path(@backgroundimage) %> |
+<%= link_to 'Back', backgroundimages_path %>

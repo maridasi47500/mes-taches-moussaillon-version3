@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<%=render 'secretoccupations/secretoccupationbis', t:@secretoccupation%>
+
+
+<%= link_to 'back to gossip', aboutsomeonegossip_path(@secretoccupation.aboutsomeonegossip_id) %> |
+<%= link_to 'Edit', edit_secretoccupation_path(@secretoccupation) %> |
+<%= link_to 'Back', secretoccupations_path %>

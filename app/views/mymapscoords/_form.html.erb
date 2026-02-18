@@ -1,0 +1,32 @@
+<%= form_with(model: mymapscoord, local: true) do |form| %>
+  <% if mymapscoord.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mymapscoord.errors.count, "error") %> prohibited this mymapscoord from being saved:</h2>
+
+      <ul>
+        <% mymapscoord.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mymap_id %>
+    <%= form.text_field :mymap_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tagx %>
+    <%= form.text_field :tagx %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tagy %>
+    <%= form.text_field :tagy %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

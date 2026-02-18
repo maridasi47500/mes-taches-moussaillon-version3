@@ -1,0 +1,8 @@
+<div class="dishno<%=dish.id%>"><%= dish.name%> <%= dish.image ? (image_tag(dish.image, class: "imageprofilethread", alt:" pic")) : nil%>
+
+<p class=""><%=link_to_if polymorphic_path(dish) != request.path, "voir le plat",dish do
+()
+end%></p>
+</div>
+
+

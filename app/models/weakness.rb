@@ -1,0 +1,3 @@
+class Weakness < Heroattitude
+end
+

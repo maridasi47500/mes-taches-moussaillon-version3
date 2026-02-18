@@ -1,0 +1,19 @@
+<%=form_with model: linkspouseperson do |form|%>
+<%=form.fields_for :coupleevents, Coupleevent.new do |f|%>
+<div>
+<%=f.label :date%>
+<%=f.date_field :date%>
+</div>
+  <% Coupleevent.locale_columns(:content).each do |column| %>
+<div>
+<%=f.label column%>
+<%=f.text_area column%>
+</div>
+
+<%end%>
+<%=f.hidden_field :user_id, value: current_user.id%>
+<%end%>
+<div>
+<%=form.submit "Ajouter un évènement de leur histoire"%>
+</div>
+<%end%>

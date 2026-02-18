@@ -1,0 +1,6 @@
+<%=form_with url: taskhavetaskactiontwosailorjobprevious_tasks_path(askhavetaskactiontwosailorjob_id: @task.id) do |form|%>
+<%@task.taskactionsailorjob.sailorjob.task.taskhavetaskactiontwosailorjobs.where.not(id: @task.id).each do |t|%>
+<%=render 'taskactions/taskactionlink2',t:t, taskaction: t.taskaction, sailorjob_id: t.sailorjob%>
+<%end%>
+
+<%end%>

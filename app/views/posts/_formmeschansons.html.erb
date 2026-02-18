@@ -1,0 +1,19 @@
+  <%= form_with(model: post, local: true, html: {id: "form-chansons"}) do |form| %>
+<div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'song_ids', collec: post.songs, mesmodele:"songs"%>
+
+</div>
+<div class="action">
+<%=form.submit%>
+</div>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[mysongs_posts_path]%>
+<%@search=[json_songs_path]%>
+<%@nom=['songs']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,19 @@
+<h1>Create new avatar</h1>
+<button type="button" onclick="onformavatar();return false;">hack</button>
+<%= render partial: "people/personpic", locals: {person: @person}%>
+<div id="formavatarfond">
+<div id="formavatarcontent">
+
+
+<%=render partial: "formnewavatars", locals: {post: @person}%>
+<button type="button" onclick="offformavatar();return false;">close</button>
+</div>
+</div>
+<%=content_for :myjscode do%>
+<script>
+window.onload=function(){
+onformavatar();
+return false;
+};
+</script>
+<%end%>

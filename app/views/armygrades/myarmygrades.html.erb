@@ -1,0 +1,13 @@
+<p><%=notice%></p><%=render @grade%>
+<%=t('display.gradesuperieur')%>
+
+<%=form_with url: mysuperiorgrades_armygrades_path do |form|%>
+<%=form.hidden_field :gradeid, value: @grade.id%>
+<%@grades.each_with_index do |g,i|%>
+<input id="image<%=i%>" type="image" name="grade<%=g.id%>" width="100" height="100" alt="grade"
+       src="/assets/<%=g.image%>">
+<%end%>
+
+
+<%end%>
+

@@ -1,0 +1,4 @@
+<%if proposalvalidation.validated%>
+<p><%=image_tag proposalvalidation.user.image, class: "imageprofilethread"%> voted <%= proposalvalidation.proposal.ouiounon%></p>
+<p><%= proposalvalidation.content%></p>
+  <%end%>

@@ -1,0 +1,13 @@
+<%=t('winnersailors', count: @task.risktasks.map {|x|x.person}.uniq.length)%>
+<%=t('accordingtosailors', count: @task.risktasks.group('user_id').length)%>
+<%@task.risktasks.group_by {|x|x.person}.each do |sailor,list|%>
+<p><%=t('sailorrisked', sailor: link_to(sailor.name,sailor)).html_safe%></p>
+<ul>
+<%list.map {|x|x.user}.uniq.each do |sail|%>
+<li><%=link_to sail.name, sail%></li>
+<%end%>
+</ul>
+
+<%end%>
+<br>
+<%=link_to "revenir à la tâche", @task %>

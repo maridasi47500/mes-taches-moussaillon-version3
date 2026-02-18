@@ -1,0 +1,12 @@
+  <div class="field">
+<%=form.label fieldname %>
+<%=form.collection_radio_buttons(fieldname, collec, :id, :name) do |b| %>
+       <%=b.radio_button(checked: true)%>
+<%=b.label%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{mesmodele}#{findex}", "", placeholder:true,onchange:"chercher#{mesmodele}#{findex}(this,cherche#{mesmodele}#{findex});return false;", id: "cherchons#{mesmodele}#{findex}ici",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=mesmodele%><%=findex%>(this,att<%=mesmodele%><%=findex%>);return false;" id="cherche<%=mesmodele%><%=findex%>"></select>
+<div id="att<%=mesmodele%><%=findex%>"></div>

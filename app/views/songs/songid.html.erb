@@ -1,0 +1,8 @@
+<%=collection_radio_buttons(:songss, :songid, @songs, :id, :name) do |b| %>
+       <%=b.radio_button(checked: true)%>
+<%=b.label do%>
+<%=render Song.find(b.value)%>
+<%end%>
+
+<% end %>
+

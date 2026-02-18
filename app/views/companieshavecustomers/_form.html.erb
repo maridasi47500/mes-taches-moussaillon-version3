@@ -1,0 +1,46 @@
+<%= form_with(model: companieshavecustomer, local: true) do |form| %>
+  <% if companieshavecustomer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(companieshavecustomer.errors.count, "error") %> prohibited this companieshavecustomer from being saved:</h2>
+
+      <ul>
+        <% companieshavecustomer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'employee_id', collec: Person.findbyid(companieshavecustomer.employee_id), mesmodele:"employees"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'customer_id', collec: Person.findbyid(companieshavecustomer.customer_id), mesmodele:"customers"%>
+  </div>
+
+    <%= form.hidden_field :user_id%>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'company_id', collec: Company.findbyid(companieshavecustomer.company_id), mesmodele:"companies"%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'nationality_id', collec: Nationality.findbyid(companieshavecustomer.nationality_id), mesmodele:"nationalities"%>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[company_companieshavecustomers_path,customer_companieshavecustomers_path,employee_companieshavecustomers_path,nationality_companieshavecustomers_path]%>
+<%@search=[json_companies_path,personjson_albums_path, personjson_albums_path]%>
+<%@nom=['companies','customers','employees','nationalities']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

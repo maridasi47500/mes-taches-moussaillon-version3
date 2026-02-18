@@ -1,0 +1,11 @@
+<h4><%=t('armyq.grade')%></h4>
+<%=form_with do |form|%>
+<%@grades.each do |grade|%>
+<input id="imagearmegrade<%=grade.id%>" type="image" width="100" height="100" alt="grade"
+       src="/assets/<%=grade.image%>" name="grade<%=grade.id%>">
+
+<%end%>
+<%end%>
+
+<%=render 'footer'%>
+

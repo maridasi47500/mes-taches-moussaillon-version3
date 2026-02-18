@@ -1,0 +1,11 @@
+<div class="card">
+<br>
+<%=radio.frequency%>
+<br>
+<%=radio.radioname%>
+<br>
+<%=radio.motto%>
+
+<br>
+<%=radio.cities.map{|x|link_to(x.name,x)}.join(', ').html_safe%>
+</div>

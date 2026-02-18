@@ -1,0 +1,2 @@
+class Eyecolor < Thing
+end

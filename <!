@@ -1,0 +1,111 @@
+class Person < ApplicationRecord
+  has_and_belongs_to_many :usedprofilepictures, :join_table => :profilepicsforpeople, class_name: "Profilepicture"
+  has_many :albums
+  has_and_belongs_to_many :scheduledtasks, :join_table => :peopleschedules
+  accepts_nested_attributes_for :scheduledtasks #,  :allow_destroy => true
+has_and_belongs_to_many :facts
+has_many :posts_surnames
+has_many :postsfrompostssurnames, through: :posts_surnames, source: :post
+has_and_belongs_to_many :places
+has_many :profilepictures, through: :albums, source: :profilepictures
+  accepts_nested_attributes_for :profilepictures
+has_and_belongs_to_many :reactions
+  has_many :personcomments
+  has_many :comments, through: :personcomments
+  has_one :wikipedia_page
+  accepts_nested_attributes_for :wikipedia_page
+belongs_to :pronoun, optional: true
+has_many :onetimes
+accepts_nested_attributes_for :onetimes, allow_destroy: true
+has_and_belongs_to_many :collections
+  has_many :sailorjobs, class_name: 'Sailorjob'
+    has_many :usualtasks, through: :sailorjobs, class_name: 'Routine', source: :usualtask
+  has_many :todojobs, through: :sailorjobs, class_name: 'Task', source: :task
+  has_many :postsabouttasks, through: :todojobs, source: :posts
+has_many :sailorsdoingthejobs, through: :sailorjobs, source: :sailor
+has_and_belongs_to_many :surnames
+  has_and_belongs_to_many :relatedtasks, class_name: 'Task'
+  has_and_belongs_to_many :relatedevents, class_name: 'Event'
+#comment par trouver le user à partir du person si il y en a 
+  has_many :aliasesrecords, class_name: 'Alias'
+has_many :aliases, class_name: 'User', through: :aliasesrecords
+
+  has_many :tablecommeelles, class_name: "Usurpation", foreign_key: 'post_id'
+  has_many :postswithmentions, through: :tablecommeelles, class_name: 'Post'
+  has_and_belongs_to_many :currentprofilephotos, join_table: :currentprofilepictures, class_name: 'Profilepicture'
+
+
+
+  def self.afficherceuxla(chosen = nil)
+    if chosen && chosen.length > 0
+      chosen.select {|x|x}
+    else
+    Person.all
+    end
+  end
+  def self.moussaillons
+    left_joins(:sailorjobs).select('people.*')
+  end
+  has_many :personaljingles, class_name: "Thisisjingle"
+    #accepts_nested_attributes_for :personaljingles,  :allow_destroy => true
+has_many :jingles, through: :personaljingles
+  accepts_nested_attributes_for :jingles,  :allow_destroy => true
+
+  #has_many :thisisjinglesinputs, through: :personaljingles, class_name: 'Jingle', source: :jingle
+#
+  def scheduledtasksoftheday
+    d1=Date.today.at_beginning_of_day
+    d2=Date.tomorrow.at_beginning_of_day
+    self.scheduledtasks.where('date_and_time > ? and date_and_time < ?',d1,d2)
+  end
+def updateimage=(file)
+      pathfile = "#{Rails.root.to_s}/app/assets/images/"+self.image
+    filename =self.image
+    namefile="#{(rand()*100000000).to_i}.#{filename.split('.')[1]}"
+      loc='photos'
+    image =Post.cloud([loc,namefile].join('/'),pathfile)
+    if image
+    self.write_attribute(:image,image)
+    end
+    save
+end
+
+def hasreactions
+  self.reactions.count > 0
+end
+def self.withoutanycollection
+joins(:collections).where(collections:[])
+end
+
+ def image
+  image=self.read_attribute(:image)
+  image || "imagedelutilisateurinconnu.png"
+end
+def image=(file)
+      pathfile = file.tempfile.path
+      p pathfile
+      name =file.original_filename
+      ext = name.include?('.') ? name.split('.').last : ''
+      filename = DateTime.now.to_s.gsub(/[^0-9]/, '')+'.'+ext
+      self.write_attribute(:image,filename)
+      loc='photos'
+      abs="/app/assets/images/#{filename}"
+      p abs
+      Post.cloud([loc,filename].join('/'),abs)
+      `mv #{pathfile} #{Rails.root.to_s+abs}`
+      self.save
+rescue NoMethodError
+if !pathfile
+    self.write_attribute(:image,file)
+end
+      self.save
+
+end
+def month=(m)
+  write_attribute(:month_met, m)
+end
+def year=(m)
+  write_attribute(:year_met, m)
+end
+
+end

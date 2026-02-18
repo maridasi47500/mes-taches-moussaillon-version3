@@ -1,0 +1,16 @@
+
+  <div class="field">
+<%=form.label fieldname %>
+<%=form.collection_radio_buttons(fieldname, collec, :id, columnname) do |b| %>
+       <%=b.radio_button(name: modelname+'['+attributes.to_s+'_attributes]['+number.to_s+']['+fieldname+']')%>
+
+<%=b.label%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{mesmodele}","", placeholder:true,onchange:"chercher#{mesmodele}(this,cherche#{mesmodele});return false;", id: "cherchons#{mesmodele}ici",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=mesmodele%>(this,att<%=mesmodele%>,<%=number%>);return false;" id="cherche<%=mesmodele%>"></select>
+<div id="att<%=mesmodele%>"></div>
+
+

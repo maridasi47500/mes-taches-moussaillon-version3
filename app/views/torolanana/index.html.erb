@@ -1,0 +1,33 @@
+<h1>Torolanana (fiches metiers)</h1>
+<p>Quelle filiere poursuivre ?</p>
+<div class="filieresbac">
+<%Field.withsector.all.each do |f|%>
+<%=link_to alltorolanana_path(field: f.name) do%>
+<div class="filierebac">
+<%=f.name%>
+</div>
+<%end%>
+<%end%>
+</div>
+<p>Ou voulez-vous etudier ?</p>
+
+<div class="lieuxetude">
+<%City.withsector.all.each do |f|%>
+<%=link_to alltorolanana_path(city: f.name) do%>
+<div class="lieuetude">
+<%=f.name%>
+
+</div>
+<%end%>
+<%end%>
+</div>
+<p>Choisissez votre serie Bac</p>
+<div class="seriesbac">
+<%Bacseries.withsector.all.each do |f|%>
+<%=link_to alltorolanana_path(seriebac: f.name) do%>
+<div class="seriebac">
+<%=f.name%>
+</div>
+<%end%>
+<%end%>
+</div>

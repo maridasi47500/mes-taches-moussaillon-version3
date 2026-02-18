@@ -1,0 +1,8 @@
+<%=collection_check_boxes(modelname, fieldname, collec, :id, columnname) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render layout, layoutname => b.object,sailor1: sailor1, amateur1: amateur1%>
+<%end%>
+
+<% end %>
+

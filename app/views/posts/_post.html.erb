@@ -1,0 +1,93 @@
+<div class="col monpost">
+<div class="card">
+<div class="card-body">
+
+<p class="card-text"><%=link_to_unless_current "post n°#{post.id}", post%></p>
+<p class="card-text"><%=link_to_unless_current "post n°#{post.id}", post%></p>
+<p class="card-text"><%=simple_format(post.mycontent.html_safe)%></p>
+<p class="card-text"><%=link_to "edit this post", edit_post_path(post.id)%></p>
+
+
+<%if post.my_posts_surnames.count > 0%>
+<%if post.meanings.count == 0%>
+<%=render partial: "posts_surnames/mypostssurnames", collection: post.my_posts_surnames,as: :person%>
+<%else%>
+<%=render partial: "posts_surnames/mypostssurnameswithlegend", collection: post.my_posts_surnames,as: :person%>
+<%end%>
+<%end%>
+
+<%if post.post_types.count > 0%>
+<%if post.post_types.where(id:5).length > 0%>
+<%=link_to post.content, "/#{current_user.name.parameterize}/"+post.content.parameterize+"-3083373c1185"%>
+<%end%>
+<%end%>
+<%if post.hackedpeople.count > 0%>
+<%=t('display.hackedppl', count: post.hackedpeople.length, sailor: (render partial: "people/personsimple", collection: post.hackedpeople,as: :person)).html_safe%>
+<%end%>
+</div>
+</div>
+</div>
+
+
+<%=post.addresses.count > 0 ? (render post.addresses) : ""%>
+<%=post.places.count > 0 ? (render post.places) : ""%>
+<%=post.webpages.count > 0 ? (render post.webpages) : ""%>
+<%=post.companies.count > 0 ? (render post.companies) : ""%>
+<%=post.emails.count > 0 ? (render post.emails) : ""%>
+<%if post.displaygossip && post.displaygossip.Display == "2"%>
+<%if post.mygossips.count > 0 %>
+  <%=render partial: "aboutsomeonegossips/displaygossip", locals: {gossips: post.mygossips}%>
+<%end%>
+<%else%>
+<%if post.aboutsomeonegossips.count > 0 %>
+<%=render post.aboutsomeonegossips%>
+<%end%>
+<%end%>
+<%=post.reactions.count > 0 ? (render post.reactions) : ""%>
+<%=post.tendances.count > 0 ? (render post.tendances) : ""%>
+<%=post.tweets.count > 0 ? (render post.tweets) : ""%>
+<%=post.actions.count > 0 ? (render partial:"tasks/task", collection: post.actions,as: :task) : ""%>
+<%=post.jingles.count > 0 ? (render post.jingles) : ""%>
+<%=post.google_requests.count > 0 ? (render post.google_requests) : ""%>
+<%=post.photos.count > 0 ? (render post.photos) : ""%>
+<%=post.videos.count > 0 ? (render post.videos) : ""%>
+<%=post.historical_characters.count > 0 ? (render post.historical_characters) : ""%>
+<%=post.tvseries.count > 0 ? (render post.tvseries) : ""%>
+<%=post.comicbooks.count > 0 ? (render post.comicbooks) : ""%>
+<%=post.moviescenes.count > 0 ? (render post.moviescenes) : ""%>
+<%=post.epochs.count > 0 ? (render post.epochs) : ""%>
+<%=post.messagecaches.count > 0 ? (render post.messagecaches) : ""%>
+<%=post.recordings.count > 0 ? (render post.recordings) : ""%>
+<%=post.proposals.count > 0 ? (render post.proposals) : ""%>
+<%if post.mysailors.count > 0 %>
+<%=render partial: "people/mysailorcard",collection: post.mysailors, as: :person%>
+<%end%>
+<%if  post.mysetoftasks.count > 0%>
+<%=render post.mysetoftasks%>
+<%end%>
+<%if post.mytasks.count > 0%>
+<%=render post.mytasks%>
+<%end%>
+<%if post.robots.count > 0%>
+<%=render post.robots%>
+<%end%>
+<%if post.myattitudes.count > 0%>
+<%=render post.myattitudes%>
+<%end%>
+<%if post.tickets.count > 0%>
+<%=render partial: "tickets/ticketsimple", collection: post.tickets, as: :ticket%>
+<%end%>
+<%if post.mytaskstuff.count > 0%>
+<%=render post.mytaskstuff%>
+<%end%>
+<%if params[:action] != "messageforyou"%>
+<%if post.supporttasks.count > 0%>
+
+<%=render partial: 'posts/linkformessages', collection: post.supporttasks, as: :task%>
+<%end%>
+<%end%>
+<%=post.attitude ? (render post.attitude) : ""%>
+<%=post.i18nphrases.count > 0 ? (render post.i18nphrases) : ""%>
+<%=post.hernothers.count > 0 ? (render post.hernothers) : ""%>
+<%=post.songs.count > 0 ? (render post.songs) : ""%>
+<%=post.mymaps.count > 0 ? (render partial: 'mymaps/mymapsmall',collection: post.mymaps, as: :mymap) : nil%>

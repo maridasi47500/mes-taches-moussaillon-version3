@@ -1,0 +1,40 @@
+<%= form_with(model: persongraduatedschool, local: true) do |form| %>
+  <% if persongraduatedschool.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(persongraduatedschool.errors.count, "error") %> prohibited this persongraduatedschool from being saved:</h2>
+
+      <ul>
+        <% persongraduatedschool.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkboxcolumnlayout",l: 'photos/photo',ln: :photo,modelname: Photo,columnname: "title", form: form, fieldname: "photo_ids", collec: persongraduatedschool.photos, mesmodele:"photos"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "trophy_ids", collec: persongraduatedschool.trophies, mesmodele:"trophies"%>
+</div>
+
+
+  <div class="field">
+<%=form.label :myphotos, "ajouter des photos"%>
+<%=form.file_field :myphotos, multiple: true%>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@columnname=['title','trophies']%>
+<%@search=[json_photos_path,json_trophies_path]%>
+<%@select=[photos_persongraduatedschools_path,trophies_persongraduatedschools_path]%>
+
+<%@nom=['photos','trophies']%>
+<%=render partial:"form/functionjsonlifestate", collection: @nom.zip(@search, @select,@columnname), as: :t%>
+</script>
+<%end%>
+

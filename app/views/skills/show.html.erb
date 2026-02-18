@@ -1,0 +1,47 @@
+<%=content_for :mylittlecss do%>
+          .box {
+            display: flex;
+            align-items: flex-end;
+          }
+.box > * {
+border:1px solid #f0f0f0;
+text-align:center;
+}
+.box > .a {
+height: 200px;
+}
+.box > .b {
+height: 160px;
+}
+.box > .c {
+height: 120px;
+}
+
+<%end%>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @skill %>
+</p>
+
+<%if @skill.people.length > 0%>
+<h5>Sailors of this skill</h5>
+<%=render partial: 'people/personlink', collection: @skill.people, as: :person%>
+
+<%end%>
+<%@skill.podiums.each do |event,winners|%>
+<%=render event%>
+<%winners.each do |a,b,c|%>
+        <div class="box">
+          <div class="b">2<%=b ? (render b) : nil%><%=b && b.nationality ? (render b.nationality) : nil%></div>
+          <div class="a">1<%=a ? (render a) : nil%><%=a && a.nationality ? (render a.nationality) : nil%></div>
+          <div class="c">3
+<%=c ? (render c) : nil%><%=c && c.nationality ? (render c.nationality) : nil%>
+          </div>
+        </div>
+
+<%end%>
+<%end%>
+
+<%= link_to 'Edit', edit_skill_path(@skill) %> |
+<%= link_to 'Back', skills_path %>

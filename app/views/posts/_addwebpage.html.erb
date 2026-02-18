@@ -1,0 +1,14 @@
+<%=form.fields_for :webpages do |webpage|%>
+  <div class="field">
+    <%=webpage.label :url, "url of this web page"%>
+    <%=webpage.text_field :url%>
+  </div>
+  <div class="field">
+    <%=webpage.label :title, "title of this web page"%>
+    <%=webpage.text_field :title%>
+  </div>
+  <div class="field">
+    <%=webpage.label :_destroy, "destroy this web page"%>
+    <%=webpage.check_box :_destroy%>
+  </div>
+<%end%>

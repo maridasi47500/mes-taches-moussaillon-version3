@@ -1,0 +1,34 @@
+<%=form_with model: person do |form|%>
+
+<%person.interestedpeople.each_with_index do |int,num|%>
+<%=form.fields_for :interestedpeople do |f|%>
+<div>
+<%=f.label :interested%>
+<%=f.radio_button :interested,true%>
+<%=f.label :notinterested%>
+<%=f.radio_button :interested,false%>
+</div>
+<div>
+<%=f.label :date%>
+<%=f.date_field :date%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnint",modelname: 'person', columnname: :name,number: num,attributes: :interestedpeople,form: f, fieldname: "alias_id", collec: Alias.findbyid(int.alias_id), mesmodele:"aliases"%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnint", columnname: :name,modelname: 'person',number: num,attributes: :interestedpeople,form: f, fieldname: "person_id", collec: Person.findbyid(int.person_id), mesmodele:"people"%>
+</div>
+
+<%end%>
+<%end%>
+<%=form.submit%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+	<%@select=[aliasesinterested_people_path,peopleinterested_people_path]%>
+<%@search=[personjson_albums_path,personjson_albums_path]%>
+<%@nom=['aliases','people']%>
+<%=render partial:"form/functionjsonint", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

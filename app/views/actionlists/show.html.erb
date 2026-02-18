@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title fr:</strong>
+  <%= @actionlist.title_fr %>
+</p>
+
+<p>
+  <strong>Title en:</strong>
+  <%= @actionlist.title_en %>
+</p>
+
+<p>
+  <strong>Title de:</strong>
+  <%= @actionlist.title_de %>
+</p>
+
+<%= link_to 'Edit', edit_actionlist_path(@actionlist) %> |
+<%= link_to 'Back', actionlists_path %>

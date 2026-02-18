@@ -1,0 +1,13 @@
+
+  <% if post.expired %>
+  <div class="field">
+
+      <p>Le post a expiré</p>
+  </div>
+  <%else%>
+    <div class="field">
+      <%= form.label :expired, "Le post a expiré" %>
+      <%= form.check_box :expired %>
+    </div>
+  <%end%>
+

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Withorwithoutyous</h1>
+
+  <div class="card-group">
+
+    <% @withorwithoutyous.each do |withorwithoutyou| %>
+            <div class="card"  style="float:left;min-width: 12rem;max-width: 15rem;">
+  <div class="card-header bg-transparent border-success">rumeur</div>
+<div class="card-body text-success">
+
+      <p>Ce que je fais 
+ <%= [(withorwithoutyou.withthem.length > 0 ? "avec "+withorwithoutyou.withthem.map{|g|render g}.to_sentence.html_safe : nil),(withorwithoutyou.withoutthem.length > 0 ? "sans "+withorwithoutyou.withoutthem.map{|g|render g}.to_sentence.html_safe : nil)].select{|x|x}.to_sentence.html_safe%>
+</p>
+        <p><%= link_to 'Show', withorwithoutyou %></p>
+        <p><%= link_to 'Edit', edit_withorwithoutyou_path(withorwithoutyou) %></p>
+        <p><%= button_to 'Destroy', withorwithoutyou, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      
+</div>
+ </div>
+    <% end %>
+ 
+  </div>
+
+<br>
+
+<%= link_to 'New Withorwithoutyou', new_withorwithoutyou_path %>

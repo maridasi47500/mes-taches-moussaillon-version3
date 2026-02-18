@@ -1,0 +1,7 @@
+  <%= form_with model: Post.new do |f| %>
+  
+  <%=select_tag "collection", options_from_collection_for_select(Collection.all, :id, :name),{id:'select'+@var.to_s,prompt:'select collection'}%>
+
+          <%=grouped_collection_select(:post,:actions, EventType.all, :tasks, :name, :id, :name,{ :include_blank =>  'select task' },{id:'selecteventtype'+@var.to_s})%>
+<%= f.submit "Create a new post" %>
+<%end%>

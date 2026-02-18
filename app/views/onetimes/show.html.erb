@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pronoun:</strong>
+  <%= @onetime.pronoun_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @onetime.content %>
+</p>
+
+<%= link_to 'Edit', edit_onetime_path(@onetime) %> |
+<%= link_to 'Back', onetimes_path %>

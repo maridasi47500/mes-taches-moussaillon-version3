@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @factory %>
+</p>
+<%=render partial: 'factorieshavenights/factorieshavenight', collection: @factory.factorieshavenights, as: :a, spacer_template: "backtoline"%>
+<%if @factory.factorieshaveworkers.length > 0%>
+<br>
+<h6>Moussaillons du <%=@factory.name%></h6>
+<%=render @factory.factorieshaveworkers%>
+<br>
+<%end%>
+
+<%= link_to I18n.t('display.spendonenight',place: @factory.name), spendonenight_factory_path(@factory) %> |
+<%= link_to 'Edit', edit_factory_path(@factory) %> |
+<%= link_to 'Back', factories_path %>

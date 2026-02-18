@@ -1,0 +1,7 @@
+<%=form_with url: placeadded_post_mymap_path(post_id: @post.id, id: @mymap.id) do |form| %>
+
+<input id="image<%=mymap.id%>" type="image" width="<%=mymap.width%>" height="<%=mymap.height%>" alt="map"
+       src="<%=mymap.image%>" name="tag">
+<%end%>
+
+

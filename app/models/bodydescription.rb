@@ -1,0 +1,2 @@
+class Bodydescription < Thing
+end

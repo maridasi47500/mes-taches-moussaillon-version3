@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Endroits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>endroits</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @endroits.each do |endroit| %>
+      <tr>
+        <td><%= render partial: "things/addstufftobasket", collection: [endroit], as: :thing %></td>
+        <td><%= link_to 'Show', endroit %></td>
+        <td><%= link_to 'Edit', edit_endroit_path(endroit) %></td>
+        <td><%= link_to 'Destroy', endroit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Endroit', new_endroit_path %>

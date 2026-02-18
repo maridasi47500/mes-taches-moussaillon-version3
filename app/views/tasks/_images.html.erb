@@ -1,0 +1,118 @@
+<%=form_with url: useractionswithtasks_path do |form| %>
+<%if task.attitudes.length > 0 %>
+<%=select_tag :attitudeid, options_for_select(task.attitudes.collect {|x|[x.name,x.id]}), {prompt: "Please choose an attitude"}%>
+<%end%>
+<%if task.sailors.length > 0 %>
+<%=select_tag :personid, options_for_select(task.sailors.collect {|x|[x.name,x.id]}), {prompt: "Please choose a sailor"}%>
+<%end%>
+<p>
+<%=t('display.muchefforttask')%>
+</p>
+
+
+<p>
+<%(1..5).to_a.each do |g|%>
+<input id="imageattitude<%=g%>" type="image" width="70" height="70" alt="attitude" title="intensité de attitude <%=g%>" name="attitude<%=g%>"
+       src="/assets/coureurgrec.png">
+<%end%>
+</p>
+<p>
+<%if task.sailorhaveattitudesintasks.length > 0%>
+<%task.sailorhaveattitudesintasks.group_by {|x|x.myscore}.each do |score, att|%>
+<p><%=t('task.boutons.avis', count: att.map{|x|x.user}.uniq.length, nbotherusers: (att.map{|x|x.user}.uniq.length-2), users: att.map{|x|x.user}.uniq.take(5).map{|x|x.name}.to_sentence).html_safe%>
+<p><%=t('task.boutons.attitude', count: att.map{|x|x.person}.uniq.length, nbothersailors: (att.map{|x|x.person}.uniq.length-2), sailors: att.map{|x|x.person.name}.to_sentence,score: score,nomatt:att.map{|x|x.attitude.name}.uniq.take(5).to_sentence).html_safe%></p>
+<%end%>
+
+</p>
+<p><%=t('task.boutons.attitude.link', link: attitudestask_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+<input id="imagebonneidee" type="image" width="70" height="70" alt="j'aime la tache" title="la tache est une bonne idee" name="aime"
+       src="/assets/moncoeur0011.png">
+<%if task.aimetaches.length > 0%>
+<p><%=t('task.boutons.aime', count: task.aimetaches.length, users:task.aimetaches.limit(5).map{|x|x.name}.to_sentence, nbotherusers: (task.aimetaches.uniq.length-2)).html_safe%></p>
+<p><%=t('task.boutons.aime.link', link: goodidea_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+<input id="imagemauvaiseidee" type="image" width="70" height="70" alt="j'aime pas la tache" title="la tache est une mauvaise idee" name="aimepas"
+       src="/assets/thumbdown.png">
+<%if task.aimepastaches.length > 0%>
+<p><%=t('task.boutons.aimepas', count: task.aimepastaches.length, users:task.aimepastaches.limit(5).map{|x|x.name}.to_sentence, nbotherusers: (task.aimepastaches.uniq.length-2)).html_safe%></p>
+<p><%=t('task.boutons.aimepas.link', link: badidea_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+<%(1..5).to_a.each do |g|%>
+<input id="imageintelli<%=g%>" type="image" width="70" height="70" alt="intelligenttask" title="tache intelligente <%=g%>x" name="<%=g%>"
+       src="/assets/greenthumb.png">
+<%end%>
+<%if task.notetasks.length > 0%>
+<%task.notetasks.group_by {|x|x.myscore}.each do |score, att|%>
+<p><%=t('task.boutons.avis', count: att.map{|x|x.user}.uniq.length, users: att.map{|x|x.user}.uniq.pluck(:name).take(2).to_sentence, nbotherusers: (att.map{|x|x.user}.uniq.length-2)).html_safe%>
+<%=t('task.boutons.notetask.sentence', score: score).html_safe%></p>
+<%end%>
+<p><%=t('task.boutons.notetask.link', link: note_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+<%(1..5).to_a.each do |g|%>
+<input id="imagerealise<%=g%>" type="image" width="70" height="70" alt="tache realisation" title="tache realisation <%=g%>x" name="dt<%=g%>"
+       src="/assets/balaitache.png">
+<%end%>
+<%if task.noterealizedtasks.length > 0%>
+<%task.noterealizedtasks.group_by {|x|x.myscore}.each do |score, att|%>
+<p><%=t('task.boutons.avis', count: att.map{|x|x.user}.uniq.length, users: att.map{|x|x.user}.uniq.pluck(:name).take(2).to_sentence, nbotherusers: (att.map{|x|x.user}.uniq.length-2)).html_safe%>
+<%=t('task.boutons.noterealizedtask.sentence', score: score).html_safe%></p>
+<%end%>
+<p><%=t('task.boutons.noterealizedtask.link', link: noterealizedtask_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+<p>Select sailor at the top then click when sailor risks for it...</p>
+<input id="riskforitorage" type="image" width="140" height="70" alt="moussaillon prend les risques" title="sailor risks for it" name="risk"
+       src="/assets/orageriskforit.png">
+<%if task.risktasks.length > 0%>
+<p><%=t('task.boutons.avis', count: task.risktasks.map{|x|x.user}.uniq.length, users: task.risktasks.map{|x|x.user}.uniq.pluck(:name).take(2).to_sentence, nbotherusers: (task.risktasks.map{|x|x.user}.uniq.length-2)).html_safe%>
+<%=t('task.boutons.risk', count: task.risktasks.length, sailors: task.risktasks.to_a.map{|x|x.person}.uniq.pluck(:name).take(2).join(', '), nbothersailors: (task.risktasks.map{|x|x.person}.uniq.length-2)).html_safe%></p>
+<p><%=t('task.boutons.risk.link', link: risk_task_path(@task.id)).html_safe%></p>
+<%end%>
+
+<hr>
+<hr>
+<p>Select sailor at the top then click when sailor is saved ...</p>
+<input id="riskforitandissaved" type="image" width="70" height="70" alt="sailor is saved" title="sailor is saved " name="riskforit"
+       src="/assets/lifebuoyocean001.png">
+<%if task.risktasksailors.length > 0%>
+<p><%=t('task.boutons.avis', count: task.risktasksailors.map{|x|x.user}.uniq.length, users: task.risktasksailors.map{|x|x.user.name}.uniq.to_sentence, nbotherusers: (task.risktasksailors.map{|x|x.user}.uniq.length-2)).html_safe%>
+<%=t('task.boutons.saved', count: task.risktasksailors.map{|x|x.person}.uniq.length, sailors: task.risktasksailors.to_a.map{|x|x.person.name}.take(2).join(', '), nbothersailors: (task.risktasksailors.map{|x|x.person}.uniq.length-2)).html_safe%></p>
+<p><%=t('task.boutons.saved.link', link: saved_task_path(@task.id)).html_safe%></p>
+<%end%>
+<hr>
+
+<%end%>
+
+<%@task.taskactions.each do |action|%>
+<p>
+<%=t('display.effortsfor', task: action.name)%>
+</p>
+<p>
+<%=form_with url: useractionswithtasks_path do |form| %>
+<div>
+<%=form.hidden_field :taskaction_id, value: action.id%>
+</div>
+<%if @task.sailors.length > 0%>
+<div>
+<%=form.select :person_id, @task.sailors.collect{|g|[g.name,g.id]}, {include_blank: true}%>
+</div>
+<%end%>
+<%(1..5).to_a.each do |g|%>
+
+<input id="imageworkontask<%=g%>" type="image" width="70" height="70" alt="much work" title="intensité du travail <%=g%>" name="worktask<%=g%>"
+       src="/assets/clean.jpg">
+<%end%>
+<%end%>
+
+</p>
+
+<%end%>
+<br>
+<%@task.taskmucheffortsailors.each do |a|%>
+<p><%=t('quantifyeffort',count: a.intensity,effort: Array.new(a.intensity,"<img src='/assets/clean.jpg' width='30' height='30'/>").join(''),task: link_to(a.task.name,a.task),sailor: link_to(a.person.name,a.person)).html_safe%></p>
+<%end%>

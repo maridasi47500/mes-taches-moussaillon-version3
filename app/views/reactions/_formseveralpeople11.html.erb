@@ -1,0 +1,6 @@
+<%ind=story_iteration.index%>     
+   <%= form.fields_for :severalpeoplestories,story do |f| %>
+   <%=f.hidden_field :myid%>     
+<%=render partial: 'formsurnames11', collection: story.posts_surnames, as: :reactiveperson, locals: {form: f, someindex: ind,reaction: reaction} %>
+
+<%end%>

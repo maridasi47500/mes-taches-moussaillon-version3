@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username on github:</strong>
+  <%= @githubaccount.username %>
+</p>
+
+<p>
+  <strong>Name owner:</strong>
+  <%= @githubaccount.nameowner %>
+</p>
+
+  <%if @githubaccount.owner%>
+<p>
+  <strong>Owner github account on rails:</strong>
+
+  <%= link_to @githubaccount.owner.name, @githubaccount.owner %>
+
+</p>
+<%end%>
+
+<%= link_to 'Edit', edit_githubaccount_path(@githubaccount) %> |
+<%= link_to 'Back', githubaccounts_path %>

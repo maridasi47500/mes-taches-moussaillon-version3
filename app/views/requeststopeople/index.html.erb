@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Requeststopeople</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Requestperson</th>
+      <th>Content fr</th>
+      <th>Content en</th>
+      <th>Content de</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requeststopeople.each do |requeststoperson| %>
+      <tr>
+        <td><%= requeststoperson.requestperson_id %></td>
+        <td><%= requeststoperson.content_fr %></td>
+        <td><%= requeststoperson.content_en %></td>
+        <td><%= requeststoperson.content_de %></td>
+        <td><%= link_to 'Show', requeststoperson %></td>
+        <td><%= link_to 'Edit', edit_requeststoperson_path(requeststoperson) %></td>
+        <td><%= link_to 'Destroy', requeststoperson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Requeststoperson', new_requeststoperson_path %>

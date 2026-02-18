@@ -1,0 +1,74 @@
+<%= form_with(model: nationality, local: true) do |form| %>
+  <% if nationality.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nationality.errors.count, "error") %> prohibited this nationality from being saved:</h2>
+
+      <ul>
+        <% nationality.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :flagicon %>
+    <%= form.text_field :flagicon %>
+  </div>
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <div class="field">
+<%=form.collection_check_boxes(:person_ids, nationality.people, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Person.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherpeople(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherpeople(field,al){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field,greatpeople){
+$.ajax({url: '<%=people_nationalities_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

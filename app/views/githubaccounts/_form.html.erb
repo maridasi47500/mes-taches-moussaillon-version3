@@ -1,0 +1,40 @@
+<%= form_with(model: githubaccount, local: true) do |form| %>
+  <% if githubaccount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(githubaccount.errors.count, "error") %> prohibited this githubaccount from being saved:</h2>
+
+      <ul>
+        <% githubaccount.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nameowner %>
+    <%= form.text_field :nameowner %>
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'owner_id', collec: Person.findbyid(githubaccount.owner_id), mesmodele:"person"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[personjson_albums_path]%>
+<%@choisis=[person_githubaccounts_path]%>
+<%@nom=['person']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>
+

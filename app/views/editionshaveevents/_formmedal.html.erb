@@ -1,0 +1,11 @@
+<%=form_with scope: '', url: ajoutemedaille_editionshaveevent_path(myresult.id) do |form|%>
+<div class="field">
+<input id="medor<%=result.id%>" type="image" width="70" height="70" alt="or"
+       src="/assets/medor.png">
+<input id="medar<%=result.id%>" type="image" width="70" height="70" alt="ar"
+       src="/assets/medargent.png">
+<input id="medbr<%=result.id%>" type="image" width="70" height="70" alt="br"
+       src="/assets/medbronze.png">
+</div>
+<%=form.hidden_field :result_id, value: result.id%>
+<%end%>

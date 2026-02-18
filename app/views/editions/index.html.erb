@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Editions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Year</th>
+      <th>Opened</th>
+      <th>Closed</th>
+      <th>Competition</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editions.each_with_index do |edition,i| %>
+      <tr>
+        <td><%= (i+1).roman %></td>
+        <td><%= edition.olympicgame.try(:year) %></td>
+        <td><%= edition.opened %></td>
+        <td><%= edition.closed %></td>
+        <td><%= edition.competition %></td>
+        <td><%= link_to 'Show', edition %></td>
+        <td><%= link_to 'Edit', edit_edition_path(edition) %></td>
+        <td><%= link_to 'Destroy', edition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Edition', new_edition_path %>

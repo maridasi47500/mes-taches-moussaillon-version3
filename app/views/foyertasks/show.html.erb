@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User1:</strong>
+  <%= @foyertask.user1 %>
+</p>
+
+<p>
+  <strong>User2:</strong>
+  <%= @foyertask.user2 %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @foyertask.task %>
+</p>
+
+<%= link_to 'Edit', edit_foyertask_path(@foyertask) %> |
+<%= link_to 'Back', foyertasks_path %>

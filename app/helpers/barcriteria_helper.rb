@@ -1,0 +1,2 @@
+module BarcriteriaHelper
+end

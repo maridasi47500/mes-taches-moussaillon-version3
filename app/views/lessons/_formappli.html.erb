@@ -1,0 +1,48 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+        <% lesson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+
+
+
+<%lesson.lesson_languages.each do |from|%>
+
+
+<%@appli.each do |content|%>
+<%=form.fields_for :lesson_applications,content do |firm| %>
+<h3>my sample content</h3>
+<% LessonApplication.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= firm.label column %>
+    <%= firm.text_area column, class: 'contentpost'%>
+
+</div>
+  <% end %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.mycontent(from.to.locale), mylabel: "record like a woman", myfield: "recordmyphrasesandwords1", form: firm, modelderails: lesson}%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.mycontent(from.to.locale),mylabel: "record like a man", myfield: "recordmyphrasesandwords2", form: firm, modelderails: lesson}%>
+
+<p><%=content["content_#{from.to.locale}"]%></p>
+
+
+
+<%end%>
+<%end%>
+<%end%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

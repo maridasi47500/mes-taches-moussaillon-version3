@@ -1,0 +1,5 @@
+class ChangeColumntypegerrgedtge < ActiveRecord::Migration[6.0]
+  def change
+    change_column :users, :image, :file
+  end
+end

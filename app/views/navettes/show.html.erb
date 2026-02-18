@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>de:</strong>
+  <%= @navette.citya.name %>
+</p>
+
+<p>
+  <strong>à:</strong>
+  <%= @navette.cityb.name %>
+</p>
+
+<p>
+  <strong>Aller:</strong>
+  <%= @navette.go ? "oui (#{@navette.go})" : "non" %>
+</p>
+
+<p>
+  <strong>Retour:</strong>
+  <%= @navette.back ? "oui (#{@navette.back})" : "non" %>
+</p>
+<%=render @navette.personarmycompagnies%>
+
+<%= link_to 'Edit', edit_navette_path(@navette) %> |
+<%= link_to 'Back', navettes_path %>

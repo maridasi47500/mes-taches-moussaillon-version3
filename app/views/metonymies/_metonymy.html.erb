@@ -1,0 +1,7 @@
+<%=link_to metonymy.linkto do %>
+<%=metonymy.name || (metonymy.thing ? metonymy.thing.name : '') %>
+<%if metonymy.thing && metonymy.thing.image%>
+<%= image_tag(metonymy.thing.image, class: "imageprofilethread", alt:" pic")%>
+<%end%>
+<%end%>
+

@@ -1,0 +1,55 @@
+<%= form_with(model: secretoccupation, local: true) do |form| %>
+  <% if secretoccupation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(secretoccupation.errors.count, "error") %> prohibited this secretoccupation from being saved:</h2>
+
+      <ul>
+        <% secretoccupation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.hidden_field :aboutsomeonegossip_id %>
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_area :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_area :content_de %>
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "alias_id", collec: Alias.where(id: secretoccupation.alias_id), mesmodele:"aliases"%>
+  </div>
+<div class="field">
+<%=render "form/checkboxwithpreselect", form: form, fieldname: "person_ids", collec: secretoccupation.people, mesmodele:"people",preselectmessage: "choose an actor",preselect:actors%>
+
+</div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "place_ids", collec: secretoccupation.places, mesmodele:"places"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit I18n.t('myforms.commentsecretocup')%>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,json_places_path,personjson_albums_path]%>
+<%@select=[people_secretoccupations_path,places_secretoccupations_path,aliases_secretoccupations_path]%>
+
+<%@nom=['people','places','aliases']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

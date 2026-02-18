@@ -1,0 +1,4 @@
+class Musicalscoreshavemusicalinstrument < ApplicationRecord
+belongs_to :musicalscore
+belongs_to :musicalinstrument
+end

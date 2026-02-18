@@ -1,0 +1,41 @@
+.lang1 {
+    background-color: #3abcda;
+}
+.lang2 {
+    background-color: #c4ec43;
+}
+.nav-link {
+    font-weight:500;
+    font-size:18px;
+    
+}
+.mypic1 {
+animation-name:slideIn;
+animation-delay:0s;
+animation-duration:2s;
+}
+.mypic2 {
+animation-name:slideIn;
+animation-delay:2s;
+animation-duration:2s;
+}
+.mypic3 {
+animation-name:slideIn;
+animation-delay:4s;
+animation-duration:2s;
+}
+@keyframes slideIn {
+  0%, 100% {
+    transform: translateX(20px) rotate(0deg);
+    color: red;
+  }
+  40% {
+    transform: translateX(400px) rotate(360deg);
+    color: green;
+  }
+  60% {
+    transform: translateX(1000px) rotate(0deg);
+    color: green;
+  }
+}
+

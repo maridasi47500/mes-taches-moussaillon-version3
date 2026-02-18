@@ -1,0 +1,14 @@
+<%=form.fields_for :companies do |company|%>
+  <div class="field">
+    <%=company.label :name, "enter the name of this company"%>
+    <%=company.text_field :name %>
+  </div>
+  <div class="field">
+    <%=company.label :image, "load a pic for this company"%>
+    <%=company.file_field :image %>
+  </div>
+  <div class="field">
+    <%=company.label :_destroy, "destroy this company"%>
+    <%=company.check_box :_destroy %>
+  </div>
+<%end%>

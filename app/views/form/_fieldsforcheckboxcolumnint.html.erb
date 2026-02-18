@@ -1,0 +1,12 @@
+<%=fields_for modelname do |form|%>
+<%=form.fields_for attributes do |farm|%>
+<%=farm.collection_check_boxes(fieldname, collec, :id, columnname) do |b| %>
+       <%=b.check_box(modelname+'['+attributes.to_s+'_attributes]['+number+']['+fieldname+']')%>
+<%=b.label do%>
+<%=render classname.find(b.value)%>
+<%end%>
+
+<% end %>
+<% end %>
+<% end %>
+

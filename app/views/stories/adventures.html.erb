@@ -1,0 +1,9 @@
+<%=fields_for :story do |form|%>
+<%=form.fields_for :heroadventures do |ff|%>
+  <div class="field">
+<%=render "form/fieldsforradiobuttoncolumnwithvariable",n:"story[heroadventures_attributes][#{params[:n]}]",columnname: :content, form: ff, fieldname: 'previousstoryevent_id', collec: @heroadventures, mesmodele:"adventures",m:params[:n]%>
+
+</div>
+<%end%>
+<%end%>
+

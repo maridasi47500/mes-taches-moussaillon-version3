@@ -1,0 +1,4 @@
+<%=  link_to person.sailor.name, person.sailor%>
+      <%= person.sailor.image ? (image_tag(asset_path(person.sailor.image), class: "imageprofilethread", alt:"profile pic")) : ""%>
+<%=button_to 'delete a sailor',deleteasailorimage_tasks_path(id: person.id), method: :delete, onclick: "return confirm('etes vous sur de vouoir supprimer ce moussaillon?');"%>
+

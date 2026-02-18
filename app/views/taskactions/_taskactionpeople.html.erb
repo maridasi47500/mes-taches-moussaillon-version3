@@ -1,0 +1,8 @@
+<%=render a.person%>
+<ul>
+<%a.sailors.each do |sailor2|%>
+<li><%=t('display.nothimherfortask', sailor1: a.person.name, sailor2: sailor2.name,task: a.action.name)%></li>
+
+<%end%>
+</ul>
+<%=render 'sailorandactions/form', sailorandaction: a%>

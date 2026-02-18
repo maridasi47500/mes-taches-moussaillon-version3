@@ -1,0 +1,13 @@
+  <div class="col">
+    <div class="card ">
+
+<%=link_to compo_path(song.mycompoid) do%>
+      <p><%= song.title %>
+        <%= image_tag "/assets/"+(song.image1||song.image2).to_s, class: "imageprofilethread" %>
+        <%= (song.composer.name) %>
+        <%= image_tag "/assets/"+(song.composerimage).to_s, class: "imageprofilethread" %>
+      </p>
+    <%end%>
+    </div>
+    </div>
+

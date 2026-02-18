@@ -1,0 +1,10 @@
+<%=fields_for :foyertask do |form|%>
+<%=form.collection_radio_buttons(:user2, @people, :id, :name) do |b| %> 
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render partial:'users/clientuser',collection: User.findbyid(b.value),as: :user%>
+<%end%>
+
+<% end %> 
+<% end %> 
+

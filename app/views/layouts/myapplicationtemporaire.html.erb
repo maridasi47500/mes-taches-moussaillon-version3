@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mytaskssailors</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<style>
+
+.monimagedeprofile {
+  width: 100px;
+  height: 100px;
+}
+</style>
+  </head>
+
+  <body>
+    <%= link_to "new post", "/posts/new" %>
+    <%= link_to "nouveau moussaillon-ne", "/people/new" %>
+    <%= link_to "all the people", "/people" %>
+
+            <%=form_with url: searchpost_path, method: "get" do |f|%>
+          <%= f.label :q, "Search a post:" %> <%= f.text_field :q, value: "" %>
+          <%=f.submit "search" %>
+          <%end%>
+
+    <%= yield %>
+  </body>
+</html>

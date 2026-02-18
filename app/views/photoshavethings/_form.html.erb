@@ -1,0 +1,39 @@
+<%= form_with(model: photoshavething, local: true) do |form| %>
+  <% if photoshavething.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photoshavething.errors.count, "error") %> prohibited this photoshavething from being saved:</h2>
+
+      <ul>
+        <% photoshavething.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :thing_id %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :photo_id %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "owner_ids", collec: photoshavething.owners, mesmodele:"people"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit "ce(tte) #{photoshavething.thing.name} appartient à lui(eux)" %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_people_path]%>
+<%@select=[people_photoshavethings_path]%>
+
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

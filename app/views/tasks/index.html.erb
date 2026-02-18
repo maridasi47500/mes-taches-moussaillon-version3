@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+<%if params[:page].to_i == 0%>
+<p>
+Premiers moussaillons sur le pont :
+<%=render Person.premiersmoussaillons%>
+</p>
+<p>
+<%Epoch.tasksameepoch.each do |taskname,tasks|%>
+<%tasks.combination(2).to_a.each do |t1,t2|%>
+
+<%=t('all1.tsk.sent1',epoch1: t1.epochname, epoch2:t2.epochname,sailor1:Task.mysailorsepoch(t1).map{|x|(render 'people/personsimple',person: x)}.to_sentence,sailor2: Task.mysailorsepoch(t2).map{|x|(render 'people/personsimple',person: x)}.to_sentence,task:taskname).html_safe%>
+<%end%>
+<%rescue%>
+<%end%>
+</p>
+
+<%Attitude.tasksameattitude.to_a.combination(2).to_a.each do |t1,t2|%>
+<p>
+<%next if t1.taskid == t2.taskid || t1.attitudename != t2.attitudename%>
+<%=t('all1.att.sent1',att1: t1.attitudename, att2:t2.attitudename,sailor1:Task.mysailorsepoch(t1).map{|x|(render 'people/personsimple',person: x)}.to_sentence,sailor2: Task.mysailorsepoch(t2).map{|x|(render 'people/personsimple',person: x)}.to_sentence,task1:t1.taskname,task2:t2.taskname).html_safe%>
+</p>
+<%rescue%>
+<%end%>
+
+<%Thistasknotthistask.taskdifferetactions.each do |o,p|%>
+
+<p><%=t('all1.thistask.sent1', task: p[0], tasks: o[1].map{|x|x.taskname.to_s}.to_sentence, actions: p[1].map{|x|x.taskname.to_s}.to_sentence)%></p>
+<%rescue => e%>
+<%=e.message%>
+<%end%>
+
+<%end%>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td  style=""><%= task.name %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
+<%=render "indexpage/pagination",g:@g, modelname: Task,mypath: tasks_path+'?'%>

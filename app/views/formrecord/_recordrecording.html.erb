@@ -1,0 +1,11 @@
+  <h2><%=defined?(mylabel) ? mylabel : "Add audio"%></h2>
+
+<%= button_tag "record", type: "button", class: "record#{myfield}"%>
+      <%= button_tag "stop", class: "stop#{myfield}", type:"button"%>
+  <div class="field">
+    <%= form.label myfield %>
+    <%= form.file_field myfield, multiple: true %>
+  </div>
+  <div class="recordingsfield<%=myfield%>">
+  </div>
+<%=render partial: "formrecord/javascriptrecordaudio", locals: {fieldaudio: myfield, form: form, modelderails: modelderails}%>

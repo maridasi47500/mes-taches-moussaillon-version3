@@ -1,0 +1,12 @@
+<form target="_blank" method="post" action="<%=opinion_path(params[:id])%>"> 
+<%=select_tag "miid", options_for_select(Musicalinstrument.all.collect{|x| [x.name,x.id]},@instrument.id), { prompt: "choisir un instrument de musique",readonly: true}%> 
+<br/> 
+<%@person.musicalinstrumentspratiques.map {|x|(link_to x.name, "",onclick: "")}%>
+<%(1..5).to_a.each_with_index do |h,i|%> 
+<input id="image<%=h%><%=@instrument.name.parameterize%>" type="image" width="100" height="100" title="musician <%=i+1%>/5" alt="musicien" name="musici<%=h%>" 
+ 
+ 
+       src="<%=@instrument.image%>"> 
+<%end%> 
+</form> 
+

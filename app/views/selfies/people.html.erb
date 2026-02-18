@@ -1,0 +1,9 @@
+<%=fields_for :selfie do |form|%>
+<%=form.collection_check_boxes(:sailor_ids, @people,:id, :name) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render partial: 'people/personsimple', collection:[Person.find(rad.value)], as: :person%>
+<%end%>
+
+<%end%>
+<%end%>

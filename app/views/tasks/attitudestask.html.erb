@@ -1,0 +1,16 @@
+<%@task.sailorhaveattitudesintasks.group_by {|x|x.myscore}.each do |score, att|%>
+<%att.group_by {|x|x.attitude}.each do |attitude,list|%>
+<%att.group_by {|x|x.person}.each do |sailor,list|%>
+<h5>
+<%=t('task.boutons.attitude', count: 1, sailors: link_to(sailor.name,sailor),score: score,nomatt:link_to(attitude.name,attitude)).html_safe%>
+</h5>
+<ul>
+<%list.map {|x|x.user}.uniq.each do |user|%>
+<li><%=link_to user.name, user%></li>
+<%end%>
+</ul>
+<%end%>
+<%end%>
+
+<%end%>
+

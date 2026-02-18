@@ -1,0 +1,17 @@
+<h1>Add this post to main thread</h1>
+<%=render @post%>
+<%= form_with(model: @post, local: true) do |form| %>
+<div class="field">
+
+    <%= form.fields_for :main_threads do |f| %>
+      <%= f.date_field :planned %>
+      <%= f.time_field :plannedtime %>
+          <%= f.check_box :validated %>
+
+      <%= f.label :validated, "Add this post to main thread" %>
+    <%end%>
+</div>
+  <div class="field actions">
+    <%= form.submit (@post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+<%end%>

@@ -1,0 +1,2 @@
+class Musicalbum < Thing
+end

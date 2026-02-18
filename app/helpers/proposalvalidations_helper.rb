@@ -1,0 +1,2 @@
+module ProposalvalidationsHelper
+end

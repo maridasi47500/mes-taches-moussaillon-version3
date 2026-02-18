@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+  <h2><%= @lesson.title %></h2>
+<%if @lesson.recordingfemme && @lesson.recordinghomme%>
+<%=render partial: "recordings/recordingcontent", collection: [@lesson.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [@lesson.recordinghomme], as: :recording%>
+<%= link_to 'Repeat to learn', title_lesson_path(@lesson.id) %> 
+<%end%>
+
+
+<p class="descriptionlesson">
+  <strong>Description:</strong>
+  <%= @lesson.description %>
+</p>
+
+<p>
+  by <%= render @lesson.user %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag '/assets/'+@lesson.image, class:"petiteimage000011" %>
+</p>
+<p>
+  <%= link_to "voir mes enregistrements pour cette lesson", recordbook_lesson_path(@lesson.id) %>
+</p>
+<%@lesson.lesson_languages.each do |from|%>
+from a <%=from.from.name.titleize%> speaker to a <%=from.to.name%> speaker
+<form onsubmit="return false;">
+<ul class="listesamplecontent myassimilcontents" >
+<%@lesson.lesson_sentences.each do |content|%>
+<li>
+<%=content.content%>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+<%else%>
+<%= link_to 'Recording the sentences like a pro', edit_lesson_content_path(content.id) %> 
+<%end%>
+<%= link_to 'Repeat to learn', repeatafterpro_lesson_content_path(content.id) %> 
+
+</li>
+<%end%>
+</ul>
+<%=submit_tag "tester mes reponses"%>
+</form>
+<h3>Application</h3>
+<form onsubmit="return false;">
+<ul class="listesamplecontent">
+<%@lesson.lesson_applications.each_with_index do |content,nbsample|%>
+<li>
+<%content.mycontent(from.to.locale).split(' ').each do |sentence|%>
+<%if sentence.include?("*")%>
+ <%=text_field_tag :wordtoguess,"" ,required: true, pattern: sentence.gsub('*',''),onsubmit:"this.style.border='1px solid black';alert(this.value);return false;",onfocus:"this.style.border='black 4px solid';return false;",oninvalid:"this.style.border='#fd3737 4px solid';return false;"%>
+<%else%>
+ <%=sentence%>
+<%end%>
+<%end%>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+<%else%>
+<%= link_to 'Recording the sentences like a pro', edit_lesson_content_path(content.id) %> 
+<%end%>
+</li>
+<%end%>
+</ul>
+<%=submit_tag "tester mes reponses"%>
+</form>
+<%end%>
+
+<%= link_to 'new language', edit_lesson_path(@lesson.id,type:'l') %> |
+<%= link_to 'new sample content', edit_lesson_path(@lesson.id,type:'sc') %> |
+<%= link_to 'new content', edit_lesson_path(@lesson.id,type:'c') %> |
+<%= link_to 'languages of this lesson', languages_lesson_path(@lesson.id) %> |
+
+
+<%= link_to 'recording the sample sentences', samplerecordings_lesson_path(@lesson.id) %> |
+<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+<%= link_to 'Back', lessons_path %>

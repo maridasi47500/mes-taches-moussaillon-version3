@@ -1,0 +1,29 @@
+                <%=collection_radio_buttons(:anyname, :colidmoussaillon, @collections,
+                  :id, :name,
+                 {:prompt => 'Please select the collection of this person'},{class:"btn btn-secondary-outline"}) do |ff|%>
+                 
+                              <div class="carousel-item <%if ff.value.to_i == @collections[0].id.to_i%>active<%end%>">
+                        <%=ff.label(class: "btn card h-100", for: "mycollectionradioooo#{ff.value}") do%>
+
+                <div class="card-deck">
+
+                      <% collection = Collection.find(ff.value)%>
+                    
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="<%=collection.image%>" alt="<%=collection.name%>">
+                                    <%=ff.radio_button(autocomplete:"off",id:"mycollectionradioooo#{ff.value}",class: "btn-check")%>
+
+                        </div>
+                        <div class="card-body pt-2">
+                            <h6 class="small text-wide p-b-2"><%=collection.name%></h6>
+                            <h2>
+                            </h2>
+                        </div>
+                </div>
+                    <%end%>
+
+            </div>
+
+                  
+                  
+                  <%end%>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Secret questions about cleo</h1>
+
+
+
+  <div class="card-group">
+
+    <% @secretquestions.each do |secretquestion| %>
+      <div class="card border-success mb-3" style="min-width: 12rem;max-width: 15rem;">
+  <div class="card-header bg-transparent border-success">secret question</div>
+<div class="card-body text-success">
+        <p class="card-text">
+<%= secretquestion.typeq == "u" ? "réponse unique" : '' %>
+<%= secretquestion.typeq == "m" ? "plusieurs réponses possibles" : '' %>
+</p>
+        <p class="card-text"><%= secretquestion.text %></p>
+        <p class="card-text"><%= link_to 'Show', secretquestion %></p>
+        <p class="card-text"><%= link_to 'Edit', edit_secretquestion_path(secretquestion) %></p>
+        <p class="card-text"><%= link_to 'Destroy', secretquestion, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+</div>
+    <% end %>
+  </div>
+
+<br>
+
+<%=form_with url: new_secretquestion_path, html:{method: :get} do |form|%>
+<%=label :nb, "creer une nouvelle question avec combien de reponses"%>
+<%=number_field_tag :nb%>
+<%=form.submit "nouvelle question"%>
+<%end%>
+
+<%= link_to 'New Secretquestion', new_secretquestion_path %>
+
+<%=render "indexpage/pagination",g:@g, modelname: Secretquestion,mypath: secretquestions_path+'?'%>

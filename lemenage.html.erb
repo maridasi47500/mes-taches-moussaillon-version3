@@ -1,0 +1,11 @@
+<h1>Fais le menage</h1>
+<%=form_with url: actionmenage_path do |form|%>
+<%["membre.jpg", "trash.png", "wc2.jpg", "sol2.png", "vitre2.jpg", "food2.png", "broom1.jpg", "broom.jpg", "ustencils.jpg"].each_with_index do |k,i|%>
+<input id="image<%=i%>" type="image" width="100" height="100" alt="Login"
+       src="/assets/<%=k%>">
+<%end%>
+<%["cuisine.jpg", "trosa.jpg", "menage.jpg", "argent.jpg", "jirama.jpg"].each_with_index do |k,i|%>
+<input id="image<%=i+100%>" type="image" width="300" height="100" name="<%=k.gsub('.jpg','')%>" alt="Login"
+       src="/assets/<%=k%>">
+<%end%>
+<%end%>

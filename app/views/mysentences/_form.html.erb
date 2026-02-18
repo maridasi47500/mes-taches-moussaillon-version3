@@ -1,0 +1,66 @@
+<%= form_with(model: mysentence, local: true) do |form| %>
+  <% if mysentence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mysentence.errors.count, "error") %> prohibited this mysentence from being saved:</h2>
+
+      <ul>
+        <% mysentence.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<p>cherche les prénoms disponibles dans la liste :</p>
+<div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "cherchersurnames", collec: [], mesmodele:"surname"%>
+
+</div>
+
+<p>cherche des trucs disponibles dans la liste :</p>
+<div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "cherchertrucs", collec: [], mesmodele:"qch"%>
+
+</div>
+  <% Mysentence.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column,id:column %>
+  </div>
+<%end%>
+<div id="myrecordings_mysentence">
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_dupontsurnames_path,json_things_path]%>
+<%@select=[cherchersurnames_reactions_texts_path,ajouterqch_mysentences_path]%>
+<%@nom=['surname','qch']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+function addrecording() {
+$.ajax({
+url:"<%=ajouterrec_mysentences_path%>?myid="+String(addrec.dataset.myid),
+type:"get",
+success:function(data){
+$("#myrecordings_mysentence").append(data);
+addrec.dataset.myid=Number(addrec.dataset.myid)+1;
+}
+
+});
+return false;
+}
+</script>
+<%end%>
+
+

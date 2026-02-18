@@ -1,0 +1,33 @@
+<%=content_for :mytitle do%>
+<%=t('mytitles.monsalutmilitaire')%>
+
+<%end%>
+
+
+<%=form_with url: monsalutmilitaire_laundryjiramapeople_path do |form|%>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "person1_id", collec: [], mesmodele:"people1"%>
+</div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "grade1_id", collec: [], mesmodele:"grades1"%>
+</div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "person2_id", collec: [], mesmodele:"people2"%>
+</div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "grade2_id", collec: [], mesmodele:"grades2"%>
+</div>
+<div>
+<%=form.submit%>
+</div>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,personjson_albums_path,json_armygrades_path,json_armygrades_path]%>
+<%@select=[person1_laundryjiramapeople_path,person2_laundryjiramapeople_path,grade1_laundryjiramapeople_path,grade2_laundryjiramapeople_path]%>
+
+<%@nom=['people1','people2','grades1','grades2']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User reviewing:</strong>
+  <%= @barreview.user.name %>
+</p>
+
+<p>
+  <strong>The player's attempt to play the score:</strong>
+  <%= render @barreview.barattempt %>
+</p>
+
+<p>
+  <strong>review content :</strong>
+  <%= @barreview.description %>
+</p>
+<p><%=link_to "edit criterias", edit_barreview_path(@barreview.id, edit: true)%>
+</p>
+  <% if @barreview.barcriteria.length > 0 %>
+<h4>Bar criteria</h4>
+  <%= render @barreview.barcriteria%>
+<%end%>
+  <% if @barreview.scorecriteria.length > 0 %>
+<h4>Score criteria</h4>
+  <%= render @barreview.scorecriteria%>
+<%end%>
+
+<%= link_to 'Edit review', edit_barreview_path(@barreview) %> |
+<%= link_to 'Back', barreviews_path %>

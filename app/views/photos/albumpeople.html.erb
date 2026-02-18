@@ -1,0 +1,13 @@
+<%=fields_for :photo do |furm|%>
+<%=furm.fields_for :photohavesailors_attributes do |form|%>
+
+
+<%=form.collection_radio_buttons(:person_id, @people,:id, :name) do |rad|%>
+<%=rad.radio_button(name: "photo[photohavesailors_attributes][#{params[:nth]}]emotion_id")%>
+<%=rad.label do%>
+<%=render partial: 'people/personsimple', collection:[Person.find(rad.value)], as: :person%>
+<%end%>
+
+<%end%>
+<%end%>
+<%end%>

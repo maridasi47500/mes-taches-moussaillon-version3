@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Jeux olympiques:</strong>
+  <%= @editionshaveevent.edition.olympicgame.try(:name) %>
+</p>
+<p>
+  <strong>Edition:</strong>
+  <%= @editionshaveevent.edition.try(:name) %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @editionshaveevent.city.try(:name) %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @editionshaveevent.country.try(:name) %>
+</p>
+
+<p>
+  <strong>Olympicevent:</strong>
+  <%= @editionshaveevent.olympicevent.try(:name) %>
+</p>
+
+<p>
+  <strong>Sexe:</strong>
+  <%= @editionshaveevent.sexe %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @editionshaveevent.date %>
+</p>
+  <% @editionshaveevent.allrounds.each do |round| %>
+<p><%=round.name%></p>
+<%round.olympicresults.sort_by{|u|u.pos}.group_by{|y|y.heat}.each do |heat,results|%>
+<p><%=heat.to_i > 0 ? "heat #{heat}" : heat%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>pos</th>
+      <th>lane</th>
+      <th>athlete</th>
+      <th>noc</th>
+
+      <th>reaction</th>
+<%round.uniquedistances.each do |y|%>
+      <th><%=y.myname[1..]%></th>
+<%end%>
+      <th>time</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+<%results.each do |result|%>
+      <tr>
+        <td><%= result.pos %></td>
+        <td><%= result.lane %></td>
+        <td><%= result.athlete.name %></td>
+        <td><%= result.noc.name %></td>
+
+        <td><%= result.reaction%></td>
+        <% result.olympicsplits.order(time: :asc).where.not(time: nil).each do |res|%>
+        <td><%= res.time && res.time < 1.minute ? l(res.time, format: :olympicsmall) : l(res.time, format: :olympic) %></td>
+        <%end%>
+        <td><%= result.time && result.time < 1.minute ? l(result.time, format: :olympicsmall) : l(result.time, format: :olympic) %></td>
+        <td><%=render 'formmedal',myresult: @editionshaveevent, result: result%></td>
+</tr>
+
+    <% end %>
+  </tbody>
+</table>
+    <% end %>
+
+<%end%>
+
+<%= link_to 'Edit', edit_editionshaveevent_path(@editionshaveevent) %> |
+<%= link_to 'Back', editionshaveevents_path %>

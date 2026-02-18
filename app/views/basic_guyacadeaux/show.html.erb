@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  Le guyacadeau de <%= @basic_guyacadeau.price %>€ a bien été offert à
+  <%= @basic_guyacadeau.person.name %>
+pour aller à <%= @basic_guyacadeau.address.place.try(:name) %> <%= @basic_guyacadeau.address.city.try(:name) %>.
+</p>
+
+<p>
+   <%= @basic_guyacadeau.person.name %> n'avait pas assez. Proposez une somme de guyacadeau qui n'est pas dans les gammes. 
+<%price = @basic_guyacadeau.price%>  
+<%price = Guyacadeau.prices.select{|x|x > price }[0]||price%>
+
+    <%= button_to "acheter un guyacadeau de #{price}€ ou une autre somme", createguya_basic_guyacadeaux_path(basic_guyacadeau: {price: price}), method: :post, data: { confirm: 'Are you sure?' } %>
+
+ou     
+<%= button_to "essayer une guyabox", createguya_basic_guyacadeaux_path(basic_guyacadeau: {price: price}), method: :post, data: { confirm: 'Are you sure?' } %>
+
+</p>
+
+<%= link_to 'Edit', edit_basic_guyacadeau_path(@basic_guyacadeau) %> |
+<%= link_to 'Back', basic_guyacadeaux_path %>

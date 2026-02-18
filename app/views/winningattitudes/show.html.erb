@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <%= @winningattitude.content %>
+</p>
+<%if @winningattitude.people.length > 0%>
+<p><%=t('display.genslies')%></p>
+<%=render @winningattitude.people%>
+<%end%>
+
+<%= link_to 'Edit', edit_winningattitude_path(@winningattitude) %> |
+<%= link_to 'Back', winningattitudes_path %>

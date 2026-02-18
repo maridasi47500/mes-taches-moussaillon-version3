@@ -1,0 +1,22 @@
+<%= form_with(as: :lesson_content,model: content,url: lesson_content_path(content.id), local: true) do |form| %>
+  <% if content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this lesson_content from being saved:</h2>
+
+      <ul>
+        <% content.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%content.lesson.lesson_languages.each do |from|%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.mycontent(from.to.locale), mylabel: "record like a woman", myfield: "recordmyphrasesandwords1", form: form, modelderails: content}%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.mycontent(from.to.locale),mylabel: "record like a man", myfield: "recordmyphrasesandwords2", form: form, modelderails: content}%>
+
+<% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

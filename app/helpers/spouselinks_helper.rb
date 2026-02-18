@@ -1,0 +1,2 @@
+module SpouselinksHelper
+end

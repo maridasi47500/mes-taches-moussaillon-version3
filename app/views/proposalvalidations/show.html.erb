@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @proposalvalidation.user_id %>
+</p>
+
+<p>
+  <strong>Proposal:</strong>
+  <%= @proposalvalidation.proposal_id %>
+</p>
+
+<p>
+  <strong>Validated:</strong>
+  <%= @proposalvalidation.validated %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @proposalvalidation.content %>
+</p>
+
+<%= link_to 'Edit', edit_proposalvalidation_path(@proposalvalidation) %> |
+<%= link_to 'Back', proposalvalidations_path %>

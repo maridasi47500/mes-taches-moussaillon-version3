@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Anaphors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content fr</th>
+      <th>Content en</th>
+      <th>Content de</th>
+      <th>Epoch</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @anaphors.each do |anaphor| %>
+      <tr>
+        <td><%= anaphor.content_fr %></td>
+        <td><%= anaphor.content_en %></td>
+        <td><%= anaphor.content_de %></td>
+        <td><%= anaphor.epoch_id %></td>
+        <td><%= link_to 'Show', anaphor %></td>
+        <td><%= link_to 'Edit', edit_anaphor_path(anaphor) %></td>
+        <td><%= link_to 'Destroy', anaphor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Anaphor', new_anaphor_path %>

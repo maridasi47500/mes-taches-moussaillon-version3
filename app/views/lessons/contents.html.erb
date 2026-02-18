@@ -1,0 +1,22 @@
+<%=fields_for :lesson, @lesson do |f|%>
+<%=f.fields_for :lesson_contents, LessonContent.new do |form|%>
+  
+
+<% LessonContent.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost'%>
+
+</div>
+  <% end %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {mylabel: "record like a woman", myfield: "recordmyphrasesandwords1", form: form, modelderails: @lesson}%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {mylabel: "record like a man", myfield: "recordmyphrasesandwords2", form: form, modelderails:@lesson}%>
+
+
+
+
+
+
+  <% end %>
+  <% end %>
+

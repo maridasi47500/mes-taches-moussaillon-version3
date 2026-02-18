@@ -1,0 +1,2 @@
+class LessonApplication < LessonContent
+end

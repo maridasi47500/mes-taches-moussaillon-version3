@@ -1,0 +1,24 @@
+    <!--<% @post.moussaillonsdecepost.each_with_index do |mouss,i| %>
+                          <div class="field">
+
+        <p>Hacking <%=render mouss%></p>
+        <%= f.label :people_hacked_ids, "Hacking sailor N°#{i+1} " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_check_boxes(:people_hacked_ids, @peoplesearched+@post.peopleintheusurpations, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render Person.find(ff.value)%>
+                        <%end%>
+      </div>
+        </div>
+
+    <%end%>-->
+
+                   <!-- <div class="allthesailors-list"> 
+      <%= f.label :person_id, "Sailors " %>
+      <%= f.collection_radio_buttons(:person_id, Person.afficherceuxla(@addthosesailors), :id, :name) do |ff| %>
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                        <%=  f.radio_button( "person_id", nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>-->

@@ -1,0 +1,28 @@
+<h1>Editing Invite</h1>
+
+<%= render 'form', invite: @invite %>
+
+<%= link_to 'Show', @invite %> |
+<%= link_to 'Back', invites_path %>
+<%=content_for :myjscode do %>
+<script>
+function myperson(form){
+$.ajax({url: '<%=people_invites_path%>?name='+form.value, success:function(data){
+mypropositions.innerHTML='';
+
+for (var i = 0;i<data.length;i++){
+var person;
+
+mypropositions.innerHTML+='<option id="peopleid'+data[i].id+'" value="'+data[i].id+'">'+data[i].name+'</option>';
+person =document.getElementById('peopleid'+data[i].id);
+person.onclick = function(){
+$.ajax({url:'<%=peopleform_invites_path%>?id='+data[i].id,success:function(data2){
+myownpeople.innerHTML += data2;
+}});
+}
+
+}}});return false;
+};
+</script>
+<%end%>
+

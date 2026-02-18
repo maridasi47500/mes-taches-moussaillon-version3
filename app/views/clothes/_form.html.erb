@@ -1,0 +1,44 @@
+<%= form_with(model: clothing, local: true) do |form| %>
+  <% if clothing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(clothing.errors.count, "error") %> prohibited this clothing from being saved:</h2>
+
+      <ul>
+        <% clothing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% Clothing.locale_columns(:name).each do |column| %>
+  <p>
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </p>
+<% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+  <div class="field">
+<%=render "form/checkboxcolumnlayout",modelname: Alias,l: 'aliases/alias',ln: :a, columnname: 'user_id',form: form, fieldname: 'alias_ids', collec: Alias.findbyid(clothing.alias_ids), mesmodele:"aliases"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path]%>
+<%@select=[aliases_clothes_path]%>
+
+<%@nom=['aliases']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

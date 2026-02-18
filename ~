@@ -1,0 +1,100 @@
+<%= form_with(model: sector, local: true) do |form| %>
+  <% if sector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sector.errors.count, "error") %> prohibited this sector from being saved:</h2>
+
+      <ul>
+        <% sector.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+<%@mesmodele=['fields']%>
+<%@collec=[Sector.where(field_id: sector.field_id)]%>
+<%['field_id'].each_with_index do |g,j|%>
+  <div class="field">
+<%=form.collection_radio_buttons(g, @collec[j], :id, :name) do |b| %>
+       <%=b.radio_button%>
+<%=b.label%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{g}", "", placeholder:"chercher des #{@mesmodele[j]}",onchange:"chercher#{@mesmodele[j]}(this,cherche#{@mesmodele[j]});return false;", id: "cherchons#{@mesmodele[j]}ici",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=@mesmodele[j]%>(this,att<%=@mesmodele[j]%>);return false;" id="cherche<%=@mesmodele[j]%>"></select>
+<div id="att<%=@mesmodele[j]%>"></div>
+<%end%>
+<%@mesmodele=['cities','bacseries','admissionfiles']%>
+<%@collec=[sector.cities,sector.bacseries,sector.admissionfiles]%>
+<%['city_ids','bacseries_ids','admissionfile_ids'].each_with_index do |g,j|%>
+  <div class="field">
+<%=form.collection_check_boxes(g, @collec[j], :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{g}", "", placeholder:"chercher des #{@mesmodele[j]}",onchange:"chercher#{@mesmodele[j]}(this,cherche#{@mesmodele[j]});return false;", id: "cherchons#{@mesmodele[j]}ici",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=@mesmodele[j]%>(this,att<%=@mesmodele[j]%>);return false;" id="cherche<%=@mesmodele[j]%>"></select>
+<div id="att<%=@mesmodele[j]%>"></div>
+<%end%>
+
+  <div class="field">
+    <%= form.label :open_signup %>
+    <%= form.date_select :open_signup %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admission_exam %>
+    <%= form.check_box :admission_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admission_exam_date %>
+    <%= form.date_select :admission_exam_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@paths=[bacseries_sectors_path,admissionfiles_sectors_path, field_sectors_path, city_sectors_path]%>
+<%@paths2=[json_bacseries_index_path,json_admissionfiles_path, json_fields_path, json_cities_path]%>
+<%['bacseries','admissionfiles','fields','cities'].each_with_index do |t,i|%>
+
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+</script>
+<%end%>
+

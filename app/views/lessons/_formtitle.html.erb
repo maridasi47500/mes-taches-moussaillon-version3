@@ -1,0 +1,36 @@
+<%= form_with(as: :lesson,model: content,url: lesson_path(content.id), local: true) do |form| %>
+  <% if content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this lesson_content from being saved:</h2>
+
+      <ul>
+        <% content.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h2>listen to the pro</h2>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+<%else%>
+<%= link_to 'Recording the title like a pro', edit_lesson_path(content.id) %>
+<%end%>
+<h2>pronounce the sentence</h2>
+
+<%content.lesson_languages.each do |from|%>
+<%@rec.each do |rec1|%>
+<%=form.fields_for :lesson_titles,rec1 do |rec|%>
+<%=rec.hidden_field :user_id, value: current_user.id%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.title, mylabel: "record like a woman", myfield: "recordmyphrasesandwords1", form: rec, modelderails: content}%>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: content.title,mylabel: "record like a man", myfield: "recordmyphrasesandwords2", form: rec, modelderails: content}%>
+
+<% end %>
+<% end %>
+<% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

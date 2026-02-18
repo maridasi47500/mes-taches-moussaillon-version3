@@ -1,0 +1,94 @@
+<%= form_with(model: job, local: true) do |form| %>
+  <% if job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+        <% job.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+<%=form.label(:person_ids) %>
+<%=form.collection_check_boxes(:person_ids, job.people, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Person.find(b.value)%>
+<%end%>
+
+<% end %>
+
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherjobs(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectjobs(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+  <div class="field"><%=label_tag "bodyparts", I18n.t('display.bodypartsused')%>
+<%job.thingsisaid(current_user.id).each do |t|%>
+<%=render "form/imageinputintensity", thing: t.thing,stuff: "thing"%>
+<br>
+<%=label_tag t('pagesshow.job.qty', qty: t.thing.name.pluralize)%>
+<%=number_field_tag "#{t.thing.id}nb", t.nb.to_i%>
+<%end%>
+<%=render "form/searchfield", mesmodele:"things"%>
+</div>
+
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherjobs(field,al){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectjobs(field,greatpeople){
+$.ajax({url: '<%=people_jobs_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[things_jobs_path]%>
+<%@search=[json_things_path]%>
+<%@nom=['things']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

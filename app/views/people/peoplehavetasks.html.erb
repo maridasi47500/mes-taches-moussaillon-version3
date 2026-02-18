@@ -1,0 +1,17 @@
+<%=t('display.chercherunetache')%>
+
+<%=form_with url: peoplehavethattasks_people_path do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people",label: I18n.t('display.chercherunetache')%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskid_categorythings_path]%>
+<%@search =[json_tasks_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

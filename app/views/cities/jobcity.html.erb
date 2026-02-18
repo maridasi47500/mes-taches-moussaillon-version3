@@ -1,0 +1,30 @@
+<div>
+<%=t('display.someonelive',sailor:@person.name, city: @city.name)%>
+</div>
+<%=button_to "cancel this person with this city",jobcitydelete_person_city_path(id: @city.id,personcityid: @mypersonincity.id), method: :post, onclick: "return confirm('etes vous sur de vouloir supprimer ce moussaillon habitant dans cette ville?');"%>
+<%=fields_for :epoch do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'epochid', collec: [], mesmodele:"people",label: 'à quelle époque ?'%>
+
+</div>
+<%end%>
+<%=form_with model: @mypersonincity, url: myjobcity_person_city_path(id: @city.id, person_id: @person.id) do |form| %>
+<div>
+<%=form.label :myphotos%>
+<%=form.file_field :myphotos, multiple: true%>
+</div>
+<div>
+<%=form.submit%>
+</div>
+
+<% end %>
+<%=render "moncarouseljobcity", photos: @mypersonincity.photos%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[whatepoch_person_city_epochs_path(person_id: @person.id,city_id:@city.id)]%>
+<%@search =[json_epochs_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

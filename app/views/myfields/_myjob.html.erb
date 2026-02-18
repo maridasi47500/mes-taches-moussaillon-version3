@@ -1,0 +1,24 @@
+ <div class="field">
+<%=render "form/#{fieldtype}_child", form: form, fieldname: "myjobs", collec: form.object.usersjobs, mesmodele:"myjobs",findex: (params[:idinput] || form.index || 0)%>
+
+</div>
+<div>
+ajouter un job : <%=radio_button_tag :textorradio,"text",checked: true,name: ""%>
+text
+<%=radio_button_tag :textorradio,"radio"%>
+radio
+</div>
+<div>
+ajouter des secteurs : <%=radio_button_tag :textorcheck,"text",checked: true,name: ""%>
+text
+<%=radio_button_tag :textorcheck,"check",name: "",value:"check"%>
+check box
+</div>
+
+<script>
+<%@search=[json_jobs_path]%>
+<%@select=[[path,path2]]%>
+<%@nom=["myjobs"]%>
+<%=render partial:"form/functionjsonmyjobs", collection: @nom.zip(@search, @select), as: :t,locals: {form: form,findex: (params[:idinput] || form.index || 0)}%>
+</script>
+

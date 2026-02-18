@@ -1,0 +1,28 @@
+            <h2>Anaphors</h2>
+
+	  <%=form.fields_for :anaphors do |f|%>
+	  <div class="field anaphor">
+	    <%= f.hidden_field :id, value:nil %>
+	    <p>Anaphor</p>
+	    <%= f.label :content %>
+	    <%= f.text_field :name, class:'contentpost' %>
+	    <%=render partial:'sailorlist',locals:{f:f, name:"sailors", field_name:"sailor_ids",list: @peoplesearched, fieldclass:Person}%>
+		                <%=f.fields_for :nicephotos do |foto|%>
+		                  <div>
+		               <%= foto.label :file, 'Upload a file' %>
+		               <%= foto.file_field :file %>
+		               <%= foto.hidden_field :id, value: nil %>
+		                  </div>
+		                  <div>
+		               <%= foto.label :title %>
+		               <%= foto.text_field :title %>
+		                  </div>
+		                  
+		                <%end%>
+</div>
+
+	      <%= f.check_box '_destroy' %>
+	      <%= f.label '_destroy', 'Destroy ' %>
+
+<%end%>
+

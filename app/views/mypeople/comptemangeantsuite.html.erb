@@ -1,0 +1,70 @@
+<%=form_with url: comptemangeantrepas_path do |form|%>
+<h2>CEtte semaine</h2>
+<table>
+<tr>
+<th colspan="3"></th>
+<%((Date.today.monday+2.days)..(Date.today.next_week.monday+1.day)).to_a.each do |day|%>
+<th colspan="2"><%=l(day)%></th>
+<%end%>
+</tr>
+<tr>
+<th>Section</th>
+<th>nom</th>
+<th>prénom</th>
+<%7.times do%>
+<th>
+déjeuner
+</th>
+<th>
+diner
+</th>
+<%end%>
+</tr>
+<%@people.each do |y|%>
+<tr>
+<th></th>
+<th><%=y.lastname%></th>
+<th><%=y.firstnames%></th>
+<%((Date.today.monday+2.days)..(Date.today.next_week.monday+1.day)).to_a.map{|g|Array.new(2,g)}.each do |dejeuner,diner|%>
+<th><%=check_box_tag "days[]", [dejeuner,y.id,"dejeuner"], nil,checked: Personrepas.find_by(person_id:y.id,date:dejeuner,repasjour:"dejeuner")%></th>
+<th><%=check_box_tag "days[]", [diner,y.id,"diner"], nil,checked: Personrepas.find_by(person_id:y.id,date:diner,repasjour:"diner")%></th>
+<%end%>
+</tr>
+<%end%>
+</table>
+<br>
+<h2>La semaine prochaine</h2>
+<table>
+<tr>
+<th colspan="3"></th>
+<%((Date.today.next_week.monday+2.days)..(Date.today.next_week.monday.next_week.monday+1.day)).to_a.each do |day|%>
+<th colspan="2"><%=l(day)%></th>
+<%end%>
+</tr>
+<tr>
+<th>Section</th>
+<th>nom</th>
+<th>prénom</th>
+<%7.times do%>
+<th>
+déjeuner
+</th>
+<th>
+diner
+</th>
+<%end%>
+</tr>
+<%@people.each do |y|%>
+<tr>
+<th></th>
+<th><%=y.lastname%></th>
+<th><%=y.firstnames%></th>
+<%((Date.today.next_week.monday+2.days)..(Date.today.next_week.monday.next_week.monday+1.day)).to_a.map{|g|Array.new(2,g)}.flatten.each do |day|%>
+<th><%=check_box_tag "days[]", [day,y.id], nil,checked: Personrepas.find_by_person_id_and_date(y.id,day)%></th>
+<%end%>
+</tr>
+<%end%>
+</table>
+<%=form.hidden_field "people",value: params[:people].join('-')%>
+<%=form.submit "valider"%>
+<%end%>

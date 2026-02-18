@@ -1,0 +1,52 @@
+<center><a rel="nofollow" href="<%=lover.photos[0].try(:name)%>"><img src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%200%200&#39;%3E%3C/svg%3E" rel="nofollow" class="img260" alt="<%=person.name%> avec jolie, amie <%=currentlover.name%> " data-lazy-src="<%=lover.photos[0].try(:name)%>"><noscript><img src="<%=lover.photos[0].try(:name)%>" rel='nofollow'
+ class='img260' alt='<%=person.name%> avec jolie, amie <%=currentlover.name%> '></noscript></a><br>
+</center>
+
+<br>
+Qui sort avec <%=person.name%> en 2022?
+<br>
+<br>
+<table class="profiel">
+<tbody><tr>
+<td width="50%">Statut rélation
+</td>
+<td width="50%"><%if person.boyfriends.length > 0%>
+<%=person.boyfriends[0].statutrelation%>
+
+(depuis <%=person.boyfriends[0].begindating.split('-')[0]%>)
+
+<%end%>
+</td>
+</tr>
+<tr>
+<td>Orientation sexuelle
+</td>
+<td>Hétéro</td>
+</tr>
+<tr>
+<td>amie de <%=person.name%></td>
+<td><%=currentlover.name%></td>
+</tr>
+<tr>
+<td>Ses ex-petites amies ou épouses
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Des Enfants?
+</td>
+<td> 
+<%if (person.children.length > 0)%>
+Oui, <%if person.sexe == 'F'%>
+mère de
+<%elsif person.sexe == 'M'%>
+père de
+<%else%>
+mère ou père de
+<%end%>
+<%=person.children.pluck(:firstnames).to_sentence%>
+<%else%>Non<%end%><br> </td>
+</tr>
+</tbody></table>
+Est-ce que la rélation de comédien de l’origine <%=person.originnation%> <%=person.name%> et amie en cours, <%=currentlover.name%>, persistera en 2022?<br>
+<br>

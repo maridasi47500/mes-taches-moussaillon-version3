@@ -1,0 +1,12 @@
+<h1><%=t('links.socialmovement')%></h1>
+<%=render 'formsocialmvmt', post: @post%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[socialmvmt_posts_path]%>
+<%@search=[json_socialmovements_path]%>
+<%@nom=['socialmovements']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

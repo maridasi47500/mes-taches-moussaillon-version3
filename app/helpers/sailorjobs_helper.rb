@@ -1,0 +1,2 @@
+module SailorjobsHelper
+end

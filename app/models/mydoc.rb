@@ -1,0 +1,2 @@
+class Mydoc < ApplicationRecord
+end

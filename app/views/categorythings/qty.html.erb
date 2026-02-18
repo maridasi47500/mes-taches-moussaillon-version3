@@ -1,0 +1,6 @@
+<p><%=t('display.categorythingqty')%></p>
+<br>
+<%=form_with url: setqty_categorything_path(@categorything.id) do |form|%>
+<%=render 'form/imageinputintensity', thing: @categorything,stuff:'categorything'%>
+<%end%>
+

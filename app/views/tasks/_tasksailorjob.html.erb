@@ -1,0 +1,2 @@
+<%=render t.person%>
+<%=link_to t('display.displayothertask', sailor: t.person.name, taskaction: t.taskactionsailorjob.taskaction.name,othersailor: t.taskactionsailorjob.sailorjob.sailor.name), taskhavetaskactiontwosailorjob_tasks_path(t.id)%>

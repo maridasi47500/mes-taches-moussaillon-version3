@@ -1,0 +1,65 @@
+<%=form.file_field myfield, onchange: "voirapercu#{apercu}(this,monapercu#{apercu});",multiple: (defined?(multiple) ? multiple : "")%>
+Apercu de l'image
+<div id="monapercu<%=apercu%>"></div>
+<script>
+function voirapercu<%=apercu%>(filefield,emptydiv){
+console.log(filefield.files)
+console.log(filefield.files.length)
+console.log(filefield.multiple ? "multiple" : "un seul fichier")
+
+
+var myfiles= filefield.files;
+if (FileReader && myfiles && myfiles.length){
+
+    
+var fr=new FileReader();
+
+   if (!filefield.multiple) {
+   emptydiv.innerHTML="<img id=\"newpic\" src=\"\" width=\"100\" height=\"100\"/>";
+
+	  const preview = document.getElementById("newpic");
+  const file = filefield.files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    // convert image file to base64 string
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+  }else{
+    const preview = emptydiv;
+  const files = filefield.files;
+    preview.innerHTML="";
+  function readAndPreview(file) {
+    // Make sure `file.name` matches our extensions criteria
+    if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        const image = new Image();
+        image.height = 100;
+         image.width = 100;
+        image.title = file.name;
+        image.src = reader.result;
+        preview.appendChild(image);
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  if (files) {
+    Array.prototype.forEach.call(files, readAndPreview);
+  }
+  }
+
+// si le champ a prend plusieurs photos
+
+//si le champ prend une photo
+
+}
+}
+</script>

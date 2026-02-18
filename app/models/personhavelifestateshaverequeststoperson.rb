@@ -1,0 +1,5 @@
+class Personhavelifestateshaverequeststoperson < ApplicationRecord
+belongs_to :personhavelifestate
+belongs_to :requeststoperson
+validates_uniqueness_of :personhavelifestate_id, scope: :requeststoperson_id
+end

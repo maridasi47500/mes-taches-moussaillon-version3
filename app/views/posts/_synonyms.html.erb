@@ -1,0 +1,17 @@
+<%=form.fields_for :synonyms do |f|%>
+<h2>Add synonyms</h2>
+	<div class="field">
+	<%= f.label :content %>
+	<%= f.hidden_field :synonym_id %>
+	<%= f.text_field :content %>
+        </div>
+        <div class="field">
+	<%= f.label :textedusynonyme, "texte du synonyme" %>
+	<%= f.text_field :textedusynonyme %>
+	</div>
+	<div class="field">
+	<%= f.check_box '_destroy' %>
+	<%= f.label '_destroy', 'Destroy this synonym' %>
+	</div>
+<%end%>
+

@@ -1,0 +1,134 @@
+<%=content_for :mylittlecss do%>
+.imagesfortasks {
+border: 3px dotted black;
+margin: 0 20px 0 20px;
+}
+.someinfosfortasks {
+border: 3px dashed black;
+margin: 0 20px 20px 20px;
+
+}
+
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<h4>
+  <%= @task.name %>
+<%= @task.image ? (image_tag((@task.image), width: "100px", height: "100px")) : "" %>
+<%if @task.epochs.length > 0%>
+(<%=@task.epochs.map{|x|(link_to(x.nomdecetteepoque,x))}.to_sentence.html_safe%>)
+<%end%>
+</h4>
+<%if @task.start_at && @task.end_at%>
+<p>Durée : <%=distance_of_time_in_words(@task.start_at, @task.end_at)%></p>
+<%end%>
+<%if @task.songs.length > 0%>
+<p>songs</p>
+<%=render @task.songs%>
+<%end%>
+<%if @task.tvseries.length > 0%>
+<p>tv series</p>
+<%=render @task.tvseries%>
+<%end%>
+<%if @task.films.length > 0%>
+<p>films</p>
+<%=render @task.films%>
+<%end%>
+<%if @task.followingtasks.length > 0%>
+<p>Ce que je pourrais faire ensuite</p>
+<ul>
+<%@task.followingtasks.each_with_index do |t,i|%>
+<li>
+<%=t.name%> <%=link_to "voir", @task.optiontasks[i]%>
+
+</li>
+<%end%>
+</ul>
+<%end%>
+<%if @task.starattitudes.length > 0%>
+<% @task.starattitudes.each do |starat|%>
+<p><%=I18n.t('display.starattitude',count: starat.star.to_i, attitude: starat.winningattitude.content, task: starat.task.name)%></p>
+<%end%>
+<%end%>
+<%if @task.city%>
+<p><%=@task.city.name%></p>
+<%end%>
+<h4>
+<%=t('sailors',count: @task.sailors.length)%>  
+</h4>
+
+
+
+<%if @task.recordings.length > 0%>
+<p>
+recordings
+</p>
+<div><%=render @task.recordings%></div>
+<%end%>
+<%if @task.places.length > 0%>
+<p>
+places
+</p>
+<div><%=render @task.places%></div>
+<%end%>
+<%if @task.google_requests.length > 0%>
+<p>google requests</p>
+<div><%=render @task.google_requests%></div>
+<%end%>
+<%if @task.sailorjobs.length > 0%>
+<p><%=render partial: 'people/personlinkjob', collection: @task.sailorjobs, as: :person%></p>
+<%end%>
+
+<%if @task.githubrepos.length > 0%>
+<h5>Les repos Github de la tâche</h5>
+<section><%=render @task.githubrepos%></section>`
+<%end%>
+<%if @task.taskactions.length > 0%>
+<h5>Façons d'accomplir la tâche</h5>
+<section><%=render @task.taskactions%></section>`
+<%end%>
+<%if @task.tickets.length > 0%>
+<h5>tickets</h5>
+<section><%=render @task.tickets%></section>`
+<%end%>
+<%if @task.failingtickets.length > 0%>
+<h5>tickets pour quand la tâche est râtée</h5>
+<section><%=render @task.failingtickets%></section>`
+<%end%>
+<%if @task.attitudes.length > 0%>
+<h5>Attitudes à avoir</h5>
+<section><%=render @task.attitudes%></section>`
+<%end%>
+<%if @task.grouptasks.length > 0%>
+<h5>Tâches à plusieurs moussaillons</h5>
+<ul>
+<% @task.grouptasks.each do |t|%>
+<li><%=link_to t.title, grouptask_task_path(@task.id, grouptask_id: t.id)%></li>
+<%end%>
+</ul>
+<%end%>
+
+<section class="someinfosfortasks">
+<%=render 'taskqtystuff',task: @task%>
+</section>
+<% I18n.with_locale("#{I18n.locale}images") do %>
+<section class="imagesfortasks">
+<h2>Mes actions</h2>
+
+<%=render 'images', task: @task %>
+</section>
+<%end%>
+
+
+<%= link_to I18n.t('display.ajouter_type_tache'), addtypetask_task_path(@task.id) %> |
+<%= link_to I18n.t('display.notesailorstasks'), notesailorstasks_task_path(@task.id) %> |
+<%= link_to I18n.t('display.starattitude1'), starattitude_task_path(@task.id) %> |
+<%= link_to I18n.t('display.editgrouptask'), editgrouptask_task_path(@task.id) %> |
+<%= link_to I18n.t('display.newgrouptask'), newgrouptask_task_path(@task.id) %> |
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
+<%=link_to "Edit", @task, :class => "btn", "data-toggle" => "modal"%>
+
+<%=link_to 'hhh', newgrouptask_task_path(@task.id), :popup => ['dialogname','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes']%>
+

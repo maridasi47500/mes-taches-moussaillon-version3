@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name fr:</strong>
+  <%= @mission.name_fr %>
+</p>
+
+<p>
+  <strong>Name en:</strong>
+  <%= @mission.name_en %>
+</p>
+
+<p>
+  <strong>Name de:</strong>
+  <%= @mission.name_de %>
+</p>
+
+<%= link_to 'Edit', edit_mission_path(@mission) %> |
+<%= link_to 'Back', missions_path %>

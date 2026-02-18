@@ -1,0 +1,10 @@
+<%if params[:contentid]%>
+Destroy "<%=Content.find(params[:contentid]).content%>"?
+<%=link_to "destroy", destroyit_song_path(@song.id, contentid: params[:contentid])%>
+<%elsif params[:coupletid]%>
+Destroy couplet going like "<%=Couplet.find(params[:coupletid]).contents.pluck(:content).join(' ')%>"?
+<%=link_to "destroy", destroyit_song_path(@song.id, coupletid: params[:coupletid])%>
+<%elsif params[:refrainid]%>
+Destroy couplet going like "<%=Refrain.find(params[:refrainid]).contents.pluck(:content).join(' ')%>"?
+<%=link_to "destroy", destroyit_song_path(@song.id, refrainid: params[:refrainid])%>
+<%end%>

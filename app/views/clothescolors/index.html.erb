@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Clothescolors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clothescolors.each do |clothescolor| %>
+      <tr>
+        <td><%= clothescolor.name %></td>
+        <td><%= link_to 'Show', clothescolor %></td>
+        <td><%= link_to 'Edit', edit_clothescolor_path(clothescolor) %></td>
+        <td><%= link_to 'Destroy', clothescolor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Clothescolor', new_clothescolor_path %>

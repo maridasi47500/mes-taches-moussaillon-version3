@@ -1,0 +1,26 @@
+  <script>
+    $(function(){
+    var alljingles = $('.jingles-comment, .recordings-posts');
+    alljingles.mouseenter(function(){
+      var groupjingles=$(this);
+      var groupsound=$(this).children('audio');
+      groupsound.each(function(){
+        var range = groupsound.toArray().indexOf($(this)[0]);
+        $(this)[0].onended = function(){
+
+        if (range <groupsound.length && groupsound[range+1]!== undefined) {
+          console.log(groupsound);
+          groupsound[range+1].play();
+        }
+        };
+      });
+      $(this).children('audio')[0].play();
+    });
+    alljingles.mouseleave(function(){
+      alljingles.children('audio').each(function(){
+        $(this)[0].pause();
+      });
+    });
+});
+  </script>
+

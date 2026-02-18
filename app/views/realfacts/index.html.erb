@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Realfacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @realfacts.each do |realfact| %>
+      <tr>
+        <td><%= realfact.content %></td>
+        <td><%= link_to 'Show', realfact %></td>
+        <td><%= link_to 'Edit', edit_realfact_path(realfact) %></td>
+        <td><%= link_to 'Destroy', realfact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Realfact', new_realfact_path %>

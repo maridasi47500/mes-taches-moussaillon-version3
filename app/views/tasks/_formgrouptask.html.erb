@@ -1,0 +1,29 @@
+<%=form_with model: @task do |form|%>
+    <div>
+  
+        <%=form.fields_for :grouptasks do |f|%>
+          <% Grouptask.locale_columns(:title).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost', onkeydown: "$('.subtitle').html(this.value);" %>
+          
+</div>
+
+
+
+
+  <% end %>
+
+            <div>
+          <%=f.label :_destroy%>
+          <%=f.check_box :_destroy%>
+                
+        </div>
+        <%end%>
+</div>
+
+    <div class="action">
+  
+        <%=form.submit %>
+</div>
+<%end%>

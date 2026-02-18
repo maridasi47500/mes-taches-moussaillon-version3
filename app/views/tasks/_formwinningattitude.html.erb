@@ -1,0 +1,30 @@
+<%=form_with model: task do |f|%>
+<%=f.fields_for :starattitudes,@k do |form|%>
+  <div class="field">
+<%=render "form/radiobuttonother", form: form, fieldname: 'winningattitude_id', collec: [], mesmodele:"winningattitudes"%>
+
+
+</div>
+<%=form.hidden_field :user_id%>
+<div>
+<%(1..5).to_a.each do |s|%>
+<input id="<%="star"+s.to_s%>" name="<%=s%>star" type="image" width="50" height="50" alt="star<%=s%>"
+title="star <%=s%>"
+       src="/assets/starrum.png">
+<%end%>
+</div>
+<%end%>
+
+
+
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[getwinning_task_path(task.id)]%>
+<%@search=[json_winningattitudes_path]%>
+<%@nom=['winningattitudes']%>
+<%=render partial:"form/functionjsonwithstuffid", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mymenus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mymenus.each do |mymenu| %>
+      <tr>
+        <td>choisis entre <%= mymenu.webpages.pluck(:title).to_sentence %></td>
+        <td><%= link_to 'Show', mymenu %></td>
+        <td><%= link_to 'Edit', edit_mymenu_path(mymenu) %></td>
+        <td><%= link_to 'Destroy', mymenu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mymenu', new_mymenu_path %>

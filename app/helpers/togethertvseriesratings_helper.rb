@@ -1,0 +1,2 @@
+module TogethertvseriesratingsHelper
+end

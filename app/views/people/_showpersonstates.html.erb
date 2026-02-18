@@ -1,0 +1,34 @@
+<%if person.lifestates.length > 0%>
+<p><%=select_tag 'user_id', options_for_select(person.lifestates.collect{ |u| [u.name, u.id] }), {include_blank: "voir les photos de #{person.name} quand il/elle était...",onchange: "showherphotos(this);return false;"}%></p>
+<div class="herphotosdiv<%=person.id%>">
+</div>
+<script>
+function showherphotos(y){
+if (y.value.length !== ''){
+$.ajax({
+url: "<%=lifestatephotopeople_person_path(person.id)%>?myid="+String(y.value),
+success: function(data){
+$(".herphotosdiv<%=person.id%>").html(data);
+}
+});
+}
+}
+</script>
+<%end%>
+<%if person.lifestates.length > 0 && person.someonerequests.length > 0%>
+<p><%=select_tag 'user_id', options_for_select(person.lifestates.collect{ |u| [u.name, u.id] }), {include_blank: "voir les affaires de #{person.name} quand il/elle était...",onchange: "showherrequests(this);return false;"}%></p>
+<div class="herrequestsdiv<%=person.id%>">
+</div>
+<script>
+function showherrequests(y){
+if (y.value.length !== ''){
+$.ajax({
+url: "<%=lifestaterequestpeople_person_path(person.id)%>?myid="+String(y.value),
+success: function(data){
+$(".herrequestsdiv<%=person.id%>").html(data);
+}
+});
+}
+}
+</script>
+<%end%>

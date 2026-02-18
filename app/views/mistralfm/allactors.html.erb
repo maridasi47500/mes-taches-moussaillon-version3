@@ -1,0 +1,33 @@
+<%=render @person%>
+<form target="_blank" method="post" action="<%=opinion_path(params[:id])%>">
+<%=select_tag :attid, options_for_select(Attitude.all.collect {|x| [x.name, x.id]}), {prompt: 'Selectionnez son attitude'}%>
+<%if @person.tvseries_ids.include?(params[:tvseriesid].to_i)%>
+<input type="hidden" name="tvser001" value="<%=params[:tvseriesid]%>">
+<%end%>
+<%if @person.film_ids.include?(params[:filmid].to_i)%>
+<input type="hidden" name="film001" value="<%=params[:filmid]%>">
+<%end%>
+
+
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherattitudes(this,chercheattla);return false;", id: "cherchonsattici",class:"mysearchfieldavatars",placeholder:"chercher un attitude" %></div>
+        <select name="attitudeid" id="chercheattla" data-field="action_ids"></select>
+</br>
+<input id="image1" type="image" width="100" height="30" alt="star 1" name="tvser1"
+
+       src="/assets/starrum.png">
+<input id="image2" type="image" width="100" height="30" alt="star 2" name="tvser2"
+
+       src="/assets/starrum.png">
+<input id="image3" type="image" width="100" height="30" alt="star 3" name="tvser3"
+
+       src="/assets/starrum.png">
+<input id="image4" type="image" width="100" height="30" alt="star 4" name="tvser4"
+
+       src="/assets/starrum.png">
+<input id="image5" type="image" width="100" height="30" alt="star 5" name="tvser5"
+
+       src="/assets/starrum.png">
+
+
+</form>
+

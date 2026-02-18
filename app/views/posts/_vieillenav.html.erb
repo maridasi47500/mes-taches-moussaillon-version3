@@ -1,0 +1,47 @@
+  <ul> 
+    <li> <%= link_to "Add new avatars", addnewavatars_post_path(@post.id)%></li>
+    <li> <%= link_to "Edit avatars", editavatars_post_path(@post.id)%></li>
+    <li> <%= link_to "Ajouter une tâche à ce poste", tasks_post_path(@post.id)%></li>
+        <li> <%= link_to "Ajouter des surnoms aux moussaillons", surnames_post_path(@post.id)%></li>
+        <li> <%= link_to "Programmer ce post", thread_post_path(@post.id)%></li>
+
+     <li class="nav-item"><%=link_to t('monmenu.addaposttype'), addaposttype_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.addamaptothispost'), addamap_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.addasongtothispost'), addasongtothispost_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.hackerstaskpost'), mestachesdehacker_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.postlinksocialmvmt'), socialmovements_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.newjinglespost'), myjingles_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.newattitudepost'), attitude_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.addaddressestothispost'), addnewaddress_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.newjinglepost'), addnewjingles_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.newtendancepost'), newtendances_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.postaddphotosfilms'), photosorfilms_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.postaddavatarpseudo'), avatars_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to t('monmenu.postnewemail'), emailsforposts_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "edit proposals", myproposals_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "post expired", postexpired_post_path(post.id), class: ""%></li>
+
+     <li class="nav-item"><%=link_to "add a dish", adddishes_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a tv series", addtvseries_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a historical character", myhistoricalcharacters_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a movie", addmovie_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a comic book", mycomicbooks_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a movie scene", mymoviescenes_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add an epoch", myepochs_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a place", postsplaces_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a google request", googlereq_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add anaphor", anaphorsposts_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add metonymies", metonymies_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add fake comments", fakecomments_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a web page", addwebpage_post_path(post.id), class: ""%></li>
+
+     <li class="nav-item"><%=link_to "add synonyms", synonyms_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a company", addcompany_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add words", words_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add messages caches", messagescaches_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add tasks to this post", tasksposts_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add contents to this post", addcontent_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add tweets", tweets_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add a facebook request", facebookreq_post_path(post.id), class: ""%></li>
+     <li class="nav-item"><%=link_to "add an icon", mesicones_post_path(post.id), class: ""%></li>
+    </ul>

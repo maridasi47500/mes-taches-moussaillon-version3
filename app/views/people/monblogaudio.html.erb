@@ -1,0 +1,8 @@
+
+<ul>
+<%People.all.joins(:aidememoires).each do |p|%>
+<li>
+<%=link_to "blog sur #{p.name}", blog_person_path(p.id)%>
+</li>
+<%end%>
+</ul>

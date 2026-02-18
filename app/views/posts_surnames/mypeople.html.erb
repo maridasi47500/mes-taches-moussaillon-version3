@@ -1,0 +1,10 @@
+<%=fields_for :posts_surname do |form|%>
+<%=form.collection_radio_buttons(@field, @people, :id, :name, {include_hidden:false}) do |f|%>
+<%=f.radio_button%>
+
+<%=f.label do%>
+<%=render partial: "people/personsimple",collection:Person.where(id:f.value), as: :person%>
+
+<%end%>
+<%end%>
+<%end%>

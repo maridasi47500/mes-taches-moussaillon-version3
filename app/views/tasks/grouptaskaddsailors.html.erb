@@ -1,0 +1,20 @@
+add sailors
+(<%=@grouptask.title%>)
+<%=render @grouptask.people%>
+<%=form_with url: grouptasksailors_task_path(@task.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personids', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_categorythings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+<br>
+<%= link_to 'Back to task', task_path %>

@@ -1,0 +1,17 @@
+<%=form.fields_for :movies do |dish|%>
+  <div class="field">
+    <%= dish.label :_destroy, "destroy this movie from the database" %>
+    <%= dish.check_box :_destroy %>
+  </div>
+
+  <div class="field">
+    <%= dish.label :image, "give a poster for this movie" %>
+    <%= dish.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= dish.label :name, "title of this movie" %>
+    <%= dish.text_field :name %>
+  </div>
+    <%end%>
+

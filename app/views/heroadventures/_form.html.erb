@@ -1,0 +1,32 @@
+<%= form_with(model: heroadventure, local: true) do |form| %>
+  <% if heroadventure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(heroadventure.errors.count, "error") %> prohibited this heroadventure from being saved:</h2>
+
+      <ul>
+        <% heroadventure.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% Heroadventure.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

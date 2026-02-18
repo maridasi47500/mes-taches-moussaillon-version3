@@ -1,0 +1,174 @@
+<div id="formpourpost">
+ 
+ <%if @taskselected%> 
+    <h2>about <%=@taskselected.name%></h2>
+
+ 
+  <%end%> 
+
+
+  
+  <%= form_with(model: post, local: true, html: {id: "form-post"}) do |form| %>
+    <p><%=link_to "add a word with meaning", addword_path(params[:id])%></p>
+    <p><%=link_to "talk about a dish", adddish_path(params[:id])%></p>
+    <%= form.label "title", "titre du post" %>
+    <%= form.text_field "title" %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="apercu"></div>
+    <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+
+  <% Post.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost' %>
+          
+</div>
+  </div>
+  <% end %>
+  <!-- Only required for left/right tabs -->
+    <div class="tab-content">
+
+      <%=button_tag("add a reaction with those people", type: "button", id: "searchnamethosepeople")%>
+
+  
+        <%=render partial: "posts/allcats", locals: {post: post, form: form}%>
+
+  
+
+          
+        
+          <h2><%=@colonnes[2]%></h2>
+
+        <%= render "headersmessage", form: form %>
+                    <h2><%=@colonnes[3]%></h2>
+
+
+<%= render partial: "reactpage", locals: {form: form, post: post} %>
+
+          <h2><%=@colonnes[4]%></h2>
+    <div class="didonce"></div>
+<button type="button" onclick="$.ajax({url: '/addasynonym'});">Add a synonym</button>
+<button type="button" onclick="$.ajax({url: '/addametonymy'});">Add a metonymy</button>
+    <div class="addstuff"></div>
+
+
+    <div class="field">
+<%= form.label :usualaction_ids, "Sailors' usual tasks" %>
+    <%= form.select("usualaction_ids", (@post.usualactions+@usualtasksofsailors).collect {|p| [ p.name+' avec '+p.sailors.pluck(:name).join(', '), p.id ] },{prompt: 'edit your selection of tasks'}, { size: 5,multiple: true}) %>
+</div>
+    <div class="field">
+<%= form.label :event_ids, "events" %>
+        <%=form.fields_for :events do |event|%>
+    <%= event.text_field("name") %>
+        <%end%>
+    </div>
+          
+    
+
+
+<div class="field">
+
+    <%= form.label :post_type_ids, "Post type" %>
+    <%= form.select("post_type_ids",PostType.all.collect {|p| [ p.name, p.id ] },{prompt: 'select post types'}, { size: 5,multiple: true }) %>
+</div>
+
+<div class="field">
+
+    <%= form.label :otherposts, "Make an echo to this post" %>
+    <%= form.text_field("otherposts",value: @post.otherposts.pluck(:id).join(','))%>
+</div>
+<div class="field">
+    <%= form.label :commentapost, "Comment a post" %>
+    <%= form.text_field("commentapost",value: (post.oldercomment ? post.oldercomment.id : ""))%>
+</div>
+
+  <div class="field">
+    <%= form.hidden_field :post_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+<%if !["edit","update","new"].include?(params[:action])%>
+        <%=render partial: "posts/#{params[:action]}", locals: {post: post, form: form}%>
+<%end%>
+
+<div class="field people-jingles">
+</div>
+<%= form.hidden_field :id, value: @post.id%>
+
+
+    <div class="field">
+        <%= render "inputvideo", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputrecording", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputphotoswebcam", form: form %>
+    </div>
+       
+       
+
+     
+<% end %>
+
+  
+  </div>
+<%= content_for :javascripts do  %>
+  <script>
+$('label[for^=post_jingle_ids_]').each(function(){
+$(this).html('<audio src="/assets/'+$(this).html()+'" controls=""></audio>');
+});
+
+ function on() {
+  document.getElementById("react").style.display = "block";
+  document.getElementById("reactpage").style.display = "block";
+}
+
+function off() {
+  document.getElementById("react").style.display = "none";
+  document.getElementById("reactpage").style.display = "none";
+} 
+</script>
+
+  <script>
+    $(function(){
+       function onmodale() {
+  document.getElementById("mamodale").style.display = "block";
+  document.getElementById("contenumamodale").style.display = "block";
+}
+
+function offmodale() {
+  document.getElementById("mamodale").style.display = "none";
+  document.getElementById("contenumamodale").style.display = "none";
+} 
+      $('[data-action]').click(function(){
+        $.ajax({url: $(this).data('action'),success:function(res){
+            $("#contenumamodale").append(res);
+        }});
+            onmodale();
+            return false;
+
+      });
+      $('.closemodale').click(function(){
+         offmodale();
+         return false;
+      })
+    })
+    
+  </script>
+  <%end%>

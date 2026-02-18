@@ -1,0 +1,19 @@
+<%=form.fields_for :words do |f|%>
+<h2>Add synonyms</h2>
+	<div class="field">
+	<%= f.label :word, "the word" %>
+	<%= f.text_field :word%>
+        </div>
+        <%= f.fields_for :meanings do |mean|%>
+	<div class="field">
+	<%= mean.label :content, "meaning of the word" %>
+	<%= mean.text_field :content%>
+        </div>
+	<div class="field">
+	<%= mean.label :_destroy, "destroy this meaning" %>
+	<%= mean.check_box :_destroy%>
+        </div>
+
+        <%end%>
+<%end%>
+

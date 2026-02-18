@@ -1,0 +1,2 @@
+class Mylayout < ApplicationRecord
+end

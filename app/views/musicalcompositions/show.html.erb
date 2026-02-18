@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @musicalcomposition.title %>
+</h1>
+
+<%if @song.artists.length > 0%>
+<p>
+
+originally composed by <%=render @song.artists%>
+</p>
+<%end%>
+<%if @musicalcomposition.recipients.length > 0%>
+<p>
+<i>à <%= render (@musicalcomposition.compohaverecipients)%></i>
+</p>
+<%end%>
+
+
+
+<p>
+by <%=render @musicalcomposition.composer%>
+
+
+</p>
+<%@song.refrains.order(:orderid => :asc).each_with_index do |a,i|%>
+  <b>Refrain n°<%=i+1%></b>
+
+
+  <%a.contents.group(:lineid).order(:lineid => :asc).each do |refrain|%>
+    <p><%=refrain.mycomposedcontent%></p>
+
+  <%end%>
+
+
+
+  <%end%>
+
+
+</p>
+<%@song.couplets.order(:orderid=>:asc).each_with_index do |a,i|%>
+  <b>Couplet n°<%=i+1%></b>
+  <%a.contents.group(:lineid).order(:lineid => :asc).each do |couplet|%>
+    <p><%=couplet.mycomposedcontent%></p>
+  <%end%>
+  <%end%>
+
+
+<%= link_to 'Edit', edit_musicalcomposition_path(@musicalcomposition) %> |
+<%= link_to 'Back', musicalcompositions_path %>

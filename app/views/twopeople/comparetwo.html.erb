@@ -1,0 +1,55 @@
+<%=content_for :csscode do %>
+table,tr,th,td {
+border: 1px dotted black;
+}
+<%end%>
+<%=form_with url: comparetwopeople_twopeople_path do |form|%>
+<%=form.hidden_field :person1id, value: @person1.id%>
+<%=form.hidden_field :person2id, value: @person2.id%>
+
+
+<table style="border: 1px solid black;">
+<tr>
+<th>
+</th>
+<%@people.each do |p|%>
+<td>
+<%=render 'people/inputimage',person: p%>
+
+</td>
+<%end%>
+
+<tr>
+<td>
+cities
+</td>
+<%@people.each do |p|%>
+<td>
+<%=render partial: 'cities/inputimage',collection: p.pcitiesnot(@twopeople.city_ids), as: :city%>
+</td>
+<%end%>
+</tr>
+
+<tr>
+<td>
+jobs
+</td>
+<%@people.each do |p|%>
+<td>
+<%=render partial: 'jobs/inputimage',collection: p.cjobsnot(@twopeople.job_ids), as: :job%>
+</td>
+<%end%>
+</tr>
+
+<tr>
+<td>
+companies
+</td>
+<%@people.each do |p|%>
+<td>
+<%=render partial: 'companies/inputimage',collection: p.ccompaniesnot(@twopeople.company_ids), as: :company%>
+</td>
+<%end%>
+</tr>
+</table>
+<%end%>

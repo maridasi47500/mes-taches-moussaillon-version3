@@ -1,0 +1,8 @@
+<%=fields_for :torealizetask do |form|%>
+<%=form.fields_for :attitudetakentasks do |ff|%>
+  <div class="field">
+<%=render "form/fieldsforradiobuttoncolumnwithvariable",n:"torealizetask[attitudetakentasks_attributes][#{params[:n]}]",columnname: :name, form: ff, fieldname: 'attitude_id', collec: @attitudes, mesmodele:"attitudes",m:params[:n]%>
+
+</div>
+<%end%>
+<%end%>

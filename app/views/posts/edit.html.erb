@@ -1,0 +1,10 @@
+<h1>Editing Post</h1>
+  <%= form_with(model: @post, local: true, html: {id: "form-post"}) do |form| %>
+
+<%if @post.authors.count > 0%>
+<%= render partial: "photoshackers", collection: @post.authors, as: :person %>
+<%end%>
+<%= render 'form', form: form, post: @post, editpost: true %><br/>
+<br/>
+<%end%>
+

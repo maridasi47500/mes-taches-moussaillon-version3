@@ -1,0 +1,123 @@
+<p id="notice"><%= notice %></p>
+
+<div id="aboutthem">
+  <%= render @aboutsomeonegossip %>
+</div>
+<p>
+  <%= render @aboutsomeonegossip.tvseries %>
+<%if @aboutsomeonegossip.noterumeurs.length > 0%>
+Note moyenne : 
+<span title="<%=@aboutsomeonegossip.notesgossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.moy %>
+</span>.
+
+<%end%>
+
+<%if @aboutsomeonegossip.aimegossips.length > 0%>
+<span title="<%=@aboutsomeonegossip.aimegossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.aimegossips.length%> 
+<%="personne".pluralize(@aboutsomeonegossip.aimegossips.length)%>
+</span>
+<%="aime".pluralize(@aboutsomeonegossip.aimegossips.length)%>
+cette gossip.
+<%end%>
+
+<%if @aboutsomeonegossip.aimepasgossips.length > 0%>
+<span title="<%=@aboutsomeonegossip.aimepasgossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.aimepasgossips.length%> 
+<%="personne".pluralize(@aboutsomeonegossip.aimepasgossips.length)%>
+</span>
+<%="n'aime pas".pluralize(@aboutsomeonegossip.aimepasgossips.length)%>
+cette gossip.
+<%end%>
+<%if @aboutsomeonegossip.lugossips.length > 0%>
+<span title="<%=@aboutsomeonegossip.lugossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.lugossips.length%> 
+</span>
+<%="personne a".pluralize(@aboutsomeonegossip.lugossips.length)%>
+lu cette gossip.
+<%end%>
+<%if @aboutsomeonegossip.entendugossips.length > 0%>
+<span title="<%=@aboutsomeonegossip.entendugossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.entendugossips.length%> 
+<%="personne a ".pluralize(@aboutsomeonegossip.entendugossips.length)%>
+</span>
+entendu parler de cette gossip.
+<%end%>
+<%if @aboutsomeonegossip.dontunderstandgossips.length > 0%>
+<span title="<%=@aboutsomeonegossip.comprendpasgossips.pluck(:name).join(', ') %>">
+<%=@aboutsomeonegossip.dontunderstandgossips.length%> 
+<%="personne".pluralize(@aboutsomeonegossip.dontunderstandgossips.length)%>
+</span>
+<%="n'a jamais entendu parler de".pluralize(@aboutsomeonegossip.dontunderstandgossips.length)%>
+cette gossip.
+<%end%>
+
+</p>
+<%@aboutsomeonegossip.commentrumeurs.each do |x|%>
+<div class='card'><%=render x.user%>
+<%=x.content%>
+<div>
+<%end%>
+
+<%if !@aboutsomeonegossip.true%>
+<%= form_with(model: @aboutsomeonegossip, local: true) do |form| %>                                                                
+  <%=form.hidden_field :true, value: '1'%>
+  <%=form.submit "Non, la gossip est vraie"%>
+<%end%>
+<%else%>
+<%= form_with(model: @aboutsomeonegossip, local: true) do |form| %>
+  <%=form.hidden_field :true, value: '0'%>
+  <%=form.submit "Non, la gossip est fausse"%>
+<%end%>
+<%end%>
+<form method="post">
+<input type="hidden" name="userid" value="<%=current_user.id%>" />
+<input id="image" type="image" width="100" height="30" alt="star 1" name="1"
+
+       src="/assets/starrum.png">
+<input id="image" type="image" width="100" height="30" alt="star 2" name="2"
+
+       src="/assets/starrum.png">
+<input id="image" type="image" width="100" height="30" alt="star 3" name="3"
+
+       src="/assets/starrum.png">
+<input id="image" type="image" width="100" height="30" alt="star 4" name="4"
+
+       src="/assets/starrum.png">
+<input id="image" type="image" width="100" height="30" alt="star 5" name="5"
+
+       src="/assets/starrum.png">
+<input id="image" type="image" width="100" height="30" alt="dontlike" name="aimepas"
+
+       src="/assets/coeurbriserum.png">
+<input id="image" type="image" width="100" height="30" alt="Login" name="aime"
+
+       src="/assets/coeurrum.png">
+<input type="text" name="comment" value="" />
+<input id="image" type="image" width="100" height="30" alt="Login" name="com"
+
+       src="/assets/comrum.png">
+<input id="image" type="image" width="100" height="30" alt="Login" name="entendu"
+       src="/assets/orrum.png">
+<input id="image" type="image" width="100" height="30" alt="Login" name="lu"
+       src="/assets/oeilrum.png">
+<input id="image" type="image" width="100" title="jamais entendu parler" height="30" alt="don't understand" name="comprendpas"
+       src="/assets/dontunderstand.png">
+</form>
+<br>
+<ul>
+<%@aboutsomeonegossip.secretoccupations.each do |t|%>
+<li>
+<%=render 'secretoccupations/secretoccupation', t:t%>
+<%end%>
+</ul>
+<br>
+<h2>Commenter sur les occupations secrètes de quelqu'un</h2>
+<%=render 'secretoccupations/form', secretoccupation: Secretoccupation.new(aboutsomeonegossip: @aboutsomeonegossip),actors:@aboutsomeonegossip.actors.map{|x|[x.id,x.name]} %>
+<br>
+
+
+<%= link_to 'Edit', edit_aboutsomeonegossip_path(@aboutsomeonegossip) %> |
+<%= link_to 'Back', aboutsomeonegossips_path %> |
+        <td><%= link_to 'Papoter à propos de cette rumeur', newpostwithcollections_posts_path(gossipid: @aboutsomeonegossip.id) %></td>

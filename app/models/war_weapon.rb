@@ -1,0 +1,2 @@
+class WarWeapon < Thing
+end

@@ -1,0 +1,2 @@
+class Artobject < Thing
+end

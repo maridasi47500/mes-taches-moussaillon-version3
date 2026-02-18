@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Somme:</strong>
+  <%= @transac.somme %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transac.date %>
+</p>
+
+<p>
+  <strong>Motif:</strong>
+  <%= @transac.motif %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @transac.username %>
+</p>
+<%if @transac.repas%>
+<p>
+  <strong>Objet de la transaction:</strong>
+  Repas <%=link_to "voir la composition du repas",comporepas_transac_path(@transac.id)%>
+</p>
+<%end%>
+<%if @transac.depense%>
+<p>
+  <strong>Objet de la transaction:</strong>
+  <%= @transac.depense.motif %> (depense)
+</p>
+<%end%>
+
+<%= link_to 'Edit', edit_transac_path(@transac) %> |
+<%= link_to 'Back', transacs_path %>

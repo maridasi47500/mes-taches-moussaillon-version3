@@ -1,0 +1,43 @@
+
+<%=render personhavelifestate%>
+
+<%= form_with(model: personhavelifestate, local: true) do |form| %>
+  <% if personhavelifestate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(personhavelifestate.errors.count, "error") %> prohibited this personhavelifestate from being saved:</h2>
+
+      <ul>
+        <% personhavelifestate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "photo_ids", collec: personhavelifestate.photos, mesmodele:"photos"%>
+
+</div>
+<div class="field">
+<%#=render "form/checkbox", form: form, fieldname: "requeststoperson_ids", collec: personhavelifestate.requeststopeople, mesmodele:"requeststopeople"%>
+
+</div>
+<%=form.hidden_field :person_id%>
+<%=form.hidden_field :lifestate_id%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@columnname=['title','content']%>
+<%@search=[json_photos_path,json_requeststopeople_path]%>
+<%@select=[photos_personhavelifestates_path,requeststopeople_personhavelifestates_path]%>
+
+<%@nom=['photos','requeststopeople']%>
+<%=render partial:"form/functionjsonlifestate", collection: @nom.zip(@search, @select,@columnname), as: :t%>
+</script>
+<%end%>
+

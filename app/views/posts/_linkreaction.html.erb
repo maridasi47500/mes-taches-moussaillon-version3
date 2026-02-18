@@ -1,0 +1,4 @@
+
+<%=form.collection_check_boxes(:reaction_ids, post.mostrecentreactions, :id, :name, prompt: true) do |react| %>
+  <p><%=react.check_box%> <%=render Reaction.find(react.value)%></p>
+  <%end%>

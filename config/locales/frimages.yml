@@ -1,0 +1,73 @@
+frimages: 
+  sailorrisked: "%{sailor} a tenté sa chance"
+  sailorissaved: "%{sailor} est sauvé(e)"
+  display:
+    effortsfor: "Combien d'efforts pour %{task} faîtes-vous ?"
+  quantifyeffort:
+    zero: "%{sailor}, tu n'as aucun effort à fournir pour %{task}"
+    one: "%{sailor}, tu fais juste un tout petit effort pour %{task} (%{effort})"
+    few: "%{sailor}, tu t'entraines un peu (%{effort}) pour %{task}"
+    any: "%{sailor}, tu t'entraines pas (%{effort}) pour %{task}"
+    other: "%{sailor}, tu te défonces (%{effort}) pour %{task}"
+  accordingtosailors:
+    zero: 'aucun moussaillon'
+    one: 'selon 1 moussaillon'
+    few: 'selon %{count} moussaillons'
+    any: 'selon %{count} moussaillons'
+    other: 'selon %{count} moussaillons'
+  savedsailors:
+    zero: 'aucun moussaillon sauvé'
+    one: '1 moussaillon sauvé'
+    few: '%{count} moussaillons sauvés'
+    any: '%{count} moussaillons sauvés'
+    other: '%{count} moussaillons sauvés'
+  task:
+    boutons:
+      noterealizedtask:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant noté la réalisation de la tâche</a>"
+        sentence: "cette tâche est %{score} réalisée"
+      notetask:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant noté l'idée de la tâche</a>"
+        sentence: "cette tâche est une %{score} idée"
+      aimepas:
+        link: "<a href=\"%{link}\">Voir toutes les personnes n'aimant pas cette tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> n'a pas aimé cette tâche"
+        few: "<span title=\"%{users}\">%{count} moussaillons</span> n'ont pas aimé cette tâche"
+        any: "<span title=\"%{users}\">%{count} moussaillons</span> n'ont pas aimé cette tâche"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> n'ont pas aimé cette tâche"
+
+      aime:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant aimé cette tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a aimé cette tâche"
+        few: "<span title=\"%{users}\">%{count} moussaillons</span> ont aimé cette tâche"
+        any: "<span title=\"%{users}\">%{count} moussaillons</span> ont aimé cette tâche"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> ont aimé cette tâche"
+      attitude:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant les bonnes ou mauvaises attitudes</a>"
+        zero: ""
+        one: "l'attitude de %{sailors} de %{nomatt} était %{score}"
+        few: "l'attitude de %{nomatt} de %{sailors} était %{score}"
+        any: "l'attitude de %{nomatt} de %{sailors} était %{score}"
+        other: "l'attitude de %{nomatt} de %{sailors} et %{nbothersailors} autres moussaillons était %{score}"
+      avis:
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a trouvé que"
+        any: "<span title=\"%{users}\">%{count} moussaillons</span> ont trouvé que"
+        other: "%{users} et %{nbotherusers} autres moussaillons ont trouvé que"
+      saved:
+        link: "<a href=\"%{link}\">Voir toutes les personnes sauvées</a>"
+        zero: ""
+        one: "<span title=\"%{sailors}\">1 moussaillon</span> était sauvé en accomplissant cette tâche"
+        few: "<span title=\"%{sailors}\">%{count} moussaillons</span> étaient sauvés en accomplissant cette tâche"
+        any: "%{sailors} et %{nbothersailors} autre moussaillon</span> étaient sauvés en accomplissant cette tâche"
+        other: "%{sailors} et %{nbothersailors} autres moussaillons étaient sauvés en accomplissant cette tâche"
+      risk:
+        link: "<a href=\"%{link}\">Voir toutes les personnes courageuses</a>"
+        zero: ""
+        one: "<span title=\"%{sailors}\">1 moussaillon</span> a réellement tenté sa chance en accomplissant cette tâche"
+        few: "<span title=\"%{sailors}\">%{count} moussaillons</span> ont réellement tenté leur chance en accomplissant cette tâche"
+        any: "%{sailors} et %{nbothersailors} autre moussaillon ont réellement tenté leur chance en accomplissant cette tâche"
+        other: "%{sailors} et %{nbothersailors} moussaillons ont réellement tenté leur chance en accomplissant cette tâche"
+

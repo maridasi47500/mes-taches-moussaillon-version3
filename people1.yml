@@ -1,0 +1,27 @@
+---
+- !ruby/object:Person
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 1
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: harry styles
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: image
+    value_before_type_cast: hs.jpeg
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Person
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: lewis capaldi
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: image
+    value_before_type_cast: lc.jpeg
+  new_record: false
+  active_record_yaml_version: 2

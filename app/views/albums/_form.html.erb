@@ -1,0 +1,68 @@
+<%= form_with(model: album, local: true) do |form| %>
+  <% if album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+        <% album.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, "album title" %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= form.label :person_id, "who's on the photos?" %>
+    <%= form.collection_radio_buttons :person_id, Person.where(id: album.person_id), :name, :id %>
+
+<%=text_field_tag :allpeople, "",placeholder:"tell me the most famous person on this photo", id: "allpeople",class:"largetextfield", onchange:"seekpeople(this);return false;"%>
+<select id="all" multiple="true" size="20" onchange="selectpeople(this);return false;"></select>
+<div id="greatpeople"></div>
+  </div>
+
+
+    <%= form.fields_for :photos do |photo|%>
+  <div class="field">
+      <%= photo.file_field :file %>
+      <%=photo.label :file, "your photo" %>
+  </div>
+  <div class="field">
+    <%= photo.label :title, "photo title" %>
+    <%= photo.text_field :title, value: album.nameperson %>
+  </div>
+<%end%>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function seekpeople(field){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field){
+$.ajax({url: '<%=person_albums_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+
+}});
+};
+</script>
+<% end %>
+

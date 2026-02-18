@@ -1,0 +1,9 @@
+<div class="card"><h5> <%=  event.name%> </h5>
+
+<p>
+  <%= t("de_a", from: l(event.start_at, format: :mytime), to: l(event.end_at, format: :mytime)) %>
+</p>
+
+<p>Durée : <%=distance_of_time_in_words(event.start_at, event.end_at)%></p>
+
+</div>

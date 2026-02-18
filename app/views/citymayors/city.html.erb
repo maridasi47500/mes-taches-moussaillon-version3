@@ -1,0 +1,8 @@
+<%=collection_radio_buttons(:citymayor, :city_id, @cities, :id, :name) do |b| %>
+       <%=b.radio_button(checked: true)%>
+<%=b.label do%>
+<%=render City.find(b.value)%>
+<%end%>
+
+<% end %>
+

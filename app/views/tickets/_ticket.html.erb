@@ -1,0 +1,9 @@
+<div class="card">
+</br>
+<%=ticket.content%>
+</br>
+from: <%=ticket.sender%> <%=ticket.senders.pluck(:name).to_sentence%>
+</br>
+to: <%=ticket.recipient%> <%=ticket.recipients.pluck(:name).to_sentence%>
+</br>
+</div>

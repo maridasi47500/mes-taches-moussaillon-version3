@@ -1,0 +1,161 @@
+
+
+    <div class="container pt-0 mt-2">
+        <div class="carousel-inner mytasks" id="mytasks">
+                <div class="field">
+            <%=fields_for :post, @post do |form|%>
+<%=form.fields_for :postlikecomments, Postlikecomment.new do |ff|%>
+<%=ff.fields_for :setoftask, Setoftask.new do |f|%>
+<%=f.text_field :title, placeholder: "title for this set of tasks"%>
+<%=f.label :title, "Add a title to this set of tasks"%>
+<%end%>
+<%end%>
+<%end%>
+                        </div>
+
+        </div>
+    </div>
+    <div class="container pt-0 mt-2">
+        <div class="carousel-inner mytask" id="mytask">
+                <div class="field">
+    </div>
+        </div>
+    </div>
+    <div class="container pt-0 mt-2">
+        <div class="carousel-inner mytask" id="mysailor">
+                <div class="field">
+    </div>
+        </div>
+    </div>
+    <div class="container pt-0 mt-2">
+        <div class="carousel-inner " id="myattitude">
+                <div class="field">
+    </div>
+        </div>
+    </div>
+    <div class="container pt-0 mt-2">
+        <div class="carousel-inner " id="mymusicalscore">
+                <div class="field">
+    </div>
+        </div>
+    </div>
+
+</section>
+<section class="carousel carouselcollectionofthisperson slide" data-interval="false" data-ride="carousel" id="postsCarousel3">
+    <h2>Chercher quelqu'un pour réagir dans les collections</h2>
+        <button type="button" onclick="createnewavatar();">Montrer les gens de cette collection</button>
+        <%=text_field_tag :mycollectionname, "", placeholder: "Nom de cette collection"%>
+        <button type="button" onclick="chercherunecollection();">Chercher une collection</button>
+
+    <div class="parent">
+                                                    <div class="col-12 text-md-right ">
+
+                <a class="btn btn-secondary-outline next3" href="" title="more">suivant</a>
+
+                                <a class="btn btn-secondary-outline prev3" href="" title="go back">précédent</a>
+
+        </div>
+
+
+        <div class="card-group row findthiscollection">
+                <%= render partial: "posts/selectcollectionofthisperson" %>
+
+        </div>
+    </div>
+            <div class="container pt-0 mt-2">
+        <div class="carousel-inner ">
+                    <%= form.fields_for :my_posts_surnames do |f| %>
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name, "quel pourrait être mon surnom" %>
+        <%= surname.text_field :name %>
+        <% #if params[:action] == "avatars"||params[:action] == "new"%>
+        <%=link_to "appeler ces gens", "", onclick: "$.ajax({type: 'post',url: '#{mypeople_posts_path}?'+$('form').serialize(),success: function(code) {$('.mypeople').html(code.split('<br>')[0]);console.log(code);$('#maprofilpic').html(code.split('<br>')[1]);}});return false;"%>
+        <%=link_to "mes gens les plus fréquentés", "", onclick: "$.ajax({type: 'post',url: '#{myfrequentpeople_posts_path}',success: function(code) {$('.mypeople').html(code.split('<br>')[0]);console.log(code);$('#maprofilpic').html(code.split('<br>')[1]);}});return false;"%>
+        <%=link_to "mes groupes", "", onclick: "$.ajax({type: 'post',url: '#{mycollectionsofpeople_posts_path}',success: function(code) {$('.mypeople').html(code);}});return false;"%>
+      <%#end%>
+      </div>
+      <div>
+        <%= surname.label :my_relation, "give me the relation to the person you're talking about, the raison d'être of this surname (basic example : my cousin talks 'as if he were' #{Person.all.sample.name}, your input would be : 'as if he were')" %>
+        <%= surname.text_field :my_relation %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+    <%end%>
+
+        </div>
+    </div>
+    </section>   
+
+
+<section class="carousel carouselcollectionofthistask slide" data-interval="false" data-ride="carousel" id="postsCarousel2">
+    <div class="container pt-0 mt-2">
+
+    </div>
+        <div class="container pt-0 mt-2 containerofmypeople">
+        <div class="carousel-inner" id="myfeed">
+        </div>
+                    <div class="carousel-inner mycollectionsformyposts">
+        </div>
+            
+
+    </div>
+    <div class="container pt-0 mt-2">
+        <div class=" " id="">
+                <div class="field">
+                                      <%= button_tag "envoyer", type:'button', onclick: "$.ajax({url: '#{myattitude_people_path}?id='+$('[name=\"post[my_posts_surnames_attributes][0][speaklike_id]\"]')[1].value,success:function(data){$('#myattitude').html(data);}});$.ajax({url: '#{myfeeds_tweets_path}?userid='+$('[name=\"post[my_posts_surnames_attributes][0][speaklike_id]\"]')[1].value,success:function(data){$('#myfeed').html(data);}});$.ajax({url: '#{mytask_people_path}?id='+$('[name=\"post[my_posts_surnames_attributes][0][speaklike_id]\"]')[1].value+'&coltaskid='+$('#anyname_colidtask').val(),success:function(data){$('#mytask').prepend(data);$('#mytask')[0].children[0].remove();}});$.ajax({url: '#{mytasks_people_path}?id='+$('[name=\"post[my_posts_surnames_attributes][0][speaklike_id]\"]')[1].value+'&coltaskid='+$('#anyname_colidtask').val(),success:function(data){$('#mytasks').prepend(data);$('#mytasks')[0].children[0].remove();}});return false;" %>
+
+        <%= render "inputrecording", form: form %>
+    </div>
+        </div>
+    </div>
+
+      
+</section>
+
+<%=content_for :js do %>
+<script>
+    function next2(){ $('.carouselcollectionofthistask').carousel('next');return false; };
+    function prev2(){ $('.carouselcollectionofthistask').carousel('prev');return false; };
+    function next4(){ $('.carousel4').carousel('next');return false; };
+    function prev4(){ $('.carousel4').carousel('prev');return false; };
+
+  (function($) {
+    "use strict";
+
+    // manual carousel controls
+    $('.next').click(function(){ $('.carouselreactivepeople').carousel('next');return false; });
+    $('.prev').click(function(){ $('.carouselreactivepeople').carousel('prev');return false; });
+    $('.next3').click(function(){ $('.carouselcollectionofthisperson').carousel('next');return false; });
+    $('.prev3').click(function(){ $('.carouselcollectionofthisperson').carousel('prev');return false; });
+    const slider = document.querySelector('.parent');
+let mouseDown = false;
+let startX, scrollLeft;
+
+let startDragging = function (e) {
+  mouseDown = true;
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+};
+let stopDragging = function (event) {
+  mouseDown = false;
+};
+
+slider.addEventListener('mousemove', (e) => {
+  e.preventDefault();
+  if(!mouseDown) { return; }
+  const x = e.pageX - slider.offsetLeft;
+  const scroll = x - startX;
+  slider.scrollLeft = scrollLeft - scroll;
+});
+
+// Add the event listeners
+slider.addEventListener('mousedown', startDragging, false);
+slider.addEventListener('mouseup', stopDragging, false);
+slider.addEventListener('mouseleave', stopDragging, false);
+})(jQuery);
+  </script>
+  <%end%>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description of the criterion :</strong>
+  <%= @scorecriterion.description %>
+</p>
+
+<p>
+  <strong>user proposing the criterion :</strong>
+  <%= render @scorecriterion.gooduser %>
+</p>
+
+<p>
+  <strong>Musical score:</strong>
+  <%= render @scorecriterion.musicalscore%>
+</p>
+
+<%= link_to 'Back to the musical score', scorecriterion_path(@scorecriterion.id), class:"nav-item2" %> |
+<%= link_to 'Edit', edit_scorecriterion_path(@scorecriterion) %> |
+<%= link_to 'Back', scorecriteria_path %>

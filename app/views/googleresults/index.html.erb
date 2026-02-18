@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Googleresults</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @googleresults.each do |googleresult| %>
+      <tr>
+        <td><%= googleresult.content %></td>
+        <td><%= link_to 'Show', googleresult %></td>
+        <td><%= link_to 'Edit', edit_googleresult_path(googleresult) %></td>
+        <td><%= link_to 'Destroy', googleresult, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Googleresult', new_googleresult_path %>

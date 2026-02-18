@@ -1,0 +1,105 @@
+<script>
+
+<!-- take photos webcam-->
+    (function() {
+
+        var width = 320; // We will scale the photo width to this
+        var height = 0; // This will be computed based on the input stream
+
+        var streaming = false;
+
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+
+        function startup() {
+            video = document.getElementById('videowebcam');
+            canvas = document.getElementById('canvaswebcam');
+            photo = document.getElementById('photowebcam');
+            startbutton = document.getElementById('startbuttonwebcam');
+
+            navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    console.log("An error occurred: " + err);
+                });
+
+            video.addEventListener('canplay', function(ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+
+                    if (isNaN(height)) {
+                        height = width / (4 / 3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev) {
+                takepicture();
+                ev.preventDefault();
+            }, false);
+
+            clearphoto();
+        }
+
+
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                //photo.setAttribute('src', data);
+    canvas.toBlob(function(blob) {
+      let photos = document.querySelector("#myselfie1");
+    //    var vendorURL = window.URL || window.webkitURL;
+    //alert(blob);
+    var imageUrl = URL.createObjectURL(blob); 
+    //photo.setAttribute('src', imageUrl);
+    let file = new File([blob], imageUrl);
+    if (!window.listphotoswebcam){
+      window.listphotoswebcam =[];
+    }
+    window.listphotoswebcam.push(file);
+    var list, myFileList;
+    list = new DataTransfer();
+    window.listphotoswebcam.forEach(function(file){
+    list.items.add(file);
+    });
+    myFileList = list.files;
+    photos.files = myFileList;
+    document.getElementsByClassName("selfie")[0].innerHTML +=`<img width="160" height="120" src="${imageUrl}"></img><br/>`;
+    });
+
+            } else {
+                clearphoto();
+            }
+        }
+
+        window.addEventListener('load', startup, false);
+    })();
+</script>

@@ -1,0 +1,3 @@
+class Plantspecie < Thing
+  
+end

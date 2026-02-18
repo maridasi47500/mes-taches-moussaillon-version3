@@ -1,0 +1,15 @@
+<%=form_with url: choosetrueid_posts_path do |form|%>
+<div class="field">
+<%=render "form/checkboxmultiple", form: form, fieldname: 'taskid', collec: [], mesmodele:"people",label: "choisissez le post que vous voulez utiliser"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[myposts_posts_path]%>
+<%@search =[json_posts_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,25 @@
+          <%= render partial: "posts/avatars", locals: {form: form, post: post} %>
+
+
+<%=render partial: "posts/attitude", locals: {post: post, form: form}%>
+        <%=render partial: "posts/messagescaches", locals: {post: post, form: form}%>
+        <%=render partial: "posts/words", locals: {post: post, form: form}%>
+        <%=render partial: "posts/synonyms", locals: {post: post, form: form}%>
+        <%=render partial: "posts/fakecomments", locals: {post: post, form: form}%>
+        <%=render partial: "posts/metonymies", locals: {post: post, form: form}%>
+        <%=render partial: "posts/anaphorsposts", locals: {post: post, form: form}%>
+        <%=render partial: "posts/googlereq", locals: {post: post, form: form}%>
+        <%=render partial: "posts/postsplaces", locals: {post: post, form: form}%>
+<%if post.tvseries.count > 0%>
+        <%=render partial: "posts/addtvseries", locals: {post: post, form: form}%>
+<%end%>
+        <%=render partial: "posts/addnewjingles", locals: {post: post, form: form}%>
+        <%=render partial: "posts/addtendances", locals: {post: post, form: form}%>
+        <%=render partial: "posts/adddishes", locals: {post: post, form: form}%>
+        <%=render partial: "posts/postexpired", locals: {post: post, form: form}%>
+
+        <%=render partial: "posts/emailsforposts", locals: {form: form, post: post}%>
+        <%=render partial: "posts/subjectsofthispost", locals: {post: post, form: form}%>
+
+          <%= render partial: "posts/postsjingles", locals: {post: post, form: form} %>
+

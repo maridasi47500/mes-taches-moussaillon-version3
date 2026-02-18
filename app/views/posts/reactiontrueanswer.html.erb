@@ -1,0 +1,13 @@
+<p><%=render @r%></p>
+<br>
+<br>
+<br>
+
+<%=form_with url: myreactiontrueanswer_posts_path(reactiontrueimage_id: @r.id,person_id: @person.id) do |form|%>
+<%@r.post.reactionpics.each do |emoticon|%>
+<%=render 'people/picsby', person: @person%>
+<input id="<%=emoticon.title.to_s.parameterize+emoticon.id.to_s%>" name="<%=emoticon.id%>emoticon" type="image" width="100" height="100" alt="<%=emoticon.title%>"
+       src="<%=emoticon.image%>">
+
+<%end%>
+<%end%>

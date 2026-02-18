@@ -1,0 +1,23 @@
+function chercher<%=t[0]%>(field,al){
+if (field.value.trim() !== ''){
+$.ajax({url: '<%=t[1]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].radioname+' '+data[i].motto_<%=I18n.locale.to_s%>+' '+data[i].frequency+' ';
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+}
+};
+function select<%=t[0]%>(field,greatpeople){
+if (field.value !== ''){
+$.ajax({url: '<%=t[2]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+};
+

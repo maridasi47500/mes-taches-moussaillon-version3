@@ -1,0 +1,1624 @@
+fr:
+  myunitsname:
+    quantitywater: "quantité d'eau"
+    distance: "distance"
+  myunits:
+    quantitywater:
+      centi:
+        one: "centilitre"
+        other: "centilitres"
+      unit:
+        one: "litre"
+        other: "litres"
+      thousand:
+        one: "kilolitre"
+        other: "kilolitres"
+      billion: "gazillion-distance"    
+    distance:
+      centi:
+        one: "centimeter"
+        other: "centimeters"
+      unit:
+        one: "meter"
+        other: "meters"
+      thousand:
+        one: "kilometer"
+        other: "kilometers"
+      billion: "gazillion-distance"    
+  my:
+    sexe:
+      M: "Hommes"
+      F: "Femmes"
+      Men: "Hommes"
+      Women: Femmes
+      Mixed: "Mixte"
+    season:
+      S: "Été"
+      W: "Hiver"
+    scope:
+      sport_id: Par discipline
+      sport_group_id: Par sport
+      edition_id: Par Jeux
+      competition_type_id: Jeux Olympiques
+      season_id: Par saison
+      athlete_gender: "Par genre d'athlète"
+      gender: "Par genre de l'évènement"
+      event_name_id: "Par évènement"
+      sort: "Trier par couleur de médaille"
+
+  mytitles:
+    allposts: "Tous les posts - "
+    new_surname: "Donnez le nom de quelqu'un, son surnom ou un indice de qui c'est"
+  myforms:
+    commentsecretocup: "Commenter sur les occupations secrètes de quelqu'un"
+  wish:
+    fete: Aujourd'hui on fête %{fete}
+    hb: Joyeux anniversaire 
+    hbto: Joyeux anniversaire %{sailor}
+  langname:
+    fr: Francais
+    en: Anglais
+    de: Allemand
+    cn: Chinois
+    it: Italien
+    ru: Russe
+    es: Espagnol
+    nl: Néerlandais
+  armyq:
+    family1: Cherche une personne et dis quelle membre de ta famille elle est
+    family: Présente ta famille
+    song: Dis quelles chansons tu chantes à l'armée
+    grade: Dis à quel grade militaire tu appartiendrais ou le plus haut grade auquel tu voudrais appartenir dans l'armée
+    skill: Dis quelles compétences on te demande d'avoir dans l'armée
+    clothes: Fais ton packetage pour l'armée
+    
+  all1:
+    thistask:
+      sent1: pour %{task} pas besoin de %{tasks}, mais il faut %{actions}
+    att:
+      sent1: "%{task1} vs %{task2} execo pour %{sailor1} et %{sailor2} : aussi %{att1} que %{att2} l'une que l'autre"
+    tsk:
+      sent1: "quand %{sailor1} faisait la tache de %{task} a %{epoch1} c'etait pas comme %{sailor2} a une autre epoque %{epoch2}"
+  armygrade:
+    find: trouvez %{grade}
+  messgaessailors:
+    msg1: "Hourra %{sailor} a fait comme %{sailor1} pas comme %{sailor2}"
+  links:
+    attachmessage: "Lie un message à ton commentaire sur la photo"
+    socialmovement: "Lie un mouvement social à ton post"
+    addattitude: "ajouter une attitude"
+    addtrait: "ajouter une qualité"
+    addstudentgrade: "ajouter un étudiant"
+    addheroadventure: "ajouter une aventure de héros"
+  linkwords:
+    inplace: "en %{place}"
+  connectwords:
+    ou: " ou "
+  display:
+    titrefamousperson: "%{name} : amie, fortune, taille, tatouage, origine %{year}"
+    nbrep:
+      zero: "n'a pas répondu à cette question"
+      one: "a répondu (%{count} réponse)"
+      two: "a répondu (%{count} réponses)"
+      few: "a répondu (%{count} réponses)"
+      many: "a répondu (%{count} réponses)"
+      other: "a répondu (%{count} réponses)"
+    carteideetvseries: "Sélectionnez un acteur dns une série, puis une attitude pour avoir une phrase sur la page des séries télé :
+<br>
+<span title=\"%{user}\">1 personne</span> pense que Tels Acteurs ou actrices ne jouent pas les rôles les plus Avec Telle Attitude (dans Série télé)"
+    personknowcomputingstuff: "%{person} connaît le(la) %{computingstuff}"
+     
+    emptravailleau: "%{person} travaille au %{factoryservice}"
+    collectionpeople: "%{person} fait %{collection}"
+    collectionde: "une collection de %{collection}"
+    peoplehavejob: "%{person} est %{job}"
+    factorieshaveworkers: "%{worker} travaille au %{factory} à quelle(s) époque(s) ?"
+    petowner: "%{owner} a un(e) %{pet}"
+    hackercities: "%{hacker} se connecte le plus souvent sur %{website} depuis des hotspots situés à %{cities}"
+    aregoodrequest: "%{alias} pense que %{sailor1} dit à %{sailor2} : '%{content}' ? %{reponse}"
+    nothimherfortask: "finalement ce n'est pas %{sailor1} qui fait la tâche de %{task}, c'est %{sailor2}"
+    displaythingphoto: "ce(tte) %{thing} appartient peut-être à %{owner}."
+    superieurhotel: "%{superieur} dit : je suis le supérieur de %{inferieur}<br>je lui ai donné un lit au %{hotel}<br> je lui ai donné un repas à manger (du %{dish} au %{restaurant})"
+
+    spendonenight: "passer une nuit au %{place}"
+    spendonenightfactories: "passer une nuit au rsma"
+    heshesaid: 
+      zero: "%{people} il/elle a dit :"
+      one: "%{people} il/elle a dit :"
+      two: "%{people} ils/elles ont dit :"
+      few: "%{people} ils/elles ont dit :"
+      many: "%{people} ils/elles ont dit :"
+      other: "%{people} ils/elles ont dit :"
+    icanmaybesee: "sur la photo je vois peut-être %{things}"
+    someoneplaymusic: "%{sailor} joue du/de la %{musicalinstrument}"
+    someonewritescode: "%{sailor} programme en %{programminglanguage}"
+    pridequestion: "comment as-tu %{content} ?"
+    contentpride: "on va dire : c'est toi qui a %{content}"
+    deuxconnaissances: "%{persona} et %{personb} se verront peut-être lors de la tâche de %{task}"
+    rivalsvariante: "%{rivalperson} dit : %{fakelover} est pas mon amoureux, %{reallover} est mon amoureux"
+    rivals: "%{reallover} à %{fakelover} Comment tu sais que avec moi il y a que je te dis que %{rivalperson} est ma copine/mon copain"
+
+    optiontaskvariante: "Yes après avoir fait ça (%{previoustask}) t'as fait ça %{task}, t'as pas fait ça %{othertasks}"
+    optiontask: "Yes t'as fait ça %{task}, t'as pas fait ça %{othertasks}"
+    secretquestionguess: "Devine !"
+    winningattitudes: "Attitudes gagnantes"
+    starattitude1: "Trouver une bonne idée pour réaliser la tâche"
+    starattitudevariante:
+      zero: "je sais pas"
+      one: "%{count} etoiles: tu sais %{attitude} et tant mieux pour toi. c'est sans rapport avec réaliser la tâche de %{task}"
+      two: "%{count} etoiles: %{attitude} pour %{task} tu peux mais t'es pas oblige"
+      few: "%{count} etoiles: tu pourrais %{attitude} pour %{task} fais ce qu'il te plait"
+      many: "%{count} etoiles: %{attitude} pour %{task} ok"
+      other: "tu sais %{attitude} mais c'est pas ça que tu vas faire %{task}"
+    starattitude:
+      zero: "je sais pas"
+      one: "%{count} etoiles: %{attitude} 1 etoile c'est pas ca qu'ona dit qu'il faut faire pour %{task}"
+      two: "%{count} etoiles: %{attitude} pour %{task} j'ai pas dit ca"
+      few: "%{count} etoiles: comment tu sais qu'il faut %{attitude} pour %{task} (c'est pas la meilleure solution en réalité)"
+      many: "%{count} etoiles: %{attitude} pour %{task} ok"
+      other: "%{count} etoiles: %{attitude} pour %{task} c'est bon"
+    conditionnotneglectedtasks1: "chercher une tâche que tu dois bien faire"
+    conditionnotneglectedtasks2: "chercher une personne qui peut faire la tâche  (bien la faire)"
+    conditionnotneglectedtasks3: "chercher une tâche que tu pourras réaliser ensuite"
+    conditionnotneglectedtasks4: "chercher une personne qui peut faire la seconde tâche si il a bien réalisé la première"
+    conditionnotneglectedtask: "si %{person1} réalise bien la tâche de %{task1}, pour %{person2} il ne faut pas négliger la tâche de %{task2}"
+
+    conditionwelldonetasks1: "chercher une tâche que tu dois bien faire"
+    conditionwelldonetasks2: "chercher une tâche que tu pourras réaliser ensuite"
+    conditionwelldonetask: "si tu réalises bien la tâche de %{task}, tu pourras réaliser la tâche de %{othertask}"
+
+    genslies: "gens liés"
+    starsattitudesailor: 
+      zero: "combien d'étoiles donnerais-tu à quelqu'un capable de %{attitude} pour réaliser la tâche de %{task} ?"
+      one: "combien d'étoiles donnerais-tu à %{sailor} capable de %{attitude} pour réaliser la tâche de %{task} ?"
+      two: "combien d'étoiles donnerais-tu à %{sailor} capables de %{attitude} pour réaliser la tâche de %{task} ?"
+      few: "combien d'étoiles donnerais-tu à %{sailor} capables de %{attitude} pour réaliser la tâche de %{task} ?"
+      many: "combien d'étoiles donnerais-tu à %{sailor} capables de %{attitude} pour réaliser la tâche de %{task} ?"
+      other: "combien d'étoiles donnerais-tu à %{sailor} et %{nbothersailor} autres moussaillons capables de %{attitude} pour réaliser la tâche de %{task} ?"
+
+    veutcouple: "je le veux entre %{persona1} et %{personb1}, je le veux pas entre %{persona2} et %{personb2}"
+    candlelightdinner: "le soir du %{date}, tu veux peut-être toi %{person} tu veux diner en chandelle avec ton amoureux-amoureuse, %{otherperson}. Le lendemain, peut-être que tu voudrais t'aventurer avec lui-elle pour aller vivre l'expérience de %{task} en amoureux. Ne trouves-tu pas que cela est une merveilleuse idée ?"
+    wrongpersonbis: "si %{person} a la tâche de %{task}, %{otherperson} doit se concentrer sur la tâche de %{othertask}"
+    wrongperson: "%{person} a beau avoir la tâche de %{task}, %{otherperson} devrait se concentrer sur la tâche de %{othertask}"
+    tachesailorthings: "%{sailor} a pour tâche de %{tasks} avec %{things}"
+    tachesailor: "%{sailor} a pour tâche de %{tasks}"
+    clothessailor: "%{sailor} a besoin de quels vêtement pour réaliser la tâche de %{task} ?"
+    clothessailorall: "%{sailor} a besoin de quels vêtement pour réaliser la tâche de %{task} à part de %{clothes} ?"
+    searchasailor: "chercher un moussaillon"
+    searchatask: "chercher une tâche"
+    searchaclothing: "chercher un vêtement"
+
+    colocstask: "%{sailor} et %{othersailor} sont colocataires à condition d'accomplir quelles tâches ?"
+    colocwith: "Qui est la(le) colocataire de %{sailor} ?"
+    displayanswer: "Réponse : %{answer}"
+    howmuchpostwrite: "Combien de posts tu as écrit du %{datedepart} au %{datearrivee} ?"
+    aboutwhowrite: "Sur qui tu as écrit du %{datedepart} au %{datearrivee} ?"
+    exceptthose: "(à part %{task})"
+    exceptfor: "à part pour %{sailor}, "
+    justeca: "%{sailor} Même si t'utlises juste un peu %{bodypart} pour faire la tâche de %{task} t'es moussaillon"
+    addpeoplecity: "Ajouter des gens habitant à %{city} à l'époque de %{epoch}"
+    bodypartsused: "Parties du corps utilisées/objets utilisés dans ce métier"
+    someonelive: "%{sailor} habite à %{city}"
+    chercherunetache: "Chercher une tâche puis chercher une personne"
+    duaudate: "du %{date1} au %{date2}"
+    reservationrecapresto: "Réservation pour %{sailor} au restaurant %{resto} dans la ville de %{ville}"
+    reservationrecaphotel: "Réservation pour %{sailor} à l'hôtel %{hotel} dans la ville de %{ville}"
+    datesreserver: "Réserver"
+    datesdu: "du"
+    datesau: "au"
+    revenirauxrestos: "Revenir aux restos dans %{ville}"
+    revenirauxhotels: "Revenir aux hôtels dans %{ville}"
+    wherebooks: "Sélectionnez la ville où vous voulez réserver"
+    whobooks: "Sélectionnez qui vous voulez être pour réserver"
+    recallepochgrade: "Souviens-toi à l'époque la %{grade}"
+    laundryjiramaother: "Un peu comme si %{user} était %{sailor}, un %{grade} dans l'armée, utilise le "
+    laundryjiramayouother: "Un peu comme si tu étais %{sailor}, un %{grade} dans l'armée, utilise le"
+    laundryjiramanoepoch: "comme si %{user} était %{sailor}, un %{grade} dans l'armée"
+    laundryjirama: "Un peu comme si %{user} était %{sailor}, un %{grade} dans l'armée, cherche un autre soldat et ou reviens à <a href='%{epochurl}'>l'époque</a> pour usurper l'identité d'un autre soldat de l'armée."
+    laundryjiramayou: "Un peu comme si tu étais %{sailor}, un %{grade} dans l'armée, cherche un autre soldat et ou reviens à <a href='%{epochurl}'>l'époque</a> pour usurper l'identité d'un autre soldat de l'armée."
+    usurpategrade: "Quel grade pourrais-tu avoir avec %{sailor} dans l'armée ?"
+    whointhisepoch: "Qui à <a href='%{epochurl}'>cette époque</a> était en %{grade} et à %{epoch} ?"
+    gradesuperieur: "Sélectionner le grade supérieur"
+    gradearmee: "%{nom} appellation %{appellation}"
+    bravooncemore: "Bravo de nouveau !!"
+    trouver_un_robot: "trouver un robot dans les images"
+    sorobot: "Donc %{sailor} est un robot"
+    weaknesscouplesentence: "%{person} a la faculté de %{force} (%{otherperson}) mais %{person} %{weakness}"
+    taskactionbefore: "d'abord %{firstsailor} fait la tâche de %{taskaction} pour faire la tâche de %{task} avec %{sailor}"
+    taskactionafter: "ensuite %{firstsailor} fait la tâche de %{taskaction} pour faire la tâche de %{task} avec %{sailor}"
+    withsailor: "avec %{sailor}"
+    displayrapprochesailor: "%{sailor} tu fais la tâche de %{task}, comme <a href='%{linkothertask}'>%{othersailor}</a>"
+    displayothertask: ajouter une tâche à %{sailor} avant la tâche de %{taskaction} avec %{othersailor}
+    subtask: "%{sailor} fait la tâche de %{subtask} avec qui ?"
+    jobsailortaskwhen: "Quand %{sailor} fait la tâche de %{task}"
+    jobsailortask: "%{sailor} fait la tâche de %{task}"
+    twosailor: "Quand %{sailor1} fait la tâche de %{task1}, c'est comme quand %{sailor2} fait la tâche de %{task2} ?"
+    categorythingwhotask: 
+      zero: Dire pour quelle tache %{qui} utilise %{chose} un peu...
+      one: Dire pour quelle tache %{qui} utilise %{chose} un peu...
+      two: Dire pour quelle tache %{qui} utilise %{chose} moyennement...
+      many: Dire pour quelle tache %{qui} utilise %{chose} beaucoup...
+      other: Dire pour quelle tache %{qui} utilise %{chose} extrêment beaucoup...
+    categorythingwho: 
+      zero: Dire qui utilise %{chose} un peu...
+      one: Dire qui utilise %{chose} un peu...
+      two: Dire qui utilise %{chose} moyennement...
+      many: Dire qui utilise %{chose} beaucoup...
+      other: Dire qui utilise %{chose} extrêment beaucoup...
+    categorythingqty: Selectionne des gens et dis si ils utilisent la chose un peu, beaucoup...
+    remedy: Chercher des gens et cliquer sur le remède dans cet état
+    byheart: "pour %{action}, tu dois connaître par coeur :"
+    allthe: Tou(te)s les %{model} 
+    selectsailor: Sélectionner un moussaillon
+    addasong: Ajouter une chanson à ce post
+    congrats: Félicitations
+    femme: Pour une femme
+    no1: Non
+    appellation: Appellation ?
+    answer: Répondre
+    whatisit: Qu'est-ce que c'est ?
+    effortsfor: "Combien d'efforts pour %{task} faîtes-vous ?"
+    clickon: 'cliquez sur %{sailor}'
+    hackedppl:
+      one: "%{sailor} là il-elle est haqué-e"
+      other: "%{sailor} là ils-elles sont haqué-e-s"
+      many: "%{sailor} là ils-elles sont haqué-e-s"
+    persopost: Personnalisez le post comme un hacker
+    becausetask: 'parceque tu fais <a href="%{urltask1}">ça</a> pas parce que tu fais <a href="%{urltask2}">ça</a>'
+    peoplemeet: '%{sailor1} %{sailor2} %{sailor2} %{sailor1}'
+    notthistask: 'Ou peut-être tu veux dire %{task1} pas %{task2}'
+    nothim: 'Ou peutêtre tu veux dire %{sailor1} pas %{sailor2}'
+    appsearchbrain: "clique sur le cerveau de l'application"
+    during: "pendant %{time}"
+    noprofilepic: "Pas d'image de profil"
+    nobody: "Personne"
+    nostranger: "Personne qui ne soit étranger au moussaillon"
+
+    asifiwere: "comme si j'étais %{sailor}"
+
+  columntable: 
+    epoch:
+      name: "Nom de cette époque"
+    stories:
+      content: Contenu
+      title: Titre
+      user: Utilisateur
+    torealizetask:
+      task: Tâche
+      user: Utilisateur
+  editpage: 
+    posts_surname:
+      title: Modifier l'avatar
+      addplace: Ajouter un endroit
+      show: Voir cet avatar
+      back: Revenir à tous les avatars
+    back:
+      storyheroadventure: "Revenir à l'histoire"
+      epoch: "Revenir à toutes les époques"
+      story: "Revenir à tous les héros"
+    epoch: "Modifier cette époque"
+    story: "Modifier cette histoire de héros"
+    heroadventure: "Modifier cette aventure de héros"
+  showpage: 
+    attitudephoto:
+      attitude: "L'attitude de %{sailor} était celle de %{attitude}"
+      trait: "%{sailor} semblait plutôt %{trait}"
+    epoch: 
+      epochstudent: "%{sailor} est en classe de %{grade}"
+    posts_surname: 
+      searchplace: "Chercher un lieu"
+      title: Nouvel avatar
+      selectplace: "Choisir un lieu"
+      newplace: "Nouveau lieu"
+      addplace: "Ajouter un lieu"
+      addacontent: "Ajouter une description ou un discours"
+      profilepic: "Chercher une image de profil"
+      maprofilepic: "Chercher un moussaillon"
+      addsailor: "Ajouter un moussaillon"
+      person: "Personne"
+      addtocontent: "Ajouter au contenu du post"
+      show: Voir cet avatar
+      back: Revenir à tous les avatars
+    surname: 
+      voir: "Voir"
+      noerror: "Il n'y a pas de surnoms correspondant à votre recherche."
+    story: 
+      noimage: "Ajouter une image et une aventure à votre histoire avant de commencer"
+      proposedby: "Histoire proposée par %{sailor}"
+      debut: "Commencer à lire l'histoire"
+      suite: "Suite de l'histoire"
+      fin: "Fin de l'histoire"
+      previousadventure: "Revenir à l'aventure précédente"
+  newpage: 
+    posts_surname: 
+      searchplace: "Chercher un lieu"
+      title: Nouvel avatar
+      show: Voir cet avatar
+      back: Revenir à tous les avatars
+    back: 
+      story: "Revenir à toutes les histoires avec un héros vivant des aventures"
+
+    story: "Nouvelle histoire avec un héros vivant des aventures"
+    torealizetask: "Nouvelle tâche à réaliser avec la bonne attitude"
+    epoch: "Nouvelle époque"
+  indexpage: 
+
+    destroy: "Supprimer"
+    edit: "Modifier"
+    show: "Voir"
+    epoch: "Liste des époques"
+    story: "Histoires avec un héros vivant des aventures"
+    torealizetask: "Tâches à réaliser avec la bonne attitude"
+  mysailors:
+    notrealattitude: 
+      zero: "L'attitude du moussaillon n'est pas celle de '%{att}'"
+      few: "L'attitude du moussaillon n'est pas celle de '%{att}'"
+      one: "L'attitude du moussaillon n'est pas celle de '%{att}'"
+      other: "L'attitude du moussaillon n'est pas celle de '%{att}'"
+      many: "L'attitude des moussaillons n'est pas celle de '%{att}'"
+    realattitude: 
+      zero: "L'attitude du moussaillon est vraiment celle de '%{att}'"
+      other: "L'attitude du moussaillon est vraiment celle de '%{att}'"
+      few: "L'attitude du moussaillon est vraiment celle de '%{att}'"
+      one: "L'attitude du moussaillon est vraiment celle de '%{att}'"
+      many: "L'attitude des moussaillons est vraiment celle de '%{att}'"
+    attitude: "Attitude(s) de %{sailors}"
+    proposedby: "Proposé par %{sailors}"
+  titles:
+    torealizetask: "Nouvelle tâche à réaliser avec la bonne attitude"
+  button:
+    shaktistatement: ""
+  aucuntaskerror: "Aucune tâche ne correspond à votre recherche."
+  expressions:
+    selonvous: "Selon %{user} :"
+  showpages:
+    instruction:
+      dabord: "D'abord"
+      enfin: "Enfin"
+      then: "Ensuite"
+  pagesshow:
+    linkfamilyperson: 
+      phrase: "%{sailor} connaît %{othersailor}. %{sailor} est le %{relation} de %{othersailor}."
+      sisters: "sœurs"
+      brothers: "frères"
+    linkspouseperson: 
+      relation: "%{lover1} aime %{lover2} et c'est réciproque. Ils s'aiment comme des %{relation}."
+
+    peoplehaveweakness: 
+      question: "Est-ce la faiblesse %{sailor} que de %{weakness} ?"
+    peoplehavestrength: 
+      question: "Est-ce la force %{sailor} que de %{strength} ?"
+    columnname:
+      name: "Nom"
+     
+    task:
+      boisson: Pour réaliser leur tâche, les moussaillons boivent quoi ?
+      use: Pour réaliser leur tâche, les moussaillons utilisent quoi ?
+      qtymoyboisson:
+        zero: "Pour réaliser votre tâche de %{task}, les moussaillons ne consomment pas de %{thing}"
+        one: "Pour réaliser leur tâche de %{task}, les moussaillons consomment un peu de %{thing}"
+        two: "Pour réaliser leur tâche de %{task}, les moussaillons consomment une quantite moyenne de %{thing}"
+        few: "Pour réaliser leur tâche de %{task}, les moussaillons consomment assez de %{thing}"
+        many: "Pour réaliser leur tâche de %{task}, les moussaillons consomment beaucoup %{thing}"
+        other: "Pour réaliser leur tâche de %{task}, les moussaillons consomment beaucoup de %{thing}"
+      qtyboisson: "Consommez-vous beaucoup de %{qty} ?"
+      qtymoy:
+        zero: "Pour réaliser votre tâche de %{task}, les moussaillons n'utilisent pas de %{thing}"
+        one: "Pour réaliser leur tâche de %{task}, les moussaillons utilisent %{count} %{thing}"
+        two: "Pour réaliser leur tâche de %{task}, les moussaillons utilisent %{count} %{thing}"
+        few: "Pour réaliser leur tâche de %{task}, les moussaillons utilisent %{count} %{thing}"
+        many: "Pour réaliser leur tâche de %{task}, les moussaillons utilisent %{count} %{thing}"
+        other: "Pour réaliser leur tâche de %{task}, les moussaillons utilisent %{count} %{thing}"
+      qty: "Combien de %{qty} utilisez-vous ?"
+      name: "Nom de la tâche"
+      questionusefortaskwithonesailor:
+        zero: "pour réaliser leur tâche de %{task}, %{sailor} n'a pas de %{thing} pour qui d'autre ?"
+        one: "pour réaliser leur tâche de %{task}, %{sailor} a très peu de %{thing} pour qui ?"
+        two: "pour réaliser leur tâche de %{task}, %{sailor} a très peu %{thing} pour qui ?"
+        few: "pour réaliser leur tâche de %{task}, %{sailor} a peu  %{thing} pour qui ?"
+        many: "pour réaliser leur tâche de %{task}, %{sailor} a assez %{thing} pour qui ?"
+        other: "pour réaliser leur tâche de %{task}, %{sailor} a beaucoup %{thing} pour qui ?"
+      questionusefortaskwithoutsailor:
+        zero: "pour réaliser leur tâche de %{task}, qui n'a pas de %{thing} ?"
+        one: "pour réaliser leur tâche de %{task}, qui a très peu de %{thing} ?"
+        two: "pour réaliser leur tâche de %{task}, qui a très peu %{thing} ?"
+        few: "pour réaliser leur tâche de %{task}, qui a peu  %{thing}"
+        many: "pour réaliser leur tâche de %{task}, qui a assez souvent %{thing} ?"
+        other: "pour réaliser leur tâche de %{task}, qui a beaucoup %{thing} ?"
+      usefortaskwithoutsailor:
+        zero: "pour réaliser leur tâche de %{task}, les moussaillons n'ont pas de %{thing}"
+        one: "pour réaliser leur tâche de %{task}, les moussaillons ont très peu de %{thing}"
+        two: "pour réaliser leur tâche de %{task}, on a très peu %{thing}"
+        few: "pour réaliser leur tâche de %{task}, on a peu %{thing}"
+        many: "pour réaliser leur tâche de %{task}, on a assez %{thing}"
+        other: "pour réaliser leur tâche de %{task}, on a beaucoup %{thing}"
+    job:
+      qtymoy: 
+        zero: "En tant que %{job}, vous n'utilisez pas de %{thing}"
+        one: "En tant que %{job}, vous utilisez %{count} %{thing}"
+        two: "En tant que %{job}, vous utilisez %{count} %{thing}"
+        few: "En tant que %{job}, vous utilisez %{count} %{thing}"
+        many: "En tant que %{job}, vous utilisez %{count} %{thing}"
+        other: "En tant que %{job}, vous utilisez beaucoup vos %{thing} (%{count} au total)"
+      qty: "Combien de %{qty} utilisez-vous ?"
+      name: "Nom de la profession"
+      useforjobwithoutsailor:
+        one: "Pour être %{job}, on utilise très peu %{thing}"
+        few: "Pour être %{job}, on utilise peu %{thing}"
+        many: "Pour être %{job}, on utilise assez souvent %{thing}"
+        other: "Pour être %{job}, on utilise beaucoup %{thing}"
+    person:
+      job: "Ses métiers"
+      oldest: "%{sailor} est la plus âgée"
+      oldestF: "%{sailor} est la plus âgée"
+      oldestM: "%{sailor} est le plus âgé"
+      ecartdage: "%{sailor} a %{ecartdage} d'écart avec %{othersailor}"
+      defille: "de la fille"
+      degarcon: "du garçon"
+      lafille: "la fille"
+      legarcon: "le garçon"
+      elleoului: "elle ou lui"
+      delleoului: "de cette-ce fille ou garçon"
+      fille: "une meuf"
+      gars: "un mec"
+      tonsexe: "T'es %{sexe}."
+
+      traumberuf: "Ses professions de rêve"
+      size: "%{sailor} mesure %{size}"
+
+  menu:
+    welcome: 'Bienvenue'
+    recordmeuf: "Enregistrer la phrase 'T'es une meuf.'"
+    recordmec: "Enregistrer la phrase 'T'es un mec.'"
+    meuf: "T'es une meuf."
+    mec: "T'es un mec."
+  monmenu:
+    photobelonging: "A qui appartien(nen)t ce(t)(s) objet(s) sur la photo ?"
+    addaposttype: Ajouter un type de post
+    addsailorjobticket: Ajouter des tickets pour chacun des moussaillons d'une tâche
+    ajouterforcefaiblesse: Ajouter une faiblesse liée à une force de quelqu'un dans le couple
+    addcouplet: Ajouter des nouvelles phrases de couplet
+    addrefrain: Ajouter des nouvelles phrases de refrain
+    tendances: Voir toutes les tendances
+    addtaskactiontosailorfortask: Ajouter des tâches aux moussaillons d'une tâche
+    postnewemail: Attacher un nouvel email
+    postaddavatarpseudo: Ajouter des avatars ou des pseudos
+    postaddphotosfilms: Ajouter des photos ou des films
+    newtendancepost: Ajouter une nouvelle tendance
+    newjinglepost: Ajouter un nouveau jingle
+    addaddressestothispost: Ajouter des adresses à ce post
+    newattitudepost: Lier à une nouvelle attitude
+    newjinglespost: Lier des nouveaux jingles
+    postlinksocialmvmt: Lier un mouvement social à ce post
+    hackerstaskpost: Mes tâches de hacker avec ce post
+    languages: langues
+    chosesailortask: Sélectionner des moussaillons pour une tâche
+    compare: Comparer deux tâches ou deux moussaillons
+    addcousin: Ajouter des cousins
+    addsisterbrother: Ajouter des frères et soeurs
+    categorythingsqty: faire utiliser quelque chose à quelqu'un
+    searchtweets: chercher des tweets
+    addamaptothispost: ajouter un plan/une carte à ce post
+    clothes: tous les vêtements
+    personstate: tous les états d'une personne
+    categorything: catégories de choses
+    integrearmee: "s'intégrer à l'armée"
+    drinks: "voir toutes les boissons"
+    foods: "voir tous les aliments"
+    sports: "voir tous les sports"
+    addasongtothispost: "Ajouter une chanson à ce post"
+    editpost: "Editer ce post"
+    addelpost: "Ajouter des éléments à ce post"
+    armygrades: "Jouer au jeu des grades de l'armée de terre et leurs appellations"
+    jeuacteurs: "Jouer au jeu des acteurs"
+    moviescenes: "Mes scènes de cinéma"
+    becausetask: "parce que tu fais cette tâche pas parce que tu fais cette autre tâche"
+    twopeoplemeets: "Rencontres de 2 personnes"
+    thistasknotthistask: "Cette tâche pas cette tâche"
+    hernother: "Lui pas elle ou elle pas elle ou lui pas lui ou elle pas lui"
+    hackertasks: "Tâche de hacker"
+    attitudephotos: "Mes commentaires sur des photos"
+    socialmvmt: "Mes mouvements sociaux"
+    traits: "Mes qualités ou mes défauts de moussaillon"
+    grades: "Mes classes quand j'allais à l'école"
+    torealizetasks: "Mes tâches à réaliser avec la bonne attitude"
+    stories: "Mes récits de héros-héroïne"
+    instructions: "Mes instructions"
+    radios: "Mes radios" 
+    signout: "Se déconnecter" 
+    poststqg: "Mes posts du queen's gambit"
+    airlinecompanies: "Mes compagnies aériennes"
+    shaktistatements: "Mes affirmations de Shakti Gauwain"
+    companieshavecustomers: "Les clients de mes entreprises"
+    companieshaveceos: "Les P.D.G. de mes entreprises"
+    companieshaveemployees: "Les employés de mes entreprises"
+    companies: "Mes entreprises"
+    facebookrequests: "Mes requêtes Facebook"
+    facebookresults: "Mes résultats Facebook"
+    googleresults: "Mes résultats Google"
+    googlerequests: "Mes requêtes Google"
+    peoplehavestrengths: "Dire la force d'un-e dans le couple"
+    peoplehaveweaknesses: "Dire la faiblesse d'un-e dans le couple"
+    weaknesses: "Les faiblesse du héros"
+    strengths: "Les forces du héros"
+    dishes: "Mes plats préférés"
+    planets: "Les planètes"
+    bodyparts: "Les parties du corps"
+    cars: "Mes voitures"
+    robots: "Mes robots"
+    titre: "Le site de Cléo"
+    motto: "Blog"
+    invitations: "Toutes les invitations"
+    familylinks: "Tous les membres de la famille"
+    familypeople: "Mon arbre généalogique"
+    expr17n: "Les expressions de mes 17 ans"
+    expr18n: "Les expressions de mes 18 ans"
+    nationalities: "Les nationalités"
+    githubaccounts: "Tous les comptes github"
+    githubrepos: "Tous les repos github"
+    events: "Tous les évènements"
+    selfies: "Tous mes selfies"
+    dessiner: "Faire un dessin sur une toile"
+    olympicpeople: "Tous les matchs olympiques"
+    skills: "Toutes les compétences"
+    historicalevents: "Tous les évènements historiques"
+    socialmovements: "Tous les mouvements sociaux ou historiques"
+    secretquestions: "Toutes les questions secrètes sur les gens"
+    questions: "Toutes les questions sur la connaissance"
+    countries: "Tous les pays"
+    jeugeopays: "Jouer au jeu interactif des pays"
+    newselfie: "Faire un nouveau selfie"
+    contest: "Tous les popularity contest"
+    musicalkeys: "Toutes les tonalités musicales"
+    musicalinstrument: "Tous les instruments de musique"
+    musicalscores: "Toutes les partitions de musique"
+    taskactions: "Toutes les sous-actions d'une tâche"
+    musiccompo: "Toutes les compositions musicales"
+    newtask: "Nouvelle tâche"
+    newplace: "Nouveau lieu"
+    newworktwo: "Nouveau groupe de gens travaillant à deux"
+    newphoto: "Nouvelle photo"
+    albums: "Tous les albums"
+    alltweets: "Tous les tweets"
+    twitteraccounts: "Comptes Twitter"
+    newsong: "Nouvelle chanson"
+    newprofilepicture: "Nouvelle image de profile"
+    newjob: "Nouvelle profession"
+    newattitude: "Nouvelle attitude"
+    peoplerel: "Relations entre les travailleurs"
+    mistralfm: "infos about someone with pics"
+    newjingle: "Nouveau jingle"
+    nouveauticket: "Nouveau ticket"
+    newreaction: "Nouveau texte à utiliser"
+    newreactiontext: "Nouveau texte à compléter"
+    tvseries: "Séries télé"
+    city: "Villes"
+    surname: "Surnom de quelqu'un"
+    menudufoyer: "tout pour le menage du foyer (eau/electricite, argent, depenses...)"
+    edituser: "Éditer les infos utilisateur"
+    newperson: "Ajouter un-e moussaillon-ne"
+    epochs: "Époques"
+    aboutsomeonegossip: "Rumeurs sur les gens"
+    formations: "Formations"
+    lovelinks: "Liens entre amoureux"
+    newloverel: "Nouveau couple"
+    newpostsurname: "Créer un nouveau personnage pour écrire des posts"
+    newpost: "Nouveau post"
+    addjiramaspend: "Ajouter une depense pour le jirama"
+    addcotisation: "Mes cotisations"
+    transactions: "Mes transactions"
+    menus: "Mes menus"
+    depenses: "Toutes mes dépenses"
+    argent: "Tout mon argent"
+    repas: "Repas"
+  myguestmale: 
+    zero: ""
+    one: "%{sailors} est invité"
+    other: "%{sailors} sont invités"
+    many: "%{sailors} sont invités"
+  myguestfemale: 
+    zero: ""
+    one: "%{sailors} est invitée"
+    other: "%{sailors} sont invitées"
+    many: "%{sailors} sont invitées"
+  conditiontask: 
+    zero: ""
+    one: "si %{sailors} fait ça : %{tasks}"
+    other: "si %{sailors} font ça : %{tasks}"
+    many: "si %{sailors} font ça : %{tasks}"
+  girlfriend:
+    zero: "%{sailor} n'a pas de copine"
+    one: "%{sailor} a une copine"
+    other: "%{sailor} a %{count} copines"
+    many: "%{sailor} a %{count} copines"
+  boyfriend:
+    zero: "%{sailor} n'a pas de copain"
+    one: "%{sailor} a un copain"
+    other: "%{sailor} a %{count} copains"
+    many: "%{sailor} a %{count} copains"
+  sister:
+    zero: "%{sailor} n'a pas de sœurs"
+    one: "%{sailor} a une sœur"
+    other: "%{sailor} a %{count} sœurs"
+    many: "%{sailor} a %{count} sœurs"
+  brother:
+    zero: "%{sailor} n'a pas de frères"
+    one: "%{sailor} a un frère"
+    other: "%{sailor} a %{count} frères"
+    many: "%{sailor} a %{count} frères"
+  aken: "%{sailor} a fait mieux que %{sailors} au %{skill}"
+  jealous: "%{sailor} peut être jaloux de la prouesse de %{sailors} à %{skill}"
+  jealousfemme: "%{sailor} peut être jalouse de la prouesse de %{sailors} à %{skill}"
+  de_a: "de %{from} à %{to}"
+  photoisee: "Sur la photo, je vois"
+  selfieisee: "Sur le selfie, je vois"
+  sailormood: "%{sailor}, humeur: %{mood}"
+  betterpeople:
+    new: "Créer un nouveau jeu de 'c'est qui le plus ?'"
+  actorplays: "%{sailor} joue"
+  acteurdansserie: "%{sailor} dans %{tvseries}"
+  contentsentence: "Phrase à compléter"
+  nomdumoussaillon: "Nom de la star moussaillon"
+  nomacteur: "Nom du personnage de %{sailor} dans %{tvseries}"
+  sailorrisked: "%{sailor} a tenté sa chance"
+  sailorissaved: "%{sailor} est sauvé(e)"
+  accordingtosailors:
+    zero: 'aucun moussaillon'
+    one: 'selon 1 moussaillon'
+    few: 'selon %{count} moussaillons'
+    any: 'selon %{count} moussaillons'
+    other: 'selon %{count} moussaillons'
+  winnersailors:
+    zero: 'aucun moussaillon vainqueur'
+    one: '1 moussaillon vainqueur'
+    few: '%{count} moussaillons vainqueur'
+    any: '%{count} moussaillons vainqueur'
+    other: '%{count} moussaillons vainqueur'
+  savedsailors:
+    zero: 'aucun moussaillon sauvé'
+    one: '1 moussaillon sauvé'
+    few: '%{count} moussaillons sauvés'
+    any: '%{count} moussaillons sauvés'
+    other: '%{count} moussaillons sauvés'
+  
+  task:
+    boutons:
+      noterealizedtask:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant noté la réalisation de la tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a trouvé que cette tâche est %{score} réalisée"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> ont trouvé que cette tâche est %{score} réalisée"
+      notetask:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant noté l'idée de la tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a trouvé que cette tâche est une %{score} idée"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> ont trouvé que cette tâche est une %{score} idée"
+      aimepas:
+        link: "<a href=\"%{link}\">Voir toutes les personnes n'aimant pas cette tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> n'a pas aimé cette tâche"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> n'ont pas aimé cette tâche"
+      aime:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant aimé cette tâche</a>"
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a aimé cette tâche"
+        other: "<span title=\"%{users}\">%{count} moussaillons</span> ont aimé cette tâche"
+      attitude:
+        link: "<a href=\"%{link}\">Voir toutes les personnes ayant les bonnes ou mauvaises attitudes</a>"
+        zero: ""
+        one: "l'attitude de %{sailors} de %{nomatt} était %{score}"
+        any: "l'attitude de %{nomatt} de %{sailors} était %{score}"
+        other: "l'attitude de %{nomatt} de %{sailors} et %{nbothersailors} autres moussaillons était %{score}"
+      avis:
+        zero: ""
+        one: "<span title=\"%{users}\">1 moussaillon</span> a trouvé que"
+        any: "<span title=\"%{users}\">%{count} moussaillons</span> ont trouvé que"
+        other: "%{users} et %{nbotherusers} autres moussaillons ont trouvé que"
+      saved:
+        link: "<a href=\"%{link}\">Voir toutes les personnes sauvées</a>"
+        zero: ""
+        one: "<span title=\"%{sailors}\">1 moussaillon</span> était sauvé en accomplissant cette tâche"
+        any: "<span title=\"%{sailors}\">%{count} moussaillons</span> étaient sauvés en accomplissant cette tâche"
+        other: "%{sailors} et %{nbothersailors} autres moussaillons étaient sauvés en accomplissant cette tâche"
+      risk:
+        link: "<a href=\"%{link}\">Voir toutes les personnes courageuses</a>"
+        zero: ""
+        one: "<span title=\"%{sailors}\">1 moussaillon</span> a réellement tenté sa chance en accomplissant cette tâche"
+        any: "<span title=\"%{sailors}\">%{count} moussaillons</span> ont réellement tenté leur chance en accomplissant cette tâche"
+        other: "%{sailors} et %{nbothersailors} moussaillons ont réellement tenté leur chance en accomplissant cette tâche"
+  person:
+    title:
+      personaljingle: Ajouter des jingles personnels pour cette personne
+      jingles: Ajouter des jingles pour cette personne
+  ticket:
+    title:
+      linkspousepeople: Gens dans une relation affective ou amoureuse
+      linkfamilypeople: Gens de la même famille
+      worktwos: Gens travaillant ensemble
+  attitude:
+    search: "Aucune attitude n'a été trouvée pour la requête '%{q}'."
+  jiramapasse:
+
+    trosa: 'Dettes (depenses)'
+    ustencils: 'Fait la Vaisselle '
+    broom: 'Passé la serpillere'
+    broom1: 'balayé'
+    food2: 'Préparé à manger'
+    vitre2: 'Nettoyé les Vitres'
+    sol2: 'Nettoyé le Sol'
+    wc2: 'Nettoyé les WC'
+    membre: 'Membres'
+    trash: 'Sorti le Ordures'
+    cuisine: 'Fait la Cuisine'
+    menage: 'Fait le Menage'
+    argent: 'Argent'
+    jirama: 'Jirama'
+  jiramapresent:
+
+    trosa: 'Dettes (depenses)'
+    ustencils: 'Faire la Vaisselle '
+    broom: 'Passer la serpillere'
+    broom1: 'Balayer'
+    food2: 'Preparer a manger'
+    vitre2: 'Nettoyer les Vitres'
+    sol2: 'Nettoyer le Sol'
+    wc2: 'Nettoyer les WC'
+    membre: 'Membres'
+    trash: 'Sortir le Ordures'
+    cuisine: 'Faire la Cuisine'
+    menage: 'Faire le Menage'
+    argent: 'Argent'
+    jirama: 'Jirama'
+  jirama:
+
+    trosa: 'Dettes (depenses)'
+    ustencils: 'Faire la Vaisselle '
+    broom: 'Passer la serpillere'
+    broom1: 'Balayer'
+    food2: 'Nouriture'
+    vitre2: 'Vitres'
+    sol2: 'Sol'
+    wc2: 'WC'
+    membre: 'Membres'
+    trash: 'Ordures'
+    cuisine: 'Cuisine'
+    menage: 'Menage'
+    argent: 'Argent'
+    jirama: 'Jirama'
+
+
+  entrecesdeuxpersonskillsleadersailors: "entre %{sailors}, qui sait le mieux \"faire pour %{skill}\" comme %{leaders} ?"
+  entrecesdeuxpersonskillssailors: "entre %{sailors}, qui fait le mieux pour \"%{skill}\" ?"
+  entrecesdeuxpersonskillsleader: "Entre ces deux, qui sait le mieux %{skill} comme %{leaders} ?"
+  entrecesdeuxpersonskills: "Entre ces deux, qui sait le mieux %{skill} ?"
+  entrecesdeuxpersonattitudesleadersailors: "entre %{sailors}, qui a l'attitude la plus \"%{attitude}\" comme %{leaders} ?"
+  entrecesdeuxpersonattitudessailors: "entre %{sailors}, qui a l'attitude la plus \"%{attitude}\" ?"
+  entrecesdeuxpersonattitudesleader: "Entre ces deux, qui a l'attitude la plus %{attitude} comme %{leaders} ?"
+  entrecesdeuxpersonattitudes: "Entre ces deux, qui a l'attitude la plus %{attitude} ?"
+  attitude1: 
+    zero: ""
+    one: "a tres peu une attitude de %{attitude}"
+    other: "ont tres peu une attitude de %{attitude}"
+  attitude2: 
+    zero: ""
+    one: "a moyennement une attitude de %{attitude}"
+    other: "ont moyennement une attitude de %{attitude}"
+  attitude3: 
+    zero: ""
+    one: "a un peu une attitude de %{attitude}"
+    other: "ont un peu une attitude de %{attitude}"
+  attitude4: 
+    zero: ""
+    one: "a une attitude de %{attitude}"
+    other: "ont une attitude de %{attitude}"
+  attitude5: 
+    zero: ""
+    one: "a vraiment une attitude de %{attitude}"
+    other: "ont vraiment une attitude de %{attitude}"
+  titrehabitants: "Tous les %{people}"
+  sailors:
+    zero: 'aucun moussaillon'
+    one: '1 moussaillon'
+    other: '%{count} moussaillons'
+
+  musicalinstrument: 
+    1: "Il faut ouvrir sa boîte à %{instrument} tous les jours"
+    2: ""
+    3: ""
+    4: ""
+    5: ""
+  retour: 'Retour'
+  du:
+    one: du
+    other: des
+  le:
+    one: "%{count} "
+    other: "%{count} "
+  auteur:
+    one: auteur
+    other: auteurs
+  post:
+    one: post
+    other: posts
+  activerecord:
+    models:
+      navette:
+        one: navette
+        other: navettes
+      requeststoperson:
+        one: parole de dialogue
+        other: paroles de dialogues
+      mylayout:
+        one: page web html
+        other: pages web html
+      vehicle:
+        one: véhicule
+        other: véhicules
+      fakelinksfamilyperson:
+        one: faux lien
+        other: faux liens
+      hairlength:
+        one: longueur de cheveux
+        other: longueur de cheveux
+      hairtype:
+        one: type de cheveux
+        other: types de cheveux
+      clothescolor:
+        one: couleur des vêtements
+        other: couleurs de vêtements
+      faceshape:
+        one: forme du visage
+        other: formes du visage
+      bodydescription:
+        one: description du corps
+        other: descriptions du corps
+      haircolor:
+        one: couleur des cheveux
+        other: couleurs de cheveux
+      etnicity:
+        one: ethnicité
+        other: ethnicités
+      computingstuff:
+        one: truc en informatique
+        other: trucs en informatique
+      factoryservice:
+        one: service de l'usine
+        other: services de l'usine
+      videogame:
+        one: jeu vidéo
+        other: jeux vidéo
+      pet:
+        one: animal de compagnie
+        other: animal de compagnie
+      internetpseudonym:
+        one: pseudonyme
+        other: pseudonymes
+      fete:
+        one: fête
+        other: fêtes
+      travelticket:
+        one: ticket de voyage
+        other: tickets de voyage
+      pride: 
+        one: mérite
+        other: mérites
+      filmparody: 
+        one: parodie de film
+        other: parodies de films
+      tvseriesparody: 
+        one: parodie de série télé
+        other: parodies de séries télé
+      prejudice: 
+        one: idée reçue
+        other: idées reçues
+      place: 
+        one: lieu
+        other: lieux
+      winningattitude: 
+        one: attitude gagnante
+        other: attitudes gagnantes
+      socialcontract: 
+        one: deal
+        other: deals
+      reaction: 
+        one: texte interactif
+        other: textes interactifs
+      betterperson: 
+        one: popularity contest
+        other: popularity contests
+      city: 
+        one: ville
+        other: villes
+      season: 
+        one: saison
+        other: saisons
+      linkspouseperson: 
+        one: couple
+        other: couples
+      restaurant: 
+        one: restaurant
+        other: restaurants
+      hotel: 
+        one: hôtel
+        other: hôtels
+      song: 
+        one: chanson
+        other: chansons
+      reactions_text: 
+        one: texte à compléter
+        other: textes à compléter
+      task:
+        one: tâche
+        other: tâches
+      personstate:
+        one: état de la personne
+        other: états de la personne
+      taskaction:
+        one: action pour parvenir à une tâche
+        other: actions pour parvenir à une tâche
+      categorything:
+        one: catégorie de choses
+        other: catégories de choses
+      clothing:
+        one: vêtement
+        other: vêtements
+      drink:
+        one: boisson
+        other: boissons
+      food:
+        one: "aliment"
+        other: aliments
+      armygrade:
+        one: "grade de l'armée de terre et son appellation"
+        other: grades de l'armée de terre et leurs appellations
+      job:
+        one: 'profession'
+        other: 'professions'
+      companieshaveceo: 
+        one: "P.D.G."
+        other: "P.D.G.s"
+      becausetask: 
+        one: "'parce que tu fais cette tâche pas parce que tu fais cette autre tâche'"
+        other: "'parce que tu fais ces tâches pas parce que tu fais cette autre tâches'"
+      fromsomeonegossip: 
+        one: "rumeur racontée par un civil (bien ou mal)"
+        other: "rumeurs racontées par un civil (bien ou mal)"
+      aboutsomeonegossip: 
+        one: "rumeur racontée par un reporter"
+        other: "rumeurs racontées par un reporter"
+      hackertask: 
+        one: "tâche de hacker"
+        other: "tâches de hacker"
+      twopeoplemeet: 
+        one: "rencontre entre deux personnes"
+        other: "rencontres entre deux personnes"
+      thistasknotthistask: 
+        one: "cette tâche pas cette tâche"
+        other: "ces tâches pas ces tâches"
+      hernother: 
+        one: "lui pas elle ou elle pas lui ou lui pas lui ou elle pas elle"
+        other: "eux pas elles ou elles pas eux ou eux pas eux ou elle pas elle"
+      companieshaveemployee: 
+        one: "employé"
+        other: "employés"
+      attitudephoto: 
+        one: "commentaire sur des photos"
+        other: "commentaires sur des photos"
+      trait: 
+        one: "qualité du héros"
+        other: "qualités du héros"
+      githubaccount: 
+        one: "compte Github"
+        other: "comptes Github"
+      githubrepo: 
+        one: "repository Github"
+        other: "repositories Github"
+      twitteraccount: 
+        one: "compte Twitter"
+        other: "comptes Twitter"
+      twoperson: 
+        one: "groupe de deux personnes"
+        other: "groupes de deux personnes"
+      user: 
+        one: "user"
+        other: "users"
+      ticket: 
+        one: "ticket"
+        other: "tickets"
+      nationality: 
+        one: "nationalité"
+        other: "nationalités"
+      musicalinstrument: 
+        one: "instrument de musique"
+        other: "instruments de musique"
+      musicalbum: 
+        one: "album de musique"
+        other: "albums de musique"
+      anaphor: 
+        one: "anaphore"
+        other: "anaphores"
+      metonymy: 
+        one: "métonymie"
+        other: "métonymies"
+      clothes: 
+        one: "habit"
+        other: "habits"
+      comicbook: 
+        one: "bande dessinée"
+        other: "bandes dessinées"
+      company: 
+        one: "entreprise"
+        other: "entreprises"
+      composer: 
+        one: "compositeur"
+        other: "compositeurs"
+      cotisation: 
+        one: "cotisation"
+        other: "cotisations"
+      country: 
+        one: "pays"
+        other: "pays"
+      depense: 
+        one: "dépense"
+        other: "dépenses"
+      dish: 
+        one: "plat"
+        other: "plats"
+      emotion: 
+        one: "emotion"
+        other: "emotions"
+      foyertask: 
+        one: "tâche à faire au foyer"
+        other: "tâches à faire au foyer"
+      peoplehaveweakness: 
+        one: "faiblesse de quelqu'un"
+        other: "faiblesse de quelqu'un"
+      peoplehavestrength: 
+        one: "force de quelqu'un"
+        other: "forces de quelqu'un"
+      epoch: 
+        one: "époque"
+        other: "époques"
+      onetime: 
+        one: "chose que tu as fait une fois"
+        other: "choses que tu as fait une fois"
+      transac: 
+        one: "transaction"
+        other: "transactions"
+      tvshow:
+        one: "émission télé"
+        other: "émissions télé"
+      tweet:
+        one: "tweet"
+        other: "ustensiles"
+      ustensile:
+        one: "ustensile"
+        other: "ustensiles"
+      post: 
+        one: "post"
+        other: "post"
+      planet: 
+        one: "planète"
+        other: "planète"
+      moviescene: 
+        one: "scène de cinéma"
+        other: "scènes de cinéma"
+      programminglanguage: 
+        one: "langage de programmation"
+        other: "langages de programmation"
+      fakecomment: 
+        one: "faux commentaire"
+        other: "faux commentaires"
+      fact: 
+        one: "fait"
+        other: "faits"
+      weakness: 
+        one: "faiblesse"
+        other: "faiblesses"
+      worktwo: 
+        one: "groupe de 2 personnes accomplissant une tâche"
+        other: "groupes de 2 personnes accomplissant une tâche"
+      video: 
+        one: "vidéo"
+        other: "vidéos"
+      m17nphrase: 
+        one: "expression de tes 17 ans"
+        other: "expressions de tes 17 ans"
+      i18nphrase: 
+        one: "expression de tes 18 ans"
+        other: "expressions de tes 18 ans"
+      phrase: 
+        one: "expression"
+        other: "expressions"
+      photo: 
+        one: "photo"
+        other: "photos"
+      webpage: 
+        one: "page web"
+        other: "pages web"
+      plantspecie: 
+        one: "espece naturelle"
+        other: "especes naturelles"
+      technology: 
+        one: "technologie"
+        other: "technologies"
+      philosopher: 
+        one: "philosophe"
+        other: "philosophes"
+      word: 
+        one: "mot"
+        other: "mots"
+      surname: 
+        one: "pseudonyme ou surnom"
+        other: "pseudonymes ou surnoms"
+      familylink: 
+        one: "lien de parenté"
+        other: "liens de parenté"
+      posts_surname: 
+        one: "avatar pour un post"
+        other: "avatars pour un post"
+      story: 
+        one: "histoire d'aventures avec un héros-une héroïne"
+        other: "histoires d'aventures avec un héros-héroïne"
+      profilepicture: 
+        one: "image de profil"
+        other: "images de profil"
+      heroadventure: 
+        one: "aventure d'héroïne"
+        other: "aventure d'héroïne"
+      torealizetask: 
+        one: "tâche à réaliser avec la bonne attitude"
+        other: "tâches à réaliser avec la bonne attitude"
+      tvseries:
+        one: "Série télé"
+        other: "Séries télé"
+      shaktistatement: 
+        one: "Affirmation de Shakti Gauwain"
+        other: "Affirmations de Shakti Gauwain"
+      olympicperson: 
+        one: "Match olympique"
+        other: "Matchs olympique"
+      olympicperson: 
+        one: "Comptes Twitter"
+        other: "Comptes Twitter"
+      sailorandaction:
+        one: "ensemble de moussaillon à la place pour la tâche"
+        other: "ensemble de moussaillons à la place pour la tâche"
+    attributes:
+      aboutsomeone:
+        myid: "Modifier l'ordre"
+      aboutsomething:
+        myid: "Modifier l'ordre"
+      badge:
+        name: "Crée un badge personnalisé pour devenir qui tu veux être"
+        name_fr: "Crée un badge personnalisé pour devenir qui tu veux être"
+        name_en: "Crée un badge personnalisé pour devenir qui tu veux être"
+        image: "Dessine un badge personnalisé pour devenir qui tu veux être"
+      navette:
+        person_ids: "Sélectionne des VT/VS"
+        citya_id: "Sélectionne une ville de départ"
+        cityb_id: "Sélectionne une ville d'arrivée"
+      basic_guyacadeau:
+        address:	
+          city:
+            name_fr: Ville
+          country:
+            name_fr: Pays
+          state:
+            name_fr: Etat
+          place:
+            name: Lieu
+            image: Image du lieu
+      address:	
+        city:
+          name_fr: Ville
+        country:
+          name_fr: Pays
+        state:
+          name_fr: Etat
+        place:
+          name: Lieu
+          image: Image du lieu
+      country:
+        name_fr: Pays
+      state:
+        name_fr: Etat
+      place:
+        name: Lieu
+        image: Image pour ce lieu
+      city:
+        name_fr: Ville
+      mylayout:
+        name: Nom du layout
+        title: Nom du layout 
+        typelayout: Nom du fichier html
+      selfportrait:
+        bodydescription_id: choisir une description du corps
+        faceshape_id: choisir une forme du visage
+        haircolor_id: choisir une couleur des cheveux
+        clothescolor_id: choisir une couleur des vêtements
+        hairtype_id: choisir une type de cheveux
+        hairlength_id: choisir une longueur de cheveux
+      twitteraccount:
+        twitteraccount_ids: "Avec qui ce compte twitter est en couple ?"
+      sailorandaction:
+        sailor_ids: "Autres moussaillons (préférés pour cette tâche)"
+      photoshavething: 
+        owner_ids: "cet objet appartient à qui ?"
+      post:
+        content_fr: "contenu en français"
+        reactiontrueimage_ids: "quelles sont vos réactions à ce post ?"
+      artist:
+        name: "Nom d'un artiste"
+        wannabe_ids: "Entrez des fans de cet artiste"
+      travelticket:
+        peoplebuytravelticket_ids: "Ajouter des voyageurs aux tickets de voyageurs puis cherchez les ici"
+        peoplebuyclothing_ids: "Ajouter des acheteurs aux vêtements puis cherchez les ici"
+
+      food: 
+        name_fr: "Nom de cette nourriture (français)"
+        name_en: "Nom de cette nourriture (anglais)"
+        name_de: "Nom de cette nourriture (allemand)"
+      drink: 
+        name_fr: "Nom de cette boisson (français)"
+        name_en: "Nom de cette boisson (anglais)"
+        name_de: "Nom de cette boisson (allemand)"
+      song: 
+        name: "Titre"
+      armygrade:
+        femme: Et si c'est une femme ?
+        appellation: Appellation ?
+        image: Scratch
+      content:
+        content_fr: "en français"
+        content_en: "en anglais"
+        content_de: "en allemand"
+      posts_surname:
+        whoiam: "Il/elle parle en tant qu'il est lui/elle, c'est lui/elle"
+        content_fr: "Description ou discours en français"
+        content_en: "Description ou discours en anglais"
+        content_de: "Description ou discours en allemand"
+        inverse_hacking: "Hacker à l'inverse du moussaillon (c'est pas lui c'est un autre)"
+        inverse_hacking2: "Le moussaillon a une deuxième façon de ne pas être lui (c'est pas lui c'est un autre)"
+        profilepic_id: "Ajouter une image de profil"
+        person_id: "Ajouter un moussaillon"
+        stranger_id: "le personnage qui parle estetranger a cette personne/ne pourrait pas etre lui"
+        fakename: "prétend-il-elle s'appeler ainsi ? / c'est un faux nom"
+        surnamedestinataire_id: A qui tu parles ?
+        surname_id: Qui est-ce ?
+        thing_id: "avec quoi / en utilisant quoi ? une pierre, une console de jeu, un téléphone portable..."
+        speaklike_id: "comme si il-elle était-en se prenant pour "
+        destinataire_id: "le message est pour qui-est destiné à qui ?"
+        name_action: Nom d'une action
+        action_name: Nom d'une action
+        place_id: Lieu
+      place:
+        name: Lieu
+        image: Image
+        longitude: Longitude
+        latitude: Latitude
+        _destroy: Supprimer
+      thing:
+        name: Nom de cette chose
+        image: Image
+      surname:
+        name: "Donner le nom de quelqu'un, son surnom ou un indice de qui c'est"
+        nomsurname: "Surnom ou pseudonyme ou indice de qui est quelqu'un"
+        cherchersurname: "Chercher un pseudo ou donner un indice de qui est quelqu'un"
+      musicalkey:
+        code_fr: Notation français
+        code_en: Notation anglais
+        code_de: Notation allemand
+      job:
+        person_ids: "Gens exerçant cette profession"
+      couplet:
+        content:
+          content_fr: "Contenu en francais"
+          content_en: "Contenu en anglais"
+          content_en: "Contenu en allemand"
+      refrain:
+        content:
+          content_fr: "Contenu en francais"
+          content_en: "Contenu en anglais"
+          content_en: "Contenu en allemand"
+
+      musicalcomposition:
+        cherchonssongs: "Chercher des chansons"
+        song_ids: "Chansons dont vous vous êtes inspiré(e)"
+        title: "Titre de la composition"
+        recipient: "Pour qui l'oeuvre est composée ?"
+        composedfor: "Chercher des destinataires pour cet oeuvre"
+      composer:
+        image: "Image du compositeur"
+        name: "Nom du compositeur"
+        email: "Email du compositeur"
+      person:
+        addprofilepics: "Ajouter plusieurs photos de profile pour cette personne"
+        chercherphrasemoussaillon: Chercher une phrase avec des moussaillons
+        dreamjob_ids: Sa(ses) profession(s) de rêve
+        colorhair: Couleur des cheveux
+        eyescolor: Couleur des yeux
+        image: Choisir une image
+        city_id: Ville
+        country_id: Pays
+        facebook: Son facebook
+        profilepic_ids: Images de profil
+        myprofilepic_id: Mon image de profil
+        mypic: Choisir une image de profil
+        pronoun_id: Choisir un pronom
+        sexe: "T'es"
+        name: Nom ou surnom
+        nationality: Nationalité
+        firstnames: Prénom(s)
+        lastname: Nom de famille
+        dateofbirth: Date de naissance
+        phonenumber: Numéro de téléphone
+        cherchermoussaillon: "Chercher ces moussaillons"
+        cherchermoussaillonceleb: "Chercher une star"
+        chercheracteur: "Chercher ce(s) acteur(rice)(s)"
+        nomacteur: "Nom de l'acteur"
+        tvseriesid: "Nom de série télé"
+        filmid: "Titre du film"
+        nomdumoussaillon: "Nom du moussaillon"
+        description: Description et infos diverses sur lui, sur elle, ou sur sa vie
+      attitude:
+        ssailor: "chercher un moussaillon dans la base"
+        s: "chercher une attitude"
+        name: "éditer le nom de cette attitude"
+        image: "donner une image pour représenter cette attitude"
+        sailor_ids: "Qui sont les moussaillons leaders de cette attitude ?"
+        amateur_ids: "Qui sont les moussaillons amateurs de cette attitude ?"
+      tvseries:
+        name: Titre
+        name_fr: Titre (français)
+        name_en: Titre (anglais)
+        name_de: Titre (allemand)
+        actor_ids: Les acteurs sont qui ?
+      bar:
+        nb: No. de mesure
+        correct_id: Enregistrer la version bien jouée
+      artobject:
+        name: Nom
+        image: Cherchez une image
+      task:
+        cherchonssailors: "Cherche des moussaillons"
+        sailor_ids: "Les moussaillons"
+        cherchonsattitudes: "Cherche des attitudes"
+        attitude_ids: "Les attitudes"
+        cherchonsactions: "Les choses à savoir faire"
+        taskaction_ids: "Cherche des actions pour faire la tâche"
+        cherchonsworktwos: "Cherche des tâches pour 2 personnes"
+        worktwo_ids: "Des tâches à deux"
+        cherchertache: "Chercher la(les) tâche(s)"
+        nomtache: "Nom de la tâche"
+        name: Nom
+    errors:
+      messages:
+        record_invalid: 'La validation a échoué : %{errors}'
+        restrict_dependent_destroy:
+          has_one: Vous ne pouvez pas supprimer l'enregistrement car un(e) %{record}
+            dépendant(e) existe
+          has_many: Vous ne pouvez pas supprimer l'enregistrement parce que les %{record}
+            dépendants existent
+  date:
+    abbr_day_names:
+    - dim
+    - lun
+    - mar
+    - mer
+    - jeu
+    - ven
+    - sam
+    abbr_month_names:
+    - 
+    - jan.
+    - fév.
+    - mar.
+    - avr.
+    - mai
+    - juin
+    - juil.
+    - août
+    - sept.
+    - oct.
+    - nov.
+    - déc.
+    day_names:
+    - dimanche
+    - lundi
+    - mardi
+    - mercredi
+    - jeudi
+    - vendredi
+    - samedi
+    formats:
+      monthyear: "%b %Y"
+      default: "%d/%m/%Y"
+      mydateurl: "%d-%m-%Y"
+      long: "%e %B %Y"
+      mytime: "%e %B %Y %T"
+      longtime: "%e %B %Y %T"
+      fulldate: "%A %e %B %Y"
+      short: "%e %b"
+      jourmois: "%e %B"
+      celeb: "%d-%m-%Y"
+    month_names:
+    - 
+    - janvier
+    - février
+    - mars
+    - avril
+    - mai
+    - juin
+    - juillet
+    - août
+    - septembre
+    - octobre
+    - novembre
+    - décembre
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: environ une heure
+        other: environ %{count} heures
+      about_x_months:
+        one: environ un mois
+        other: environ %{count} mois
+      about_x_years:
+        one: environ un an
+        other: environ %{count} ans
+      almost_x_years:
+        one: presqu'un an
+        other: presque %{count} ans
+      half_a_minute: une demi‑minute
+      less_than_x_seconds:
+        zero: moins d'une seconde
+        one: moins d'une seconde
+        other: moins de %{count} secondes
+      less_than_x_minutes:
+        zero: moins d'une minute
+        one: moins d'une minute
+        other: moins de %{count} minutes
+      over_x_years:
+        one: plus d'un an
+        other: plus de %{count} ans
+      x_seconds:
+        one: 1 seconde
+        other: "%{count} secondes"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_days:
+        one: 1 jour
+        other: "%{count} jours"
+      x_months:
+        one: 1 mois
+        other: "%{count} mois"
+      x_years:
+        one: 1 an
+        other: "%{count} ans"
+    prompts:
+      second: Seconde
+      minute: Minute
+      hour: Heure
+      day: Jour
+      month: Mois
+      year: Année
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: doit être accepté(e)
+      blank: doit être rempli(e)
+      confirmation: ne concorde pas avec %{attribute}
+      empty: doit être rempli(e)
+      equal_to: doit être égal à %{count}
+      even: doit être pair
+      exclusion: n'est pas disponible
+      greater_than: doit être supérieur à %{count}
+      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+      inclusion: n'est pas inclus(e) dans la liste
+      invalid: n'est pas valide
+      less_than: doit être inférieur à %{count}
+      less_than_or_equal_to: doit être inférieur ou égal à %{count}
+      model_invalid: 'Validation échouée : %{errors}'
+      not_a_number: n'est pas un nombre
+      not_an_integer: doit être un nombre entier
+      odd: doit être impair
+      other_than: doit être différent de %{count}
+      present: doit être vide
+      required: doit exister
+      taken: n'est pas disponible
+      too_long:
+        one: est trop long (pas plus d'un caractère)
+        other: est trop long (pas plus de %{count} caractères)
+      too_short:
+        one: est trop court (au moins un caractère)
+        other: est trop court (au moins %{count} caractères)
+      wrong_length:
+        one: ne fait pas la bonne longueur (doit comporter un seul caractère)
+        other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
+    template:
+      body: 'Veuillez vérifier les champs suivants : '
+      header:
+        one: 'Impossible d''enregistrer ce(tte) %{model} : 1 erreur'
+        other: 'Impossible d''enregistrer ce(tte) %{model} : %{count} erreurs'
+  helpers:
+    select:
+      prompt: Veuillez sélectionner
+    submit:
+      cherchermoussaillon: Chercher ces moussaillons
+      create: Créer un(e) %{model}
+      submit: Enregistrer ce(tte) %{model}
+      update: Modifier ce(tte) %{model}
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: " "
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: milliard
+          million: million
+          quadrillion: million de milliards
+          thousand: millier
+          trillion: billion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: octet
+            other: octets
+          eb: Eo
+          gb: Go
+          kb: ko
+          mb: Mo
+          pb: Po
+          tb: To
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: " et "
+      two_words_connector: " et "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      veryshort: "%Hh%M"
+      mytime: "%e %B %Y %T"
+      olympic: "%M:%S.%2N"
+      olympicsmall: "%S.%2N"
+      default: "%d %B %Y %Hh %Mmin %Ss"
+      long: "%A %d %B %Y %Hh%M"
+      mytime: "%A %d %B %Y"
+      short: "%d %b %Hh%M"
+    pm: pm
+

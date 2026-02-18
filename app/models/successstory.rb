@@ -1,0 +1,2 @@
+class Successstory < ApplicationRecord
+end

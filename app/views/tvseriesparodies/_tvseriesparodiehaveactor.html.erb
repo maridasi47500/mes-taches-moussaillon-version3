@@ -1,0 +1,2 @@
+<%= link_to a.person do %><%=render partial: "people/personsimple", collection: [a.person], as: :person%><%end%> <%if a.surname && a.surname.name.to_s.length > 0%>(<%=a.surname.name%>)<%end%>
+

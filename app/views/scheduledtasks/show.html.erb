@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date and time:</strong>
+  <%= @scheduledtask.date_and_time %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @scheduledtask.name %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @scheduledtask.person_id %>
+</p>
+
+<%= link_to 'Edit', edit_scheduledtask_path(@scheduledtask) %> |
+<%= link_to 'Back', scheduledtasks_path %>

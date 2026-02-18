@@ -1,0 +1,9 @@
+<%@bookings.each do |booking|%>
+<%=link_to booking.place.name,booking.place%>
+<%=t('display.duaudate',date1: booking.from_date.to_s, date2: booking.to_date.to_s)%>
+<%=form_with url: polymorphic_url(booking.place), html:{method: 'patch'} do |form|%>
+<input id="booking<%=booking.id.to_s%>" name="<%=booking.place.id%>booking" type="image" width="100" height="100" alt="<%=booking.place.name%>"
+       src="/assets/<%=booking.place.image%>">
+
+<%end%>
+<%end%>

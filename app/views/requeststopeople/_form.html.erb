@@ -1,0 +1,58 @@
+<%= form_with(model: requeststoperson, local: true) do |form| %>
+<% if requeststoperson.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(requeststoperson.errors.count, "error") %> prohibited this requeststoperson from being saved:</h2>
+
+<ul>
+<% requeststoperson.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<%req=requeststoperson.requestperson||Requestperson.new(persona: Person.new,personb:Person.new)%>
+<%=form.fields_for :requestperson,req do |f|%>
+<div class="field">
+<%=render "form/radiobutton", form: f, fieldname: "persona_id", collec: Person.findbyid(req.persona_id), mesmodele:"persona"%>
+
+</div>
+<div class="field">
+<%=render "form/radiobutton", form: f, fieldname: "personb_id", collec: Person.findbyid(req.personb_id), mesmodele:"personb"%>
+
+</div>
+<%end%>
+<div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :user_id, form: form, fieldname: "alias_id", collec: Alias.findbyid(requeststoperson.alias_id), mesmodele:"aliases"%>
+
+</div>
+
+
+<div class="field">
+<%= form.label :content_fr %>
+<%= form.text_area :content_fr %>
+</div>
+
+<div class="field">
+<%= form.label :content_en %>
+<%= form.text_area :content_en %>
+</div>
+
+<div class="field">
+<%= form.label :content_de %>
+<%= form.text_area :content_de %>
+</div>
+
+<div class="actions">
+<%= form.submit %>
+</div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,personjson_albums_path,personjson_albums_path]%>
+<%@select=[persona_requeststopeople_path,personb_requeststopeople_path,aliases_requeststopeople_path]%>
+
+<%@nom=['persona','personb','aliases']%>
+<%=render partial:"form/functionjsonmember", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

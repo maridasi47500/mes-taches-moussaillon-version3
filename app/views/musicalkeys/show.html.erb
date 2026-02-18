@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @musicalkey.name %>
+</p>
+
+
+<p>
+  <strong>Notation:</strong>
+  <%= @musicalkey.code %>
+</p>
+
+<%= link_to 'Edit', edit_musicalkey_path(@musicalkey) %> |
+<%= link_to 'Back', musicalkeys_path %>

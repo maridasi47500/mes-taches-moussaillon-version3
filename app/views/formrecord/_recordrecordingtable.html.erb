@@ -1,0 +1,45 @@
+  <h2><%=defined?(mylabel) ? mylabel : "Add audio"%></h2>
+
+<%= button_tag "record", type: "button", class: "record#{myfield}"%>
+      <%= button_tag "stop", class: "stop#{myfield}", type:"button"%>
+  <div class="field">
+    <%= form.label myfield %>
+    <%= form.file_field myfield, multiple: true %>
+  </div>
+<%if defined?(am) && am%>
+<%=form.select "addmybigrelation_id", options_for_select(Relation.other.collect {|x| [x.name, x.id]},am.myrelationtoselect), {prompt: "Add other relation", size:4, multiple: true}%>
+<%end%>
+
+  <table>
+          <thead>
+                  <tr>
+                      <td>Audio Word/ phrase</td>
+                      <td>Identify It / Write it by yourself</td>
+              </tr>
+              <%if false%>
+ <tr><td><audio controls src="<%=am.name%>"></audio></td>
+         <td>
+         <%=form.select "#{myfield}", options_for_select(Phrase.all.collect {|x| [x.content, x.id]}), {prompt: "Select a phrase", include_hidden: false}%>
+<%if sot%>
+        <%=form.select "content#{myfield[6..-1].gsub('my','myown')}", options_for_select(sot.tasks.pluck(:name), modelderails.name), {prompt: "Select a task", include_hidden: false}%>
+
+             <%elsif am%>
+        <%=form.text_field "content#{myfield[6..-1].gsub('my','myown')}", "#{am.content}", placeholder: "or write the content of your recorded #{modelderails.class.to_s.downcase}"%>
+         <%end%>
+         </td>
+         <td>
+       <br>
+       
+<%=form.select "addmyrelation_id", options_for_select(Relation.mostusual.collect {|x| [x.name, x.id]}), {prompt: "Select a relation", size:4, multiple: true}%>
+<%#text_field_tag "#{modelderails.class.to_s.downcase}[myrelation_text][]", "", placeholder: "or write the content of your relation"%>
+
+     </td></tr>
+
+              <%end%>
+      </thead>
+  <tbody class="recordingsfield<%=myfield%>">
+  </tbody>
+  </table>
+  <%=button_tag "empty audio file field", onclick: "window.list#{myfield.to_s}=[];task_#{myfield}.value='';return false;", type: "button"%>
+
+<%=render partial: "formrecord/javascriptrecordaudiotable", locals: {sot:sot,am: am, fieldaudio: myfield, form: form, modelderails: modelderails}%>

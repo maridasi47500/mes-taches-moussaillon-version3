@@ -1,0 +1,39 @@
+<%=content_for :mylittlecss do%>
+area {
+  outline-color:green;
+outline-width:200;
+
+
+
+}
+area:focus {
+  outline-color: red;
+outline-width:20px;
+
+
+
+}
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+var areas = document.getElementsByTagName( 'area' );
+for( var index = 0; index < areas.length; index++ ) {    
+    areas[index].addEventListener( 'mouseover', function () {this.focus();}, false );
+    areas[index].addEventListener( 'mouseout', function () {this.blur();}, false );
+};
+
+</script>
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @mymap %>
+</p>
+
+<%= link_to 'Revenir au post', post_path(@post.id) %> |
+<%= link_to 'Edit', edit_post_mymap_path(@mymap.id,post_id: @post.id) %> |
+<%= link_to 'Back', post_mymaps_path %> |
+<%=link_to "ajouter un endroit", addaplace_post_mymap_path(post_id: @post.id, id: @mymap.id)%> |
+<%=link_to "voir en grand", post_mymap_path(post_id: @post.id, id: @mymap.id)%>
+

@@ -1,0 +1,15 @@
+            <div class=" ">
+                <div class="">
+                        <div class="card">
+<%=fields_for :post do |form|%>
+<%=form.collection_check_boxes(:tweet_ids, [@tweet], :id, :content) do |f|%>
+<%=f.check_box%> <%=f.label do %>
+<%=render Tweet.find(f.value)%>
+<%end%>
+<%end%>
+<%end%>
+
+                        </div>
+                        </div>
+                        </div>
+

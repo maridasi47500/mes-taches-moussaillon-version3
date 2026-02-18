@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Musicalscores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @musicalscores.each do |musicalscore| %>
+      <tr>
+        <td><%= musicalscore.name %></td>
+        <td><%= image_tag musicalscore.image, class: "imageprofilethread" %></td>
+        <td><%= musicalscore.description %></td>
+        <td><%= link_to 'Show', musicalscore %></td>
+        <td><%= link_to 'Edit', edit_musicalscore_path(musicalscore) %></td>
+        <td><%= button_to 'Destroy', musicalscore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Musicalscore', new_musicalscore_path %>

@@ -1,0 +1,241 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+        <%= render "headersmessage", form: form %>
+<div id="react">
+<div id="reactpage">
+<div class="field reactions-list">
+  <%= form.fields_for :reactions do |pokemon| %>
+    <div class="field">
+    <%= pokemon.label :name, "Name of this reaction" %>
+<%=pokemon.select("name", Reaction.ofallkind, { include_blank: true })%>
+<%= pokemon.label :reactingperson_ids %>
+    <%= pokemon.select("reactingperson_ids", Task.recentsailortasks(post.reaction_ids).collect {|p| [ p.name, p.id ] },{prompt: 'select a collection'}, { size: 5,multiple: true , onchange: "$.ajax({url:window.location.pathname+'.js?cud='+$(this).val(), success:function(){}});"}) %>
+    Delete: <%= pokemon.check_box :_destroy %>
+    The order is reversed: <%= pokemon.check_box :opposite %>
+    </div>
+  <% end %>
+</div>
+    <div class="field">    <button type="button" onclick="$.ajax({url:window.location.pathname+'.js?code=true&peopletohack=<%=params[:hackseveralpeople].to_a.join(',')%>'});">Add a reaction</button>
+</div>
+<div class="field">
+<button type="button" onclick="off();return false;">ok</button></div>
+</div>
+</div>
+<div class="field">
+<button type="button" onclick="on();return false;">react</button>
+</div>
+<div class="selectedpeople usurpation_ids">
+Hacked people
+<%=form.collection_check_boxes(:usurpation_ids, post.usurpations, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+<%=form.collection_check_boxes(:usurpation_ids, Person.all.select {|x|x.collections.count == 0}, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople hackedperson_ids">
+Your main subjects of matter
+<%=form.collection_check_boxes(:hackedperson_ids, post.hackedpeople, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+<%=form.collection_check_boxes(:hackedperson_ids, Person.all.select {|x|x.collections.count == 0}, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople commeelle_ids">
+Alias
+<%=form.collection_check_boxes(:commeelle_ids, post.commeelles+(Person.all.select {|x|x.collections.count == 0}), :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople destinataire_ids">
+Your recipients 
+<%=form.collection_check_boxes(:destinataire_ids, post.destinataires, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+<div class="selectedpeople commentedperson_ids">
+Person that are the subjects of the conversation in the way of other people (thehacked people), for ex. the vegetable is .. or the bike is..
+<%=form.collection_check_boxes(:commentedperson_ids, post.commentedpeople, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+<div class="field">
+<%= form.label :action_ids, "Sailors' tasks" %>
+    <%= form.select("action_ids", @post.actions.collect {|p| [ p.name, p.id ] },{prompt: 'edit your selection of tasks'}, { size: 5,multiple: true}) %>
+</div>
+    
+
+<div class="field">
+
+    <%= form.label :post_type_ids, "Post type" %>
+    <%= form.select("post_type_ids",PostType.all.collect {|p| [ p.name, p.id ] },{prompt: 'select post types'}, { size: 5,multiple: true }) %>
+</div>
+<div class="field">
+
+    <%= form.label :otherposts, "Make an echo to this post" %>
+    <%= form.text_field("otherposts",value: @post.otherposts.pluck(:id).join(','))%>
+</div>
+<div class="field">
+    <%= form.label :commentapost, "Comment a post" %>
+    <%= form.text_field("commentapost",value: (post.oldercomment ? post.oldercomment.id : ""))%>
+</div>
+
+<script>
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+    $( "#post_commentapost" ).keyup(function () {
+      var commentpost=$(this);
+      commentpost.autocomplete({
+        source: function(request, response){
+          $.ajax({url:'/searchpost?post='+commentpost.val(),
+            success:function(data){
+              response(data);
+            }
+          });
+        },
+    select: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    }
+      });
+});
+      var autresposts=$('#post_otherposts');
+    autresposts.on( "keydown", function( event ) {
+
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      }).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          console.log(request,response);
+    $.ajax({
+        type: "GET",
+      url: "/searchpost?post="+autresposts.val(),
+      success:function(availableTags){
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+      }});
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+
+
+
+</script>
+  <div class="field">
+    <%= form.hidden_field :post_id, value: (defined?(currentpostid) ? currentpostid : "") %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, required: true, class:'contentpost' %>
+  </div>
+  <% if post.expired %>
+  <div class="field">
+
+      <p>Le post a expiré</p>
+  </div>
+  <%else%>
+    <div class="field">
+      <%= form.label :expired, "Le post a expiré" %>
+      <%= form.check_box :expired %>
+    </div>
+
+    <!--form.collection_check_boxes(:jingles, Jingle.all, :id, :name)
+      premier select  de la personne
+      deuxieme select du jingle
+      troisieme element = checkbox
+    -->
+<div class="field people-jingles">
+</div>
+
+  <%end%>
+    <div class="field">
+<%post.usurpations.each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>
+    <div class="field">
+<%post.hackedpeople.where('people.id NOT IN (?)', post.usurpation_ids).each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>
+<script>
+$('label[for^=post_jingle_ids_]').each(function(){
+$(this).html('<audio src="/assets/'+$(this).html()+'" controls=""></audio>');
+});
+ function on() {
+  document.getElementById("react").style.display = "block";
+  document.getElementById("reactpage").style.display = "block";
+}
+
+function off() {
+  document.getElementById("react").style.display = "none";
+  document.getElementById("reactpage").style.display = "none";
+} 
+</script>
+    <div class="field">
+        <%= render "inputvideo", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputrecording", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputphotoswebcam", form: form %>
+    </div>
+
+  <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+<% end %>

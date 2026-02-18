@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Phrases (m17n) (multilingual)</h1>
+<p>You can use several languages in the same phrase in this dictionary.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content fr</th>
+      <th>Content en</th>
+      <th>Content de</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @m17nphrases.each do |m17nphrase| %>
+      <tr>
+        <td><%= m17nphrase.content_fr %></td>
+        <td><%= m17nphrase.content_en %></td>
+        <td><%= m17nphrase.content_de %></td>
+        <%if m17nphrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if m17nphrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if m17nphrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+<%end%>
+
+        <td><%= link_to 'Show', m17nphrase %></td>
+        <td><%= link_to 'Edit', edit_m17nphrase_path(m17nphrase) %></td>
+        <td><%= link_to 'Destroy', m17nphrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%if m17nphrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if m17nphrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if m17nphrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+    <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New M17nphrase', new_m17nphrase_path %>
+<%=render "indexpage/pagination",g:params[:page].to_i, modelname: M17nphrase,mypath: m17nphrases_path+'?'%>
+

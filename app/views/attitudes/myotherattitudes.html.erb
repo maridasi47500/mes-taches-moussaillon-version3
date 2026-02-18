@@ -1,0 +1,14 @@
+<%=render @attitude1%>
+il/elle
+<%if @attitude1.pro? and @attitude2.amateur?%>
+est peut-être copain et leader d'attitude avec
+<%elsif @attitude2.pro? and @attitude1.amateur?%>
+est peut-être follower d'attitude avec
+<%elsif @attitude1.pro? and @attitude2.pro?%>
+est peut-être copains d'attitude comme des pros avec
+<%elsif @attitude1.amateur? and @attitude2.amateur?%>
+est peut-être copains d'attitude comme amateurs avec
+<%end%>
+
+<%=render @attitude2%>
+

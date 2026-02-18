@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admissionfiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admissionfiles.each do |admissionfile| %>
+      <tr>
+        <td><%= admissionfile.name %></td>
+        <td><%= link_to 'Show', admissionfile %></td>
+        <td><%= link_to 'Edit', edit_admissionfile_path(admissionfile) %></td>
+        <td><%= link_to 'Destroy', admissionfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admissionfile', new_admissionfile_path %>

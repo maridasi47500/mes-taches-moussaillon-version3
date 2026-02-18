@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comicbooks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comicbooks.each do |comicbook| %>
+      <tr>
+        <td><%= render comicbook %></td>
+        <td><%= comicbook.title %></td>
+        <td><%= comicbook.description %></td>
+        <td><%= link_to 'Show', comicbook %></td>
+        <td><%= link_to 'Edit', edit_comicbook_path(comicbook) %></td>
+        <td><%= link_to 'Destroy', comicbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comicbook', new_comicbook_path %>

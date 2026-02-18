@@ -1,0 +1,964 @@
+<%if (!@already_exists && @new) || (@edit && @already_exists) %>
+<%= form_with(model: @person, local: true) do |form| %>
+  <%=form.fields_for :wikipedia_page do |wikipedia|%>  
+  <div class="field">
+    <%= wikipedia.label :title %>
+    <%= wikipedia.text_field :title %>
+
+  </div>
+  <div class="field">
+    <%= wikipedia.label :description %>
+    <%= wikipedia.text_area :description %>
+
+  </div>
+
+  <%= wikipedia.fields_for :photos do |photo|%>
+  <div class="field">
+
+<%= photo.label :file, "Nouvelle photo"%>
+    <%= photo.file_field :file %>
+  </div>
+
+  <div class="field">
+<%= photo.label :title,"Titre"%>
+    <%= photo.text_field :title %>
+  </div>
+
+<%end%>
+
+  <div class="actions">
+    <%= form.submit "Add Those Jingles" %>
+  </div>
+<% end %>
+<%elsif @already_exists%>
+<!DOCTYPE html>
+<html class="client-nojs" lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Harry Styles — Wikipédia</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!1,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],"wgRequestId":"X-dhjQpAAL8AAylx5SoAAACC","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Harry_Styles","wgTitle":"Harry Styles","wgCurRevisionId":178538206,"wgRevisionId":178538206,"wgArticleId":8670551,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Page en semi-protection longue","Article à référence souhaitée","Article utilisant une Infobox","Article contenant un appel à traduction en anglais","Portail:Musique/Articles liés","Portail:Royaume-Uni/Articles liés","Portail:Europe/Articles liés","Wikipédia:Article biographique",
+"Portail:Biographie/Articles liés/Culture et arts","Chanteur anglais","Auteur-compositeur britannique","Membre de One Direction","Acteur anglais de télévision","Participant à The X Factor (Royaume-Uni)","Artiste de Columbia Records","Lauréat d'un ARIA Music Award","Lauréat d'un NME Award","Naissance en février 1994","Naissance à Redditch"],"wgPageContentLanguage":"fr","wgPageContentModel":"wikitext","wgRelevantPageName":"Harry_Styles","wgRelevantArticleId":8670551,"wgIsProbablyEditable":!1,"wgRelevantPageIsProbablyEditable":!1,"wgRestrictionEdit":["autoconfirmed"],"wgRestrictionMove":["autoconfirmed"],"wgMediaViewerOnClick":!0,"wgMediaViewerEnabledByDefault":!0,"wgPopupsReferencePreviews":!1,"wgPopupsConflictsWithNavPopupGadget":!1,"wgPopupsConflictsWithRefTooltipsGadget":!1,"wgVisualEditor":{"pageLanguageCode":"fr","pageLanguageDir":"ltr","pageVariantFallbacks":"fr"},"wgMFDisplayWikibaseDescriptions":{"search":!0,"nearby":!0,"watchlist":!0,"tagline":
+!0},"wgWMESchemaEditAttemptStepOversample":!1,"wgULSCurrentAutonym":"français","wgNoticeProject":"wikipedia","wgCentralAuthMobileDomain":!1,"wgEditSubmitButtonLabelPublish":!0,"wgULSPosition":"interlanguage","wgGENewcomerTasksGuidanceEnabled":!0,"wgWikibaseItemId":"Q3626966"};RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","noscript":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","ext.cite.styles":"ready","ext.categoryTree.styles":"ready","skins.vector.styles":"ready","mediawiki.ui.icon":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.uls.interlanguage":"ready","ext.wikimediaBadges":"ready","wikibase.client.init":"ready"};RLPAGEMODULES=["ext.cite.ux-enhancements","ext.categoryTree","site","mediawiki.page.ready","mediawiki.toc","skins.vector.js","ext.gadget.ArchiveLinks","ext.gadget.MonobookToolbarStandard","ext.gadget.Wdsearch","ext.centralauth.centralautologin","mmv.head",
+"mmv.bootstrap.autostart","ext.popups","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.eventLogging","ext.wikimediaEvents","ext.navigationTiming","ext.uls.compactlinks","ext.uls.interface","ext.cx.eventlogging.campaigns","ext.quicksurveys.init","ext.centralNotice.geoIP","ext.centralNotice.startUp","ext.growthExperiments.SuggestedEditSession"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1hzgi",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});mw.user.options.set({"variant":"fr"});
+});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=fr&amp;modules=ext.categoryTree.styles%7Cext.cite.styles%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cmediawiki.ui.icon%7Cskins.vector.styles%7Cwikibase.client.init&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/w/load.php?lang=fr&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/w/load.php?lang=fr&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.36.0-wmf.22"/>
+<meta name="referrer" content="origin"/>
+<meta name="referrer" content="origin-when-crossorigin"/>
+<meta name="referrer" content="origin-when-cross-origin"/>
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/9/9b/180612_Harry_Styles_Live_On_Tour_in_Nashville.png"/>
+<link rel="preconnect" href="//upload.wikimedia.org"/>
+<link rel="alternate" media="only screen and (max-width: 720px)" href="//fr.m.wikipedia.org/wiki/Harry_Styles"/>
+<link rel="apple-touch-icon" href="/static/apple-touch/wikipedia.png"/>
+<link rel="shortcut icon" href="/static/favicon/wikipedia.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipédia (fr)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//fr.wikipedia.org/w/api.php?action=rsd"/>
+<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/"/>
+<link rel="canonical" href="https://fr.wikipedia.org/wiki/Harry_Styles"/>
+<link rel="dns-prefetch" href="//login.wikimedia.org"/>
+<link rel="dns-prefetch" href="//meta.wikimedia.org" />
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Harry_Styles rootpage-Harry_Styles skin-vector action-view"><div class="mw-page-container">
+	<a class="mw-jump-link" href="#content">Aller au contenu</a>
+	<div class="mw-page-container-inner">
+
+<input
+	type="checkbox"
+	id="mw-sidebar-checkbox"
+	class="mw-checkbox-hack-checkbox"
+	checked>
+
+<header class="mw-header">
+	<label
+		id="mw-sidebar-button"
+		class="mw-checkbox-hack-button mw-ui-icon mw-ui-icon-element"
+		for="mw-sidebar-checkbox"
+		role="button"
+		aria-controls="mw-panel"
+		data-event-name="ui.sidebar"
+		tabindex="0">
+		Afficher/cacher la barre latérale
+	</label>
+	<a href="/wiki/Wikip%C3%A9dia:Accueil_principal" class="mw-logo">
+		<img class="mw-logo-icon" src="/static/images/mobile/copyright/wikipedia.png" alt=""
+			aria-hidden="true" height="50" width="50">
+		<span class="mw-logo-container">
+			<img class="mw-logo-wordmark" alt="Wikipédia"
+				src="/static/images/mobile/copyright/wikipedia-wordmark-fr.svg" width="119" height="18">
+			<img class="mw-logo-tagline"
+				alt="l&#039;encyclopédie libre"
+				src="/static/images/mobile/copyright/wikipedia-tagline-fr.svg" width="113" height="13">
+		</span>
+	</a>
+	<div id="p-search" role="search">
+	<h3 >
+		<label for="searchInput">Rechercher</label>
+	</h3>
+	<form action="/w/index.php" id="searchform">
+		<div id="simpleSearch" data-search-loc="header-moved">
+			<input type="search" name="search" placeholder="Rechercher dans Wikipédia" autocapitalize="sentences" title="Rechercher dans Wikipédia [f]" accesskey="f" id="searchInput"/>
+			<input type="hidden" name="title" value="Spécial:Recherche">
+			<input type="submit" name="fulltext" value="Rechercher" title="Rechercher les pages comportant ce texte." id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/>
+			<input type="submit" name="go" value="Lire" title="Accédez à une page du même nom si elle existe" id="searchButton" class="searchButton"/>
+		</div>
+	</form>
+</div>
+
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-menu" aria-labelledby="p-personal-label" role="navigation" 
+	 >
+	<h3 id="p-personal-label">
+		<span>Outils personnels</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="pt-anonuserpage">Non connecté</li><li id="pt-anontalk"><a href="/wiki/Sp%C3%A9cial:Mes_discussions" title="La page de discussion pour les contributions depuis cette adresse IP [n]" accesskey="n">Discussion</a></li><li id="pt-anoncontribs"><a href="/wiki/Sp%C3%A9cial:Mes_contributions" title="Une liste des modifications effectuées depuis cette adresse IP [y]" accesskey="y">Contributions</a></li><li id="pt-createaccount"><a href="/w/index.php?title=Sp%C3%A9cial:Cr%C3%A9er_un_compte&amp;returnto=Harry+Styles" title="Nous vous encourageons à créer un compte utilisateur et vous connecter ; ce n’est cependant pas obligatoire.">Créer un compte</a></li><li id="pt-login"><a href="/w/index.php?title=Sp%C3%A9cial:Connexion&amp;returnto=Harry+Styles" title="Nous vous encourageons à vous connecter ; ce n’est cependant pas obligatoire. [o]" accesskey="o">Se connecter</a></li></ul>
+		
+	</div>
+</nav>
+
+</header>
+
+<div class="mw-workspace-container">
+	
+<div id="mw-panel" class="mw-sidebar">
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu vector-menu-portal portal portal-first" aria-labelledby="p-navigation-label" role="navigation" 
+	 >
+	<h3 id="p-navigation-label">
+		<span>Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="n-mainpage-description"><a href="/wiki/Wikip%C3%A9dia:Accueil_principal" title="Accueil général [z]" accesskey="z">Accueil</a></li><li id="n-thema"><a href="/wiki/Portail:Accueil">Portails thématiques</a></li><li id="n-randompage"><a href="/wiki/Sp%C3%A9cial:Page_au_hasard" title="Affiche un article au hasard [x]" accesskey="x">Article au hasard</a></li><li id="n-contact"><a href="/wiki/Wikip%C3%A9dia:Contact">Contact</a></li></ul>
+		
+	</div>
+</nav>
+
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-Contribuer" class="mw-portlet mw-portlet-Contribuer vector-menu vector-menu-portal portal" aria-labelledby="p-Contribuer-label" role="navigation" 
+	 >
+	<h3 id="p-Contribuer-label">
+		<span>Contribuer</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="n-aboutwp"><a href="/wiki/Aide:D%C3%A9buter">Débuter sur Wikipédia</a></li><li id="n-help"><a href="/wiki/Aide:Accueil" title="Accès à l’aide">Aide</a></li><li id="n-portal"><a href="/wiki/Wikip%C3%A9dia:Accueil_de_la_communaut%C3%A9" title="À propos du projet, ce que vous pouvez faire, où trouver les informations">Communauté</a></li><li id="n-recentchanges"><a href="/wiki/Sp%C3%A9cial:Modifications_r%C3%A9centes" title="Liste des modifications récentes sur le wiki [r]" accesskey="r">Modifications récentes</a></li><li id="n-sitesupport"><a href="//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_fr.wikipedia.org&amp;uselang=fr" title="Soutenez-nous">Faire un don</a></li></ul>
+		
+	</div>
+</nav>
+<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation" 
+	 >
+	<h3 id="p-tb-label">
+		<span>Outils</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere"><a href="/wiki/Sp%C3%A9cial:Pages_li%C3%A9es/Harry_Styles" title="Liste des pages liées qui pointent sur celle-ci [j]" accesskey="j">Pages liées</a></li><li id="t-recentchangeslinked"><a href="/wiki/Sp%C3%A9cial:Suivi_des_liens/Harry_Styles" rel="nofollow" title="Liste des modifications récentes des pages appelées par celle-ci [k]" accesskey="k">Suivi des pages liées</a></li><li id="t-upload"><a href="/wiki/Aide:Importer_un_fichier" title="Importer des fichiers [u]" accesskey="u">Téléverser un fichier</a></li><li id="t-specialpages"><a href="/wiki/Sp%C3%A9cial:Pages_sp%C3%A9ciales" title="Liste de toutes les pages spéciales [q]" accesskey="q">Pages spéciales</a></li><li id="t-permalink"><a href="/w/index.php?title=Harry_Styles&amp;oldid=178538206" title="Adresse permanente de cette version de la page">Lien permanent</a></li><li id="t-info"><a href="/w/index.php?title=Harry_Styles&amp;action=info" title="Plus d’informations sur cette page">Informations sur la page</a></li><li id="t-cite"><a href="/w/index.php?title=Sp%C3%A9cial:Citer&amp;page=Harry_Styles&amp;id=178538206&amp;wpFormIdentifier=titleform" title="Informations sur la manière de citer cette page">Citer cette page</a></li><li id="t-wikibase"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q3626966" title="Lien vers l’élément dans le dépôt de données connectées [g]" accesskey="g">Élément Wikidata</a></li></ul>
+		
+	</div>
+</nav>
+<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-coll-print_export" class="mw-portlet mw-portlet-coll-print_export vector-menu vector-menu-portal portal" aria-labelledby="p-coll-print_export-label" role="navigation" 
+	 >
+	<h3 id="p-coll-print_export-label">
+		<span>Imprimer / exporter</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="coll-create_a_book"><a href="/w/index.php?title=Sp%C3%A9cial:Livre&amp;bookcmd=book_creator&amp;referer=Harry+Styles">Créer un livre</a></li><li id="coll-download-as-rl"><a href="/w/index.php?title=Sp%C3%A9cial:DownloadAsPdf&amp;page=Harry_Styles&amp;action=show-download-screen">Télécharger comme PDF</a></li><li id="t-print"><a href="/w/index.php?title=Harry_Styles&amp;printable=yes" title="Version imprimable de cette page [p]" accesskey="p">Version imprimable</a></li></ul>
+		
+	</div>
+</nav>
+<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-wikibase-otherprojects" class="mw-portlet mw-portlet-wikibase-otherprojects vector-menu vector-menu-portal portal" aria-labelledby="p-wikibase-otherprojects-label" role="navigation" 
+	 >
+	<h3 id="p-wikibase-otherprojects-label">
+		<span>Dans d’autres projets</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li class="wb-otherproject-link wb-otherproject-commons"><a href="https://commons.wikimedia.org/wiki/Category:Harry_Styles" hreflang="en">Wikimedia Commons</a></li></ul>
+		
+	</div>
+</nav>
+
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-lang" class="mw-portlet mw-portlet-lang vector-menu vector-menu-portal portal" aria-labelledby="p-lang-label" role="navigation" 
+	 >
+	<h3 id="p-lang-label">
+		<span>Dans d’autres langues</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li class="interlanguage-link interwiki-af"><a href="https://af.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — afrikaans" lang="af" hreflang="af" class="interlanguage-link-target">Afrikaans</a></li><li class="interlanguage-link interwiki-ar"><a href="https://ar.wikipedia.org/wiki/%D9%87%D8%A7%D8%B1%D9%8A_%D8%B3%D8%AA%D8%A7%D9%8A%D9%84%D8%B2" title="هاري ستايلز — arabe" lang="ar" hreflang="ar" class="interlanguage-link-target">العربية</a></li><li class="interlanguage-link interwiki-arz"><a href="https://arz.wikipedia.org/wiki/%D9%87%D8%A7%D8%B1%D9%89_%D8%B3%D8%AA%D8%A7%D9%8A%D9%84%D8%B2" title="هارى ستايلز — arabe égyptien" lang="arz" hreflang="arz" class="interlanguage-link-target">مصرى</a></li><li class="interlanguage-link interwiki-az"><a href="https://az.wikipedia.org/wiki/Harri_Stayls" title="Harri Stayls — azerbaïdjanais" lang="az" hreflang="az" class="interlanguage-link-target">Azərbaycanca</a></li><li class="interlanguage-link interwiki-azb"><a href="https://azb.wikipedia.org/wiki/%D9%87%D8%B1%DB%8C_%D8%A7%D8%B3%D8%AA%D8%A7%DB%8C%D9%84%D8%B2" title="هری استایلز — South Azerbaijani" lang="azb" hreflang="azb" class="interlanguage-link-target">تۆرکجه</a></li><li class="interlanguage-link interwiki-bg"><a href="https://bg.wikipedia.org/wiki/%D0%A5%D0%B0%D1%80%D0%B8_%D0%A1%D1%82%D0%B0%D0%B9%D0%BB%D1%81" title="Хари Стайлс — bulgare" lang="bg" hreflang="bg" class="interlanguage-link-target">Български</a></li><li class="interlanguage-link interwiki-bjn"><a href="https://bjn.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — banjar" lang="bjn" hreflang="bjn" class="interlanguage-link-target">Banjar</a></li><li class="interlanguage-link interwiki-bn"><a href="https://bn.wikipedia.org/wiki/%E0%A6%B9%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%B0%E0%A6%BF_%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A6%BE%E0%A6%87%E0%A6%B2%E0%A6%B8" title="হ্যারি স্টাইলস — bengali" lang="bn" hreflang="bn" class="interlanguage-link-target">বাংলা</a></li><li class="interlanguage-link interwiki-ca"><a href="https://ca.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — catalan" lang="ca" hreflang="ca" class="interlanguage-link-target">Català</a></li><li class="interlanguage-link interwiki-cs"><a href="https://cs.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — tchèque" lang="cs" hreflang="cs" class="interlanguage-link-target">Čeština</a></li><li class="interlanguage-link interwiki-da"><a href="https://da.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — danois" lang="da" hreflang="da" class="interlanguage-link-target">Dansk</a></li><li class="interlanguage-link interwiki-de"><a href="https://de.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — allemand" lang="de" hreflang="de" class="interlanguage-link-target">Deutsch</a></li><li class="interlanguage-link interwiki-el"><a href="https://el.wikipedia.org/wiki/%CE%A7%CE%AC%CF%81%CE%B9_%CE%A3%CF%84%CE%AC%CE%B9%CE%BB%CF%82" title="Χάρι Στάιλς — grec" lang="el" hreflang="el" class="interlanguage-link-target">Ελληνικά</a></li><li class="interlanguage-link interwiki-en"><a href="https://en.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — anglais" lang="en" hreflang="en" class="interlanguage-link-target">English</a></li><li class="interlanguage-link interwiki-es"><a href="https://es.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — espagnol" lang="es" hreflang="es" class="interlanguage-link-target">Español</a></li><li class="interlanguage-link interwiki-et"><a href="https://et.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — estonien" lang="et" hreflang="et" class="interlanguage-link-target">Eesti</a></li><li class="interlanguage-link interwiki-eu"><a href="https://eu.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — basque" lang="eu" hreflang="eu" class="interlanguage-link-target">Euskara</a></li><li class="interlanguage-link interwiki-fa"><a href="https://fa.wikipedia.org/wiki/%D9%87%D8%B1%DB%8C_%D8%A7%D8%B3%D8%AA%D8%A7%DB%8C%D9%84%D8%B2" title="هری استایلز — persan" lang="fa" hreflang="fa" class="interlanguage-link-target">فارسی</a></li><li class="interlanguage-link interwiki-fi"><a href="https://fi.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — finnois" lang="fi" hreflang="fi" class="interlanguage-link-target">Suomi</a></li><li class="interlanguage-link interwiki-ga"><a href="https://ga.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — irlandais" lang="ga" hreflang="ga" class="interlanguage-link-target">Gaeilge</a></li><li class="interlanguage-link interwiki-gl"><a href="https://gl.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — galicien" lang="gl" hreflang="gl" class="interlanguage-link-target">Galego</a></li><li class="interlanguage-link interwiki-he"><a href="https://he.wikipedia.org/wiki/%D7%94%D7%90%D7%A8%D7%99_%D7%A1%D7%98%D7%99%D7%99%D7%9C%D7%A1" title="הארי סטיילס — hébreu" lang="he" hreflang="he" class="interlanguage-link-target">עברית</a></li><li class="interlanguage-link interwiki-hu"><a href="https://hu.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — hongrois" lang="hu" hreflang="hu" class="interlanguage-link-target">Magyar</a></li><li class="interlanguage-link interwiki-hy"><a href="https://hy.wikipedia.org/wiki/%D5%80%D5%A1%D6%80%D5%AB_%D5%8D%D5%A9%D5%A1%D5%B5%D5%AC%D5%A6" title="Հարի Սթայլզ — arménien" lang="hy" hreflang="hy" class="interlanguage-link-target">Հայերեն</a></li><li class="interlanguage-link interwiki-id"><a href="https://id.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — indonésien" lang="id" hreflang="id" class="interlanguage-link-target">Bahasa Indonesia</a></li><li class="interlanguage-link interwiki-it"><a href="https://it.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — italien" lang="it" hreflang="it" class="interlanguage-link-target">Italiano</a></li><li class="interlanguage-link interwiki-ja"><a href="https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%AA%E3%83%BC%E3%83%BB%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%BA" title="ハリー・スタイルズ — japonais" lang="ja" hreflang="ja" class="interlanguage-link-target">日本語</a></li><li class="interlanguage-link interwiki-ka"><a href="https://ka.wikipedia.org/wiki/%E1%83%B0%E1%83%90%E1%83%A0%E1%83%98_%E1%83%A1%E1%83%A2%E1%83%90%E1%83%98%E1%83%9A%E1%83%96%E1%83%98" title="ჰარი სტაილზი — géorgien" lang="ka" hreflang="ka" class="interlanguage-link-target">ქართული</a></li><li class="interlanguage-link interwiki-kk"><a href="https://kk.wikipedia.org/wiki/%D0%93%D0%B0%D1%80%D1%80%D0%B8_%D0%A1%D1%82%D0%B0%D0%B9%D0%BB%D0%B7" title="Гарри Стайлз — kazakh" lang="kk" hreflang="kk" class="interlanguage-link-target">Қазақша</a></li><li class="interlanguage-link interwiki-ko"><a href="https://ko.wikipedia.org/wiki/%ED%95%B4%EB%A6%AC_%EC%8A%A4%ED%83%80%EC%9D%BC%EC%8A%A4" title="해리 스타일스 — coréen" lang="ko" hreflang="ko" class="interlanguage-link-target">한국어</a></li><li class="interlanguage-link interwiki-lt"><a href="https://lt.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — lituanien" lang="lt" hreflang="lt" class="interlanguage-link-target">Lietuvių</a></li><li class="interlanguage-link interwiki-ml"><a href="https://ml.wikipedia.org/wiki/%E0%B4%B9%E0%B4%BE%E0%B4%B0%E0%B4%BF_%E0%B4%B8%E0%B5%8D%E0%B4%B1%E0%B5%8D%E0%B4%B1%E0%B5%88%E0%B5%BD%E0%B4%B8%E0%B5%8D" title="ഹാരി സ്റ്റൈൽസ് — malayalam" lang="ml" hreflang="ml" class="interlanguage-link-target">മലയാളം</a></li><li class="interlanguage-link interwiki-mn"><a href="https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D1%80%D1%80%D0%B8_%D0%AD%D0%B4%D0%B2%D0%B0%D1%80%D0%B4_%D0%A1%D1%82%D0%B0%D0%B9%D0%BB%D0%B8%D1%81" title="Харри Эдвард Стайлис — mongol" lang="mn" hreflang="mn" class="interlanguage-link-target">Монгол</a></li><li class="interlanguage-link interwiki-ms"><a href="https://ms.wikipedia.org/wiki/Harry_Edward_Styles" title="Harry Edward Styles — malais" lang="ms" hreflang="ms" class="interlanguage-link-target">Bahasa Melayu</a></li><li class="interlanguage-link interwiki-ne"><a href="https://ne.wikipedia.org/wiki/%E0%A4%B9%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A5%80_%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A4%BE%E0%A4%87%E0%A4%B2%E0%A5%8D%E0%A4%B8" title="ह्यारी स्टाइल्स — népalais" lang="ne" hreflang="ne" class="interlanguage-link-target">नेपाली</a></li><li class="interlanguage-link interwiki-nl"><a href="https://nl.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — néerlandais" lang="nl" hreflang="nl" class="interlanguage-link-target">Nederlands</a></li><li class="interlanguage-link interwiki-no"><a href="https://no.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — norvégien bokmål" lang="nb" hreflang="nb" class="interlanguage-link-target">Norsk bokmål</a></li><li class="interlanguage-link interwiki-pa"><a href="https://pa.wikipedia.org/wiki/%E0%A8%B9%E0%A9%88%E0%A8%B0%E0%A9%80_%E0%A8%B8%E0%A8%9F%E0%A8%BE%E0%A8%87%E0%A8%B2%E0%A8%9C%E0%A8%BC" title="ਹੈਰੀ ਸਟਾਇਲਜ਼ — pendjabi" lang="pa" hreflang="pa" class="interlanguage-link-target">ਪੰਜਾਬੀ</a></li><li class="interlanguage-link interwiki-pl"><a href="https://pl.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — polonais" lang="pl" hreflang="pl" class="interlanguage-link-target">Polski</a></li><li class="interlanguage-link interwiki-pt"><a href="https://pt.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — portugais" lang="pt" hreflang="pt" class="interlanguage-link-target">Português</a></li><li class="interlanguage-link interwiki-ro"><a href="https://ro.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — roumain" lang="ro" hreflang="ro" class="interlanguage-link-target">Română</a></li><li class="interlanguage-link interwiki-ru"><a href="https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B0%D0%B9%D0%BB%D0%B7,_%D0%93%D0%B0%D1%80%D1%80%D0%B8" title="Стайлз, Гарри — russe" lang="ru" hreflang="ru" class="interlanguage-link-target">Русский</a></li><li class="interlanguage-link interwiki-sco"><a href="https://sco.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — écossais" lang="sco" hreflang="sco" class="interlanguage-link-target">Scots</a></li><li class="interlanguage-link interwiki-simple"><a href="https://simple.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — Simple English" lang="en-simple" hreflang="en-simple" class="interlanguage-link-target">Simple English</a></li><li class="interlanguage-link interwiki-sk"><a href="https://sk.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — slovaque" lang="sk" hreflang="sk" class="interlanguage-link-target">Slovenčina</a></li><li class="interlanguage-link interwiki-sl"><a href="https://sl.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — slovène" lang="sl" hreflang="sl" class="interlanguage-link-target">Slovenščina</a></li><li class="interlanguage-link interwiki-sr"><a href="https://sr.wikipedia.org/wiki/%D0%A5%D0%B0%D1%80%D0%B8_%D0%A1%D1%82%D0%B0%D1%98%D0%BB%D1%81" title="Хари Стајлс — serbe" lang="sr" hreflang="sr" class="interlanguage-link-target">Српски / srpski</a></li><li class="interlanguage-link interwiki-su"><a href="https://su.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — soundanais" lang="su" hreflang="su" class="interlanguage-link-target">Sunda</a></li><li class="interlanguage-link interwiki-sv"><a href="https://sv.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — suédois" lang="sv" hreflang="sv" class="interlanguage-link-target">Svenska</a></li><li class="interlanguage-link interwiki-th"><a href="https://th.wikipedia.org/wiki/%E0%B9%81%E0%B8%AE%E0%B8%A3%E0%B9%8C%E0%B8%A3%E0%B8%B5_%E0%B8%AA%E0%B9%84%E0%B8%95%E0%B8%A5%E0%B8%AA%E0%B9%8C" title="แฮร์รี สไตลส์ — thaï" lang="th" hreflang="th" class="interlanguage-link-target">ไทย</a></li><li class="interlanguage-link interwiki-tr"><a href="https://tr.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — turc" lang="tr" hreflang="tr" class="interlanguage-link-target">Türkçe</a></li><li class="interlanguage-link interwiki-uk"><a href="https://uk.wikipedia.org/wiki/%D0%93%D0%B0%D1%80%D1%80%D1%96_%D0%A1%D1%82%D0%B0%D0%B9%D0%BB%D1%81" title="Гаррі Стайлс — ukrainien" lang="uk" hreflang="uk" class="interlanguage-link-target">Українська</a></li><li class="interlanguage-link interwiki-vi"><a href="https://vi.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — vietnamien" lang="vi" hreflang="vi" class="interlanguage-link-target">Tiếng Việt</a></li><li class="interlanguage-link interwiki-wuu"><a href="https://wuu.wikipedia.org/wiki/%E5%93%88%E9%87%8C%C2%B7%E6%96%AF%E6%B3%B0%E5%B0%94%E6%96%AF" title="哈里·斯泰尔斯 — wu" lang="wuu" hreflang="wuu" class="interlanguage-link-target">吴语</a></li><li class="interlanguage-link interwiki-zh"><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%88%A9%C2%B7%E6%96%AF%E6%B3%B0%E7%88%BE%E6%96%AF" title="哈利·斯泰爾斯 — chinois" lang="zh" hreflang="zh" class="interlanguage-link-target">中文</a></li><li class="interlanguage-link interwiki-zh-min-nan"><a href="https://zh-min-nan.wikipedia.org/wiki/Harry_Styles" title="Harry Styles — Chinese (Min Nan)" lang="nan" hreflang="nan" class="interlanguage-link-target">Bân-lâm-gú</a></li></ul>
+		<div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q3626966#sitelinks-wikipedia" title="Modifier les liens interlangues" class="wbc-editpage">Modifier les liens</a></span></div>
+	</div>
+</nav>
+
+</div>
+
+	<div id="mw-navigation">
+		<h2>Menu de navigation</h2>
+		<div id="mw-head">
+			<div class="mw-article-toolbar-container">
+				<div id="left-navigation">
+					<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu vector-menu-tabs" aria-labelledby="p-namespaces-label" role="navigation" 
+	 >
+	<h3 id="p-namespaces-label">
+		<span>Espaces de noms</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected"><a href="/wiki/Harry_Styles" title="Voir le contenu de la page [c]" accesskey="c">Article</a></li><li id="ca-talk"><a href="/wiki/Discussion:Harry_Styles" rel="discussion" title="Discussion au sujet de cette page de contenu [t]" accesskey="t">Discussion</a></li></ul>
+		
+	</div>
+</nav>
+
+					<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation" 
+	 >
+	<input type="checkbox" class="vector-menu-checkbox" aria-labelledby="p-variants-label" />
+	<h3 id="p-variants-label">
+		<span>Variantes</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+				</div>
+				<div id="right-navigation">
+					<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu vector-menu-tabs" aria-labelledby="p-views-label" role="navigation" 
+	 >
+	<h3 id="p-views-label">
+		<span>Affichages</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"><li id="ca-view" class="selected"><a href="/wiki/Harry_Styles">Lire</a></li><li id="ca-viewsource"><a href="/w/index.php?title=Harry_Styles&amp;action=edit" title="Cette page est protégée.&#10;Vous pouvez toutefois en visualiser la source. [e]" accesskey="e">Voir le texte source</a></li><li id="ca-history"><a href="/w/index.php?title=Harry_Styles&amp;action=history" title="Historique des versions de cette page [h]" accesskey="h">Voir l’historique</a></li></ul>
+		
+	</div>
+</nav>
+
+					<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation" 
+	 >
+	<input type="checkbox" class="vector-menu-checkbox" aria-labelledby="p-cactions-label" />
+	<h3 id="p-cactions-label">
+		<span>Plus</span>
+	</h3>
+	<div class="vector-menu-content">
+		<ul class="vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mw-content-container">
+<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<main id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice" class="mw-body-content"><!-- CentralNotice --></div>
+	<div class="mw-indicators mw-body-content">
+	<div id="mw-indicator-protection-edition" class="mw-indicator"><div class="nopopups"><a href="//fr.wikipedia.org/wiki/Cat%C3%A9gorie:Page_en_semi-protection_longue" title="Cette page est en semi-protection longue."><img alt="Cette page est en semi-protection longue." src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/15px-Long-semi-protection-shackle-frwiki.svg.png" decoding="async" width="15" height="21" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/23px-Long-semi-protection-shackle-frwiki.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/30px-Long-semi-protection-shackle-frwiki.svg.png 2x" data-file-width="512" data-file-height="725" /></a></div></div>
+	</div>
+	<h1 id="firstHeading" class="firstHeading" lang="fr">Harry Styles</h1>
+	<div id="bodyContent" class="mw-body-content">
+		<div id="siteSub" class="noprint">Un article de Wikipédia, l&#039;encyclopédie libre.</div>
+		<div id="contentSub"></div>
+		<div id="contentSub2"></div>
+		
+		<div id="mw-content-text" lang="fr" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><p class="mw-empty-elt">
+</p>
+<div id="" class="bandeau-container homonymie plainlinks" style=""><div class="bandeau-cell bandeau-icone" style="display:table-cell;padding-right:0.5em"><a href="/wiki/Aide:Homonymie" title="Aide:Homonymie"><img alt="Page d’aide sur l’homonymie" src="//upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disambig_colour.svg/20px-Disambig_colour.svg.png" decoding="async" width="20" height="15" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disambig_colour.svg/30px-Disambig_colour.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disambig_colour.svg/40px-Disambig_colour.svg.png 2x" data-file-width="272" data-file-height="200" /></a></div><div class="bandeau-cell" style="display:table-cell;padding-right:0.5em">Pour les articles homonymes, voir <a href="/wiki/Styles_(homonymie)" class="mw-disambig" title="Styles (homonymie)">Styles (homonymie)</a>.
+</div></div>
+<div class="infobox_v3" style="width:22em">
+<div class="entete icon musique" style="background-color: #B6CCDE;"><style data-mw-deduplicate="TemplateStyles:r151886664">.mw-parser-output .entete.musique{background-image:url("//upload.wikimedia.org/wikipedia/commons/6/60/Picto_infobox_music.png")}</style>
+<div>Harry Styles</div>
+</div>
+<div class="images"><a href="/wiki/Fichier:180612_Harry_Styles_Live_On_Tour_in_Nashville.png" class="image"><img alt="Description de cette image, également commentée ci-après" src="//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/180612_Harry_Styles_Live_On_Tour_in_Nashville.png/220px-180612_Harry_Styles_Live_On_Tour_in_Nashville.png" decoding="async" width="220" height="293" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/180612_Harry_Styles_Live_On_Tour_in_Nashville.png/330px-180612_Harry_Styles_Live_On_Tour_in_Nashville.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/9b/180612_Harry_Styles_Live_On_Tour_in_Nashville.png/440px-180612_Harry_Styles_Live_On_Tour_in_Nashville.png 2x" data-file-width="812" data-file-height="1080" /></a> 
+</div>
+<div class="legend">Harry Styles lors d'un concert en 2018.</div><table><caption style="background:#B6CCDE;">Informations générales</caption><tbody><tr>
+<th scope="row" style="width:9em;"> Nom de naissance
+ </th>
+<td>
+Harry Edward Styles</td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Naissance
+ </th>
+<td>
+<time class="nowrap date-lien bday" datetime="1994-02-01" data-sort-value="1994-02-01"><a href="/wiki/1er_f%C3%A9vrier" title="1er février">1<sup>er</sup></a> <a href="/wiki/F%C3%A9vrier_1994" title="Février 1994">février</a> <a href="/wiki/1994" title="1994">1994</a></time> <span class="noprint">(26&#160;ans)</span><br /><a href="/wiki/Redditch" title="Redditch">Redditch</a>, <span class="nowrap"><span data-sort-value="Royaume uni"><span class="flagicon"><a href="/wiki/Fichier:Flag_of_the_United_Kingdom.svg" class="image" title="Drapeau&#160;: Royaume-Uni"><img alt="Drapeau&#160;: Royaume-Uni" src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png" decoding="async" width="20" height="10" class="noviewer thumbborder" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/30px-Flag_of_the_United_Kingdom.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/40px-Flag_of_the_United_Kingdom.svg.png 2x" data-file-width="1200" data-file-height="600" /></a></span> <a href="/wiki/Royaume-Uni" title="Royaume-Uni">Royaume-Uni</a></span></span></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Activité principale
+ </th>
+<td>
+<a href="/wiki/Chanteur" title="Chanteur">Chanteur</a>, <a href="/wiki/Parolier" title="Parolier">parolier</a>, <a href="/wiki/Acteur" title="Acteur">acteur</a></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Genre musical
+ </th>
+<td>
+<a href="/wiki/Soft_rock" title="Soft rock">Soft rock</a>, <a href="/wiki/Rock_ind%C3%A9pendant" title="Rock indépendant">rock indépendant</a>, <a href="/wiki/Rock_psych%C3%A9d%C3%A9lique" title="Rock psychédélique">rock psychédélique</a>, <a href="/wiki/Pop_(musique)" title="Pop (musique)">pop</a></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Instruments
+ </th>
+<td>
+voix, guitare, piano</td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Années actives
+ </th>
+<td>
+Depuis <a href="/wiki/2010_en_musique" title="2010 en musique">2010</a></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Labels
+ </th>
+<td>
+<a href="/wiki/Syco_Music" title="Syco Music">Syco Music</a>, <a href="/wiki/Columbia_Records" title="Columbia Records">Columbia Records</a></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Influences
+ </th>
+<td>
+<span class="need_ref" title="Une source est souhaitée pour ce passage." style="cursor:help;"><a href="/wiki/The_Beatles" title="The Beatles">The Beatles</a>, <a href="/wiki/Elvis_Presley" title="Elvis Presley">Elvis Presley</a>, <a href="/wiki/Coldplay" title="Coldplay">Coldplay</a>, <a href="/wiki/Kings_of_Leon" title="Kings of Leon">Kings of Leon</a>,  <a href="/wiki/Fleetwood_Mac" title="Fleetwood Mac">Fleetwood Mac</a>, <a href="/wiki/Stevie_Nicks" title="Stevie Nicks">Stevie Nicks</a>, <a href="/wiki/Mick_Jagger" title="Mick Jagger">Mick Jagger</a>, <a href="/wiki/Pink_Floyd" title="Pink Floyd">Pink Floyd</a>, <a href="/wiki/Shania_Twain" title="Shania Twain">Shania Twain</a></span><sup class="need_ref_tag" style="padding-left:2px;"><a href="/wiki/Aide:R%C3%A9f%C3%A9rence_n%C3%A9cessaire" title="Aide:Référence nécessaire">[<abbr class="abbr" title="référence">réf.</abbr>&#160;souhaitée]</a></sup></td>
+</tr><tr>
+<th scope="row" style="width:9em;"> Site officiel
+ </th>
+<td>
+<a rel="nofollow" class="external free" href="https://hstyles.co.uk">https://hstyles.co.uk</a></td>
+</tr></tbody></table><p class="navbar bordered noprint" style="border-color:#B6CCDE;"><span class="plainlinks navigation-not-searchable"><a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Harry_Styles&amp;action=edit">modifier</a></span> <a href="/wiki/Mod%C3%A8le:Infobox_Musique_(artiste)" title="Consultez la documentation du modèle"><img alt="Consultez la documentation du modèle" src="//upload.wikimedia.org/wikipedia/commons/thumb/3/38/Info_Simple.svg/12px-Info_Simple.svg.png" decoding="async" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/38/Info_Simple.svg/18px-Info_Simple.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/38/Info_Simple.svg/24px-Info_Simple.svg.png 2x" data-file-width="512" data-file-height="512" /></a></p></div>
+<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/Fichier:Harry_Edward_Styles_at_214._Wetten,_dass.._show_in_Graz,_8._Nov._2014.jpg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/85/Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg/220px-Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg" decoding="async" width="220" height="149" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/85/Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg/330px-Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/85/Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg/440px-Harry_Edward_Styles_at_214._Wetten%2C_dass.._show_in_Graz%2C_8._Nov._2014.jpg 2x" data-file-width="4288" data-file-height="2899" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Fichier:Harry_Edward_Styles_at_214._Wetten,_dass.._show_in_Graz,_8._Nov._2014.jpg" class="internal" title="Agrandir"></a></div>Harry Styles en novembre 2014.</div></div></div>
+<p><b>Harry Styles</b>, né le <time class="nowrap date-lien bday" datetime="1994-02-01" data-sort-value="1994-02-01"><a href="/wiki/1er_f%C3%A9vrier" title="1er février">1<sup>er</sup></a> <a href="/wiki/F%C3%A9vrier_1994" title="Février 1994">février</a> <a href="/wiki/1994" title="1994">1994</a></time> à <a href="/wiki/Redditch" title="Redditch">Redditch</a> (<a href="/wiki/Angleterre" title="Angleterre">Angleterre</a>), est un <a href="/wiki/Chanteur" title="Chanteur">chanteur</a>, musicien et <a href="/wiki/Acteur" title="Acteur">acteur</a> <a href="/wiki/Royaume-Uni" title="Royaume-Uni">britannique</a>.
+</p><p>En 2010, il auditionne en solo au concours de chant télévisé <i><a href="/wiki/The_X_Factor_(Royaume-Uni)" title="The X Factor (Royaume-Uni)">The X Factor</a></i>, mais se fait éliminer. Il revient par la suite avec quatre autres participants (<a href="/wiki/Niall_Horan" title="Niall Horan">Niall Horan</a>, <a href="/wiki/Zayn_Malik" title="Zayn Malik">Zayn Malik</a>, <a href="/wiki/Liam_Payne" title="Liam Payne">Liam Payne</a> et <a href="/wiki/Louis_Tomlinson" title="Louis Tomlinson">Louis Tomlinson</a>) pour former le <a href="/wiki/Boys_band" title="Boys band">boys band</a> <a href="/wiki/One_Direction" title="One Direction">One Direction</a>, qui connaît un succès international.
+</p><p>En 2017, il lance sa carrière solo et sort son premier album&#160;: <i><a href="/wiki/Harry_Styles_(album)" title="Harry Styles (album)">Harry Styles</a></i>. En 2019, il sort son deuxième album, <i><a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a></i>. 
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="fr" dir="ltr"><h2 id="mw-toc-heading">Sommaire</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Biographie"><span class="tocnumber">1</span> <span class="toctext">Biographie</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Jeunesse"><span class="tocnumber">1.1</span> <span class="toctext">Jeunesse</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Débuts_:_The_X_Factor"><span class="tocnumber">1.2</span> <span class="toctext">Débuts&#160;: <i>The X Factor</i></span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#One_Direction"><span class="tocnumber">1.3</span> <span class="toctext">One Direction</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Carrière_solo"><span class="tocnumber">1.4</span> <span class="toctext">Carrière solo</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Musique"><span class="tocnumber">1.4.1</span> <span class="toctext">Musique</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Cinéma"><span class="tocnumber">1.4.2</span> <span class="toctext">Cinéma</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Vie_personnelle"><span class="tocnumber">1.5</span> <span class="toctext">Vie personnelle</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Treat_People_With_Kindness"><span class="tocnumber">1.6</span> <span class="toctext">Treat People With Kindness</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Discographie"><span class="tocnumber">2</span> <span class="toctext">Discographie</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Comme_chanteur"><span class="tocnumber">2.1</span> <span class="toctext">Comme chanteur</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Solo"><span class="tocnumber">2.1.1</span> <span class="toctext">Solo</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Avec_One_Direction"><span class="tocnumber">2.1.2</span> <span class="toctext">Avec One Direction</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Comme_auteur-compositeur"><span class="tocnumber">2.2</span> <span class="toctext">Comme auteur-compositeur</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Filmographie"><span class="tocnumber">3</span> <span class="toctext">Filmographie</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Distinctions"><span class="tocnumber">4</span> <span class="toctext">Distinctions</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Références"><span class="tocnumber">5</span> <span class="toctext">Références</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Biographie">Biographie</span></h2>
+<h3><span class="mw-headline" id="Jeunesse">Jeunesse</span></h3>
+<p>Harry Edward Styles<sup id="cite_ref-1" class="reference"><a href="#cite_note-1"><span class="cite_crochet">[</span>1<span class="cite_crochet">]</span></a></sup> est né le <time class="nowrap date-lien bday" datetime="1994-02-01" data-sort-value="1994-02-01"><a href="/wiki/1er_f%C3%A9vrier" title="1er février">1<sup>er</sup></a> <a href="/wiki/F%C3%A9vrier_1994" title="Février 1994">février</a> <a href="/wiki/1994" title="1994">1994</a></time> à <a href="/wiki/Redditch" title="Redditch">Redditch</a> dans le <a href="/wiki/Worcestershire" title="Worcestershire">Worcestershire</a><sup id="cite_ref-2" class="reference"><a href="#cite_note-2"><span class="cite_crochet">[</span>2<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span class="cite_crochet">[</span>3<span class="cite_crochet">]</span></a></sup>, fils d'Anne Cox et de Desmond «&#160;Des&#160;» Styles<sup id="cite_ref-4" class="reference"><a href="#cite_note-4"><span class="cite_crochet">[</span>4<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-5" class="reference"><a href="#cite_note-5"><span class="cite_crochet">[</span>5<span class="cite_crochet">]</span></a></sup>. Il a une grande sœur, Gemma. Ses ancêtres étaient surtout des fermiers (laboureurs) basés dans le comté de <a href="/wiki/Norfolk_(comt%C3%A9)" title="Norfolk (comté)">Norfolk</a><sup id="cite_ref-6" class="reference"><a href="#cite_note-6"><span class="cite_crochet">[</span>6<span class="cite_crochet">]</span></a></sup>.
+</p><p>Alors que Harry est encore bébé, sa famille déménage à <a href="/wiki/Holmes_Chapel" title="Holmes Chapel">Holmes Chapel</a>, dans le <a href="/wiki/Cheshire_(comt%C3%A9)" title="Cheshire (comté)">Cheshire</a>, où il grandit<sup id="cite_ref-7" class="reference"><a href="#cite_note-7"><span class="cite_crochet">[</span>7<span class="cite_crochet">]</span></a></sup>. Lorsqu'il est âgé de 7 ans, ses parents divorcent et son père quitte le domicile familial&#160;; sa mère se remariera par la suite avec Robin Twist qui l’élèvera toute son enfance<sup id="cite_ref-8" class="reference"><a href="#cite_note-8"><span class="cite_crochet">[</span>8<span class="cite_crochet">]</span></a></sup>. Ce dernier meurt en <time class="nowrap" datetime="2017-06" data-sort-value="2017-06">juin 2017</time> à l'âge de 57 ans d'un cancer<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span class="cite_crochet">[</span>9<span class="cite_crochet">]</span></a></sup>. À l'âge de 16 ans, il travaille à temps partiel à la boulangerie «&#160;<i><span class="lang-en" lang="en">W. Mandeville Bakery</span></i>&#160;» de Holmes Chapel<sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span class="cite_crochet">[</span>10<span class="cite_crochet">]</span></a></sup>.
+</p><p>Harry est scolarisé durant son adolescence à la <i><a href="/w/index.php?title=Holmes_Chapel_Comprehensive_School&amp;action=edit&amp;redlink=1" class="new" title="Holmes Chapel Comprehensive School (page inexistante)">Holmes Chapel Comprehensive School</a>&#160;<a href="https://en.wikipedia.org/wiki/Holmes_Chapel_Comprehensive_School" class="extiw" title="en:Holmes Chapel Comprehensive School"><span class="indicateur-langue" title="Équivalent de l’article «&#160;Holmes Chapel Comprehensive School&#160;» en anglais">(en)</span></a></i> où il est le chanteur d'un groupe nommé White Eskimo, avec lequel il gagne la «&#160;<i><span class="lang-en" lang="en">Battle of the Bands</span></i>&#160;» de son école<sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span class="cite_crochet">[</span>11<span class="cite_crochet">]</span></a></sup>. Avant d'auditionner pour <i>X Factor</i>, il allait passer l'examen <a href="/wiki/A-level" title="A-level">A-level</a> en «&#160;droit-sociologie-business&#160;» et envisageait de devenir <a href="/wiki/Physioth%C3%A9rapeute" title="Physiothérapeute">physiothérapeute</a><sup id="cite_ref-12" class="reference"><a href="#cite_note-12"><span class="cite_crochet">[</span>12<span class="cite_crochet">]</span></a></sup>.
+</p>
+<h3><span id="D.C3.A9buts_:_The_X_Factor"></span><span class="mw-headline" id="Débuts_:_The_X_Factor">Débuts&#160;: <i>The X Factor</i></span></h3>
+<p>Le <time class="nowrap" datetime="2010-04-11" data-sort-value="2010-04-11">11 avril 2010</time>, Harry Styles auditionne pour la septième saison du concours de chant télévisé britannique <i><a href="/wiki/The_X_Factor_(Royaume-Uni)" title="The X Factor (Royaume-Uni)">The X Factor</a></i>. Il n'arrive pas à atteindre la catégorie «&#160;<i><span class="lang-en" lang="en">Boys</span></i>&#160;» de l'épreuve «&#160;<i><span class="lang-en" lang="en">Judges' houses</span></i>&#160;» et est donc éliminé en tant qu'artiste solo. Quatre autres garçons de son âge sont dans le même cas (<a href="/wiki/Niall_Horan" title="Niall Horan">Niall Horan</a>, <a href="/wiki/Zayn_Malik" title="Zayn Malik">Zayn Malik</a>, <a href="/wiki/Liam_Payne" title="Liam Payne">Liam Payne</a> et <a href="/wiki/Louis_Tomlinson" title="Louis Tomlinson">Louis Tomlinson</a>). À la suite d'une suggestion de la chanteuse <a href="/wiki/Nicole_Scherzinger" title="Nicole Scherzinger">Nicole Scherzinger</a><sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span class="cite_crochet">[</span>13<span class="cite_crochet">]</span></a></sup>, alors juge dans l'émission, ils se réunissent et forment un boys band en <time class="nowrap" datetime="2010-07" data-sort-value="2010-07">juillet 2010</time>, à la <a href="/wiki/Wembley_Arena" title="Wembley Arena">Wembley Arena</a> de <a href="/wiki/Londres" title="Londres">Londres</a>, durant l'étape «&#160;<i><span class="lang-en" lang="en">Bootcamp</span></i>&#160;» de la compétition, et se qualifient pour la catégorie «&#160;Groupes&#160;» de l'épreuve. 
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:222px;"><a href="/wiki/Fichier:One_Direction_X_Factor_Live_Glasgow.jpg" class="image"><img alt="One Direction" src="//upload.wikimedia.org/wikipedia/commons/thumb/5/59/One_Direction_X_Factor_Live_Glasgow.jpg/220px-One_Direction_X_Factor_Live_Glasgow.jpg" decoding="async" width="220" height="165" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/5/59/One_Direction_X_Factor_Live_Glasgow.jpg/330px-One_Direction_X_Factor_Live_Glasgow.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/59/One_Direction_X_Factor_Live_Glasgow.jpg/440px-One_Direction_X_Factor_Live_Glasgow.jpg 2x" data-file-width="4000" data-file-height="3000" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Fichier:One_Direction_X_Factor_Live_Glasgow.jpg" class="internal" title="Agrandir"></a></div>One Direction lors de la tournée <i>X Factor</i> en <time class="nowrap" datetime="2011-04" data-sort-value="2011-04">avril 2011</time> à <a href="/wiki/Glasgow" title="Glasgow">Glasgow</a>.</div></div></div>
+<p>Les membres passent ensuite deux semaines ensemble pour apprendre à se connaître et s'entraîner. C'est Harry Styles qui trouve durant ce temps le nom «&#160;<span class="lang-en" lang="en">One Direction</span>&#160;»<sup id="cite_ref-14" class="reference"><a href="#cite_note-14"><span class="cite_crochet">[</span>14<span class="cite_crochet">]</span></a></sup>. Lors de l'épreuve «&#160;<i><span class="lang-en" lang="en">Judges' houses</span></i>&#160;», le groupe choisit d'interpréter une version acoustique de <i><span class="lang-en" lang="en">Torn</span></i>, basée sur la reprise que la chanteuse australienne <a href="/wiki/Natalie_Imbruglia" title="Natalie Imbruglia">Natalie Imbruglia</a> avait faite de cette chanson<sup id="cite_ref-15" class="reference"><a href="#cite_note-15"><span class="cite_crochet">[</span>15<span class="cite_crochet">]</span></a></sup> (chanson à l'origine créée par le groupe de rock américain <a href="/w/index.php?title=Ednaswap&amp;action=edit&amp;redlink=1" class="new" title="Ednaswap (page inexistante)">Ednaswap</a>&#160;<a href="https://en.wikipedia.org/wiki/Ednaswap" class="extiw" title="en:Ednaswap"><span class="indicateur-langue" title="Équivalent de l’article «&#160;Ednaswap&#160;» en anglais">(en)</span></a>). Le juge <a href="/wiki/Simon_Cowell" title="Simon Cowell">Simon Cowell</a> est séduit par leur performance<sup id="cite_ref-rollingstone_16-0" class="reference"><a href="#cite_note-rollingstone-16"><span class="cite_crochet">[</span>16<span class="cite_crochet">]</span></a></sup>. Au bout des 4 premières semaines du <a href="/wiki/Diffusion_en_direct" title="Diffusion en direct">direct</a>, One Direction devient le dernier groupe de Cowell en compétition. Ils commencent à gagner rapidement en popularité au <a href="/wiki/Royaume-Uni" title="Royaume-Uni">Royaume-Uni</a><sup id="cite_ref-rollingstone_16-1" class="reference"><a href="#cite_note-rollingstone-16"><span class="cite_crochet">[</span>16<span class="cite_crochet">]</span></a></sup>.
+</p><p>En <time class="nowrap" datetime="2010-12" data-sort-value="2010-12">décembre 2010</time>, lors de la finale, One Direction finit à la <abbr class="abbr" title="Troisième">3<sup>e</sup></abbr> place. Juste après le show, leur reprise de <i><a href="/wiki/Forever_Young_(chanson_d%27Alphaville)" title="Forever Young (chanson d&#39;Alphaville)">Forever Young</a></i>, qui aurait été mise en vente s'ils avaient gagné, est divulguée sur internet<sup id="cite_ref-17" class="reference"><a href="#cite_note-17"><span class="cite_crochet">[</span>17<span class="cite_crochet">]</span></a></sup>.
+</p><p>De février à <time class="nowrap" datetime="2011-04" data-sort-value="2011-04">avril 2011</time>, le groupe prend part à la «&#160;tournée <i>X Factor</i>&#160;», avec d'autres anciens participants de l'émission, devant plus de 500&#160;000 personnes à travers le <a href="/wiki/Royaume-Uni" title="Royaume-Uni">Royaume-Uni</a><sup id="cite_ref-18" class="reference"><a href="#cite_note-18"><span class="cite_crochet">[</span>18<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-19" class="reference"><a href="#cite_note-19"><span class="cite_crochet">[</span>19<span class="cite_crochet">]</span></a></sup>.
+</p>
+<h3><span class="mw-headline" id="One_Direction">One Direction</span></h3>
+<div class="bandeau-container bandeau-section metadata bandeau-niveau-information"><div class="bandeau-cell bandeau-icone-css loupe">Article détaillé&#160;: <a href="/wiki/One_Direction" title="One Direction">One Direction</a>.</div></div>
+<p>En <time class="nowrap" datetime="2011-01" data-sort-value="2011-01">janvier 2011</time>, il est annoncé que le label de <a href="/wiki/Simon_Cowell" title="Simon Cowell">Simon Cowell</a>, <a href="/wiki/Syco_Music" title="Syco Music">Syco Music</a>, a signé un contrat de 2 millions de <a href="/wiki/Livre_sterling" title="Livre sterling">livre sterling</a> avec le groupe<sup id="cite_ref-20" class="reference"><a href="#cite_note-20"><span class="cite_crochet">[</span>20<span class="cite_crochet">]</span></a></sup>. One Direction commencent l'enregistrement de leur premier album et vont à <a href="/wiki/Los_Angeles" title="Los Angeles">Los Angeles</a> pour travailler avec le producteur <a href="/wiki/RedOne" title="RedOne">RedOne</a><sup id="cite_ref-21" class="reference"><a href="#cite_note-21"><span class="cite_crochet">[</span>21<span class="cite_crochet">]</span></a></sup>. Ils enregistrent également à <a href="/wiki/Londres" title="Londres">Londres</a> et <a href="/wiki/Stockholm" title="Stockholm">Stockholm</a>, et collaborent avec des producteurs tels que Carl Falk, <a href="/wiki/Savan_Kotecha" title="Savan Kotecha">Savan Kotecha</a>, Steve Mac et Rami Yacoub. En <time class="nowrap" datetime="2011-02" data-sort-value="2011-02">février 2011</time>, le groupe sort une autobiographie, <i><span class="lang-en" lang="en">One Direction: Forever Young (Our Official X Factor Story)</span></i>, publié chez <a href="/wiki/HarperCollins" title="HarperCollins">HarperCollins</a><sup id="cite_ref-22" class="reference"><a href="#cite_note-22"><span class="cite_crochet">[</span>22<span class="cite_crochet">]</span></a></sup>.
+</p><p>Leur premier album, <i><a href="/wiki/Up_All_Night_(album_des_One_Direction)" class="mw-redirect" title="Up All Night (album des One Direction)">Up All Night</a></i>, sort en <time class="nowrap" datetime="2011-11" data-sort-value="2011-11">novembre 2011</time>, suivi par un second album, <i><a href="/wiki/Take_Me_Home_(album_des_One_Direction)" class="mw-redirect" title="Take Me Home (album des One Direction)">Take Me Home</a></i>, en 2012. Un documentaire sur le groupe, <i><a href="/wiki/One_Direction_:_le_film" class="mw-redirect" title="One Direction&#160;: le film">One Direction&#160;: le film</a></i>, réalisé par <a href="/wiki/Morgan_Spurlock" title="Morgan Spurlock">Morgan Spurlock</a>, sort en <time class="nowrap" datetime="2013-08" data-sort-value="2013-08">août 2013</time>. Le film rapporte plus de 30 millions de dollars dans le monde dès la première semaine<sup id="cite_ref-23" class="reference"><a href="#cite_note-23"><span class="cite_crochet">[</span>23<span class="cite_crochet">]</span></a></sup>. Le troisième album du groupe, <i><a href="/wiki/Midnight_Memories" title="Midnight Memories">Midnight Memories</a></i>, sort le <time class="nowrap" datetime="2013-11-25" data-sort-value="2013-11-25">25 novembre 2013</time>, suivit par <i><a href="/wiki/Four_(album_des_One_Direction)" class="mw-redirect" title="Four (album des One Direction)">Four</a></i> en 2014 et <i><a href="/wiki/Made_in_the_A.M." title="Made in the A.M.">Made in the A.M.</a></i> en 2015.
+</p>
+<h3><span id="Carri.C3.A8re_solo"></span><span class="mw-headline" id="Carrière_solo">Carrière solo</span></h3>
+<h4><span class="mw-headline" id="Musique">Musique</span></h4><p>
+One Direction ayant entamé une pause dans leur carrière depuis <time class="nowrap" datetime="2016-01" data-sort-value="2016-01">janvier 2016</time> (dans le but de pouvoir se concentrer sur leur carrière solo), en <time class="nowrap" datetime="2016-06" data-sort-value="2016-06">juin 2016</time>, il est annoncé que Harry a signé un contrat en tant qu'artiste solo avec la maison de disques <a href="/wiki/Columbia_Records" title="Columbia Records">Columbia Records</a><sup id="cite_ref-24" class="reference"><a href="#cite_note-24"><span class="cite_crochet">[</span>24<span class="cite_crochet">]</span></a></sup>, contrat pour deux albums.</p><div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/Fichier:HarryWWATchile1.jpg" class="image"><img alt="Harry Styles" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/f0/HarryWWATchile1.jpg/220px-HarryWWATchile1.jpg" decoding="async" width="220" height="330" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/f0/HarryWWATchile1.jpg/330px-HarryWWATchile1.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/f0/HarryWWATchile1.jpg/440px-HarryWWATchile1.jpg 2x" data-file-width="3456" data-file-height="5184" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Fichier:HarryWWATchile1.jpg" class="internal" title="Agrandir"></a></div>Harry Styles lors d'un concert des One Direction au Chili en 2014.</div></div></div><p>Le <time class="nowrap" datetime="2017-03-25" data-sort-value="2017-03-25">25 mars 2017</time>, un teaser du nouveau single de Harry passe sur la chaîne de télévision britannique <a href="/wiki/ITV_(cha%C3%AEne_de_t%C3%A9l%C3%A9vision)" title="ITV (chaîne de télévision)">ITV</a> annonçant sa sortie le <time class="nowrap" datetime="2017-04-07" data-sort-value="2017-04-07">7 avril 2017</time><sup id="cite_ref-25" class="reference"><a href="#cite_note-25"><span class="cite_crochet">[</span>25<span class="cite_crochet">]</span></a></sup>. À sa sortie, le premier single de Harry Styles intitulé <i>Sign of the times</i> et inspiré de <a href="/wiki/David_Bowie" title="David Bowie">David Bowie</a> et <a href="/wiki/Queen" title="Queen">Queen</a> se classe <abbr class="abbr" title="Premier">1<sup>er</sup></abbr> des ventes <a href="/wiki/ITunes" title="ITunes">Itunes</a><sup id="cite_ref-26" class="reference"><a href="#cite_note-26"><span class="cite_crochet">[</span>26<span class="cite_crochet">]</span></a></sup> en seulement 19 minutes, battant le précédent record de la chanteuse <a href="/wiki/Adele" title="Adele">Adèle</a><sup id="cite_ref-27" class="reference"><a href="#cite_note-27"><span class="cite_crochet">[</span>27<span class="cite_crochet">]</span></a></sup>. Le clip l'accompagnant, réalisé par <a href="/wiki/Woodkid" title="Woodkid">Woodkid</a><sup id="cite_ref-28" class="reference"><a href="#cite_note-28"><span class="cite_crochet">[</span>28<span class="cite_crochet">]</span></a></sup>, sort le <time class="nowrap" datetime="2017-05-08" data-sort-value="2017-05-08">8 mai 2017</time><sup id="cite_ref-29" class="reference"><a href="#cite_note-29"><span class="cite_crochet">[</span>29<span class="cite_crochet">]</span></a></sup>.
+</p><p>Son <abbr class="abbr" title="Premier">1<sup>er</sup></abbr> album, <i><a href="/wiki/Harry_Styles_(album)" title="Harry Styles (album)">Harry Styles</a></i> est annoncé par son auteur lui-même pour le <time class="nowrap" datetime="2017-05-12" data-sort-value="2017-05-12">12 mai 2017</time>. Il contient 10 titres, dont son single <a href="https://en.wikipedia.org/wiki/Sign_of_the_Times_(Harry_Styles_song)" class="extiw" title="en:Sign of the Times (Harry Styles song)">Sign of the times</a><sup id="cite_ref-30" class="reference"><a href="#cite_note-30"><span class="cite_crochet">[</span>30<span class="cite_crochet">]</span></a></sup>. Une semaine après sa sortie, plus de 230&#160;000 exemplaires de celui-ci sont déjà écoulés aux <a href="/wiki/%C3%89tats-Unis" title="États-Unis">États-Unis</a>, plaçant le chanteur directement en première position du classement <a href="/wiki/Billboard_200" title="Billboard 200">Billboard 200</a>. Il devient alors historiquement le deuxième chanteur masculin britannique à réussir à se placer à ce rang-ci, derrière son ex-compère des <a href="/wiki/One_Direction" title="One Direction">One direction</a>&#160;: <a href="/wiki/Zayn_Malik" title="Zayn Malik">Zayn Malik</a><sup id="cite_ref-31" class="reference"><a href="#cite_note-31"><span class="cite_crochet">[</span>31<span class="cite_crochet">]</span></a></sup>.
+</p><p>Par la suite, une tournée mondiale est annoncée&#160;; elle débute en <time class="nowrap" datetime="2017-09" data-sort-value="2017-09">septembre 2017</time> et s'achève en <time class="nowrap" datetime="2018-07" data-sort-value="2018-07">juillet 2018</time> avec 89 concerts au total&#160;: <a href="/wiki/Harry_Styles:_Live_On_Tour" title="Harry Styles: Live On Tour">Harry Styles: Live On Tour</a><sup id="cite_ref-32" class="reference"><a href="#cite_note-32"><span class="cite_crochet">[</span>32<span class="cite_crochet">]</span></a></sup>.
+</p><p>Le <time class="nowrap" datetime="2017-11-02" data-sort-value="2017-11-02">2 novembre 2017</time>, un documentaire réalisé par la <a href="/wiki/BBC_One" title="BBC One">BBC</a> lui est dédié. Harry Styles est le troisième chanteur à y avoir le droit après <a href="/wiki/Adele" title="Adele">Adele</a> et <a href="/wiki/Michael_Bubl%C3%A9" title="Michael Bublé">Michael Bublé</a><sup id="cite_ref-33" class="reference"><a href="#cite_note-33"><span class="cite_crochet">[</span>33<span class="cite_crochet">]</span></a></sup>. Puis, le <time class="nowrap" datetime="2017-11-08" data-sort-value="2017-11-08">8 novembre 2017</time>, après son premier clip sur le single <i>Sign Of The Times</i>, il sort son second clip sur le titre <i>Kiwi</i><sup id="cite_ref-34" class="reference"><a href="#cite_note-34"><span class="cite_crochet">[</span>34<span class="cite_crochet">]</span></a></sup>.
+</p><p>Il fait partie des 3 chanteurs performant au défilé annuel <a href="/wiki/Victoria%27s_Secret_Fashion_Show" title="Victoria&#39;s Secret Fashion Show">Victoria's Secret Fashion Show</a> qui se déroule le <time class="nowrap" datetime="2017-11-20" data-sort-value="2017-11-20">20 novembre 2017</time> à <a href="/wiki/Shanghai" title="Shanghai">Shanghai</a><sup id="cite_ref-35" class="reference"><a href="#cite_note-35"><span class="cite_crochet">[</span>35<span class="cite_crochet">]</span></a></sup><b>.</b>
+</p><p>Le <time class="nowrap" datetime="2018-02-21" data-sort-value="2018-02-21">21 février 2018</time>, il remporte le <a href="/wiki/Brit_Awards" title="Brit Awards">Brit award</a> du meilleur clip musical anglais<b>.</b><sup id="cite_ref-36" class="reference"><a href="#cite_note-36"><span class="cite_crochet">[</span>36<span class="cite_crochet">]</span></a></sup>. Par ailleurs, en <time class="nowrap" datetime="2018-06" data-sort-value="2018-06">juin 2018</time>, Harry devient modèle pour <a href="/wiki/Gucci" title="Gucci">Gucci</a><sup id="cite_ref-37" class="reference"><a href="#cite_note-37"><span class="cite_crochet">[</span>37<span class="cite_crochet">]</span></a></sup>.
+</p><p>Fin <time class="nowrap" datetime="2019-10" data-sort-value="2019-10">octobre 2019</time>, Harry Styles annonce la sortie de son deuxième album en solo <i><a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a></i> le <time class="nowrap" datetime="2019-12-13" data-sort-value="2019-12-13">13 décembre 2019</time><sup id="cite_ref-38" class="reference"><a href="#cite_note-38"><span class="cite_crochet">[</span>38<span class="cite_crochet">]</span></a></sup>. Il dévoile quelques jours auparavant le single <i><a href="/wiki/Lights_Up" title="Lights Up">Lights Up</a></i> issu de ce deuxième album<sup id="cite_ref-39" class="reference"><a href="#cite_note-39"><span class="cite_crochet">[</span>39<span class="cite_crochet">]</span></a></sup>. <i><a href="/wiki/Watermelon_Sugar" title="Watermelon Sugar">Watermelon Sugar</a></i>, le deuxième single de son futur deuxième album, est dévoilé dans la nuit du <time class="nowrap date-lien" datetime="2019-11-16" data-sort-value="2019-11-16"><a href="/wiki/16_novembre" title="16 novembre">16</a> <a href="/wiki/Novembre_2019" title="Novembre 2019">novembre</a> <a href="/wiki/2019" title="2019">2019</a></time> au <time class="nowrap date-lien" datetime="2019-11-17" data-sort-value="2019-11-17"><a href="/wiki/17_novembre" title="17 novembre">17</a> <a href="/wiki/Novembre_2019" title="Novembre 2019">novembre</a> <a href="/wiki/2019" title="2019">2019</a></time> grâce à l'émission <i><a href="/wiki/Saturday_Night_Live" title="Saturday Night Live">Saturday Night Live</a></i><sup id="cite_ref-40" class="reference"><a href="#cite_note-40"><span class="cite_crochet">[</span>40<span class="cite_crochet">]</span></a></sup>.
+</p><p>En <time class="nowrap" datetime="2020-10" data-sort-value="2020-10">octobre 2020</time>, il dévoile son quatrième single, issu de son second album, <i>Golden</i> dont suit un clip sorti en même temps<sup id="cite_ref-41" class="reference"><a href="#cite_note-41"><span class="cite_crochet">[</span>41<span class="cite_crochet">]</span></a></sup>. Il apparaît en couverture du magazine américain Vogue pour <time class="nowrap" datetime="2020-12" data-sort-value="2020-12">décembre 2020</time>, étant le premier homme, seul, à faire la couverture de ce magazine et porte une robe, faisant l'objet de critiques<sup id="cite_ref-42" class="reference"><a href="#cite_note-42"><span class="cite_crochet">[</span>42<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-43" class="reference"><a href="#cite_note-43"><span class="cite_crochet">[</span>43<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-44" class="reference"><a href="#cite_note-44"><span class="cite_crochet">[</span>44<span class="cite_crochet">]</span></a></sup>.
+</p><p>En <time class="nowrap" datetime="2020-11" data-sort-value="2020-11">novembre 2020</time>, il obtient trois nominations aux <a href="/wiki/Grammy_Awards" title="Grammy Awards">Grammy Awards</a> pour meilleure performance pop solo avec <a href="/wiki/Watermelon_Sugar" title="Watermelon Sugar">Watermelon Sugar</a> , meilleur album solo <a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a> et meilleur clip vidéo <a href="/wiki/Adore_You_(chanson_de_Harry_Styles)" title="Adore You (chanson de Harry Styles)">Adore You</a><sup id="cite_ref-45" class="reference"><a href="#cite_note-45"><span class="cite_crochet">[</span>45<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-46" class="reference"><a href="#cite_note-46"><span class="cite_crochet">[</span>46<span class="cite_crochet">]</span></a></sup>.
+</p><p>Le <time class="nowrap" datetime="2021-01-01" data-sort-value="2021-01-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> janvier 2021</time>, il dévoile par surprise le clip de <a href="/w/index.php?title=Treat_People_with_Kindness&amp;action=edit&amp;redlink=1" class="new" title="Treat People with Kindness (page inexistante)">Treat People with Kindness</a><sup id="cite_ref-47" class="reference"><a href="#cite_note-47"><span class="cite_crochet">[</span>47<span class="cite_crochet">]</span></a></sup>. 
+</p>
+<h4><span id="Cin.C3.A9ma"></span><span class="mw-headline" id="Cinéma">Cinéma</span></h4>
+<p>Harry Styles fait ses débuts en tant qu'acteur dans le film de <a href="/wiki/Christopher_Nolan" title="Christopher Nolan">Christopher Nolan</a>, <i><a href="/wiki/Dunkerque_(film,_2017)" title="Dunkerque (film, 2017)">Dunkerque</a></i> où il joue un soldat du <a href="/wiki/Corps_exp%C3%A9ditionnaire_britannique" title="Corps expéditionnaire britannique">CEB</a>. Le film porte sur l'<a href="/wiki/%C3%89vacuation_de_Dunkerque" title="Évacuation de Dunkerque">évacuation de Dunkerque</a> durant la <a href="/wiki/Seconde_Guerre_mondiale" title="Seconde Guerre mondiale">Seconde Guerre mondiale</a> en <a href="/wiki/1940" title="1940">1940</a><sup id="cite_ref-48" class="reference"><a href="#cite_note-48"><span class="cite_crochet">[</span>48<span class="cite_crochet">]</span></a></sup> et devient le plus grand succès de tous les temps pour un film britannique, en termes de recettes<sup id="cite_ref-49" class="reference"><a href="#cite_note-49"><span class="cite_crochet">[</span>49<span class="cite_crochet">]</span></a></sup>.
+</p><p>Styles deviendra l'acteur principal du prochain thriller psychologique <i>Don't Worry Darling</i>, qui devrait sortir courant 2021, réalisé par <a href="/wiki/Olivia_Wilde" title="Olivia Wilde">Olivia Wilde</a>; il remplace <a href="/wiki/Shia_LaBeouf" title="Shia LaBeouf">Shia LaBeouf</a>, qui avait quitté le film, en tant que Jack.<sup id="cite_ref-50" class="reference"><a href="#cite_note-50"><span class="cite_crochet">[</span>50<span class="cite_crochet">]</span></a></sup>. Il joue aux côtés de <a href="/wiki/Florence_Pugh" title="Florence Pugh">Florence Pugh</a>, <a href="/wiki/Dakota_Johnson" title="Dakota Johnson">Dakota Johnson</a> et <a href="/wiki/Chris_Pine" title="Chris Pine">Chris Pine</a>.<sup id="cite_ref-51" class="reference"><a href="#cite_note-51"><span class="cite_crochet">[</span>51<span class="cite_crochet">]</span></a></sup>.
+</p>
+<h3><span class="mw-headline" id="Vie_personnelle">Vie personnelle</span></h3>
+<p>Harry Styles a une relation avec <a href="/wiki/Caroline_Flack" title="Caroline Flack">Caroline Flack</a>, présentatrice de l'émission <i><a href="/wiki/The_X_Factor_(Royaume-Uni)" title="The X Factor (Royaume-Uni)">The X-Factor</a></i>, d'<time class="nowrap" datetime="2011-10" data-sort-value="2011-10">octobre 2011</time> à <time class="nowrap" datetime="2012-02" data-sort-value="2012-02">février 2012</time>. Par la suite, il sort avec la chanteuse <a href="/wiki/Taylor_Swift" title="Taylor Swift">Taylor Swift</a> durant quelques mois<sup id="cite_ref-52" class="reference"><a href="#cite_note-52"><span class="cite_crochet">[</span>52<span class="cite_crochet">]</span></a></sup>, puis avec le mannequin <a href="/wiki/Kendall_Jenner" title="Kendall Jenner">Kendall Jenner</a> jusqu'au début de l'année 2014<sup id="cite_ref-53" class="reference"><a href="#cite_note-53"><span class="cite_crochet">[</span>53<span class="cite_crochet">]</span></a></sup>. Fin <time class="nowrap" datetime="2015-12" data-sort-value="2015-12">décembre 2015</time>, Kendall et Harry sont de nouveau ensemble, leur relation se confirmera début <time class="nowrap" datetime="2016-01" data-sort-value="2016-01">janvier 2016</time><sup id="cite_ref-54" class="reference"><a href="#cite_note-54"><span class="cite_crochet">[</span>54<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-55" class="reference"><a href="#cite_note-55"><span class="cite_crochet">[</span>55<span class="cite_crochet">]</span></a></sup>. Leur relation s'achève en <time class="nowrap" datetime="2016-02" data-sort-value="2016-02">février 2016</time><sup id="cite_ref-56" class="reference"><a href="#cite_note-56"><span class="cite_crochet">[</span>56<span class="cite_crochet">]</span></a></sup>. De <time class="nowrap" datetime="2017-06" data-sort-value="2017-06">juin 2017</time> à <time class="nowrap" datetime="2018-07" data-sort-value="2018-07">juillet 2018</time>, il est en couple avec la mannequin et actrice franco-américaine <a href="/wiki/Camille_Rowe" title="Camille Rowe">Camille Rowe</a>  ; leur rupture a d'ailleurs inspiré le deuxième album du chanteur, <a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a><sup id="cite_ref-57" class="reference"><a href="#cite_note-57"><span class="cite_crochet">[</span>57<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-58" class="reference"><a href="#cite_note-58"><span class="cite_crochet">[</span>58<span class="cite_crochet">]</span></a></sup>.
+</p><p>Interrogé sur son orientation sexuelle au printemps <a href="/wiki/2017" title="2017">2017</a> par le journal <a href="/wiki/The_Sun" title="The Sun">The Sun</a>, Harry affirme&#160;: <span class="citation">«&#160;Je n'ai jamais ressenti le besoin de poser une étiquette sur ma sexualité ni de m'expliquer sur ce sujet à propos de moi&#160;»</span><sup id="cite_ref-59" class="reference"><a href="#cite_note-59"><span class="cite_crochet">[</span>59<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-60" class="reference"><a href="#cite_note-60"><span class="cite_crochet">[</span>60<span class="cite_crochet">]</span></a></sup>.
+</p><p>Politiquement, Harry Styles déclare soutenir le <a href="/wiki/Parti_travailliste_(Royaume-Uni)" title="Parti travailliste (Royaume-Uni)">Parti travailliste</a><sup id="cite_ref-61" class="reference"><a href="#cite_note-61"><span class="cite_crochet">[</span>61<span class="cite_crochet">]</span></a></sup>. Il montre également son soutien lors de la campagne <a href="/wiki/HeForShe" title="HeForShe">HeForShe</a> de l'ONU pour l'<a href="/wiki/%C3%89galit%C3%A9_des_sexes" title="Égalité des sexes">égalité des sexes</a> lancée par <a href="/wiki/Emma_Watson" title="Emma Watson">Emma Watson</a> en <time class="nowrap" datetime="2014-09" data-sort-value="2014-09">septembre 2014</time><sup id="cite_ref-62" class="reference"><a href="#cite_note-62"><span class="cite_crochet">[</span>62<span class="cite_crochet">]</span></a></sup> ainsi qu'envers la communauté LGBT<sup id="cite_ref-63" class="reference"><a href="#cite_note-63"><span class="cite_crochet">[</span>63<span class="cite_crochet">]</span></a></sup>.
+</p>
+<h3><span class="mw-headline" id="Treat_People_With_Kindness">Treat People With Kindness</span></h3>
+<p>"Treat People With Kindness", également abrégé en "TPWK", est un slogan utilisé par Styles pour promouvoir son message d'amour, d'acceptation et de gentillesse envers les gens. Styles a commencé à utiliser le slogan lors de sa première tournée de concerts en <a href="/wiki/2017" title="2017">2017</a>, sur un badge sur sa guitare et sur des articles de tournée, y compris des t-shirts Pride vendus pour collecter des fonds pour l'organisation éducative "Gay, Lesbian &amp; Straight Education Network". Dans une interview de décembre 2019, il a déclaré: "C'était une épingle que j'avais sur la sangle de ma guitare et nous avons fait des t-shirts pour cela, puis j'ai vu beaucoup de t-shirts. Je conduisais ou quelque chose comme ça et j'ai vu quelqu'un en porter un et j'ai commencé à me sentir comme «Oh c'est un peu une chose»&#160;». Cela a donné à Harry l'idée d'écrire une chanson pour aller avec le slogan intitulé "Treat People with Kindness", qui est l'avant-dernière piste de son deuxième album studio, <a href="/wiki/Fine_Line" class="mw-redirect" title="Fine Line">Fine Line</a>.
+</p><p>En <a href="/wiki/Octobre" title="Octobre">octobre</a> <a href="/wiki/2019" title="2019">2019</a>, des affiches teasers incluant la phrase "Do you know who you are?" en Francais "Savez-vous qui vous êtes&#160;?" et l'acronyme "TPWK" ont été repérés à <a href="/wiki/Londres" title="Londres">Londres</a>, <a href="/wiki/Tokyo" title="Tokyo">Tokyo</a>, <a href="/wiki/Los_Angeles" title="Los Angeles">Los Angeles</a>, <a href="/wiki/New_York" title="New York">New York</a> et en <a href="/wiki/Australie" title="Australie">Australie</a>, que les fans ont pu connecter à Styles et à la sortie de son nouvel album en raison de la référence à sa devise "Treat People with Kindness". En même temps pour marquer la Journée mondiale de la santé mentale, Styles a lancé un site Web "robot" appelé "Do you know who you are?" en Francais "Savez-vous qui vous êtes&#160;?", qui donne aux utilisateurs des messages aléatoires positifs en utilisant des mots tels que brillant, déterminé, aimant et merveilleux, et se terminant par "TPWK. LOVE, H".
+</p>
+<h2><span class="mw-headline" id="Discographie">Discographie</span></h2>
+<h3><span class="mw-headline" id="Comme_chanteur">Comme chanteur</span></h3>
+<h4><span class="mw-headline" id="Solo">Solo</span></h4>
+<div class="bandeau-container bandeau-section metadata bandeau-niveau-information"><div class="bandeau-cell bandeau-icone-css loupe">Article détaillé&#160;: <a href="/wiki/Discographie_de_Harry_Styles" title="Discographie de Harry Styles">Discographie de Harry Styles</a>.</div></div>
+<dl><dt>Albums studio</dt></dl>
+<ul><li><a href="/wiki/2017_en_musique" title="2017 en musique">2017</a>&#160;: <i><a href="/wiki/Harry_Styles_(album)" title="Harry Styles (album)">Harry Styles</a></i></li>
+<li><a href="/wiki/2019_en_musique" title="2019 en musique">2019</a>&#160;: <i><a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a></i></li></ul>
+<h4><span class="mw-headline" id="Avec_One_Direction">Avec One Direction</span></h4>
+<div class="bandeau-container bandeau-section metadata bandeau-niveau-information"><div class="bandeau-cell bandeau-icone-css loupe">Article connexe&#160;: <a href="/wiki/Discographie_de_One_Direction" title="Discographie de One Direction">Discographie de One Direction</a>.</div></div>
+<dl><dt>Albums studio</dt></dl>
+<ul><li><a href="/wiki/2011_en_musique" title="2011 en musique">2011</a>&#160;: <a href="/wiki/Up_All_Night_(album_des_One_Direction)" class="mw-redirect" title="Up All Night (album des One Direction)"><i>Up All Night</i></a></li>
+<li><a href="/wiki/2012_en_musique" title="2012 en musique">2012</a>&#160;: <i><a href="/wiki/Take_Me_Home_(album_des_One_Direction)" class="mw-redirect" title="Take Me Home (album des One Direction)">Take Me Home</a></i></li>
+<li><a href="/wiki/2013_en_musique" title="2013 en musique">2013</a>&#160;: <i><a href="/wiki/Midnight_Memories" title="Midnight Memories">Midnight Memories</a></i></li>
+<li><a href="/wiki/2014_en_musique" title="2014 en musique">2014</a>&#160;: <i><a href="/wiki/Four_(album_des_One_Direction)" class="mw-redirect" title="Four (album des One Direction)">Four</a></i></li>
+<li><a href="/wiki/2015_en_musique" title="2015 en musique">2015</a>&#160;: <i><a href="/wiki/Made_in_the_A.M." title="Made in the A.M.">Made in the A.M.</a></i></li></ul>
+<h3><span class="mw-headline" id="Comme_auteur-compositeur">Comme auteur-compositeur</span></h3>
+<table class="wikitable plainrowheaders" style="text-align:center;">
+
+<tbody><tr>
+<th scope="col">Année
+</th>
+<th scope="col">Titre
+</th>
+<th scope="col">Artiste
+</th>
+<th scope="col">Album
+</th>
+<th scope="col">Notes
+</th></tr>
+<tr>
+<td rowspan="3">2011
+</td>
+<th scope="row"><i>Taken</i>
+</th>
+<td rowspan="12"><a href="/wiki/One_Direction" title="One Direction">One Direction</a>
+</td>
+<td rowspan="3"><i><a href="/wiki/Up_All_Night_(album_des_One_Direction)" class="mw-redirect" title="Up All Night (album des One Direction)">Up All Night</a></i>
+</td>
+<td rowspan="23">Co-écriture
+</td></tr>
+<tr>
+<th scope="row"><i>Everything About You</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Same Mistakes</i>
+</th></tr>
+<tr>
+<td rowspan="5">2012
+</td>
+<th scope="row"><i>Back for You</i>
+</th>
+<td rowspan="5"><i><a href="/wiki/Take_Me_Home_(album_des_One_Direction)" class="mw-redirect" title="Take Me Home (album des One Direction)">Take Me Home</a></i>
+</td></tr>
+<tr>
+<th scope="row"><i>They Don't Know About Us</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Summer Love</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Still the One</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Irresistible</i>
+</th></tr>
+<tr>
+<td rowspan="4">2013
+</td>
+<th scope="row"><i><a href="/wiki/Story_of_My_Life_(chanson_de_One_Direction)" title="Story of My Life (chanson de One Direction)">Story of My Life</a></i>
+</th>
+<td rowspan="4"><i><a href="/wiki/Midnight_Memories" title="Midnight Memories">Midnight Memories</a></i>
+</td></tr>
+<tr>
+<th scope="row"><i>Happily</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Right Now</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Something Great</i>
+</th></tr>
+<tr>
+<td rowspan="7">2014
+</td>
+<th scope="row"><i>Just a Little Bit of Your Heart</i><sup id="cite_ref-64" class="reference"><a href="#cite_note-64"><span class="cite_crochet">[</span>64<span class="cite_crochet">]</span></a></sup>
+</th>
+<td><a href="/wiki/Ariana_Grande" title="Ariana Grande">Ariana Grande</a>
+</td>
+<td><i><a href="/wiki/My_Everything_(album_d%27Ariana_Grande)" title="My Everything (album d&#39;Ariana Grande)">My Everything</a></i>
+</td></tr>
+<tr>
+<th scope="row"><i>Not Our Fault</i><sup id="cite_ref-65" class="reference"><a href="#cite_note-65"><span class="cite_crochet">[</span>65<span class="cite_crochet">]</span></a></sup>
+</th>
+<td><a href="/wiki/Gavin_DeGraw" title="Gavin DeGraw">Gavin DeGraw</a>
+</td>
+<td><i>Finest Hour: The Best of Gavin DeGraw</i>
+</td></tr>
+<tr>
+<th scope="row"><i>Where Do Broken Hearts Go</i>
+</th>
+<td rowspan="5"><a href="/wiki/One_Direction" title="One Direction">One Direction</a>
+</td>
+<td rowspan="5"><i><a href="/wiki/Four_(album_des_One_Direction)" class="mw-redirect" title="Four (album des One Direction)">Four</a></i>
+</td></tr>
+<tr>
+<th scope="row"><i>Fool's Gold</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Night Changes</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Stockholm Syndrome</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Change Your Ticket</i>
+</th></tr>
+<tr>
+<td rowspan="4">2015
+</td>
+<th scope="row"><i>Perfect</i>
+</th>
+<td rowspan="4"><a href="/wiki/One_Direction" title="One Direction">One Direction</a>
+</td>
+<td rowspan="4"><i><a href="/wiki/Made_in_the_A.M." title="Made in the A.M.">Made in the A.M.</a></i>
+</td></tr>
+<tr>
+<th scope="row"><i>If I Could Fly</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Olivia</i>
+</th></tr>
+<tr>
+<th scope="row"><i>Walking in the Wind</i>
+</th></tr>
+<tr>
+<td rowspan="12">2017
+</td>
+<th>Sign of the Times
+</th>
+<td rowspan="12">Lui-même
+</td>
+<td rowspan="12"><i><a href="/wiki/Harry_Styles_(album)" title="Harry Styles (album)">Harry styles</a></i>
+</td>
+<td rowspan="12">Co-écriture avec Ryan Nasci et Mitch Rowland
+</td></tr>
+<tr>
+<th><i>Meet Me in the Hallway</i>
+</th></tr>
+<tr>
+<th><i>Carolina</i>
+</th></tr>
+<tr>
+<th><i>Two Ghosts</i>
+</th></tr>
+<tr>
+<th><i>Sweet Creature</i>
+</th></tr>
+<tr>
+<th><i>Only Angel</i>
+</th></tr>
+<tr>
+<th><i>Kiwi</i>
+</th></tr>
+<tr>
+<th><i>Ever Since New York</i>
+</th></tr>
+<tr>
+<th><i>Woman</i>
+</th></tr>
+<tr>
+<th><i>From the Dining Table</i>
+</th></tr>
+<tr>
+<th><b>Medicine</b>
+</th></tr>
+<tr>
+<th><i>Anna</i>
+</th></tr>
+<tr>
+<td rowspan="12">2019
+</td>
+<th><i>Golden</i>
+</th>
+<td rowspan="12">Lui-même
+</td>
+<td rowspan="12"><i>Fine Line</i>
+</td>
+<td rowspan="12">Co-Écriture avec Thomas Hull, Mitch Rowland, et Tyler Johnson
+</td></tr>
+<tr>
+<th><i>Watermelon Sugar</i>
+</th></tr>
+<tr>
+<th><i>Adore You</i>
+</th></tr>
+<tr>
+<th><i>Lights Up</i>
+</th></tr>
+<tr>
+<th><i>Cherry</i>
+</th></tr>
+<tr>
+<th><i>Falling</i>
+</th></tr>
+<tr>
+<th><i>To Be So Lonely</i>
+</th></tr>
+<tr>
+<th><i>She</i>
+</th></tr>
+<tr>
+<th><i>Sunflower, Vol.6</i>
+</th></tr>
+<tr>
+<th><i>Canyon Moon</i>
+</th></tr>
+<tr>
+<th><i>Treat People With Kindness</i>
+</th></tr>
+<tr>
+<th><i>Fine Line</i>
+</th></tr></tbody></table>
+<h2><span class="mw-headline" id="Filmographie">Filmographie</span></h2>
+<table class="wikitable">
+<caption>
+</caption>
+<tbody><tr>
+<th>Année
+</th>
+<th>Titre
+</th>
+<th>Rôle
+</th></tr>
+<tr>
+<td>2012
+</td>
+<td><i><a href="/wiki/ICarly" title="ICarly">ICarly</a></i> (série télévisée)
+</td>
+<td>lui-même
+</td></tr>
+<tr>
+<td>2013
+</td>
+<td><i><a href="/wiki/One_Direction:_This_Is_Us" class="mw-redirect" title="One Direction: This Is Us">One Direction: This Is Us</a></i>
+</td>
+<td>lui-même
+</td></tr>
+<tr>
+<td>2017
+</td>
+<td><a href="/wiki/Dunkerque_(film,_2017)" title="Dunkerque (film, 2017)"><i>Dunkerque</i></a>
+</td>
+<td>Alex
+</td></tr>
+<tr>
+<td>2021
+</td>
+<td><i><a href="/wiki/Don%27t_worry_Darling" class="mw-redirect" title="Don&#39;t worry Darling">Don't worry Darling</a></i>
+</td>
+<td>Jack
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Distinctions">Distinctions</span></h2>
+<table class="wikitable">
+<caption>
+</caption>
+<tbody><tr>
+<th>Année
+</th>
+<th>Organisateur(s)
+</th>
+<th>Prix
+</th>
+<th>Résultat
+</th></tr>
+<tr>
+<td rowspan="5"><a href="/wiki/2020_en_musique" title="2020 en musique">2020</a>
+</td>
+<td rowspan="2"><a href="/wiki/NRJ_Music_Awards_2020" title="NRJ Music Awards 2020">NRJ Music Awards</a>
+</td>
+<td>Artiste masculin international de l'année<sup id="cite_ref-:0_66-0" class="reference"><a href="#cite_note-:0-66"><span class="cite_crochet">[</span>66<span class="cite_crochet">]</span></a></sup>
+</td>
+<td>En attente
+</td></tr>
+<tr>
+<td>Clip de l'année (<i><a href="/wiki/Watermelon_Sugar" title="Watermelon Sugar">Watermelon sugar</a></i>)<sup id="cite_ref-:0_66-1" class="reference"><a href="#cite_note-:0-66"><span class="cite_crochet">[</span>66<span class="cite_crochet">]</span></a></sup>
+</td>
+<td>En attente
+</td></tr>
+<tr>
+<td rowspan="3"><a href="/wiki/Grammy_Awards" title="Grammy Awards">Grammy Awards</a>
+</td>
+<td>Meilleur clip vidéo (Adore You)<sup id="cite_ref-:1_67-0" class="reference"><a href="#cite_note-:1-67"><span class="cite_crochet">[</span>67<span class="cite_crochet">]</span></a></sup>
+</td>
+<td>Nommé
+</td></tr>
+<tr>
+<td>Meilleur album vocal pop (Fine Line)<sup id="cite_ref-:1_67-1" class="reference"><a href="#cite_note-:1-67"><span class="cite_crochet">[</span>67<span class="cite_crochet">]</span></a></sup>
+</td>
+<td>Nommé
+</td></tr>
+<tr>
+<td>Meilleure prestation pop en solo (Watermelon Sugar)<sup id="cite_ref-:1_67-2" class="reference"><a href="#cite_note-:1-67"><span class="cite_crochet">[</span>67<span class="cite_crochet">]</span></a></sup>
+</td>
+<td>Nommé
+</td></tr>
+</tbody></table>
+<p><br />
+</p>
+<h2><span id="R.C3.A9f.C3.A9rences"></span><span class="mw-headline" id="Références">Références</span></h2>
+<div class="references-small decimal" style=""><div class="mw-references-wrap mw-references-columns"><ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink noprint"><a href="#cite_ref-1">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://www.imdb.com/name/nm4089170/bio">«&#160;<cite style="font-style:normal;">Harry Styles</cite>&#160;»</a>, sur <span class="italique">IMDb</span></span></span>
+</li>
+<li id="cite_note-2"><span class="mw-cite-backlink noprint"><a href="#cite_ref-2">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://www.redditchadvertiser.co.uk/news/local/10916015.One_Direction_heart_throb_Harry_Styles_born_in_Redditch/?ref=rss">«&#160;<cite style="font-style:normal;">One Direction heart-throb Harry Styles born in Redditch</cite>&#160;»</a>, sur <span class="italique">Redditch Advertiser</span> <small style="line-height:1em;">(consulté le <span class="nowrap">25 septembre 2015</span>)</small></span>.</span>
+</li>
+<li id="cite_note-3"><span class="mw-cite-backlink noprint"><a href="#cite_ref-3">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Radnedge2014"><span class="ouvrage" id="Aidan_Radnedge2014"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Aidan Radnedge, <span lang="en"><a rel="nofollow" class="external text" href="http://metro.co.uk/2014/03/05/one-directions-harry-styles-hails-from-least-musical-town-in-britain-4430966/">«&#160;<cite style="font-style:normal;">One Direction’s Harry Styles hails from ‘least musical town in Britain’</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Metro_(Associated_Metro_Limited)" title="Metro (Associated Metro Limited)">metro.co.uk</a></span>, <time class="nowrap" datetime="2014-03-05" data-sort-value="2014-03-05">5 mars 2014</time></span></span>.</span>
+</li>
+<li id="cite_note-4"><span class="mw-cite-backlink noprint"><a href="#cite_ref-4">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2012"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.dailyrecord.co.uk/entertainment/celebrity/mums-of-one-direction-stars-reveal-1119384">«&#160;<cite style="font-style:normal;">Mums of One Direction stars reveal how the boys have grown into music sensations</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Daily_Record" title="Daily Record">dailyrecord.co.uk</a></span>, <time class="nowrap" datetime="2012-04-16" data-sort-value="2012-04-16">16 avril 2012</time></span>.</span>
+</li>
+<li id="cite_note-5"><span class="mw-cite-backlink noprint"><a href="#cite_ref-5">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017"><a rel="nofollow" class="external text" href="http://www.purepeople.com/article/harry-styles-la-star-de-one-direction-est-en-deuil_a147082/3">«&#160;<cite style="font-style:normal;">Harry Styles et son père Desmond Des Styles, le 14 décembre 2013</cite>&#160;»</a>, sur <span class="italique">purepeople.com</span>, <time class="nowrap" datetime="2017-06-22" data-sort-value="2017-06-22">22 juin 2017</time></span>.</span>
+</li>
+<li id="cite_note-6"><span class="mw-cite-backlink noprint"><a href="#cite_ref-6">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Smith2013"><span class="ouvrage" id="Richard_Smith2013"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Richard Smith, <span lang="en"><a rel="nofollow" class="external text" href="https://www.mirror.co.uk/3am/celebrity-news/one-directions-roots-revealed-varied-2272716">«&#160;<cite style="font-style:normal;">One Direction's roots revealed: Varied lives of the boys' ancestors from barber to button maker</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/The_Daily_Mirror" title="The Daily Mirror">mirror.co.uk</a></span>, <time class="nowrap" datetime="2013-09-14" data-sort-value="2013-09-14">14 septembre 2013</time></span></span>.</span>
+</li>
+<li id="cite_note-7"><span class="mw-cite-backlink noprint"><a href="#cite_ref-7">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Jepson2013"><span class="ouvrage" id="Louisa_Jepson2013"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Louisa <span class="nom_auteur">Jepson</span>, <cite class="italique" lang="en">Harry Styles - Every Piece of Me</cite>, Simon and Schuster, <time class="nowrap" datetime="2013-02-28" data-sort-value="2013-02-28">28 février 2013</time> <small style="line-height:1em;">(<a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Sp%C3%A9cial:Ouvrages_de_r%C3%A9f%C3%A9rence/978-1-4711-2849-3" title="Spécial:Ouvrages de référence/978-1-4711-2849-3"><span class="nowrap">978-1-4711-2849-3</span></a>, <a rel="nofollow" class="external text" href="https://books.google.fr/books?id=4XzgWkBeNUoC&amp;lpg=PR1&amp;dq=harry+styles+birth&amp;pg=PR1&amp;redir_esc=y#v=onepage&amp;q=harry%20edward%20styles&amp;f=false">lire en ligne</a>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Harry+Styles+-+Every+Piece+of+Me&amp;rft.pub=Simon+and+Schuster&amp;rft.aulast=Jepson&amp;rft.aufirst=Louisa&amp;rft.date=2013-02-28&amp;rft.isbn=978-1-4711-2849-3&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span></span>
+</li>
+<li id="cite_note-8"><span class="mw-cite-backlink noprint"><a href="#cite_ref-8">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2012"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.dailyrecord.co.uk/entertainment/celebrity/one-direction-star-harry-styles-1130085">«&#160;<cite style="font-style:normal;">One Direction star Harry Styles' dad on bond between him and his boy</cite>&#160;»</a></span>, sur <span class="italique">dailyrecord.co.uk</span>, <time class="nowrap" datetime="2012-06-24" data-sort-value="2012-06-24">24 juin 2012</time></span>.</span>
+</li>
+<li id="cite_note-9"><span class="mw-cite-backlink noprint"><a href="#cite_ref-9">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Média201"><span class="ouvrage" id="Prisma_Média201">Prisma <span class="nom_auteur">Média</span>, «&#160;<cite style="font-style:normal;">Harry Styles en deuil&#160;: son beau-père a été emporté par un cancer à l’âge de 57 ans - Voici</cite>&#160;», <i>Voici.fr</i>,&#8206; <time class="nowrap" datetime="0201-06-22" data-sort-value="0201-06-22">22 juin 201</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.voici.fr/news-people/actu-people/harry-styles-en-deuil-son-beau-pere-a-ete-emporte-par-un-cancer-a-l-age-de-57-ans-636090">lire en ligne</a>, consulté le <span class="nowrap">23 juin 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+en+deuil+%3A+son+beau-p%C3%A8re+a+%C3%A9t%C3%A9+emport%C3%A9+par+un+cancer+%C3%A0+l%E2%80%99%C3%A2ge+de+57+ans+-+Voici&amp;rft.jtitle=Voici.fr&amp;rft.aulast=M%C3%A9dia&amp;rft.aufirst=Prisma&amp;rft.date=22+juin+201&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>.</span>
+</li>
+<li id="cite_note-10"><span class="mw-cite-backlink noprint"><a href="#cite_ref-10">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://news.bbc.co.uk/local/stoke/hi/people_and_places/music/newsid_9195000/9195671.stm">«&#160;<cite style="font-style:normal;">Harry Styles has got the <i>X Factor</i> in Holmes Chapel</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Bbc" class="mw-redirect" title="Bbc">news.bbc.co.uk</a></span>, <time class="nowrap" datetime="2010-11-17" data-sort-value="2010-11-17">17 novembre 2010</time></span>.</span>
+</li>
+<li id="cite_note-11"><span class="mw-cite-backlink noprint"><a href="#cite_ref-11">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Ryan2010"><span class="ouvrage" id="Belinda_Ryan2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Belinda Ryan, <span lang="en"><a rel="nofollow" class="external text" href="http://www.crewechronicle.co.uk/news/local-news/holmes-chapel-x-factor-star-5613573">«&#160;<cite style="font-style:normal;">Holmes Chapel X Factor star Harry Styles can win show say school bandmates</cite>&#160;»</a></span>, sur <span class="italique">crewechronicle.co.uk</span>, <time class="nowrap" datetime="2010-09-29" data-sort-value="2010-09-29">29 septembre 2010</time></span></span>.</span>
+</li>
+<li id="cite_note-12"><span class="mw-cite-backlink noprint"><a href="#cite_ref-12">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2014"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://metro.co.uk/2014/05/06/14-facts-you-probably-didnt-know-about-one-directions-harry-styles-4715150/">«&#160;<cite style="font-style:normal;">14 facts you probably didn’t know about One Direction’s Harry Styles</cite>&#160;»</a></span>, sur <span class="italique">metro.co.uk</span>, <time class="nowrap" datetime="2014-05-06" data-sort-value="2014-05-06">6 mai 2014</time></span>.</span>
+</li>
+<li id="cite_note-13"><span class="mw-cite-backlink noprint"><a href="#cite_ref-13">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Kelly2011"><span class="ouvrage" id="Kristy_Kelly2011"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Kristy Kelly, <span lang="en"><a rel="nofollow" class="external text" href="http://www.digitalspy.co.uk/tv/s103/the-x-factor/news/a331792/nicole-scherzinger-i-did-simon-cowell-a-favour-with-one-direction.html#~piF8NRdQpB3TmR">«&#160;<cite style="font-style:normal;">Nicole Scherzinger: 'I did Simon Cowell a favour with One Direction'</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Digital_Spy" title="Digital Spy">digitalspy.co.uk</a></span>, <time class="nowrap" datetime="2011-07-26" data-sort-value="2011-07-26">26 juillet 2011</time></span></span></span>
+</li>
+<li id="cite_note-14"><span class="mw-cite-backlink noprint"><a href="#cite_ref-14">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2012"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.twistmagazine.com/posts/twist-news-zayn-malik-reveals-what-liam-payne-wanted-to-name-one-direction-8438">«&#160;<cite style="font-style:normal;">Zayn Malik Reveals What Liam Payne Wanted to Name One Direction</cite>&#160;»</a></span>, sur <span class="italique">twistmagazine.com</span>, <time class="nowrap" datetime="2012-06-14" data-sort-value="2012-06-14">14 juin 2012</time></span></span>
+</li>
+<li id="cite_note-15"><span class="mw-cite-backlink noprint"><a href="#cite_ref-15">↑</a> </span><span class="reference-text"><span class="ouvrage" id="McGarry2010"><span class="ouvrage" id="Lisa_McGarry2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Lisa McGarry, <span lang="en"><a rel="nofollow" class="external text" href="http://www.unrealitytv.co.uk/x-factor/x-factor-final-one-direction-sing-their-audition-song-torn-video/">«&#160;<cite style="font-style:normal;"><i>X Factor</i> Final: One Direction sing their audition song <i>Torn</i></cite>&#160;»</a></span>, sur <span class="italique">unrealitytv.co.uk</span>, <time class="nowrap" datetime="2010-12-12" data-sort-value="2010-12-12">12 décembre 2010</time></span></span></span>
+</li>
+<li id="cite_note-rollingstone-16"><span class="mw-cite-backlink noprint">↑ <sup><a href="#cite_ref-rollingstone_16-0">a</a> et <a href="#cite_ref-rollingstone_16-1">b</a></sup> </span><span class="reference-text"><span class="ouvrage" id="Greene2012"><span class="ouvrage" id="Andy_Greene2012"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Andy Greene, <span lang="en"><a rel="nofollow" class="external text" href="https://www.rollingstone.com/music/news/exclusive-q-a-simon-cowell-on-one-directions-rise-to-stardom-20120409">«&#160;<cite style="font-style:normal;">Exclusive Q&amp;A: Simon Cowell on One Direction's Rise to Stardom</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Rolling_Stone" title="Rolling Stone">rollingstone.com</a></span>, <time class="nowrap" datetime="2012-04-09" data-sort-value="2012-04-09">9 avril 2012</time></span></span></span>
+</li>
+<li id="cite_note-17"><span class="mw-cite-backlink noprint"><a href="#cite_ref-17">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.popsirens.com/listen-to-one-directions-shelved-winners-single-forever-young">«&#160;<cite style="font-style:normal;">Listen to One Direction’s shelved winner’s single <i>Forever Young</i></cite>&#160;»</a></span>, sur <span class="italique">popsirens.com</span>, <time class="nowrap" datetime="2010-12-12" data-sort-value="2010-12-12">12 décembre 2010</time></span></span>
+</li>
+<li id="cite_note-18"><span class="mw-cite-backlink noprint"><a href="#cite_ref-18">↑</a> </span><span class="reference-text"><span class="ouvrage"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.nydailynews.com/entertainment/direction-years-gallery-1.2162325?pmSlide=1.2162305">«&#160;<cite style="font-style:normal;">One Direction performs on 'The X Factor,' 2011</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/New_York_Daily_News" title="New York Daily News">nydailynews.com</a></span></span></span>
+</li>
+<li id="cite_note-19"><span class="mw-cite-backlink noprint"><a href="#cite_ref-19">↑</a> </span><span class="reference-text"><span class="ouvrage" id="McGarry2010"><span class="ouvrage" id="Lisa_McGarry2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Lisa McGarry, <span lang="en"><a rel="nofollow" class="external text" href="http://www.unrealitytv.co.uk/x-factor/x-factor-2011-tour-new-dates-added/">«&#160;<cite style="font-style:normal;"><i>X Factor</i> 2011 tour – new dates added</cite>&#160;»</a></span>, sur <span class="italique">unrealitytv.co.uk</span>, <time class="nowrap" datetime="2010-11-25" data-sort-value="2010-11-25">25 novembre 2010</time></span></span></span>
+</li>
+<li id="cite_note-20"><span class="mw-cite-backlink noprint"><a href="#cite_ref-20">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Nissim2011"><span class="ouvrage" id="Mayer_Nissim2011"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Mayer Nissim, <span lang="en"><a rel="nofollow" class="external text" href="http://www.digitalspy.co.uk/music/s103/the-x-factor/news/a300729/one-direction-get-gbp2m-syco-investment.html#~piFicgVuJmLN0C">«&#160;<cite style="font-style:normal;">One Direction 'get £2m Syco investment'</cite>&#160;»</a></span>, sur <span class="italique">digitalspy.co.uk</span>, <time class="nowrap" datetime="2011-01-28" data-sort-value="2011-01-28">28 janvier 2011</time></span></span></span>
+</li>
+<li id="cite_note-21"><span class="mw-cite-backlink noprint"><a href="#cite_ref-21">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Miller2011"><span class="ouvrage" id="Ed_Miller2011"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Ed Miller, <span lang="en"><a rel="nofollow" class="external text" href="http://www.musicweek.com/news/read/sony-excited-about-one-direction-potential/046464">«&#160;<cite style="font-style:normal;">Sony excited about One Direction potential</cite>&#160;»</a></span>, sur <span class="italique">musicweek.com</span>, <time class="nowrap" datetime="2011-08-16" data-sort-value="2011-08-16">16 août 2011</time></span></span></span>
+</li>
+<li id="cite_note-22"><span class="mw-cite-backlink noprint"><a href="#cite_ref-22">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Fletcher2011"><span class="ouvrage" id="Alex_Fletcher2011"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Alex Fletcher, <span lang="en"><a rel="nofollow" class="external text" href="http://www.digitalspy.co.uk/showbiz/s103/the-x-factor/news/a304324/one-direction-release-autobiography.html#~piFk7yLFDljiJv">«&#160;<cite style="font-style:normal;">One Direction release autobiography</cite>&#160;»</a></span>, sur <span class="italique">digitalspy.co.uk</span>, <time class="nowrap" datetime="2011-02-17" data-sort-value="2011-02-17">17 février 2011</time></span></span></span>
+</li>
+<li id="cite_note-23"><span class="mw-cite-backlink noprint"><a href="#cite_ref-23">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Mendelson2013"><span class="ouvrage" id="Scott_Mendelson2013"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Scott Mendelson, <span lang="en"><a rel="nofollow" class="external text" href="https://www.forbes.com/sites/scottmendelson/2013/09/01/one-direction-dominates-labor-day-box-office/">«&#160;<cite style="font-style:normal;">Weekend Box Office: <i>One Direction: This Is Us</i> And <i>The Butler</i> Dominate Labor Day</cite>&#160;»</a></span>, sur <span class="italique"><a href="/wiki/Forbes_(magazine)" title="Forbes (magazine)">forbes.com</a></span>, <time class="nowrap" datetime="2013-09-01" data-sort-value="2013-09-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> septembre 2013</time></span></span></span>
+</li>
+<li id="cite_note-24"><span class="mw-cite-backlink noprint"><a href="#cite_ref-24">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2016">«&#160;<cite style="font-style:normal;">Harry Styles Signs Recording Contract With Columbia: Exclusive</cite>&#160;», <i>Billboard</i>,&#8206; <time class="nowrap" datetime="2016-06-23" data-sort-value="2016-06-23">23 juin 2016</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.billboard.com/articles/news/7416429/harry-styles-solo-record-deal-one-direction">lire en ligne</a>, consulté le <span class="nowrap">8 avril 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+Signs+Recording+Contract+With+Columbia%3A+Exclusive&amp;rft.jtitle=Billboard&amp;rft.date=2016-06-23&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-25"><span class="mw-cite-backlink noprint"><a href="#cite_ref-25">↑</a> </span><span class="reference-text"><span class="ouvrage" id="BFMTV2017"><span class="nom_auteur">BFMTV</span>, <a rel="nofollow" class="external text" href="http://people.bfmtv.com/musique/harry-styles-annonce-la-date-de-son-premier-single-solo-1129814.html">«&#160;<cite style="font-style:normal;">Harry Styles annonce la date de son premier single solo</cite>&#160;»</a>, sur <span class="italique">BFMTV</span>, <time class="nowrap" datetime="2017-03-26" data-sort-value="2017-03-26">26 mars 2017</time> <small style="line-height:1em;">(consulté le <span class="nowrap">8 avril 2017</span>)</small></span>.</span>
+</li>
+<li id="cite_note-26"><span class="mw-cite-backlink noprint"><a href="#cite_ref-26">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017">«&#160;<cite style="font-style:normal;">"Sign of the times"&#160;: le premier single solo de Harry Styles est déjà numéro 1 des ventes</cite>&#160;», <i>LCI</i>,&#8206; <time class="nowrap" datetime="2017-04-07" data-sort-value="2017-04-07">7 avril 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.lci.fr/musique/sign-of-the-times-le-premier-single-solo-de-harry-styles-est-deja-numero-1-des-ventes-sur-itunes-2044264.html">lire en ligne</a>, consulté le <span class="nowrap">8 avril 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=%22Sign+of+the+times%22+%3A+le+premier+single+solo+de+Harry+Styles+est+d%C3%A9j%C3%A0+num%C3%A9ro+1+des+ventes&amp;rft.jtitle=LCI&amp;rft.date=2017-04-07&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-27"><span class="mw-cite-backlink noprint"><a href="#cite_ref-27">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en">«&#160;<cite style="font-style:normal;">Harry Styles Breaks Records In Just 19 Minutes With ‘Sign Of The Times’: Is He The 1D Member To Beat?</cite>&#160;»</span>, <i><span class="lang-en" lang="en">The Inquisitr</span></i>,&#8206; <time class="nowrap" datetime="2017-04-07" data-sort-value="2017-04-07">7 avril 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.inquisitr.com/4126134/harry-styles-breaks-records-in-just-19-minutes-with-sign-of-the-times-is-he-the-1d-member-to-beat/">lire en ligne</a>, consulté le <span class="nowrap">8 avril 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+Breaks+Records+In+Just+19+Minutes+With+%E2%80%98Sign+Of+The+Times%E2%80%99%3A+Is+He+The+1D+Member+To+Beat%3F&amp;rft.jtitle=The+Inquisitr&amp;rft.date=2017-04-07&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-28"><span class="mw-cite-backlink noprint"><a href="#cite_ref-28">↑</a> </span><span class="reference-text"><span class="ouvrage" id="www.20min.ch2017"><span class="ouvrage" id="www.20minutes.ch,_20_Minutes,_20_Min,_www.20min.ch2017">www.20minutes.ch, 20 Minutes, 20 Min, <span class="nom_auteur">www.20min.ch</span>, «&#160;<cite style="font-style:normal;">Harry Styles dévoile le clip de «Sign of the Times»</cite>&#160;», <i>20 Minutes</i>,&#8206; <time class="nowrap" datetime="2017-05-08" data-sort-value="2017-05-08">8 mai 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.20min.ch/ro/musique/news/story/Harry-Styles-devoile-le-clip-de--Sign-of-the-Times--31438686">lire en ligne</a>, consulté le <span class="nowrap">3 août 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+d%C3%A9voile+le+clip+de+%C2%ABSign+of+the+Times%C2%BB&amp;rft.jtitle=20+Minutes&amp;rft.aulast=www.20min.ch&amp;rft.aufirst=www.20minutes.ch%2C+20+Minutes%2C+20+Min%2C&amp;rft.date=2017-05-08&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>.</span>
+</li>
+<li id="cite_note-29"><span class="mw-cite-backlink noprint"><a href="#cite_ref-29">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Chevreuil2017"><span class="ouvrage" id="Mélissa_Chevreuil2017">Mélissa <span class="nom_auteur">Chevreuil</span>, «&#160;<cite style="font-style:normal;">Harry Styles se prend pour Superman dans le clip de Sign of the Times</cite>&#160;», <i>Le Point</i>,&#8206; <time class="nowrap" datetime="2017-05-09" data-sort-value="2017-05-09">9 mai 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.lepoint.fr/pop-culture/musique/harry-styles-se-prend-pour-superman-dans-le-clip-de-sign-of-the-times-09-05-2017-2126029_2946.php">lire en ligne</a>, consulté le <span class="nowrap">23 juin 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+se+prend+pour+Superman+dans+le+clip+de+Sign+of+the+Times&amp;rft.jtitle=Le+Point&amp;rft.aulast=Chevreuil&amp;rft.aufirst=M%C3%A9lissa&amp;rft.date=2017-05-09&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>.</span>
+</li>
+<li id="cite_note-30"><span class="mw-cite-backlink noprint"><a href="#cite_ref-30">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en">«&#160;<cite style="font-style:normal;">Harry Styles Self-Titled Debut Due May 12</cite>&#160;»</span>, <i><span class="lang-en" lang="en">Billboard</span></i>,&#8206; <time class="nowrap" datetime="2017-04-13" data-sort-value="2017-04-13">13 avril 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.billboard.com/articles/columns/pop/7760233/harry-styles-self-titled-debut-may-12-tracklist">lire en ligne</a>, consulté le <span class="nowrap">13 avril 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+Self-Titled+Debut+Due+May+12&amp;rft.jtitle=Billboard&amp;rft.date=2017-04-13&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-31"><span class="mw-cite-backlink noprint"><a href="#cite_ref-31">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017">«&#160;<cite style="font-style:normal;">Le premier album de Harry Styles bat un record historique</cite>&#160;», <i>virginradio.fr</i>,&#8206; <time class="nowrap" datetime="2017-05-22" data-sort-value="2017-05-22">22 mai 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="https://www.virginradio.fr/harry-styles-son-premier-album-solo-bat-un-record-de-ventes-historique-a604807.html">lire en ligne</a>, consulté le <span class="nowrap">23 juin 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Le+premier+album+de+Harry+Styles+bat+un+record+historique&amp;rft.jtitle=virginradio.fr&amp;rft.date=2017-05-22&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-32"><span class="mw-cite-backlink noprint"><a href="#cite_ref-32">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Styles2017"><span class="ouvrage" id="Harry_Styles2017"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Harry <span class="nom_auteur">Styles</span>, <span lang="en"><a rel="nofollow" class="external text" href="https://twitter.com/Harry_Styles/status/857928900839587840?ref_src=twsrc%5Etfw&amp;ref_url=http://www.melty.fr/harry-styles-en-concert-a-paris-il-annonce-sa-tournee-mondiale-pour-2017-a601656.html">«&#160;<cite style="font-style:normal;">/ / http://SEE.YOU&#160;.SOON / /  http://hstyles.co.uk&#160;pic.twitter.com/Jihkf77Bgk</cite>&#160;»</a></span>, sur <span class="italique">@Harry_Styles</span>, <time class="nowrap" datetime="2017-04-28" data-sort-value="2017-04-28">28 avril 2017</time> <small style="line-height:1em;">(consulté le <span class="nowrap">23 juin 2017</span>)</small></span></span>.</span>
+</li>
+<li id="cite_note-33"><span class="mw-cite-backlink noprint"><a href="#cite_ref-33">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://www.20minutes.fr/people/2119503-20170821-videoharry-styles-va-avoir-droit-propre-documentaire-bbc">«&#160;<cite style="font-style:normal;">VIDEO. Harry Styles va avoir droit à son propre documentaire pour la BBC</cite>&#160;»</a>, sur <span class="italique">www.20minutes.fr</span> <small style="line-height:1em;">(consulté le <span class="nowrap">25 novembre 2017</span>)</small></span></span>
+</li>
+<li id="cite_note-34"><span class="mw-cite-backlink noprint"><a href="#cite_ref-34">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017">«&#160;<cite style="font-style:normal;">Harry Styles dévoile le clip déjanté de "Kiwi"</cite>&#160;», <i>virginradio.fr</i>,&#8206; <time class="nowrap" datetime="2017-11-08" data-sort-value="2017-11-08">8 novembre 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="https://www.virginradio.fr/harry-styles-kiwi-le-clip-dejante-devoile-a629523.html">lire en ligne</a>, consulté le <span class="nowrap">25 novembre 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+d%C3%A9voile+le+clip+d%C3%A9jant%C3%A9+de+%22Kiwi%22&amp;rft.jtitle=virginradio.fr&amp;rft.date=2017-11-08&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>
+</li>
+<li id="cite_note-35"><span class="mw-cite-backlink noprint"><a href="#cite_ref-35">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017">«&#160;<cite style="font-style:normal;">Victoria’s Secret à Shanghai&#160;: Harry Styles chantera au défilé</cite>&#160;», <i>Paris Match</i>,&#8206; <time class="nowrap" datetime="2017-11-20" data-sort-value="2017-11-20">20 novembre 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.parismatch.com/People/Victoria-s-secret-a-Shangai-Harry-Styles-chantera-au-defile-1398011">lire en ligne</a>, consulté le <span class="nowrap">25 novembre 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Victoria%E2%80%99s+Secret+%C3%A0+Shanghai+%3A+Harry+Styles+chantera+au+d%C3%A9fil%C3%A9&amp;rft.jtitle=Paris+Match&amp;rft.date=2017-11-20&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>
+</li>
+<li id="cite_note-36"><span class="mw-cite-backlink noprint"><a href="#cite_ref-36">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Harper2018"><span class="ouvrage" id="Kathleen_Harper2018"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> Kathleen <span class="nom_auteur">Harper</span>, <span lang="en-us">«&#160;<cite style="font-style:normal;">Harry Styles Wins Video Of The Year At BRIT Awards, Beats Former Bandmates Zayn &amp; Liam Payne</cite>&#160;»</span>, <i><span class="lang-en-us" lang="en-us">Hollywood Life</span></i>,&#8206; <time class="nowrap" datetime="2018-02-21" data-sort-value="2018-02-21">21 février 2018</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://hollywoodlife.com/2018/02/21/harry-styles-wins-british-video-of-the-year-brit-awards-one-direction/">lire en ligne</a>, consulté le <span class="nowrap">21 février 2018</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+Wins+Video+Of+The+Year+At+BRIT+Awards%2C+Beats+Former+Bandmates+Zayn+%26+Liam+Payne&amp;rft.jtitle=Hollywood+Life&amp;rft.aulast=Harper&amp;rft.aufirst=Kathleen&amp;rft.date=2018-02-21&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span></span>
+</li>
+<li id="cite_note-37"><span class="mw-cite-backlink noprint"><a href="#cite_ref-37">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Grazia.fr2018"><span class="nom_auteur">Grazia.fr</span>, «&#160;<cite style="font-style:normal;">Harry Styles et Gucci&#160;: la campagne cool et 100% british</cite>&#160;», <i>Grazia.fr</i>,&#8206; <time class="nowrap" datetime="2018-06-05" data-sort-value="2018-06-05">5 juin 2018</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="https://www.grazia.fr/mode/news-mode/harry-styles-et-gucci-la-campagne-cool-et-100-british-890350">lire en ligne</a>, consulté le <span class="nowrap">20 juin 2018</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+et+Gucci+%3A+la+campagne+cool+et+100%25+british&amp;rft.jtitle=Grazia.fr&amp;rft.aulast=Grazia.fr&amp;rft.date=2018-06-05&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>
+</li>
+<li id="cite_note-38"><span class="mw-cite-backlink noprint"><a href="#cite_ref-38">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2019"><a rel="nofollow" class="external text" href="https://www.dailymail.co.uk/tvshowbiz/article-7650793/Harry-Styles-announces-new-album-Fine-Line-sends-fans-MELTDOWN.html">«&#160;<cite style="font-style:normal;">Harry Styles announces new album Fine Line and sends fans wild</cite>&#160;»</a>, sur <span class="italique">Mail Online</span>, <time class="nowrap" datetime="2019-11-05" data-sort-value="2019-11-05">5 novembre 2019</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 novembre 2019</span>)</small></span></span>
+</li>
+<li id="cite_note-39"><span class="mw-cite-backlink noprint"><a href="#cite_ref-39">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Snapes2019"><span class="ouvrage" id="Laura_Snapes2019"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais britannique">(en-GB)</abbr> Laura <span class="nom_auteur">Snapes</span>, <span lang="en-gb">«&#160;<cite style="font-style:normal;">Harry Styles: Lights Up review – soulful, enigmatic return</cite>&#160;»</span>, <i><span class="lang-en-gb" lang="en-gb">The Guardian</span></i>,&#8206; <time class="nowrap" datetime="2019-10-11" data-sort-value="2019-10-11">11 octobre 2019</time> <small style="line-height:1em;">(<a href="/wiki/International_Standard_Serial_Number" title="International Standard Serial Number">ISSN</a>&#160;<span class="plainlinks noarchive"><a rel="nofollow" class="external text" href="http://worldcat.org/issn/0261-3077&amp;lang=fr">0261-3077</a></span>, <a rel="nofollow" class="external text" href="https://www.theguardian.com/music/2019/oct/11/harry-styles-lights-up-review-soulful-enigmatic-return">lire en ligne</a>, consulté le <span class="nowrap">10 novembre 2019</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles%3A+Lights+Up+review+%E2%80%93+soulful%2C+enigmatic+return&amp;rft.jtitle=The+Guardian&amp;rft.aulast=Snapes&amp;rft.aufirst=Laura&amp;rft.date=2019-10-11&amp;rft.issn=0261-3077&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span></span>
+</li>
+<li id="cite_note-40"><span class="mw-cite-backlink noprint"><a href="#cite_ref-40">↑</a> </span><span class="reference-text"><span class="ouvrage" id="SpanosSpanos2019"><span class="ouvrage" id="Brittany_SpanosBrittany_Spanos2019"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> Brittany <span class="nom_auteur">Spanos</span> et Brittany <span class="nom_auteur">Spanos</span>, <span lang="en-us"><a rel="nofollow" class="external text" href="https://www.rollingstone.com/music/music-news/harry-styles-watermelon-sugar-new-song-911892/">«&#160;<cite style="font-style:normal;">Harry Styles Yearns for Taste of ‘Watermelon Sugar’ on New Song</cite>&#160;»</a></span>, sur <span class="italique">Rolling Stone</span>, <time class="nowrap" datetime="2019-11-17" data-sort-value="2019-11-17">17 novembre 2019</time> <small style="line-height:1em;">(consulté le <span class="nowrap">17 novembre 2019</span>)</small></span></span></span>
+</li>
+<li id="cite_note-41"><span class="mw-cite-backlink noprint"><a href="#cite_ref-41">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2020"><a rel="nofollow" class="external text" href="https://www.elle.fr/Loisirs/Musique/News/Le-clip-de-la-semaine-Golden-de-Harry-Styles-3889491">«&#160;<cite style="font-style:normal;">Le clip de la semaine&#160;: «&#160;Golden&#160;» de Harry Styles - Elle</cite>&#160;»</a>, sur <span class="italique">elle.fr</span>, <time class="nowrap" datetime="2020-10-30" data-sort-value="2020-10-30">30 octobre 2020</time> <small style="line-height:1em;">(consulté le <span class="nowrap">24 novembre 2020</span>)</small></span>.</span>
+</li>
+<li id="cite_note-42"><span class="mw-cite-backlink noprint"><a href="#cite_ref-42">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Bowles"><span class="ouvrage" id="Hamish_Bowles"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> Hamish <span class="nom_auteur">Bowles</span>, <span lang="en-us"><a rel="nofollow" class="external text" href="https://www.vogue.com/article/harry-styles-cover-december-2020">«&#160;<cite style="font-style:normal;">Playtime With Harry Styles: “You Can Never Be Overdressed”</cite>&#160;»</a></span>, sur <span class="italique">Vogue</span> <small style="line-height:1em;">(consulté le <span class="nowrap">24 novembre 2020</span>)</small></span></span></span>
+</li>
+<li id="cite_note-43"><span class="mw-cite-backlink noprint"><a href="#cite_ref-43">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Dazed2020"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span class="nom_auteur">Dazed</span>, <span lang="en"><a rel="nofollow" class="external text" href="https://www.dazeddigital.com/fashion/article/51147/1/harry-styles-vogue-december-cover-dress-gender-fluid-gucci-tyler-mitchell">«&#160;<cite style="font-style:normal;">Just how revolutionary is Harry Styles’ Vogue cover?</cite>&#160;»</a></span>, sur <span class="italique">Dazed</span>, <time class="nowrap" datetime="2020-11-19" data-sort-value="2020-11-19">19 novembre 2020</time> <small style="line-height:1em;">(consulté le <span class="nowrap">24 novembre 2020</span>)</small></span>.</span>
+</li>
+<li id="cite_note-44"><span class="mw-cite-backlink noprint"><a href="#cite_ref-44">↑</a> </span><span class="reference-text"><span class="ouvrage" id="CNN"><span class="ouvrage" id="Marika_Gerken_CNN">Marika Gerken <span class="nom_auteur">CNN</span>, <a rel="nofollow" class="external text" href="https://www.cnn.com/2020/11/22/entertainment/aoc-harry-styles-vogue-trnd/index.html">«&#160;<cite style="font-style:normal;">Alexandria Ocasio-Cortez praises Harry Styles for wearing a dress on the cover of Vogue</cite>&#160;»</a>, sur <span class="italique">CNN</span> <small style="line-height:1em;">(consulté le <span class="nowrap">24 novembre 2020</span>)</small></span></span>.</span>
+</li>
+<li id="cite_note-45"><span class="mw-cite-backlink noprint"><a href="#cite_ref-45">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2020"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="https://www.grammy.com/grammys/news/2021-grammys-complete-nominees-list">«&#160;<cite style="font-style:normal;">2021 GRAMMYs: Complete Nominees List</cite>&#160;»</a></span>, sur <span class="italique">GRAMMY.com</span>, <time class="nowrap" datetime="2020-11-24" data-sort-value="2020-11-24">24 novembre 2020</time> <small style="line-height:1em;">(consulté le <span class="nowrap">24 novembre 2020</span>)</small></span></span>
+</li>
+<li id="cite_note-46"><span class="mw-cite-backlink noprint"><a href="#cite_ref-46">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2020"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> <span lang="en-us">«&#160;<cite style="font-style:normal;">Grammy Nominations 2021: See the List</cite>&#160;»</span>, <i><span class="lang-en-us" lang="en-us">The New York Times</span></i>,&#8206; <time class="nowrap" datetime="2020-11-24" data-sort-value="2020-11-24">24 novembre 2020</time> <small style="line-height:1em;">(<a href="/wiki/International_Standard_Serial_Number" title="International Standard Serial Number">ISSN</a>&#160;<span class="plainlinks noarchive"><a rel="nofollow" class="external text" href="http://worldcat.org/issn/0362-4331&amp;lang=fr">0362-4331</a></span>, <a rel="nofollow" class="external text" href="https://www.nytimes.com/2020/11/24/arts/music/grammy-nominees-list.html">lire en ligne</a>, consulté le <span class="nowrap">24 novembre 2020</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Grammy+Nominations+2021%3A+See+the+List&amp;rft.jtitle=The+New+York+Times&amp;rft.date=2020-11-24&amp;rft.issn=0362-4331&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-47"><span class="mw-cite-backlink noprint"><a href="#cite_ref-47">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Steussy2021"><span class="ouvrage" id="Lauren_Steussy2021"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> Lauren <span class="nom_auteur">Steussy</span>, <span lang="en-us"><a rel="nofollow" class="external text" href="https://nypost.com/2021/01/01/harry-styles-drops-new-video-treat-people-with-kindness/">«&#160;<cite style="font-style:normal;">Harry Styles drops adorable music video, ‘Treat People With Kindness’</cite>&#160;»</a></span>, sur <span class="italique">New York Post</span>, <time class="nowrap" datetime="2021-01-01" data-sort-value="2021-01-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> janvier 2021</time> <small style="line-height:1em;">(consulté le <span class="nowrap"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> janvier 2021</span>)</small></span></span>.</span>
+</li>
+<li id="cite_note-48"><span class="mw-cite-backlink noprint"><a href="#cite_ref-48">↑</a> </span><span class="reference-text"><span class="ouvrage" id="AlloCine2016"><span class="nom_auteur">AlloCine</span>, «&#160;<cite style="font-style:normal;">Dunkirk&#160;: Harry Styles des One Direction sur le tournage du prochain Nolan</cite>&#160;», <i>AlloCiné</i>,&#8206; <time class="nowrap" datetime="2016-07-26" data-sort-value="2016-07-26">26 juillet 2016</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.allocine.fr/diaporamas/cinema/diaporama-18654649/">lire en ligne</a>, consulté le <span class="nowrap">8 avril 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Dunkirk+%3A+Harry+Styles+des+One+Direction+sur+le+tournage+du+prochain+Nolan&amp;rft.jtitle=AlloCin%C3%A9&amp;rft.aulast=AlloCine&amp;rft.date=2016-07-26&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+<li id="cite_note-49"><span class="mw-cite-backlink noprint"><a href="#cite_ref-49">↑</a> </span><span class="reference-text"><span class="ouvrage"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="https://www.boxofficemojo.com/release/rl4118644225/">«&#160;<cite style="font-style:normal;">Dunkirk</cite>&#160;»</a></span>, sur <span class="italique">Box Office Mojo</span></span></span>
+</li>
+<li id="cite_note-50"><span class="mw-cite-backlink noprint"><a href="#cite_ref-50">↑</a> </span><span class="reference-text"><span class="ouvrage" id="AlloCine"><span class="nom_auteur">AlloCine</span>, <a rel="nofollow" class="external text" href="http://www.allocine.fr/film/fichefilm_gen_cfilm=276064.html">«&#160;<cite style="font-style:normal;">Don’t Worry, Darling</cite>&#160;»</a> <small style="line-height:1em;">(consulté le <span class="nowrap">15 septembre 2020</span>)</small></span>.</span>
+</li>
+<li id="cite_note-51"><span class="mw-cite-backlink noprint"><a href="#cite_ref-51">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Gay2020"><span class="ouvrage" id="Danielle_Gay2020"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Danielle <span class="nom_auteur">Gay</span>, <span lang="en"><a rel="nofollow" class="external text" href="https://www.vogue.com.au/culture/features/dont-worry-darling-harry-styles-is-coming-back-to-the-big-screen-alongside-florence-pugh/news-story/9960114c466087b9c1d50a4ea4fc09c3">«&#160;<cite style="font-style:normal;">Don’t worry darling, Harry Styles is coming back to the big screen (alongside Florence Pugh)!</cite>&#160;»</a></span>, sur <span class="italique">Vogue Australia</span>, <time class="nowrap" datetime="2020-09-13" data-sort-value="2020-09-13">13 septembre 2020</time> <small style="line-height:1em;">(consulté le <span class="nowrap">15 septembre 2020</span>)</small></span></span>.</span>
+</li>
+<li id="cite_note-52"><span class="mw-cite-backlink noprint"><a href="#cite_ref-52">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2013"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <span lang="en"><a rel="nofollow" class="external text" href="http://www.usmagazine.com/celebrity-news/news/taylor-swift-harry-styles-break-up-what-went-wrong-201381">«&#160;<cite style="font-style:normal;">Taylor Swift, Harry Styles Break Up: What Went Wrong</cite>&#160;»</a></span>, sur <span class="italique">usmagazine.com</span>, <time class="nowrap" datetime="2013-01-08" data-sort-value="2013-01-08">8 janvier 2013</time></span></span>
+</li>
+<li id="cite_note-53"><span class="mw-cite-backlink noprint"><a href="#cite_ref-53">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Gruttadaro2014"><span class="ouvrage" id="Andrew_Gruttadaro2014"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Andrew Gruttadaro, <span lang="en"><a rel="nofollow" class="external text" href="http://hollywoodlife.com/2014/02/23/kendall-jenner-harry-styles-breakup-reason-why-split/">«&#160;<cite style="font-style:normal;">Harry Styles: Why He Decided To Break Up With Kendall Jenner</cite>&#160;»</a></span>, sur <span class="italique">hollywoodlife.com</span>, <time class="nowrap" datetime="2014-02-23" data-sort-value="2014-02-23">23 février 2014</time></span></span></span>
+</li>
+<li id="cite_note-54"><span class="mw-cite-backlink noprint"><a href="#cite_ref-54">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://www.closermag.fr/people/people-anglo-saxons/kendall-jenner-est-bien-en-couple-avec-harry-styles-c-est-sa-soeur-qui-l-affirme-585539">«&#160;<cite style="font-style:normal;">Kendall Jenner est bien en couple avec Harry Styles&#160;: c’est sa sœur qui l’affirme&#160;!</cite>&#160;»</a>, sur <span class="italique">Closermag.fr</span> <small style="line-height:1em;">(consulté le <span class="nowrap">8 janvier 2016</span>)</small></span></span>
+</li>
+<li id="cite_note-55"><span class="mw-cite-backlink noprint"><a href="#cite_ref-55">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://www.people.com/article/khloe-kardashian-confirms-kendall-jenner-dating-harry-styles?xid=socialflow_facebook_peoplemag">«&#160;<cite style="font-style:normal;">Khloé Kardashian Confirms Sister Kendall Jenner Is 'Dating' Harry Styles</cite>&#160;»</a>, sur <span class="italique">PEOPLE.com</span> <small style="line-height:1em;">(consulté le <span class="nowrap">8 janvier 2016</span>)</small></span></span>
+</li>
+<li id="cite_note-56"><span class="mw-cite-backlink noprint"><a href="#cite_ref-56">↑</a> </span><span class="reference-text"><span class="ouvrage" id="de_Magalhaes2016"><span class="ouvrage" id="Victoria_de_Magalhaes2016">Victoria  de Magalhaes, <a rel="nofollow" class="external text" href="http://www.melty.fr/kendall-jenner-et-harry-styles-c-est-fini-a496455.html">«&#160;<cite style="font-style:normal;">Kendall Jenner et Harry Styles, c'est FINI&#160;!</cite>&#160;»</a>, sur <span class="italique">melty.fr</span>, <time class="nowrap" datetime="2016-02-01" data-sort-value="2016-02-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> février 2016</time> <small style="line-height:1em;">(consulté le <span class="nowrap">5 septembre 2020</span>)</small></span></span>.</span>
+</li>
+<li id="cite_note-57"><span class="mw-cite-backlink noprint"><a href="#cite_ref-57">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://www.purepeople.com/article/harry-styles-tres-marque-par-sa-rupture-avec-la-francaise-camille-rowe_a349283/1">«&#160;<cite style="font-style:normal;">Harry Styles très marqué par sa rupture avec la Française Camille Rowe</cite>&#160;»</a>, sur <span class="italique">www.purepeople.com</span> <small style="line-height:1em;">(consulté le <span class="nowrap">5 janvier 2020</span>)</small></span></span>
+</li>
+<li id="cite_note-58"><span class="mw-cite-backlink noprint"><a href="#cite_ref-58">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Média"><span class="ouvrage" id="Prisma_Média">Prisma <span class="nom_auteur">Média</span>, <a rel="nofollow" class="external text" href="https://www.voici.fr/news-people/actu-people/harry-styles-one-direction-serait-en-couple-avec-camille-rowe-638166">«&#160;<cite style="font-style:normal;">Harry Styles (One Direction) serait en couple avec Camille Rowe - Voici</cite>&#160;»</a>, sur <span class="italique">Voici.fr</span> <small style="line-height:1em;">(consulté le <span class="nowrap">5 janvier 2020</span>)</small></span></span></span>
+</li>
+<li id="cite_note-59"><span class="mw-cite-backlink noprint"><a href="#cite_ref-59">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Média2017"><span class="ouvrage" id="Prisma_Média2017">Prisma <span class="nom_auteur">Média</span>, «&#160;<cite style="font-style:normal;">Harry Styles&#160;: le chanteur se confie sur sa sexualité - Voici</cite>&#160;», <i>Voici.fr</i>,&#8206; <time class="nowrap" datetime="2017-05-16" data-sort-value="2017-05-16">16 mai 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.voici.fr/news-people/actu-people/harry-styles-le-chanteur-se-confie-sur-sa-sexualite-632162">lire en ligne</a>, consulté le <span class="nowrap">25 novembre 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles%C2%A0%3A+le+chanteur+se+confie+sur+sa+sexualit%C3%A9+-+Voici&amp;rft.jtitle=Voici.fr&amp;rft.aulast=M%C3%A9dia&amp;rft.aufirst=Prisma&amp;rft.date=2017-05-16&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span></span>
+</li>
+<li id="cite_note-60"><span class="mw-cite-backlink noprint"><a href="#cite_ref-60">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais américain">(en-US)</abbr> <span lang="en-us">«&#160;<cite style="font-style:normal;">Harry Styles opens up about his sexuality - NME</cite>&#160;»</span>, <i><span class="lang-en-us" lang="en-us">NME</span></i>,&#8206; <time class="nowrap" datetime="2017-05-15" data-sort-value="2017-05-15">15 mai 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.nme.com/news/music/harry-styles-talks-sexuality-2072171">lire en ligne</a>, consulté le <span class="nowrap">25 novembre 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Harry+Styles+opens+up+about+his+sexuality+-+NME&amp;rft.jtitle=NME&amp;rft.date=2017-05-15&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span>
+</li>
+<li id="cite_note-61"><span class="mw-cite-backlink noprint"><a href="#cite_ref-61">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Rainbird2013"><span class="ouvrage" id="Ashleigh_Rainbird2013"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Ashleigh Rainbird, <span lang="en"><a rel="nofollow" class="external text" href="https://www.mirror.co.uk/3am/celebrity-news/harry-styles-labour-supporter-one-1723763">«&#160;<cite style="font-style:normal;">“I lean to the left": Harry Styles reveals his political direction is Labour</cite>&#160;»</a></span>, sur <span class="italique">mirror.co.uk</span>, <time class="nowrap" datetime="2013-02-22" data-sort-value="2013-02-22">22 février 2013</time></span></span></span>
+</li>
+<li id="cite_note-62"><span class="mw-cite-backlink noprint"><a href="#cite_ref-62">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Shenton2014"><span class="ouvrage" id="Zoe_Shenton2014"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Zoe Shenton, <span lang="en"><a rel="nofollow" class="external text" href="https://www.mirror.co.uk/3am/celebrity-news/harry-styles-latest-star-show-4327750">«&#160;<cite style="font-style:normal;">Harry Styles is the latest star to show his support for Emma Watson's #HeForShe gender equality campaign</cite>&#160;»</a></span>, sur <span class="italique">mirror.co.uk</span>, <time class="nowrap" datetime="2014-09-26" data-sort-value="2014-09-26">26 septembre 2014</time></span></span></span>
+</li>
+<li id="cite_note-63"><span class="mw-cite-backlink noprint"><a href="#cite_ref-63">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://www.inquisitr.com/2404211/harry-styles-shows-pride-in-being-a-gay-icon/">«&#160;<cite style="font-style:normal;">Harry Styles Shows ‘Pride’ In Being A Gay Icon</cite>&#160;»</a>, sur <span class="italique">The Inquisitr News</span> <small style="line-height:1em;">(consulté le <span class="nowrap">31 mai 2016</span>)</small></span></span>
+</li>
+<li id="cite_note-64"><span class="mw-cite-backlink noprint"><a href="#cite_ref-64">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Lipshutz2014"><span class="ouvrage" id="Jason_Lipshutz2014">Jason <span class="nom_auteur">Lipshutz</span>, «&#160;<cite style="font-style:normal;">Ariana Grande's 'My Everything' Track List: The Weeknd, Big Sean, A$AP Ferg &amp; More</cite>&#160;», <i><a href="/wiki/Billboard_(magazine)" class="mw-redirect" title="Billboard (magazine)">Billboard</a></i>,&#8206; <time class="nowrap" datetime="2014-06-30" data-sort-value="2014-06-30">30 juin 2014</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.billboard.com/articles/columns/pop-shop/6141123/ariana-grande-my-everything-track-list-the-weeknd-big-sean-aap">lire en ligne</a>, consulté le <span class="nowrap">8 novembre 2014</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Ariana+Grande%27s+%27My+Everything%27+Track+List%3A+The+Weeknd%2C+Big+Sean%2C+A%24AP+Ferg+%26+More&amp;rft.jtitle=Billboard&amp;rft.aulast=Lipshutz&amp;rft.aufirst=Jason&amp;rft.date=2014-06-30&amp;rft_id=http%3A%2F%2Fwww.billboard.com%2Farticles%2Fcolumns%2Fpop-shop%2F6141123%2Fariana-grande-my-everything-track-list-the-weeknd-big-sean-aap&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span></span></span>
+</li>
+<li id="cite_note-65"><span class="mw-cite-backlink noprint"><a href="#cite_ref-65">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2014"><a rel="nofollow" class="external text" href="http://abcnewsradioonline.com/music-news/2014/8/14/gavin-degraw-to-release-best-of-album-october-21-includes-so.html">«&#160;<cite style="font-style:normal;">Gavin DeGraw to Release "Best Of" Album October 21, Includes Song Co-Written by Harry Styles</cite>&#160;»</a>, sur <span class="italique"><a href="/w/index.php?title=ABC_News_Radio&amp;action=edit&amp;redlink=1" class="new" title="ABC News Radio (page inexistante)">ABC News Radio</a></span>, <time class="nowrap" datetime="2014-08-14" data-sort-value="2014-08-14">14 août 2014</time> <small style="line-height:1em;">(consulté le <span class="nowrap">20 août 2014</span>)</small></span></span>
+</li>
+<li id="cite_note-:0-66"><span class="mw-cite-backlink noprint">↑ <sup><a href="#cite_ref-:0_66-0">a</a> et <a href="#cite_ref-:0_66-1">b</a></sup> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://www.nrj.fr/music-awards/actualites/decouvrez-tous-les-nommes-71346692">«&#160;<cite style="font-style:normal;">Découvrez tous les nommés</cite>&#160;»</a>, sur <span class="italique">NRJ.fr</span> <small style="line-height:1em;">(consulté le <span class="nowrap">30 novembre 2020</span>)</small></span></span>
+</li>
+<li id="cite_note-:1-67"><span class="mw-cite-backlink noprint">↑ <sup><a href="#cite_ref-:1_67-0">a</a> <a href="#cite_ref-:1_67-1">b</a> et <a href="#cite_ref-:1_67-2">c</a></sup> </span><span class="reference-text"><span class="ouvrage" id="2020"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais britannique">(en-GB)</abbr> <span lang="en-gb">«&#160;<cite style="font-style:normal;">Grammys 2021: Beyoncé, Taylor Swift and Dua Lipa lead nominations</cite>&#160;»</span>, <i><span class="lang-en-gb" lang="en-gb">BBC News</span></i>,&#8206; <time class="nowrap" datetime="2020-11-24" data-sort-value="2020-11-24">24 novembre 2020</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="https://www.bbc.com/news/entertainment-arts-55056334">lire en ligne</a>, consulté le <span class="nowrap">30 novembre 2020</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Grammys+2021%3A+Beyonc%C3%A9%2C+Taylor+Swift+and+Dua+Lipa+lead+nominations&amp;rft.jtitle=BBC+News&amp;rft.date=2020-11-24&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3AHarry+Styles"></span></span>.</span>
+</li>
+</ol></div>
+</div><table class="navbox collapsible noprint autocollapse" data-autocollapse-group="palette" style="">
+<tbody><tr><th class="navbox-title" colspan="2" style=""><div style="float:left; width:6em; text-align:left"><div class="noprint plainlinksneverexpand nowrap tnavbar" style="background-color:transparent; padding:0; font-size:xx-small; color:#000000;"><a href="/wiki/Mod%C3%A8le:Palette_Harry_Styles" title="Modèle:Palette Harry Styles"><abbr class="abbr" title="Voir ce modèle.">v</abbr></a>&#160;· <a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Mod%C3%A8le:Palette_Harry_Styles&amp;action=edit"><abbr class="abbr" title="Modifier ce modèle. Merci de prévisualiser avant de sauvegarder.">m</abbr></a></div></div><div style="font-size:110%"><a class="mw-selflink selflink">Harry Styles</a></div></th>
+</tr>  <tr>
+<th class="navbox-group" style="">Albums studio</th>
+<td class="navbox-list" style=""><style data-mw-deduplicate="TemplateStyles:r151529978">.mw-parser-output .sep-liste{font-weight:bold}</style><span class="nowrap"><i><a href="/wiki/Harry_Styles_(album)" title="Harry Styles (album)">Harry Styles</a></i> <small>(2017)</small></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Fine_Line_(album)" title="Fine Line (album)">Fine Line</a></i> <small>(2019)</small></span></td>
+</tr> <tr>
+<th class="navbox-group" style="">Singles</th>
+<td class="navbox-list navbox-even" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><i><a href="/wiki/Sign_of_the_Times_(chanson_de_Harry_Styles)" title="Sign of the Times (chanson de Harry Styles)">Sign of the Times</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Two_Ghosts" title="Two Ghosts">Two Ghosts</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Kiwi_(chanson_de_Harry_Styles)" title="Kiwi (chanson de Harry Styles)">Kiwi</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Lights_Up" title="Lights Up">Lights Up</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Adore_You_(chanson_de_Harry_Styles)" title="Adore You (chanson de Harry Styles)">Adore You</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Falling_(chanson_de_Harry_Styles)" title="Falling (chanson de Harry Styles)">Falling</a></i></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><i><a href="/wiki/Watermelon_Sugar" title="Watermelon Sugar">Watermelon Sugar</a></i></span></td>
+</tr> <tr>
+<th class="navbox-group" style="">Singles promotionnels</th>
+<td class="navbox-list" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><i><a href="/wiki/Sweet_Creature" title="Sweet Creature">Sweet Creature</a></i></span></td>
+</tr> <tr>
+<th class="navbox-group" style="">Tournées</th>
+<td class="navbox-list navbox-even" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><a href="/wiki/Harry_Styles:_Live_On_Tour" title="Harry Styles: Live On Tour">Harry Styles: Live On Tour</a> (2017-2018)</span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Love_on_Tour" title="Love on Tour">Love on Tour</a> (2020)</span></td>
+</tr> <tr>
+<th class="navbox-group" style="">Articles liés</th>
+<td class="navbox-list" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><a href="/wiki/The_X_Factor_(Royaume-Uni)" title="The X Factor (Royaume-Uni)"><i>The X Factor</i> <small>(Royaume-Uni)</small></a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/One_Direction" title="One Direction">One Direction</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Liam_Payne" title="Liam Payne">Liam Payne</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Niall_Horan" title="Niall Horan">Niall Horan</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Zayn_Malik" title="Zayn Malik">Zayn Malik</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Louis_Tomlinson" title="Louis Tomlinson">Louis Tomlinson</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Syco_Music" title="Syco Music">Syco Music</a></span></td>
+</tr>                          <tr>
+<td class="navbox-banner" style="" colspan="2"><a href="/wiki/Discographie_de_Harry_Styles" title="Discographie de Harry Styles">Discographie</a></td></tr></tbody></table>
+<!--<ul id="bandeau-portail" class="bandeau-portail"><li><span class="bandeau-portail-element"><span class="bandeau-portail-icone"><a href="/wiki/Portail:Musique" title="Portail de la musique"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Musical_notes.svg/32px-Musical_notes.svg.png" decoding="async" width="32" height="24" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Musical_notes.svg/48px-Musical_notes.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Musical_notes.svg/64px-Musical_notes.svg.png 2x" data-file-width="400" data-file-height="300" /></a></span> <span class="bandeau-portail-texte"><a href="/wiki/Portail:Musique" title="Portail:Musique">Portail de la musique</a></span> </span></li> <li><span class="bandeau-portail-element"><span class="bandeau-portail-icone"><a href="/wiki/Portail:Royaume-Uni" title="Portail du Royaume-Uni"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/44px-Flag_of_the_United_Kingdom.svg.png" decoding="async" width="44" height="22" class="noviewer thumbborder" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/66px-Flag_of_the_United_Kingdom.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/88px-Flag_of_the_United_Kingdom.svg.png 2x" data-file-width="1200" data-file-height="600" /></a></span> <span class="bandeau-portail-texte"><a href="/wiki/Portail:Royaume-Uni" title="Portail:Royaume-Uni">Portail du Royaume-Uni</a></span> </span></li>                   </ul>-->
+<!-- 
+NewPP limit report
+Parsed by mw1279
+Cached time: 20210107175925
+Cache expiry: 2592000
+Dynamic content: false
+Complications: []
+CPU time usage: 1.016 seconds
+Real time usage: 1.311 seconds
+Preprocessor visited node count: 5833/1000000
+Post‐expand include size: 144447/2097152 bytes
+Template argument size: 13854/2097152 bytes
+Highest expansion depth: 16/40
+Expensive parser function count: 4/500
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 73705/5000000 bytes
+Lua time usage: 0.522/10.000 seconds
+Lua memory usage: 6470699/52428800 bytes
+Number of Wikibase entities loaded: 35/400
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00% 1161.452      1 -total
+ 35.13%  407.990      1 Modèle:Portail
+ 28.78%  334.232      1 Modèle:Suivi_des_biographies
+ 25.45%  295.580      1 Modèle:Références
+ 12.38%  143.813     47 Modèle:Lien_web
+ 10.74%  124.690      1 Modèle:Infobox_Musique_(artiste)
+  5.34%   61.986     13 Modèle:Infobox_V3/Tableau_Ligne_mixte
+  5.11%   59.406     19 Modèle:Article
+  4.45%   51.730      1 Modèle:Catégorisation_badges
+  4.30%   49.957     38 Modèle:Date-
+-->
+
+<!-- Saved in parser cache with key frwiki:pcache:idhash:8670551-0!canonical and timestamp 20210107175925 and revision id 178538206. Serialized with JSON.
+ -->
+</div><noscript><img src="//fr.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript>
+<div class="printfooter">Ce document provient de «&#160;<a dir="ltr" href="https://fr.wikipedia.org/w/index.php?title=Harry_Styles&amp;oldid=178538206">https://fr.wikipedia.org/w/index.php?title=Harry_Styles&amp;oldid=178538206</a>&#160;».</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Cat%C3%A9gorie:Accueil" title="Catégorie:Accueil">Catégories</a> : <ul><li><a href="/wiki/Cat%C3%A9gorie:Chanteur_anglais" title="Catégorie:Chanteur anglais">Chanteur anglais</a></li><li><a href="/wiki/Cat%C3%A9gorie:Auteur-compositeur_britannique" title="Catégorie:Auteur-compositeur britannique">Auteur-compositeur britannique</a></li><li><a href="/wiki/Cat%C3%A9gorie:Membre_de_One_Direction" title="Catégorie:Membre de One Direction">Membre de One Direction</a></li><li><a href="/wiki/Cat%C3%A9gorie:Acteur_anglais_de_t%C3%A9l%C3%A9vision" title="Catégorie:Acteur anglais de télévision">Acteur anglais de télévision</a></li><li><a href="/wiki/Cat%C3%A9gorie:Participant_%C3%A0_The_X_Factor_(Royaume-Uni)" title="Catégorie:Participant à The X Factor (Royaume-Uni)">Participant à The X Factor (Royaume-Uni)</a></li><li><a href="/wiki/Cat%C3%A9gorie:Artiste_de_Columbia_Records" title="Catégorie:Artiste de Columbia Records">Artiste de Columbia Records</a></li><li><a href="/wiki/Cat%C3%A9gorie:Laur%C3%A9at_d%27un_ARIA_Music_Award" title="Catégorie:Lauréat d&#039;un ARIA Music Award">Lauréat d'un ARIA Music Award</a></li><li><a href="/wiki/Cat%C3%A9gorie:Laur%C3%A9at_d%27un_NME_Award" title="Catégorie:Lauréat d&#039;un NME Award">Lauréat d'un NME Award</a></li><li><a href="/wiki/Cat%C3%A9gorie:Naissance_en_f%C3%A9vrier_1994" title="Catégorie:Naissance en février 1994">Naissance en février 1994</a></li><li><a href="/wiki/Cat%C3%A9gorie:Naissance_%C3%A0_Redditch" title="Catégorie:Naissance à Redditch">Naissance à Redditch</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Catégories cachées : <ul><li><a href="/wiki/Cat%C3%A9gorie:Page_en_semi-protection_longue" title="Catégorie:Page en semi-protection longue">Page en semi-protection longue</a></li><li><a href="/wiki/Cat%C3%A9gorie:Article_%C3%A0_r%C3%A9f%C3%A9rence_souhait%C3%A9e" title="Catégorie:Article à référence souhaitée">Article à référence souhaitée</a></li><li><a href="/wiki/Cat%C3%A9gorie:Article_utilisant_une_Infobox" title="Catégorie:Article utilisant une Infobox">Article utilisant une Infobox</a></li><li><a href="/wiki/Cat%C3%A9gorie:Article_contenant_un_appel_%C3%A0_traduction_en_anglais" title="Catégorie:Article contenant un appel à traduction en anglais">Article contenant un appel à traduction en anglais</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Musique/Articles_li%C3%A9s" title="Catégorie:Portail:Musique/Articles liés">Portail:Musique/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Royaume-Uni/Articles_li%C3%A9s" title="Catégorie:Portail:Royaume-Uni/Articles liés">Portail:Royaume-Uni/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Europe/Articles_li%C3%A9s" title="Catégorie:Portail:Europe/Articles liés">Portail:Europe/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Wikip%C3%A9dia:Article_biographique" title="Catégorie:Wikipédia:Article biographique">Wikipédia:Article biographique</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Biographie/Articles_li%C3%A9s/Culture_et_arts" title="Catégorie:Portail:Biographie/Articles liés/Culture et arts">Portail:Biographie/Articles liés/Culture et arts</a></li></ul></div></div>
+	</div>
+</main>
+<div id='mw-data-after-content'>
+	<div class="read-more-container"></div>
+</div>
+
+	</div> 
+</div> 
+
+<div class="mw-workspace-container mw-footer-container">
+	<div class="mw-content-container">
+		<footer id="footer" class="mw-footer" role="contentinfo" >
+	<ul id="footer-info" >
+	<li id="footer-info-lastmod"> La dernière modification de cette page a été faite le 7 janvier 2021 à 18:59.</li>
+	<li id="footer-info-copyright"><span style="white-space: normal"><a class="internal" href="/wiki/Wikip%C3%A9dia:Citation_et_r%C3%A9utilisation_du_contenu_de_Wikip%C3%A9dia" title="Droit d'auteur">Droit d'auteur</a> : les textes sont disponibles sous <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr" title="Licence Creative Commons Attribution - partage dans les mêmes conditions 3.0 non transposé">licence Creative Commons attribution, partage dans les mêmes conditions</a> ; d’autres conditions peuvent s’appliquer. Voyez les <a href="https://wikimediafoundation.org/wiki/Conditions_d%27utilisation" title="Conditions d’utilisation de la Wikimedia Foundation">conditions d’utilisation</a> pour plus de détails, ainsi que les <a class="internal" href="/wiki/Wikip%C3%A9dia:Cr%C3%A9dits_graphiques" title="Droit d'auteur de certaines icônes">crédits graphiques</a>. En cas de réutilisation des textes de cette page, voyez <a class="internal" href="/wiki/Sp%C3%A9cial:Citer/Harry_Styles" title="Citer ou réutiliser cette page">comment citer les auteurs et mentionner la licence</a>.<br />
+Wikipedia® est une marque déposée de la <a href="https://wikimediafoundation.org/" title="Wikimedia Foundation">Wikimedia Foundation, Inc.</a>, organisation de bienfaisance régie par le paragraphe <a class="internal" href="/wiki/501c" title="501c">501(c)(3)</a> du code fiscal des États-Unis.</span><br /></li>
+</ul>
+
+	<ul id="footer-places" >
+	<li id="footer-places-privacy"><a href="https://meta.wikimedia.org/wiki/Privacy_policy/fr" class="extiw" title="m:Privacy policy/fr">Politique de confidentialité</a></li>
+	<li id="footer-places-about"><a href="/wiki/Wikip%C3%A9dia:%C3%80_propos_de_Wikip%C3%A9dia" title="Wikipédia:À propos de Wikipédia">À propos de Wikipédia</a></li>
+	<li id="footer-places-disclaimer"><a href="/wiki/Wikip%C3%A9dia:Avertissements_g%C3%A9n%C3%A9raux" title="Wikipédia:Avertissements généraux">Avertissements</a></li>
+	<li id="footer-places-contact"><a href="//fr.wikipedia.org/wiki/Wikipédia:Contact">Contact</a></li>
+	<li id="footer-places-mobileview"><a href="//fr.m.wikipedia.org/w/index.php?title=Harry_Styles&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Version mobile</a></li>
+	<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Développeurs</a></li>
+	<li id="footer-places-statslink"><a href="https://stats.wikimedia.org/#/fr.wikipedia.org">Statistiques</a></li>
+	<li id="footer-places-cookiestatement"><a href="https://foundation.wikimedia.org/wiki/Cookie_statement">Déclaration sur les témoins (cookies)</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-copyrightico"><a href="https://wikimediafoundation.org/"><img src="/static/images/footer/wikimedia-button.png" srcset="/static/images/footer/wikimedia-button-1.5x.png 1.5x, /static/images/footer/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation" loading="lazy" /></a></li>
+	<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"><img src="/static/images/footer/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/static/images/footer/poweredby_mediawiki_132x47.png 1.5x, /static/images/footer/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a></li>
+</ul>
+
+	<div style="clear: both;"></div>
+</footer>
+
+	</div>
+</div>
+	</div> 
+</div> 
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"1.016","walltime":"1.311","ppvisitednodes":{"value":5833,"limit":1000000},"postexpandincludesize":{"value":144447,"limit":2097152},"templateargumentsize":{"value":13854,"limit":2097152},"expansiondepth":{"value":16,"limit":40},"expensivefunctioncount":{"value":4,"limit":500},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":73705,"limit":5000000},"entityaccesscount":{"value":35,"limit":400},"timingprofile":["100.00% 1161.452      1 -total"," 35.13%  407.990      1 Modèle:Portail"," 28.78%  334.232      1 Modèle:Suivi_des_biographies"," 25.45%  295.580      1 Modèle:Références"," 12.38%  143.813     47 Modèle:Lien_web"," 10.74%  124.690      1 Modèle:Infobox_Musique_(artiste)","  5.34%   61.986     13 Modèle:Infobox_V3/Tableau_Ligne_mixte","  5.11%   59.406     19 Modèle:Article","  4.45%   51.730      1 Modèle:Catégorisation_badges","  4.30%   49.957     38 Modèle:Date-"]},"scribunto":{"limitreport-timeusage":{"value":"0.522","limit":"10.000"},"limitreport-memusage":{"value":6470699,"limit":52428800}},"cachereport":{"origin":"mw1279","timestamp":"20210107175925","ttl":2592000,"transientcontent":false}}});});</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Article","name":"Harry Styles","url":"https:\/\/fr.wikipedia.org\/wiki\/Harry_Styles","sameAs":"http:\/\/www.wikidata.org\/entity\/Q3626966","mainEntity":"http:\/\/www.wikidata.org\/entity\/Q3626966","author":{"@type":"Organization","name":"Contributeurs aux projets Wikimedia"},"publisher":{"@type":"Organization","name":"Wikimedia Foundation, Inc.","logo":{"@type":"ImageObject","url":"https:\/\/www.wikimedia.org\/static\/images\/wmf-hor-googpub.png"}},"datePublished":"2011-08-24T10:59:38Z","dateModified":"2021-01-07T17:59:25Z","image":"https:\/\/upload.wikimedia.org\/wikipedia\/commons\/9\/9b\/180612_Harry_Styles_Live_On_Tour_in_Nashville.png","headline":"chanteur et acteur anglais"}</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":178,"wgHostname":"mw1387"});});</script>
+</body></html>
+<%end%>

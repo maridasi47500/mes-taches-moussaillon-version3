@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Peoplehavestrengths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Strength</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @peoplehavestrengths.each do |peoplehavestrength| %>
+      <tr>
+        <td><%= peoplehavestrength.strength.name %></td>
+        <td><%= peoplehavestrength.user.name %></td>
+        <td><%= peoplehavestrength.linkspouseperson_id %></td>
+        <td><%= link_to 'Show', peoplehavestrength %></td>
+        <td><%= link_to 'Edit', edit_peoplehavestrength_path(peoplehavestrength) %></td>
+        <td><%= link_to 'Destroy', peoplehavestrength, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Peoplehavestrength', new_peoplehavestrength_path %>

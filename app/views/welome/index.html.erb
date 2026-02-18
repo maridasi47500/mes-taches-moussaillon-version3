@@ -1,0 +1,68 @@
+
+<main>
+    <h1><%=t('monmenu.motto')%></h1>
+<div class="card">
+<%if current_user.try(:city)%>
+<p><%=current_user.name%>, connaissez-vous d'autres personnes à <%=current_user.city.name%> ? <a href="<%=searchpeople_city_path(current_user.city.id)%>">#chercher la ville de quelqu'un/ajouter quelqu'un de <%=current_user.city.name%></a></p>
+<%end%>
+<%if current_user.try(:city) && current_user.try(:job)%>
+<p><%=current_user.name%>, connaissez vous plus de <%=current_user.job.name.pluralize%> à <%=current_user.city.name%> ? <%= button_to "je connais plus de gens", morepeoplejob_cities_path(city_id: current_user.city.id, job_id: current_user.job.id), onclick: "return confirm('êtes vous sûre ?');",method: :post, data: { confirm: 'Are you sure?' } %></p>
+
+<%end%>
+<%if current_user.try(:musicalinstrument_id)%>
+<p><%=current_user.name%>, connaissez vous d'autres musiciens <%if current_user.try(:city)%> à <%=current_user.city.name%><%end%> ? <%= button_to "ajouter des musiciens", newplayer_musicalinstruments_path(city_id: current_user.city_id), onclick: "return confirm('êtes vous sûre ?');",method: :post, data: { confirm: 'Are you sure?' } %></p>
+
+<%end%>
+</div>
+<div class="card">
+<%chooseform=Post.findform%>
+New! Create a new <%=chooseform.singularize.humanize%>...
+
+<%=render "#{chooseform}/form", :"#{chooseform.singularize}" => chooseform.singularize.camelcase.constantize.new%>
+</div>
+<form method="post" action="/" id="chercher" data-remote="true">
+<div>
+<select name="pseudo">
+<option value""></option>
+</select>
+</div>
+
+<div>
+  <p>photo</p>
+<select name="info">
+<option value""></option>
+<option value"photos">photos</option>
+</select>
+
+</div>
+<div>
+</div>
+<input type="submit" value="chercher"/>
+</form>
+<div id="res">
+  <%if @afficher%>
+    <%@afficher.each_with_index do |img,id|%>
+<a href="<%= facebook_photo_path(id)%>"><img src="<%= img%>"></img></a>
+  <%end%>
+  <%end%>
+
+</div>
+        <table>
+                            <tr>
+
+                <th>Date et heure</th>
+                <th>Post</th>
+                            </tr>
+                            <%MainThread.ingoodorder.each do |thread|%>
+                <tr>
+                        <td>
+                      <%= thread.planned %>
+                    </td>
+                                       <td>
+                      <%= render thread.posts %>
+                    </td>
+
+            </tr>
+            <%end%>
+    </table>
+</main>

@@ -1,0 +1,15 @@
+<%=fields_for :myform do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people",label: "chercher un acteur"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[myform_togethertvseriesratings_path]%>
+<%@search =[jsonactor_tvseries_path(tvseries.id)]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

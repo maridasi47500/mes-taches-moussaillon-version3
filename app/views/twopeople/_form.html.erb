@@ -1,0 +1,27 @@
+<%= form_with(model: twoperson, local: true) do |form| %>
+  <% if twoperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(twoperson.errors.count, "error") %> prohibited this twoperson from being saved:</h2>
+
+      <ul>
+        <% twoperson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :otherperson_id %>
+    <%= form.number_field :otherperson_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

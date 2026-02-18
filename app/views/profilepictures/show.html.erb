@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @profilepicture %>
+</p>
+<p><%= @profilepicture.description.to_s.length > 0 ? "#{@profilepicture.description}" : "" %></p>
+<p> <%=@profilepicture.people.length > 0 ? "Gens associés à cette photo de profil : #{(render @profilepicture.people)}" : "" %></p>
+
+<%= link_to 'New posts surname from profile pic', mysurname_profilepicture_path(@profilepicture.id) %> |
+<%= link_to 'Edit', edit_profilepicture_path(@profilepicture) %> |
+<%= link_to 'Back', profilepictures_path %>
+<%@profilepicture.people.each do |p|%>
+  <p><%=link_to "new profile pic for #{render p}".html_safe, addprofilepic_person_path(p.id)%></p>
+<%end%>

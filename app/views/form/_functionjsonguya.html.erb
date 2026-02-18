@@ -1,0 +1,48 @@
+function chercher<%=t[0]%>(field,al){
+if (field.value.trim() !== ''){
+$.ajax({url: '<%=t[1]%>?name='+field.value, 
+success:function(data){
+console.log(data);
+if (data.length > 0 && typeof data == "object") {
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+<%if t[0]=="person"%>
+name=data[i].name||data[i].name_<%=I18n.locale%>||data[i].content||data[i].content_<%=I18n.locale%>||data[i].nom;
+image=data[i].image;
+al.innerHTML+="<option data-name='"+name+"' data-image='"+image+"' data-id='"+id+"'  value='"+id+"'>"+<%if t[0] == "person"%>name<%else%>city<%end%>+"</option>";
+<%elsif t[0]=="address"%>
+state=data[i].state.name_fr;
+country=data[i].country.name_fr;
+city=data[i].city.name_fr;
+place=data[i].place.name;
+address=data[i].address;
+al.innerHTML+="<option value='"+id+"'>"+[city,place,country,address].join(', ')+"</option>";
+<%end%>
+}
+} else {
+al.outerHTML=al.outerHTML+data;
+mylastbtn.click();
+
+}
+}});
+}
+};
+function select<%=t[0]%>(field,greatpeople){
+if (field.value !== ''){
+console.log(field,field.value);
+<%if t[0]=="person"%>
+var s=$(field).children().toArray().filter(x=>x.value==field.value)[0];
+greatpeople.innerHTML+=s.dataset.name+"<img src='"+s.dataset.image+"'><input type='radio' name='basic_guyacadeau[person_id]' value='"+s.dataset.id+"' checked='checked'>";
+<%else%>
+$.ajax({url: '<%=t[2]%>?id='+field.value, 
+success:function(data){
+
+myaddress.innerHTML=data;
+}});
+
+<%end%>
+};
+};
+

@@ -1,0 +1,26 @@
+<div class="card">
+<h5>bar review for bar no. <%=barreview.barattempt.bar_id%> from <%=render barreview.barattempt.bar.musicalscore%><h5>
+</br>
+By <%=barreview.user.name%>
+</br>
+Bad player sample
+(added by <%=barreview.barattempt.user.name%>)
+<audio src="/assets/<%=barreview.barattempt.sample.name%>" controls></audio>
+</br>
+
+
+Review content : <%=barreview.description%>
+</br>
+<%if barreview.scorecriteria.length > 0%>
+Review criteria for score :
+<%=barreview.scorecriteria.pluck(:description).to_sentence%>
+</br>
+<%end%>
+<%if barreview.barcriteria.length > 0%>
+Review criteria for bar :
+<%=barreview.barcriteria.pluck(:description).to_sentence%>
+</br>
+<%end%>
+<%=link_to "voir", barreview%>
+
+</div>

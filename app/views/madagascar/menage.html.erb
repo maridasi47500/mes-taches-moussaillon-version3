@@ -1,0 +1,47 @@
+<%=content_for :mylittlecss do%>
+.menuitem {
+  position: relative;
+  color: white;
+float:left;
+width:revert;
+text-align:center;
+}
+.title {
+  font-size: 1.5em;
+  margin: 0;
+color:#fcec03;
+  -webkit-text-stroke: 1px #000;
+}
+.menu1, .item1 {
+width:100px;
+max-width:100px;
+}
+.menu2, .item2 {
+width:300px;
+}
+<%end%>
+
+
+<h1>Tout pour le foyer</h1>
+<%=form_with url: actionmenage_path do |form|%>
+<%["membre.jpg"].each_with_index do |k,i|%>
+<div class="menuitem menu1">
+<input id="image<%=i%>" type="image" width="100" height="100" alt="Login"
+name="<%=k.gsub('.jpg','').gsub('.png','')%>"
+
+       src="/assets/<%=k%>">
+<div class="title item1">
+<%=t('jirama.'+k.gsub('.jpg','').gsub('.png',''))%>
+</div>
+</div>
+<%end%>
+<%["cuisine.jpg", "trosa.jpg", "menage.jpg", "argent.jpg", "jirama.jpg"].each_with_index do |k,i|%>
+<div class="menuitem menu2">
+<input id="image<%=i+100%>" type="image" width="300" height="100" name="<%=k.gsub('.jpg','')%>" alt="Login"
+       src="/assets/<%=k%>">
+<div class="title item2">
+<%=t('jirama.'+k.gsub('.jpg',''))%>
+</div>
+</div>
+<%end%>
+<%end%>

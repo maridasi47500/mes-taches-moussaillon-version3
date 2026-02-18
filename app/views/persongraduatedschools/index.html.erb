@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Persongraduatedschools</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @persongraduatedschools.each do |persongraduatedschool| %>
+      <tr>
+        <td><%= link_to 'Show', persongraduatedschool %></td>
+        <td><%= link_to 'Edit', edit_persongraduatedschool_path(persongraduatedschool) %></td>
+        <td><%= link_to 'Destroy', persongraduatedschool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Persongraduatedschool', new_persongraduatedschool_path %>

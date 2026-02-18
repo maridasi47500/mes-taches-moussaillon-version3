@@ -1,0 +1,2 @@
+module AnaphorsHelper
+end

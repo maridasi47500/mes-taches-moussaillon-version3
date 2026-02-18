@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <%= render @computingstuff %>
+</p>
+  <h4>Qui l'a étudié(e) ?</h4>
+  <%= render @computingstuff.people %>
+<br>
+
+<%= link_to 'Edit', edit_computingstuff_path(@computingstuff) %> |
+<%= link_to 'Back', computingstuffs_path %>

@@ -1,0 +1,10 @@
+<%=fields_for :betterperson do |form|%>
+<%=form.collection_radio_buttons(:attitude_id, @attitudes,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label do%>
+<%=render Attitude.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+

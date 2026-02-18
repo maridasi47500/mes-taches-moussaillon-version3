@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Plant species</h1>
+<%= link_to 'New Plant specie', new_plantspecie_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plantspecies.each do |plantspecie| %>
+      <tr>
+        <td><%= render partial: "things/addstufftobasket", collection: [plantspecie], as: :thing %></td>
+        <td><%= link_to 'Show', plantspecie %></td>
+        <td><%= link_to 'Edit', edit_plantspecie_path(plantspecie) %></td>
+        <td><%= link_to 'Destroy', plantspecie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

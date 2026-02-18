@@ -1,0 +1,27 @@
+<%= form_with(model: emoticon, local: true) do |form| %>
+  <% if emoticon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(emoticon.errors.count, "error") %> prohibited this emoticon from being saved:</h2>
+
+      <ul>
+        <% emoticon.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

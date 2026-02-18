@@ -1,0 +1,13 @@
+<%=fields_for modelname,mymodel do |frm|%>
+<%=frm.fields_for modelnameattribute do |form|%>
+
+<%=form.collection_check_boxes(fieldname, collec, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render classname.find(b.value)%>
+<%end%>
+
+<% end %>
+<% end %>
+<% end %>
+

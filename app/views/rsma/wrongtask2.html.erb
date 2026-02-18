@@ -1,0 +1,17 @@
+<%=form_with url: rsmawrongperson2_path do |form|%>
+<%=form.hidden_field :mytaskid, value: @task.id%>
+<%=form.hidden_field :mypersonid, value: @person.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskid_categorythings_path]%>
+<%@search =[json_tasks_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

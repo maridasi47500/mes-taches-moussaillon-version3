@@ -1,0 +1,14 @@
+  <div class="field">
+    <%= collection_radio_buttons("post","group", Post.hackingtypes, :value, :attr) do |b|%>
+      <%= b.label%><%=b.radio_button%>
+    <%end%>
+      <button type="button" id="addthispersontotext">add this person in the content</button>
+</div>
+<div class="field sailorsselected">
+      <%= collection_radio_buttons("post","collections", @peoplesearched, :id, :name) do |b|%>
+        <div><%=b.radio_button(onchange: "$.ajax({url:window.location.pathname+'.js?pid=#{b.value}&hackingtype='+$('input[name=\"post[group]\"]:checked').val(), success:function(){}});",class:"collection")%><%=render Person.find(b.value)%></div>
+    <%end%>
+  </div>
+<div class="relatedpeople">
+  </div>
+

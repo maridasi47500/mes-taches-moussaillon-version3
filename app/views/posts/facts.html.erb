@@ -1,0 +1,8 @@
+<%= form_with model: @post, remote: true, local: true do |form|%>
+<p>Edit Facts</p>
+<%=form.collection_check_boxes(:fact_ids, Thing.all, :id, :name) do |b| %>
+       <%=b.check_box(class: 'people2') %><%=render Thing.find(b.value)%>
+
+<% end %>
+<% end %>
+

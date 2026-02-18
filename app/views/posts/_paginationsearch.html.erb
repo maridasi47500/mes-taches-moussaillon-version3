@@ -1,0 +1,19 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= !params[:page] || params[:page] == "0" ? "disabled" : ""%>">
+<%= link_to "Previous", searchpage_path(page: (params[:page].to_i - 1), q: params[:q]), "tab-index" => -1, disabled: true, class: "page-link"%>
+    </li>
+    <%@pagination.each_with_index do |page,i|%>
+      <%if @allposts[page]%>
+
+        <li class="page-item <%=page == params[:page].to_i ? "active" : ""%>">
+<%= link_to page, searchpage_path(page: page, q: params[:q]), class: "page-link"%>
+        </li>
+  <%end%>
+  <%end%>
+    <li class="page-item <%= @allposts[params[:page].to_i - 1] ? "" : "disabled"%>">
+      <%= link_to "Next", searchpage_path(page: (params[:page].to_i + 1), q: params[:q]), class: "page-link"%>
+    </li>
+  </ul>
+</nav>
+

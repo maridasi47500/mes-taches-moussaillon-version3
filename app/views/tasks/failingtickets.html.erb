@@ -1,0 +1,8 @@
+<%=collection_check_boxes(:task, :failingticket_ids, @tickets, :id, :content) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Ticket.find(b.value)%>
+<%end%>
+
+<% end %>
+

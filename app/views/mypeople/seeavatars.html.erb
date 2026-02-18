@@ -1,0 +1,5 @@
+<%if @avatars.length > 0%>
+<%=render collection:@avatars, as: :person, partial: "posts_surnames/mypostssurnames"%>
+<%else%>
+<p>Aucun avatar ne correspond à votre recherche</p>
+<%end%>

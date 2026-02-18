@@ -1,0 +1,25 @@
+<p>
+
+ Recherche des personnes et Clique sur l'héroine pour enregistrer tes doubles
+</p>
+  <div class="field">
+<%=f.collection_check_boxes(:alias_ids, [], :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Person.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherpeople(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+<p> ou écris un nombre de doubles que tu souhaites ajouter puis clique sur une héroïne pour valider</p>
+<div>
+<%=label "user[nbdoubles]", "Nombre de doubles" %>
+<%=number_field_tag "user[nbdoubles]" %>
+<br>
+</div>
+
+<%=render "devise/registrations/secretagents"%>
+

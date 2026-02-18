@@ -1,0 +1,98 @@
+<%= form_with(model: technique, local: true) do |form| %>
+  <% if technique.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(technique.errors.count, "error") %> prohibited this technique from being saved:</h2>
+
+      <ul>
+        <% technique.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_id %>
+  <%= form.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city type"}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= form.label :country_id %>
+  <%= form.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country type"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :nbtimes, "Number of times sailor will accomplish this technique" %>
+    <%= form.number_field :nbtimes %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <%= form.collection_check_boxes("thing_ids", Thing.all.where.not(name: ""), :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= Thing.find(stuff.value).name %><%= Thing.find(stuff.value).image ? (image_tag Thing.find(stuff.value).image.to_s, alt: "", class: "imageprofilethread" ) : ""%>
+  <%end%>
+
+  <%= form.select :type, ['technique', 'Routine']%>
+  <%= form.label :event_type_id, "technique type"%>
+  <%= form.select(:event_type_id, EventType.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select an event type"}, {:class => "some_class"} )%>
+  <%=link_to 'new event type',new_event_type_path%>
+
+
+
+<%if defined?(eventid)%>
+  <%= form.hidden_field :eventid, value: eventid %>
+<%end%>
+<div>
+
+</div>
+<div class="fields_select_people">
+    Sailors of this technique (people assigned to this technique)
+    <% Collection.all.each do |collection| %>
+        <%=form.label :sailor_ids, collection.name%>
+
+    <%= form.select("sailor_ids", collection.people.collect {|p| [ p.name, p.id ] },{prompt: 'select people to hack'}, {class:'selectpeopleform', id: "collect#{collection.id}", size: 5,multiple: true }) %>
+<%end%>
+  </div>
+<div class="sailor_ids selectedpeople">
+
+
+  </div>
+<div>
+    <%= form.label("thing_ids", "Stuff in relation to ths technique")%>
+    <%= form.select("thing_ids", Thing.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose stuff in relation to this technique'}, {multiple:true, size: 5})%>
+</div>
+<button type="button" class="idoit">i do it</button>
+<div class="ireallydoit"></div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

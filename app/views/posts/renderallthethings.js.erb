@@ -1,0 +1,10 @@
+var content = `<%=label :post_thing_ids, "All the things you talk about"%>
+  <%= collection_check_boxes("post","thing_ids", @things, :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= render Thing.find(stuff.value) %>
+<button type="button" onclick="$.ajax({type:'post', url:'/talkaboutthis/<%=stuff.value%>'});">talk about this</button>
+  <%end%>`;
+  <%if @things.length > 0%>
+  if ($('.allthethingslinkedtothispost').html().indexOf(content) === -1) {
+$('.allthethingslinkedtothispost').append(content);
+}
+<%end%>

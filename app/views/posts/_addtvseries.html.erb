@@ -1,0 +1,14 @@
+
+                  <%=form.label :tvseries_ids, "All the tv series you talk about"%>
+
+  <%= form.collection_check_boxes(:tvseries_ids, Tvseries.all, :id, :name ) do |stuff| %>
+              <div class="allthethingslinkedtothispost">
+
+      <%=stuff.check_box%><%= Thing.find(stuff.value).name %><%= Thing.find(stuff.value).image ? (image_tag Thing.find(stuff.value).image.to_s, alt: "", class: "imageprofilethread" ) : ""%>
+  <button type="button" onclick="$.ajax({type:'post', url:'/talkaboutthis/<%=stuff.value%>'});">talk about this</button>
+
+          </div>
+                                    <%end%>
+            
+
+

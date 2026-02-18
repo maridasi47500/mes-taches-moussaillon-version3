@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Username</th>
+      <th>Created at</th>
+      <th>Lieu</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweetsrails.each do |tweet| %>
+      <tr>
+        <td><%= tweet.content %></td>
+        <td><%= tweet.username %></td>
+        <td><%= tweet.created_at %></td>
+        <td><%= tweet.place %></td>
+        <td><%= link_to 'Show', showtweetrails_tweet_path(tweet.id) %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

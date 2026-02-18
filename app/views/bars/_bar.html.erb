@@ -1,0 +1,39 @@
+<div class="card">
+<h5>Bar no. <%=bar.id%> from <%=bar.musicalscore.name%></h5>
+</br>
+  <%= image_tag "/assets/"+bar.image.to_s %>
+</br>
+  <audio src="/assets/<%= bar.correct.name %>" controls></audio>
+
+  <%if bar.description.length > 0 %>
+</br>
+  <%= bar.description %>
+<%end%>
+
+  <%if bar.nb > 0 %>
+</br>
+<p>
+  <strong>mesure no. </strong>
+
+  <%= bar.nb %>
+</p>
+<%end%>
+  <%if bar.barattempts.length > 0 %>
+</br>
+  <p><%= bar.barattempts.length%>
+  <%= "attempt".pluralize(bar.barattempts.length)%>
+by 
+<span title="<%=bar.peoplewhoattemptedtoplaybars.distinct.pluck(:name).to_sentence%>">
+<%=bar.peoplewhoattemptedtoplaybars.distinct.length%>
+<%="person".pluralize(bar.peoplewhoattemptedtoplaybars.distinct.length)%>
+</span>
+<%end%>
+</p>
+</br>
+<%=link_to "essayer de jouer cette mesure", new_barattempt_path(barid: bar.id), class: "nav-item2"%>
+</br>
+<%=link_to "edit bar", edit_bar_path(bar.id)%>
+</br>
+<%=link_to "see bar", bar_path(bar.id)%>
+</div>
+

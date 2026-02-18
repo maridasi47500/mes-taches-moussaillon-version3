@@ -1,0 +1,41 @@
+<%= form_with(model: twitteraccount, local: true) do |form| %>
+  <% if twitteraccount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(twitteraccount.errors.count, "error") %> prohibited this twitteraccount from being saved:</h2>
+
+      <ul>
+        <% twitteraccount.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "twitteraccount_ids", collec: twitteraccount.twitteraccounts, mesmodele:"twitteraccounts"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_twitteraccounts_path]%>
+<%@select=[twitteraccounts_twitteraccounts_path]%>
+
+<%@nom=['twitteraccounts']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

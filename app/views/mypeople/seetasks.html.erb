@@ -1,0 +1,13 @@
+<%if @tasks.length > 0%>
+<ul>
+<% @tasks.each do |t|%>
+<li>
+<%=highlight(t.name,params[:nomtache], highlighter: '<b>\1</b>')%>
+(<%=t('sailors',count: t.sailors.length)%>)
+<%=link_to "voir", t%>
+</li>
+<%end%>
+</ul>
+<%else%>
+<p><%=t('aucuntaskerror')%></p>
+<%end%>

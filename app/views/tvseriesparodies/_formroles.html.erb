@@ -1,0 +1,31 @@
+<%= form_with(model: film, local: true) do |form| %>
+  <% if film.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(film.errors.count, "error") %> prohibited this film from being saved:</h2>
+
+      <ul>
+        <% film.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% film.tvseriesparodiehaveactors.each do |k|%>
+<%=form.fields_for :tvseriesparodiehaveactors, k do |firm|%>
+<%=firm.hidden_field :film_id%>
+<%=firm.hidden_field :person_id%>
+<%=firm.fields_for :surname, (k.surname||Surname.new) do |farm|%>
+<div class="field">
+
+<%=farm.label :name, "Entrez le nom du rôle de #{render k.person}".html_safe%>
+<%=farm.text_field :name%>
+</div>
+<%end%>
+<%end%>
+<%end%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

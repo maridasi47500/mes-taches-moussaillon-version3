@@ -1,0 +1,241 @@
+<%= form_with(model: betterperson, local: true) do |form| %>
+  <% if betterperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(betterperson.errors.count, "error") %> prohibited this betterperson from being saved:</h2>
+
+      <ul>
+        <% betterperson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<%if betterperson.twoperson.alreadyexist%>
+
+<%=form.select :twoperson_id, options_for_select([betterperson.twoperson.alreadyexist].collect {|x|[[x.person.name,x.otherperson.name].to_sentence,x.id]},betterperson.twoperson.alreadyexist.id), {prompt: "please select the two people"}%>
+<%else%>
+
+<%=form.fields_for :twoperson do |firm|%>
+  <div class="field">
+<div class="mypeople">
+      <%= firm.label :person_id, "moussaillon 1" %>
+      <%= firm.collection_radio_buttons(:person_id, [betterperson.person].select{|x|x}, :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render Person.find(ff.value)%>
+ <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsp, "",onchange:"chercherpeople(this,cherchep);return false;", id: "cherchonsp",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectp(this,avatpeople);return false;" id="cherchep" data-field="action_ids"></select>
+<div id="avatpeople"></div>
+  </div>
+
+  <div class="field">
+<div class="mypeople">
+      <%= firm.label :otherperson_id, "moussaillon 2" %>
+      <%= firm.collection_radio_buttons(:otherperson_id, [betterperson.otherperson].select{|x|x}, :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render Person.find(ff.value)%>
+ <%end%>
+ <%end%>
+</div>
+      <div><%= text_field_tag :cherchonsparici, "",onchange:"chercherpeople(this,chercheparla);return false;", id: "cherchonsparici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,avattasks);return false;" id="chercheparla" data-field="action_ids"></select>
+<div id="avattasks"></div>
+
+
+ <%end%>
+
+<div class="mypeople">
+      <%= form.label :attitude_id, "quelle attitude ont les moussaillons" %>
+      <%= form.collection_radio_buttons(:attitude_id, Attitude.where(id:betterperson.attitude_id), :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render Attitude.find(ff.value)%>
+                            <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherattitudes(this,chercheattla);return false;", id: "cherchonsattici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectattitudes(this,attasks);return false;" id="chercheattla" data-field="action_ids"></select>
+<div id="attasks"></div>
+</div>
+
+
+
+<%if betterperson.new_record?%>
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function chercherattitudes(field,al){
+$.ajax({url: '<%=attitudejson_attitudes_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectattitudes(field,greatpeople){
+$.ajax({url: '<%=attitudes_betterpeople_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+
+}});
+};
+function seekpeople(field,my){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+my.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+my.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field,greatpeople){
+$.ajax({url: '<%=people_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+
+}});
+};
+function cherchertasks(field,al){
+$.ajax({url: '<%=allmytasks_tasks_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selecttasks(field,greatpeople){
+$.ajax({url: '<%=myrelatedtasks_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function cherchertwopeople(field,al){
+
+$.ajax({url: '<%=json_twopeople_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].twopersonid;
+name=data[i].person1+' - '+data[i].person2;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selecttwopeople(field,greatpeople){
+if (field.value != '') {
+$.ajax({url: '<%=twopeople_betterpeople_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+};
+function chercherworktwos(field,al){
+$.ajax({url: '<%=worktwosjson_worktwos_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].person1+' - '+data[i].person2+' - '+data[i].linkname;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectworktwos(field,greatpeople){
+$.ajax({url: '<%=worktwo_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function chercherworktwos(field,al){
+$.ajax({url: '<%=worktwosjson_worktwos_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].person1+' - '+data[i].person2+' - '+data[i].linkname;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectworktwos(field,greatpeople){
+$.ajax({url: '<%=worktwo_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+
+function chercheractions(field,al){
+$.ajax({url: '<%=json_taskactions_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectactions(field,greatpeople){
+$.ajax({url: '<%=myactions_tasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function chercherpeople(field,all){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectp(field,greatpeople){
+$.ajax({url: '<%=people_betterpeople_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+
+function selectpeople(field,greatpeople){
+$.ajax({url: '<%=otherpeople_betterpeople_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+
+</script>
+<%end%>
+

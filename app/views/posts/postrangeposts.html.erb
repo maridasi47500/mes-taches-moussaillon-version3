@@ -1,0 +1,11 @@
+<%if @people && @people.length > 0%>
+<p><%=t('display.aboutwhowrite',datedepart: l(params[:begin].to_date, format: :long),datearrivee: l(params[:end].to_date, format: :long))%></p>
+<%=render partial: 'people/inputimage', collection: @people, as: :person%>
+<%end%>
+
+
+
+<%if @posts.length > 0%>
+<p><%=t('display.howmuchpostwrite',datedepart: l(params[:begin].to_date, format: :long),datearrivee: l(params[:end].to_date, format: :long))%></p>
+<p><%=t('display.displayanswer', answer: @posts.length)%></p>
+<%end%>

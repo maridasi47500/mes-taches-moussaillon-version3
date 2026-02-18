@@ -1,0 +1,5 @@
+<%if @sot%><%=select_tag "#{@myparam}[mytaskwiththerecording][]", options_for_select(@sot.tasks.collect {|x| x.name}), {multiple: true, size: 5, prompt: "Select a task in the set of tasks", include_hidden: false}%><%elsif @task%><%=select_tag "#{@myparam}[mytaskwiththerecording][]", options_for_select([@task].collect {|x| x.name}), {multiple: true, size: 5, prompt: "Select a task in the set of tasks", include_hidden: false}%><%end%><%=select_tag "#{@myparam}[#{@fieldname}][]", options_for_select(Phrase.all.collect {|x| [x.content, x.id]}), {prompt: "Select a phrase", include_hidden: false}%>  <%=text_field_tag "#{@myparam}[content#{@fieldname}][]", "#{@rec.content}", placeholder: "or write the content of your recorded phrase"%><br>
+
+<%=select_tag "#{@myparam}[addmyrelation_id][]", options_for_select(Relation.mostusual.collect {|x| [x.name, x.id]}), {prompt: "Select a relation", size:4, multiple: true}%>
+
+<%#text_field_tag "#{@myparam}[myrelation_text][]", "", placeholder: "or write the content of your relation"%>

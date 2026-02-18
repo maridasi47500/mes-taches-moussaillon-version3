@@ -1,0 +1,58 @@
+<%= form_with(model: cle, local: true) do |form| %>
+  <% if cle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cle.errors.count, "error") %> prohibited this cle from being saved:</h2>
+
+      <ul>
+        <% cle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :perception %>
+    <%= form.time_select :perception %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reintegration %>
+    <%= form.time_select :reintegration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :myarmygrade %>
+    <%= form.text_field :myarmygrade,value:cle.armygrade.try(:abbreviation)  %>
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.findbyid(cle.person_id), mesmodele:"people"%>
+
+
+
+</div>
+
+  <div class="field">
+    <%= form.label :observation %>
+    <%= form.text_field :observation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_cles_path]%>
+<%@search=[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

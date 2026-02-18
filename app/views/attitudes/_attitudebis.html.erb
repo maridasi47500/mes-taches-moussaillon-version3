@@ -1,0 +1,37 @@
+
+
+<div class="card">
+
+  <div class="card-header">
+    My attitude
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+<%if attitude.image%>
+<%=image_tag "/assets/"+attitude.image, class: "imageprofilethread"%>
+<%end%>
+<%if attitude.attitudeshavesailors.length > 0%>
+<%="Leader".pluralize(attitude.attitudeshavesailors.length)%> of this attitude : <%=attitude.attitudeshavesailors.map{|x|x.person.name}.to_sentence%>
+<ul>
+<% attitude.attitudeshavesailors.each do |y|%>
+<li><%=button_to "comparer l'attitude de#{y.person.name} de #{y.attitude.name} avec l'attitude d'un autre moussaillon",myattitudes_attitudes_path(attitudesailor1: y.id), method: :post, onclick: "return confirm('etes vous sur de vouloir lier a un autre moussaillon?');"%></li>
+<%end%>
+</ul>
+<%end%>
+<%=attitude.name %><%=link_to "edit attitude", edit_attitude_path(attitude.id) %>
+    </h5>
+
+</p>
+  </div>
+<%if attitude.amateurs.length > 0%>
+<p><%="Amateur".pluralize(attitude.amateurs.length)%> of this attitude : <%=attitude.amateurs.pluck(:name).to_sentence%></p>
+<br>
+<ul>
+<% attitude.attitudehavefollowers.each do |y|%>
+<li><%=button_to "comparer  l'attitude de #{y.person.name} de #{y.attitude.name} avec l'attitude d'un autre moussaillon",myattitudes_attitudes_path(attitudeamateur1: y.id), method: :post, onclick: "return confirm('etes vous sur de vouloir lier a un autre moussaillon?');"%></li>
+<%end%>
+</ul>
+<%end%>
+
+
+</div>

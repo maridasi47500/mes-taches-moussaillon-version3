@@ -1,0 +1,5 @@
+<div class="myrequestperson">
+<%=render requeststopersonhaverequestperson.requestperson%>
+<%=render partial: 'aregoodrequests/aregoodrequest', collection: requeststopersonhaverequestperson.aregoodrequests, as: :aregoodrequest,spacer_template: "mypersolist"%>
+<%=link_to "voir cette demande entre ces gens", askthatway_requeststoperson_path(requeststopersonhaverequestperson_id: requeststopersonhaverequestperson.id)%>
+</div>

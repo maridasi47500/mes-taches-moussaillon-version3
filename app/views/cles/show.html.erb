@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= l(@cle.date) %>
+</p>
+
+<p>
+  <strong>Perception:</strong>
+  <%= l(@cle.perception,format: :veryshort) %>
+</p>
+
+<p>
+  <strong>Reintegration:</strong>
+  <%= l(@cle.reintegration,format: :veryshort) %>
+</p>
+
+<p title="<%= @cle.armygrade.try(:nom) %>">
+  <strong>Armygrade:</strong>
+  <%= @cle.armygrade.try(:abbreviation) %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @cle.person.try(:name) %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @cle.observation %>
+</p>
+
+<%= link_to 'Edit', edit_cle_path(@cle) %> |
+<%= link_to 'Back', cles_path %>

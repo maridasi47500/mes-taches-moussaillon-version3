@@ -1,0 +1,127 @@
+<%= form_with(model: epoch, local: true) do |form| %>
+  <% if epoch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(epoch.errors.count, "error") %> prohibited this epoch from being saved:</h2>
+
+      <ul>
+        <% epoch.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=link_to t('links.addstudentgrade'), "",data: {nb: epoch.epochstudents.length},onclick:"getgrades(this);return false;", id: "addst"%>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu"%>
+  </div>
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at, start_year: 1700 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at, start_year: 1700 %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_id %>
+  <%= form.select(:place_id, Place.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a place"}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= form.label :city_id %>
+  <%= form.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city"}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= form.label :country_id %>
+  <%= form.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :nbtimes, "Number of times sailor will accomplish this epoch" %>
+    <%= form.number_field :nbtimes %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "peoplehavejob_ids", collec: epoch.peoplehavejobs, mesmodele:"peoplehavejobs"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "factoriesservicehaveemployee_ids", collec: epoch.factoriesservicehaveemployees, mesmodele:"factoriesservicehaveemployees"%>
+</div>
+
+<div id="addstudent">
+<%epoch.epochstudents.each_with_index do |student,i|%>
+<%=form.fields_for :epochstudents, student do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "epoch[epochstudents_attributes][#{i}]", fieldname: 'person_id', collec: Person.findbyid(student.person_id), mesmodele:"people",m:i%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "epoch[epochstudents_attributes][#{i}]", fieldname: 'grade_id', collec: Grade.findbyid(student.grade_id), mesmodele:"grades",m:i%>
+
+
+
+  </div>
+
+<%end%>
+<%end%>
+
+</div>
+
+
+
+<div>
+
+</div>
+<div class="ireallydoit"></div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[grade_epochs_path, person_epochs_path,peoplehavejobs_epochs_path,factoriesservicehaveemployees_epochs_path] %>
+<%@search=[json_grades_path,personjson_albums_path,peoplehavejobsjson_epochs_path,factoriesservicehaveemployeesjson_epochs_path]%>
+<%@nom=['grades','people','peoplehavejobs','factoriesservicehaveemployees']%>
+<%=render partial:"form/functionjsonwithvariable", collection: @nom.zip(@search, @select), as: :t%>
+function getgrades(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=student_epochs_path%>?n="+String(mynb)+"&userid=<%=current_user.id%>",
+success: function(data) {
+$(addstudent).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+
+</script>
+<%end%>
+

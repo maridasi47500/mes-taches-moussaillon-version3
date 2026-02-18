@@ -1,0 +1,9 @@
+<%=content_for :mylittlecss do %>
+.mycarousel {
+width: 100%;
+padding: 20px;
+}
+<%end%>
+<h1><%=@city.name%></h1>
+<h1>Photos de mon village</h1>
+<%=render "village", p: @city%>

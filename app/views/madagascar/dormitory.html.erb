@@ -1,0 +1,7 @@
+
+select the epoch
+<%Epoch.where.not(image: nil).each do |epoch|%>
+<input id="imageepoch<%=epoch.id%>" type="image" width="140" height="140" alt="<%=epoch.name%>" title="<%=epoch.name%>" name="<%=epoch.id%>epoch"
+
+       src="/assets/<%=epoch.image%>">
+

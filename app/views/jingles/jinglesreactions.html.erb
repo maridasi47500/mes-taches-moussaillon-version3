@@ -1,0 +1,8 @@
+<%=collection_check_boxes(:jingle, :reaction_ids, @reactions, :id, :reaction_id) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Reaction.find(b.value)%>
+<%end%>
+
+<% end %>
+

@@ -1,0 +1,102 @@
+
+<%= form_with(model: recordingreview, local: true) do |form| %>
+
+<h2>Bad Player sample</h2>
+<%=render @barattempt.sample%>
+<h2>Score overview</h2>
+<img src="/assets/<%=@barattempt.bar.image%>"/>
+<h2>edit your review</h2>
+  <div class="field">
+<%=form.label :barcriterion_ids %>
+<%=form.collection_check_boxes(:barcriterion_ids, recordingreview.barcriteria, :id, :description) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Barcriterion.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherbarcriteria(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select autocomplete="on" onchange="selectbarcriteria(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+
+<div id="barcriteria">
+</div>
+  <div class="field">
+<%=form.label :scorecriterion_ids %>
+<%=form.collection_check_boxes(:scorecriterion_ids, recordingreview.scorecriteria, :id, :description) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Scorecriterion.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+      <div><%= text_field_tag :cherchonsattla, "",onchange:"chercherscorecriteria(this,cherchewtici);return false;", id: "cherchonswtla",class:"mysearchfieldavatars" %></div>
+        <select autocomplete="on" onchange="selectscorecriteria(this,scorecriteria);return false;" id="cherchewtici" data-field="action_ids"></select>
+<div id="attwt1"></div>
+<div id="scorecriteria">
+</div>
+
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :barattempt_id %>
+    <%= form.hidden_field :barattempt_id, value: @barattempt.id %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+
+<% end %>
+<%=content_for :myjscode do%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherbarcriteria(field,al){
+$.ajax({url: '<%=json_barcriteria_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectbarcriteria(field,greatpeople){
+$.ajax({url: '<%=barcriteria_recordingreviews_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function chercherscorecriteria(field,al){
+$.ajax({url: '<%=json_scorecriteria_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectscorecriteria(field,greatpeople){
+$.ajax({url: '<%=scorecriteria_recordingreviews_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

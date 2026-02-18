@@ -1,0 +1,21 @@
+<h1>Write a new post
+
+</h1>
+<%=link_to "ajouter un nom /un personnage qui a écrit le post dans une nouvelle fenêtre", new_posts_surname_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+
+  <%= form_with(model: @post, local: true, html: {id: "form-post", :multipart => true}) do |form| %>
+
+<%= render 'form', form: form, post: @post, currentpostid: nil %>
+
+<%end%>
+<%= link_to 'Back', posts_path %>
+

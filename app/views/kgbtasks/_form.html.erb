@@ -1,0 +1,233 @@
+<%= form_with(model: task, local: true, html: {name: "myfavoritetasks"}) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<button type="button" id="myRecordingBtn">let us record memory cards</button>
+
+<!-- The Modal -->
+<div id="myRecordingModal" class="recordingmodal">
+
+  <!-- Modal content -->
+  <div class="recordingmodal-content">
+    <span class="close">&times;</span>
+    <%=select_tag :mytyperecord, options_for_select([['phraseandword','phrases and words'], ['wordandphrase','words and phrases'], ['onlyword','two words'],['onlyphrase','only phrases']].collect {|a,b| [b,a]}), {name: "selectyourrecordform", prompt: "select a form"}%>
+
+    <div id="mylatestam">
+      <%=render template: "tasks/nouvelaidememoire", locals: {task: task}%>
+    </div>
+    <%=label "recordview","tout nouvel aide mémoire"%>
+    <%=radio_button_tag "recordview","new"%>
+    
+    <%=label "recordview", "créer un aide mémoire à partir d'un autre"%>
+    <%=radio_button_tag "recordview","fromother"%>
+
+    <%=label "recordview","écrire la suite d'un aide memoire"%>
+    <%=radio_button_tag "recordview","nextone"%>
+<%task.sailors.each do |sailor|%>
+        <%=form.label "sailorhavingthistask", "enregistrement à propos de #{sailor.name}", name: "task[sailorhavingthistask][]"%>
+    <%=form.check_box "sailorhavingthistask",{name: "task[sailorhavingthistask][]"}, sailor.id, ""%>
+
+
+    <%end%>
+    <%if defined?(setoftask) && setoftask%>
+      <%=button_tag "tout nouvel aide mémoire", type: "button", onclick: "$.ajax({url: '/record/'+selectyourrecordform.value+'?taskid=#{task.id}&setoftaskid=#{setoftask.id}&myview='+recordview.value+'&listeam='+tousmesaidememoires.value,success:function(data){$('.myfields').html(data);}});return false;"%>
+    <%else%>
+      <%=button_tag "tout nouvel aide mémoire", type: "button", onclick: "$.ajax({url: '/record/'+selectyourrecordform.value+'?taskid=#{task.id}&myview='+recordview.value+'&listeam='+tousmesaidememoires.value,success:function(data){$('.myfields').html(data);}});return false;"%>
+    <%end%>
+
+    <div class="myfields">
+
+  </div>
+    <button type="button" onclick="sendmyspecialaudiofiles();return false;">créer ce memory card</button>
+  </div>
+
+</div>
+
+  <div class="field">
+    <%= form.label :image, "Upload an image for this task" %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at %>
+  </div>
+  <div class="field">
+    <%= form.label :happened, "you made this task happen (at the time and dates written)" %>
+    <%= form.check_box :happened %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+  <div class="field">
+
+<%=label("usermymodel", "enter address manually", for: "usermymodel_receive_newsletter_yes", value: "enter address manually")%>
+<%=radio_button("usermymodel", "receive_newsletter", "yes",onchange: "$.ajax({url: '/addresses/myaddresses?value='+$(this).val()+'&taskid=#{task.id.to_i > 0 ? task.id.to_i : ""}',success:function(data){$('.myaddresses').html(data);}});")%>
+<%=label("usermymodel", "chose among past addresses", for: "usermymodel_receive_newsletter_no", value: "chose between addresses")%>
+
+<%=radio_button("usermymodel", "receive_newsletter", "no",onchange: "$.ajax({url:'/addresses/myaddresses?value='+$(this).val()+'&taskid=#{task.id.to_i > 0 ? task.id.to_i : ""}',success:function(data){$('.myaddresses').html(data);}});")%>
+  <end>
+  <div class="field myaddresses">
+  </div>
+<div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :nbtimes, "Number of times sailor will accomplish this task" %>
+    <%= form.number_field :nbtimes %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+
+
+
+
+<%if defined?(eventid)%>
+  <%= form.hidden_field :eventid, value: eventid %>
+<%end%>
+<div>
+
+</div>
+<div class="fields_select_people">
+    Sailors of this task (people assigned to this task)
+
+    <%= form.select("sailor_ids", task.sailors.collect {|p| [ p.name, p.id ] },{selected: task.sailor_ids, prompt: 'select people to hack'}, {class:'selectpeopleform', id: "", size: 5,multiple: true }) %>
+  </div>
+<div class="sailor_ids selectedpeople">
+
+
+  </div>
+<%=text_field_tag :allpeople, "",placeholder:"sailors", id: "allpeople",class:"largetextfield", onchange:"seekpeople(this);return false;"%>
+<select id="all" multiple="true" size="20" onchange="selectpeople(this);return false;"></select>
+<div id="greatpeople"></div>
+
+        <div class="field">
+    <%= form.label :everyone, "Everyone does this task" %>
+    <%= form.check_box :everyone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create gudu task(s)" %>
+  </div>
+<% end %>
+<%=content_for :mylittlecss do%>
+.recordingmodal, .recordingmodal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.recordingmodal-content, .recordingmodal-content1 {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close, .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus, close1:hover, .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+<%end%>
+<%=content_for :myjs do%>
+ // Get the modal
+var modal = document.getElementById("myRecordingModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myRecordingBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  } 
+} 
+<%if !@Kgbtask.new_record?%>
+function sendmyspecialaudiofiles(){
+  var formData = new FormData($(myfavoritetasks)[0]);
+                          event.preventDefault();
+          $.ajax({processData: false,data:formData,
+            contentType: false,
+            url:'<%=nouvelaidememoire_task_path(@task.id)%>',
+type: 'post',success:function(aidememoires){console.log(aidememoires);mylatestam.innerHTML = aidememoires;}});return false;
+}
+<%end%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+function seekpeople(field){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field){
+$.ajax({url: '<%=people_kgbtasks_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+
+}});
+};
+</script>
+
+<%end%>

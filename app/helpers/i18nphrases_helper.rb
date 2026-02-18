@@ -1,0 +1,2 @@
+module I18nphrasesHelper
+end

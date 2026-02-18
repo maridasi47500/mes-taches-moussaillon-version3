@@ -1,0 +1,9 @@
+<%=fields_for :epoch do |form|%>
+<%=form.fields_for :epochstudents do |ff|%>
+  <div class="field">
+<%=render "form/fieldsforradiobuttoncolumnwithvariable",n:"epoch[epochstudents_attributes][#{params[:n]}]",columnname: :name, form: ff, fieldname: 'person_id', collec: @people, mesmodele:"people",m:params[:n]%>
+
+</div>
+<%end%>
+<%end%>
+

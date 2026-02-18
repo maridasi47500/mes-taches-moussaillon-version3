@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Attitudephotos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attitudephotos.each do |attitudephoto| %>
+      <tr>
+        <td><%= l attitudephoto.start_at, format: :long %></td>
+        <td><%= l attitudephoto.end_at, format: :long %></td>
+        <td><%= attitudephoto.title %></td>
+        <td><%= link_to 'Show', attitudephoto %></td>
+        <td><%= link_to 'Edit', edit_attitudephoto_path(attitudephoto) %></td>
+        <td><%= button_to 'Destroy', attitudephoto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attitudephoto', new_attitudephoto_path %>

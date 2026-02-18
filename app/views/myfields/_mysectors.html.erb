@@ -1,0 +1,12 @@
+ <div class="field">
+<%=render "form/#{fieldtype}_child", form: form, fieldname: "sector_ids", collec: [], mesmodele:"mysectors",findex: (params[:idinput] || form.index || 0)%>
+</div>
+
+<script>
+<%@search=[json_sectors_path]%>
+<%@select=[[path,path2]]%>
+<%@nom=["mysectors"]%>
+<%=render partial:"form/functionjsonmysectors", collection: @nom.zip(@search, @select), as: :t,locals: {form: form,findex: (params[:idinput] || form.index || 0)}%>
+</script>
+
+

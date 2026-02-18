@@ -1,0 +1,18 @@
+comptés mangeant cette semaine<br>
+
+<%=form_with url: comptemangeantsuite_path do |form|%>
+Chercher des moussaillons
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_mypeople_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+
+<%end%>

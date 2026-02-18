@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Your Idol:</strong>
+  <%= render @idolcomment.tvserieshaveactor %>
+</p>
+
+<p>
+  <strong>Alias for commenting:</strong>
+  <%= render 'aliases/alias', a:@idolcomment.alias %>
+</p>
+
+
+<p>
+  <strong>Content:</strong>
+  <%= @idolcomment.content %>
+</p>
+
+<%= link_to 'back to '+@idolcomment.tvserieshaveactor.tvseries.name, tvseries_path(@idolcomment.tvserieshaveactor.tvseries_id) %> |
+<%= link_to 'Edit', edit_idolcomment_path(@idolcomment) %> |
+<%= link_to 'Back', idolcomments_path %>

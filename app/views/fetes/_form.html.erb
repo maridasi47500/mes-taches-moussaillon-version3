@@ -1,0 +1,52 @@
+<%= form_with(model: fete, local: true) do |form| %>
+  <% if fete.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fete.errors.count, "error") %> prohibited this fete from being saved:</h2>
+
+      <ul>
+        <% fete.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, discard_year: true %>
+  </div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "country_ids", collec: fete.countries, mesmodele:"countries"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_countries_path]%>
+<%@select=[countries_fetes_path]%>
+
+<%@nom=['countries']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

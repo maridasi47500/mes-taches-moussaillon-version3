@@ -1,0 +1,64 @@
+		<nav class="mega-nav js-mega-nav" data-mega-nav='{"showPanelItemClass": "mega-nav__item--show-panel"}'>
+			<ul class="mega-nav__list js-mega-nav-list" role="menubar" aria-controls="menu">
+                              <%"0".upto("1") do |iditemnav|%>
+			<li 
+							class="mega-nav__item js-mega-nav__item mega-nav__item--parent js-mega-nav-parent"
+							role="menuitem" 
+							aria-haspopup="true"
+							aria-expanded="false">
+							<a href="<%=I18n.t "link#{iditemnav}"%>"><%=I18n.t "name#{iditemnav}"%></a><i class="mega-nav__show-panel-icon icon icon--next" aria-hidden="true"></i>
+                                                        <div class="mega-nav__panel js-mega-nav__panel" data-mega-nav-secondary='{"showPanelItemClass": "mega-nav__item--show-panel"}' role="presentation">
+									<div class="mega-nav__panel-wrap js-mega-nav-parent" role="presentation" aria-haspopup="true" >
+                                                                                                            <%"1".upto("39").each_slice(20).to_a.each do |z|%>
+                                                                            
+                                                                                                                
+                                                                            										<div class="mega-nav__column js-mega-nav__secondary-bar two_columns" data-mega-nav-secondary='{"showPanelItemClass": "mega-nav__item--show-panel"}' role="presentation" aria-expanded="false">
+                                                                                                                                                            <%z.each do |y|%>
+                                                                                                                                                            <ul class="mega-nav__sub-list js-mega-nav__sub-list">
+                                                                                                                                                              
+                                                                                                                                                            
+                                                                                                           
+                                                                                                                                           <%if !I18n.t("list#{iditemnav}.#{y}.namecat").include?('missing') && I18n.t("list#{iditemnav}.#{y}.link").include?('missing')%>
+
+                                                                            <li class="mega-nav__sub-item mega-nav__sub-item-heading">
+																			<h3 class="mega-nav__sub-heading js-mega-nav__sub-heading">
+																						<span class="empty-nav-item" tabindex="0"><%=I18n.t "list#{iditemnav}.#{y}.namecat"%></span><i class="mega-nav__show-panel-icon icon icon--next" aria-hidden="true"></i>
+																					</h3>
+                                                                                    </li>
+																	<%elsif !I18n.t("list#{iditemnav}.#{y}.namecat").include?('missing')%>
+                                                                                                                                                  <li class="mega-nav__sub-item ">
+                                                                                                                                                      <a href="<%=I18n.t "list#{iditemnav}.#{y}.link"%>"><%=I18n.t "list#{iditemnav}.#{y}.namecat"%></a></li>
+																	<%end%>
+                                                                                                                                                  
+                                                                                                                                                  
+                                                                                                                                                  <%end%>
+                                                                                                                                                        </ul>
+                                                                                                                                                            <%end%>
+                                                                                                                                                      </div>
+                                                                                                                                                      
+                                                                                                                                                      
+											
+
+											</div>
+											<%if iditemnav== "1"%>
+                          											<div class="mega-nav__column mega-nav__column--main-banner" role="presentation" data-navNode-id="CampaignsNavNode-<%=@localevalue%>"></div>
+                                                                            <%end%>
+
+								</div>
+
+							</li>
+<%end%>			
+				<li 
+							class="mega-nav__item js-mega-nav__item js-mega-nav-nonparent"
+							role="menuitem" 
+							aria-haspopup="false"
+							aria-expanded="">
+							<a href="/fr/primania">Primania</a></li>
+				<li 
+							class="mega-nav__item js-mega-nav__item js-mega-nav-nonparent"
+							role="menuitem" 
+							aria-haspopup="false"
+							aria-expanded="">
+							<a href="/fr/primark-cares">Primark Cares</a></li>
+				</ul>
+		</nav>

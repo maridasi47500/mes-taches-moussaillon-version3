@@ -1,0 +1,86 @@
+
+			<footer class="view__footer footer" role="contentinfo">
+    <div class="footer__main">
+
+		<div class="footer__main-wrap">
+
+			<div class="info-nav">
+				<div class="info-nav__wrap">
+                                    <%"1".upto("4").each do |num|%>
+					<div class="info-nav__column">
+							<h4 class="info-nav__heading">
+										<a href="<%=I18n.t "footer.#{num}.1.url"%>"><%=I18n.t "footer.#{num}.1.title"%></a></h4>
+
+                                            <ul class="info-nav__list">
+		                                    <%"2".upto("6").each do |secondnum|%>
+                                                            <%if !I18n.t("footer.#{num}.#{secondnum}.type").include?("footer.")%>
+										<li class="info-nav__item">
+									<a href="<%= I18n.t("footer.#{num}.#{secondnum}.url")%>" target="_blank" rel="noopener noreferrer"><%= I18n.t("footer.#{num}.#{secondnum}.title")%></a>
+                                                                                </li>
+								<%end%>
+                                                                <%end%>
+                                                                    </ul>
+
+                                        </div>
+                                    <%end%>
+			
+					</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="footer__end">
+
+		<div class="footer__end-wrap">
+
+			<div class="footer__social">
+				<div class="social social--wide social--flush">
+					<ul class="social__list">
+						<li class="social__item">
+							<a class="social__link" href="http://www.facebook.com/primark" target="_blank">
+								<i class="icon icon--facebook"></i>
+								<span class="reader-only">Visita nuestra página de Facebook</span>
+							</a>
+						</li>
+						<li class="social__item">
+							<a class="social__link" href="https://www.twitter.com/primark" target="_blank">
+								<i class="icon icon--twitter"></i>
+								<span class="reader-only">Visita nuestra página de Twitter</span>
+							</a>
+						</li>
+						<li class="social__item">
+							<a class="social__link" href="http://www.pinterest.com/Primark/" target="_blank">
+								<i class="icon icon--pinterest"></i>
+								<span class="reader-only">Visita nuestra página de Pinterest</span>
+							</a>
+						</li>
+						<li class="social__item">
+							<a class="social__link" href="http://www.instagram.com/Primark/" target="_blank">
+								<i class="icon icon--instagram"></i>
+								<span class="reader-only">Visita nuestra página de Instagram</span>
+							</a>
+						</li>
+						<li class="social__item">
+							<a class="social__link" href="https://www.youtube.com/channel/UCIc8R2lxvKLtluGjN7e7TMw" target="_blank">
+								<i class="icon icon--youtube"></i>
+								<span class="reader-only">Visit our Youtube channel</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="footer__copyright">
+				<div class="copyright">
+					<p class="copyright__message">
+						2021 © Primark Stores Limited</p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>

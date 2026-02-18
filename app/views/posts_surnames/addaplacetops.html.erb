@@ -1,0 +1,68 @@
+
+
+
+    <%= fields_for "posts_surname",PostsSurname.new do |ps| %>
+
+    <%= ps.fields_for "place",Place.new do |pokemon| %>
+
+      <div>
+        <%= pokemon.label :name, "place that you mentioned" %>
+        <%= pokemon.text_field :name %>
+      </div>
+      <div>
+        <%= pokemon.label :image, "image for this place" %>
+        <%= pokemon.file_field :image %>
+        <%= pokemon.hidden_field :longitude,id:"mylonps" %>
+        <%= pokemon.hidden_field :latitude,id:"mylatps" %>
+      </div>
+    Delete this place : <%= pokemon.check_box :_destroy %>
+    <%end%>
+    <%end%>
+        <div id="map"></div>
+
+        <style>
+            #map {
+              height:200px;
+              width:200px;
+            }
+        </style>
+    <script>
+      $(function() {
+
+var script = document.createElement('script');
+script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCBlUUVFaBPK1w_4WtPmiVXf0iydw8wnzU&libraries=places&callback=unemaison";
+script.defer = true;
+script.async = true;
+window.unemaison = function() {
+  const myLatlng = { lat: -25.363, lng: 131.044 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: myLatlng,
+  });
+  // Create the initial InfoWindow.
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Click the map to get Lat/Lng!",
+    position: myLatlng,
+  });
+  infoWindow.open(map);
+  // Configure the click listener.
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    infoWindow.close();
+    // Create a new InfoWindow.
+    infoWindow = new google.maps.InfoWindow({
+      position: mapsMouseEvent.latLng,
+    });
+    console.log(mapsMouseEvent);
+    $(mylatps).val(mapsMouseEvent.latLng.lat);
+    $(mylonps).val(mapsMouseEvent.latLng.lng);
+    infoWindow.setContent(
+      "you post from there"
+    );
+    infoWindow.open(map);
+  });
+};
+
+document.head.appendChild(script);
+});
+    </script>

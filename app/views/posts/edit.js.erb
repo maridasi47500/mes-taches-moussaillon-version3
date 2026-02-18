@@ -1,0 +1,335 @@
+
+
+<%if @pid && @hackingtype%>
+$('.<%=@hackingtype%>').append(`
+    
+    <%= collection_check_boxes("post",@hackingtype, [@pid],:id,:name) do |b| %>
+
+    <%=b.check_box%><%= render @pid %>
+    <%end%>
+`);
+<%end%>
+
+<%if @addaplacetopost%>
+var nb=$('[id^=post_places_attributes]').length.toString();
+$('#tab10').append(`    
+
+    <%= fields_for "post[places_attributes][000]" do |pokemon| %>
+
+      <div>
+        <%= pokemon.label :name, "place that you mentioned" %>
+        <%= pokemon.text_field :name %>
+      </div>
+      <div>
+        <%= pokemon.label :image, "image for this place" %>
+        <%= pokemon.file_field :image %>
+        <%= pokemon.hidden_field :longitude %>
+        <%= pokemon.hidden_field :latitude %>
+      </div>
+    Delete this place : <%= pokemon.check_box :_destroy %>
+    <%end%>
+        <div id="map"></div>
+
+        <style>
+            #map {
+              height:200px;
+              width:200px;
+            }
+        </style>
+    <script>
+      $(function() {
+
+var script = document.createElement('script');
+script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCBlUUVFaBPK1w_4WtPmiVXf0iydw8wnzU&libraries=places&callback=unemaison";
+script.defer = true;
+script.async = true;
+window.unemaison = function() {
+  const myLatlng = { lat: -25.363, lng: 131.044 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: myLatlng,
+  });
+  // Create the initial InfoWindow.
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Click the map to get Lat/Lng!",
+    position: myLatlng,
+  });
+  infoWindow.open(map);
+  // Configure the click listener.
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    infoWindow.close();
+    // Create a new InfoWindow.
+    infoWindow = new google.maps.InfoWindow({
+      position: mapsMouseEvent.latLng,
+    });
+    console.log(mapsMouseEvent);
+    $('#post_places_attributes_000_latitude').val(mapsMouseEvent.latLng.lat);
+    $('#post_places_attributes_000_longitude').val(mapsMouseEvent.latLng.lng);
+    infoWindow.setContent(
+      "you post from there"
+    );
+    infoWindow.open(map);
+  });
+};
+
+document.head.appendChild(script);
+});
+    </script>
+`.replaceAll('_000_','_'+nb+'_').replaceAll('[000]','['+nb+']'));
+<%end%>
+
+<%if @addaplacetosurnameattribute%>
+//post_posts_surnames_attributes_0_place_attributes_name
+var nb=$('[id$=_place_attributes_name]').length.toString();
+$('.placessurnamesattributes').append(`    
+
+    <%= fields_for "post[posts_surnames_attributes][000][place_attributes]" do |pokemon| %>
+
+      <div>
+        <%= pokemon.label :name, "place that you mentioned" %>
+        <%= pokemon.text_field :name %>
+      </div>
+      <div>
+        <%= pokemon.label :image, "image for this place" %>
+        <%= pokemon.file_field :image %>
+        <%= pokemon.hidden_field :longitude %>
+        <%= pokemon.hidden_field :latitude %>
+      </div>
+    Delete this place : <%= pokemon.check_box :_destroy %>
+    <%end%>
+        <div id="map"></div>
+
+        <style>
+            #map {
+              height:200px;
+              width:200px;
+            }
+        </style>
+    <script>
+      $(function() {
+
+var script = document.createElement('script');
+script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCBlUUVFaBPK1w_4WtPmiVXf0iydw8wnzU&libraries=places&callback=unemaison";
+script.defer = true;
+script.async = true;
+window.unemaison = function() {
+  const myLatlng = { lat: -25.363, lng: 131.044 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: myLatlng,
+  });
+  // Create the initial InfoWindow.
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Click the map to get Lat/Lng!",
+    position: myLatlng,
+  });
+  infoWindow.open(map);
+  // Configure the click listener.
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    infoWindow.close();
+    // Create a new InfoWindow.
+    infoWindow = new google.maps.InfoWindow({
+      position: mapsMouseEvent.latLng,
+    });
+    console.log(mapsMouseEvent);
+    $('#post_posts_surnames_attributes_000_place_attributes_latitude').val(mapsMouseEvent.latLng.lat);
+    $('#post_posts_surnames_attributes_000_place_attributes_longitude').val(mapsMouseEvent.latLng.lng);
+    infoWindow.setContent(
+      "you post from there"
+    );
+    infoWindow.open(map);
+  });
+};
+
+document.head.appendChild(script);
+});
+    </script>
+`.replaceAll('_000_','_'+nb+'_').replaceAll('[000]','['+nb+']'));
+
+<%end%>
+function replaceForm(str,nb) {
+return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+<%if @addthosesailors%>
+var nbre =$('[name^="post[reactions_attr"').length+1;
+$('.reactions-list').append(replaceForm(`
+<%[Reaction.new].each do |reaction|%>
+    <div>
+    <%= fields_for "post[reactions_attributes][0]", reaction do |pokemon| %>
+        <%= pokemon.label :groupby %>
+        <%= pokemon.select("groupby", "1".upto("10").to_a, { include_blank: true }) %>
+
+      <%= pokemon.label :surname, "Give him/her a surname" %>
+      <%=pokemon.text_field("surname", value: (reaction.surname||""))%>
+      <%= pokemon.label :name, "Name of this reaction" %>
+      <%=pokemon.select("name", Reaction.ofallkind, { include_blank: true })%>
+      <%= pokemon.label :reactingperson_ids %>
+      <%= pokemon.select("reactingperson_ids", (@peoplesearched.to_a+@addthosesailors.to_a).collect {|p| [ p.name, p.id ] },{prompt: 'select a collection'}, { size: 5,multiple: true , onchange: "$.ajax({url:window.location.pathname+'.js?cud='+$(this).val(), success:function(){}});"}) %>
+      Delete: <%= pokemon.check_box :_destroy %>
+          The order is reversed: <%= pokemon.check_box :opposite %>
+
+
+    <% end %>
+
+    </div>
+
+  <% end %>
+
+`,nbre));
+$('.reactions-list').append(`
+    <button type="button" class="renderareactionwithoutid" data-reaction-id="${nbre}">add this reaction to the text</button>
+    <script>
+    $('.renderareactionwithoutid').click(function(){
+  var id=$(this).data('reaction-id');
+  var nb=$('[name^="post[reactions_attributes]['+id+']"]');
+  $.ajax({type: "post",url:"/renderareactionwithoutid?"+nb.serialize()});
+});
+</script>
+`);
+
+
+
+
+$('.sailorsselected').append(`
+      <%= collection_radio_buttons("post","collections", @addthosesailors, :id, :name) do |b|%>
+        <div><%=b.radio_button(onchange: "$.ajax({url:window.location.pathname+'.js?pid=#{b.value}&hackingtype='+$('input[name=\"post[group]\"]:checked').val(), success:function(){}});",class:"collection")%><%=render Person.find(b.value)%></div>
+    <%end%>
+        <div><%=radio_button_tag "radio","btn"%><%="personne"%></div>
+`);
+
+    $('.allthesailors-list').each(function(){
+    var nb=$('[name="[posts_surnames_"]').length;
+    $(this).append(`
+    <%=fields_for "post[posts_surnames_attributes][0]" do |f|%>
+          <% @addthosesailors.each do |ff| %>
+                        <%=f.radio_button :person_id, ff.id%><%=render ff%>
+    
+                        <%end%>
+
+<%end%>
+`.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_'));
+         $('.didonce').append(` 
+         <% @addthosesailors.each_with_index do |ff,k| %>
+    <%=collection_check_boxes(:post, :onetime_ids, ff.onetimes, :id, :content) do |b|%>
+  <%= b.label%><%=  b.check_box %>
+<%end%>
+    <%end%>
+         `);
+    
+                        
+
+});
+$('.actionsidsfield').append(`    
+<%=fields_for :post do |postformfields|%>
+    <%= postformfields.select("action_ids", (@addthosesailorstasks).collect {|p| [ p.name, p.id ] },{prompt: 'edit your selection of tasks'}, { size: 5,multiple: true}) %>
+<%end%>
+`);
+
+$('[name="post[action_ids][]"]').change(function(){
+$.ajax({type:"post",url:"/renderallthethings/"+$(this).val()});
+});
+
+<%end%>
+<%if params[:emailasif]%>
+var posts_emails = $('[name^="post[emails_attributes]["]').length;
+$('#tab12').append(`
+<%=fields_for "post[emails_attributes][${posts_emails}]" do |emailspost|%>
+<div class="field">
+<%= emailspost.label :to %>
+<%= emailspost.text_field :to %>
+</div>
+<div class="field">
+<%= emailspost.label :from %>
+<%= emailspost.text_field :from %>
+</div>
+<div class="field">
+<%= emailspost.label :subject %>
+<%= emailspost.text_field :subject %>
+</div>
+<div class="field">
+<%= emailspost.label :content %>
+<%= emailspost.text_area :content %>
+</div>
+<button class="renderemail" type='button' onclick="$.ajax({type:'post',url: '/renderanemail.js?'+$('[name*=email][name*=${posts_emails}]').serialize()});">render this email</button>
+      <%end%>
+`);
+
+  <%end%>
+
+<%if params[:emailasif]%>
+var posts_emails = $('[name^="post[emails_attributes]["]').length;
+$('#tab12').append(`
+<%=fields_for "post[emails_attributes][${posts_emails}]" do |emailspost|%>
+<div class="field">
+<%= emailspost.label :to %>
+<%= emailspost.text_field :to %>
+</div>
+<div class="field">
+<%= emailspost.label :from %>
+<%= emailspost.text_field :from %>
+</div>
+<div class="field">
+<%= emailspost.label :subject %>
+<%= emailspost.text_field :subject %>
+</div>
+<div class="field">
+<%= emailspost.label :content %>
+<%= emailspost.text_area :content %>
+</div>
+<button class="renderemail" type='button' onclick="$.ajax({type:'post',url: '/renderanemail.js?'+$('[name*=email][name*=${posts_emails}]').serialize()});">render this email</button>
+      <%end%>
+`);
+
+  <%end%>
+<%if params[:addagooglerequest]%>
+var google_req = $('[name^="post[google_requests_attributes]["]').length;
+
+$('#tab10').append(replaceForm(`
+
+    <%= fields_for "post[google_requests_attributes][0]" do |surname| %>
+      <div>
+        <%= surname.label :name, "google requests that you mentioned" %>
+        <%= surname.text_field :name %>
+      </div>
+    Delete this google request : <%= surname.check_box :_destroy %>
+
+    <%end%>
+
+`,google_req));
+var replaceButtonContent =`<button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addgoogleresulttothisgooglerequest=0000000'});">add a google result to this google request</button>`;
+replaceButtonContent = replaceButtonContent.replace('0000000',google_req.toString());
+$('#tab10').append(replaceButtonContent);
+<%end%>
+<%if params[:addgoogleresulttothisgooglerequest]%>
+for (var abcd=0;abcd<20;abcd++){
+if ($('[name^="post[google_requests_attributes][<%= params[:addgoogleresulttothisgooglerequest]%>][googleresults_attributes]['+abcd.toString()+']').length === 0) {
+$('.googlereqandres').append(replaceForm(`
+      
+    <%=fields_for "post[google_requests_attributes][#{params[:addgoogleresulttothisgooglerequest]}][googleresults_attributes][0]" do |googleres|%>
+<p>New google result</p>
+        <div>
+        <%= googleres.label :title, "title for this google result" %>
+        <%= googleres.text_field :title %>
+      </div>
+          <div>
+        <%= googleres.label :content, "description for this google result" %>
+        <%= googleres.text_field :content %>
+      </div>
+          <div>
+        <%= googleres.label :date, "date for this google result" %>
+        <%= googleres.text_field :date %>
+      </div>
+          <div>
+        <%= googleres.label :url, "url for this google result" %>
+        <%= googleres.text_field :url %>
+      </div>
+
+      <%end%>
+
+`,abcd.toString()));
+break;
+}
+}
+<%end%>

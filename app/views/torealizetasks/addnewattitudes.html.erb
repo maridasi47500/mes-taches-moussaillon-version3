@@ -1,0 +1,19 @@
+
+<%=fields_for :torealizetask do |form|%>
+<%=form.fields_for :attitudetakentasks do |ff|%>
+  <div class="field">
+<%=ff.fields_for :attitude do |fff|%>
+<%=fff.label :name%>
+<%=fff.text_field :name,name:"torealizetask[attitudetakentasks_attributes][#{params[:n]}][attitude_attributes][name]"%>
+<%end%>
+
+  </div>
+  <div class="field">
+<%=ff.label :real%>
+<%=ff.check_box :real,name:"torealizetask[attitudetakentasks_attributes][#{params[:n]}][real]"%>
+
+  </div>
+
+<%end%>
+<%end%>
+

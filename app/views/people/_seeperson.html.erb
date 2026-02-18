@@ -1,0 +1,9 @@
+<div class="card">
+
+<%=  person.name%>
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%if person.sexe.to_s.length > 0%>
+(<%=person.sexe%>)
+
+<%end%>
+</div>

@@ -1,0 +1,35 @@
+<%= form_with(model: transac, local: true) do |form| %>
+  <% if transac.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transac.errors.count, "error") %> prohibited this transac from being saved:</h2>
+
+      <ul>
+        <% transac.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :somme %>
+    <%= form.number_field :somme %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :motif %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

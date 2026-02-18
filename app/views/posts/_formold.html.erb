@@ -1,0 +1,747 @@
+<div id="formpourpost">
+ 
+ <%if @taskselected%> 
+    <h2>about <%=@taskselected.name%></h2>
+
+ 
+  <%end%> 
+
+
+  
+  <%= form_with(model: post, local: true, html: {id: "form-post"}) do |form| %>
+        <button id="refresh" type="button" onclick="$.ajax({type: 'post', url:'/postsnew.js?'+$('#form-post').serialize()});">refresh</button>
+  <%= collection_check_boxes(:mypost, :addstuff, Hash[[["new event","events"],["google request","googlereq"],["new reaction","reactions"],["new pseudonym or usurpation identity","posts_surnames"],["add a profile pic","profilepic"],["new attitude","attitudes"],["new synonym","synonyms"],["new metonymy","metonymies"],["new anaphor","anaphors"],["new photo","photos"]]], :last, :first, {}, {id: "addwhat"})%>
+    <button id="ajouterunereaction" type='button' onclick="$.ajax({type: 'post', url:'/postsnew.js?'+$('#form-post').serialize()+'&new='+$('#addwhat').val()+''});">ajouter au modèle</button>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%if @taskselected%>
+	<%= form.collection_radio_buttons(:task_ids, [@taskselected], :id, :name) do |ff| %>
+          <div class="card-deck">
+	<div class='stuffpost card'><%=ff.radio_button(checked:true)%>
+        <%=render @taskselected%></div>
+          </div>
+	<%end%>
+  <%end%>
+  <div class="apercu"></div>
+    <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+
+  <% Post.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost', hidden: true %>
+      <div data-nationalite="<%=column.to_s.split('_').last%>" class="editable_<%=column.to_s.split('_').last%>" contentEditable="true">
+          
+</div>
+  </div>
+  <% end %>
+  <!-- Only required for left/right tabs -->
+      <div class="nav nav-tabs" id="myTab" role="tablist">
+          <%"1".upto("1").each_with_index do |tabnb,i|%>
+    <a class="nav-link <%if i==0%>active<%end%>" id="nav<%=tabnb%>" data-bs-toggle="tab" href="#tab<%=tabnb%>" role="tab" aria-controls="tab<%=tabnb%>" aria-selected="<%if i==0%>true<%else%>false<%end%>"><%=@colonnes[tabnb.to_i]%></a>
+    <%end%>
+              <%"7".upto("12").each_with_index do |tabnb,i|%>
+    <a class="nav-link" id="nav<%=tabnb%>" data-bs-toggle="tab" href="#tab<%=tabnb%>" role="tab" aria-controls="tab<%=tabnb%>" aria-selected="false"><%=@colonnes[tabnb.to_i]%></a>
+    <%end%>
+              <%"2".upto("6").each_with_index do |tabnb,i|%>
+    <a class="nav-link" id="nav<%=tabnb%>" data-bs-toggle="tab" href="#tab<%=tabnb%>" role="tab" aria-controls="tab<%=tabnb%>" aria-selected="false"><%=@colonnes[tabnb.to_i]%></a>
+    <%end%>
+
+      </div>
+    <div class="tab-content">
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav11"  id="tab11">
+          <h2>Add people</h2>
+
+<div id="peopleoverlay" class="field">
+<div id="peoplepage">
+<div class="field reactions-list">
+</div>
+<div class="field">
+  <button type="button" onclick="offpeople();return false;">ok</button>
+</div>
+</div>
+</div>
+<div class="field">
+<button type="button" onclick="onpeople();return false;">add people</button>
+  <div class="peoplelisttodisplaytochose">
+<%=collection_select("name","people", Person.afficherceuxla, :id,:name, { include_blank: true })%>
+  </div>
+<div><button type="button" class="" onclick="$.ajax({url:'/actualiserlalistedespersonnes', type:'post'});">actualiser la liste de toutes les personnes</button></div>
+    <div class="field">
+      <%=label("searchperson","search a person")%>
+      <%=text_field_tag("searchnamepeople",{})%>
+      <%=button_tag("search those people", type: "button", id: "searchthosepeople", onclick: "$.ajax({url:window.location.pathname+'.js?addthosesailors='+$('#name_people').val().toString(), type:'post'});")%>
+    </div>
+    <div class="field">
+      <%=button_tag("search name those people", type: "button", id: "searchnamethosepeople")%>
+    </div>
+
+</div>
+  <script>
+ function onpeople() {
+  document.getElementById("peopleoverlay").style.display = "block";
+  document.getElementById("peoplepage").style.display = "block";
+}
+
+function offpeople() {
+  document.getElementById("peopleoverlay").style.display = "none";
+  document.getElementById("peoplepage").style.display = "none";
+} 
+  </script>
+</div>
+        <div class="tab-pane fade show active" role="tabpanel"  aria-labelledby="nav1" id="tab1">
+
+  <h2>Add hidden message</h2>
+	<%= form.fields_for :messagecaches do |mc| %>
+	<div class="field">
+	<%= mc.label :content, "Message caché" %>
+	<%= mc.text_area :content %>
+	<%= mc.check_box :_destroy %>
+	<%= mc.label :_destroy, "delete this hidden message" %>
+        </div>
+	<%end%>
+
+	<div class="field">
+	<%= form.label :messagecache, "Nouveau message caché" %>
+	<%= form.text_area :messagecache %>
+        </div>
+
+<%=form.fields_for :synonyms do |f|%>
+<h2>Add synonyms</h2>
+	<div class="field">
+	<%= f.label :content %>
+	<%= f.hidden_field :synonym_id %>
+	<%= f.text_field :content %>
+        </div>
+        <div class="field">
+	<%= f.label :textedusynonyme, "texte du synonyme" %>
+	<%= f.text_field :textedusynonyme %>
+	</div>
+	<div class="field">
+	<%= f.check_box '_destroy' %>
+	<%= f.label '_destroy', 'Destroy this synonym' %>
+	</div>
+<%end%>
+  
+        </div>
+          <div class="tab-pane fade" role="tabpanel"  aria-labelledby="nav7" id="tab7">
+            <h2><%=@colonnes[7]%></h2>
+
+  
+	<div class="field">
+<%= form.fields_for :fakecomments do |gg|%>
+	<div class="field">
+
+	<%= gg.label :author %>
+	<%= gg.text_field :author %>
+</div>
+	<div class="field">
+
+	<%= gg.label :content %>
+	<%= gg.text_field :content %>
+</div>
+<%end%>
+        </div>
+<%=form.fields_for :metonymies do |f|%>
+	<div class="field">
+
+	<%= f.label :thing_id, "Stuff " %>
+	<%= f.hidden_field :post_id, value:post.id %>
+	<%@stuff.each_slice(6).to_a.each do |st|%>
+	<div class="card-deck">
+	<%= f.collection_radio_buttons(:thing_id, st, :id, :name) do |ff| %>
+	<div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+	<%end%>
+	</div>
+	<%end%>
+        </div>
+
+
+	<div class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	</div>
+	<%= f.check_box '_destroy' %>
+	<%= f.label '_destroy', 'Destroy this metonymy' %>
+<%end%>
+        </div>
+          <div class="tab-pane fade" role="tabpanel"  aria-labelledby="nav8" id="tab8">
+            <h2><%=@colonnes[8]%></h2>
+
+<%=form.fields_for :attitude do |f|%>
+	<div class="field">
+
+
+	<%= f.label :thing_id, "Stuff " %>
+	<%= f.hidden_field :post_id, value:post.id %>
+	<%@stuff.each_slice(6).to_a.each do |st|%>
+	<div class="card-deck">
+	<%= f.collection_radio_buttons(:thing_id, st, :id, :name) do |ff| %>
+	<div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+	<%end%>
+	</div>
+	<%end%>
+        </div>
+	<div class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	</div>
+	<%= f.check_box '_destroy' %>
+	<%= f.label '_destroy', 'Destroy this behaviour' %>
+	<h3>Meaning</h3>
+	<%=f.fields_for :attitude do |metonymy|%>
+		<%= metonymy.hidden_field :post_id, value:post.id %>
+		<div class="field">
+
+		<%= metonymy.label :thing_id, "Stuff " %>
+		<%@stuff.each_slice(6).to_a.each do |st|%>
+		<div class="card-deck">
+		<%= metonymy.collection_radio_buttons(:thing_id, st, :id, :name) do |ff| %>
+		<div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+		<%end%>
+		</div>
+		<%end%>
+		</div>
+
+
+
+
+		<div class="field">
+		<%= metonymy.label :name %>
+		<%= metonymy.text_field :name %>
+		</div>
+		<div class="field">
+		<%= metonymy.check_box '_destroy' %>
+		<%= metonymy.label '_destroy', 'Destroy this behaviour' %>
+		</div>
+
+
+	<%end%>
+<%end%>
+        </div>
+          <div class="tab-pane fade" role="tabpanel"  aria-labelledby="nav9" id="tab9">
+            <h2><%=@colonnes[9]%></h2>
+
+	  <%=form.fields_for :anaphors do |f|%>
+	  <div class="field anaphor">
+	    <%= f.hidden_field :id, value:nil %>
+	    <p>Anaphor</p>
+	    <%= f.label :content %>
+	    <%= f.text_field :name, class:'contentpost' %>
+	    <%=render partial:'sailorlist',locals:{f:f, name:"sailors", field_name:"sailor_ids",list: @peoplesearched, fieldclass:Person}%>
+		                <%=f.fields_for :nicephotos do |foto|%>
+		                  <div>
+		               <%= foto.label :file, 'Upload a file' %>
+		               <%= foto.file_field :file %>
+		               <%= foto.hidden_field :id, value: nil %>
+		                  </div>
+		                  <div>
+		               <%= foto.label :title %>
+		               <%= foto.text_field :title %>
+		                  </div>
+		                  
+		                <%end%>
+</div>
+
+	      <%= f.check_box '_destroy' %>
+	      <%= f.label '_destroy', 'Destroy ' %>
+
+<%end%>
+        	  </div>
+        
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav2"  id="tab2">
+          <h2><%=@colonnes[2]%></h2>
+
+        <%= render "headersmessage", form: form %>
+        </div>
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav3"  id="tab3">
+                    <h2><%=@colonnes[3]%></h2>
+
+
+<%= render partial: "reactpage", locals: {form: form} %>
+
+<div class="selectedpeople usurpation_ids">
+Hacked people
+<%=form.collection_check_boxes(:usurpation_ids, post.usurpations, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+<%=form.collection_check_boxes(:usurpation_ids, Person.joins(:collections).where(collections:[]), :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople hackedperson_ids">
+Your main subjects of matter
+<%=form.collection_check_boxes(:hackedperson_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+            <div class="selectedpeople avissimilaire_ids">
+Person of the same opinion
+<%=form.collection_check_boxes(:avissimilaire_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+            <div class="selectedpeople personnessimilaire_ids">
+Person in the same case
+<%=form.collection_check_boxes(:personnessimilaire_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+
+<div class="selectedpeople commeelle_ids">
+Alias
+<%=form.collection_check_boxes(:commeelle_ids, post.commeelles+Person.withoutanycollection, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople destinataire_ids">
+Your recipients 
+<%=form.collection_check_boxes(:destinataire_ids, post.destinataires, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+<div class="selectedpeople commentedperson_ids">
+Person that are the subjects of the conversation in the way of other people (thehacked people), for ex. the vegetable is .. or the bike is..
+<%=form.collection_check_boxes(:commentedperson_ids, post.commentedpeople, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+            
+                        <div class="selectedpeople postsaproposdelle_ids">
+Person that are the subjects of this post
+<%=form.collection_check_boxes(:postsaproposdelle_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+        </div>
+
+        <div class="tab-pane fade googlereqandres" role="tabpanel" aria-labelledby="nav10"  id="tab10">
+          <h2>Add places</h2>
+            <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplace=true'});">add a place</button>
+    <%= form.fields_for :places do |surname| %>
+      <div>
+        <%= surname.label :name, "place that you mentioned" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+                  <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+
+      </div>
+    Delete this place : <%= surname.check_box :_destroy %>
+
+    <%end%>
+    
+            <h2>Add google requests</h2>
+            <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addagooglerequest=true'});">add a google request</button>
+
+    <%= form.fields_for :google_requests do |surname| %>
+        <%= surname.label :name, "google requests that you mentioned" %>
+        <%= surname.text_field :name %>
+
+    Delete this google request : <%= surname.check_box :_destroy %>
+      <%=surname.fields_for :googleresults do |googleres|%>
+          <div>
+        <%= googleres.label :title, "title for this google result" %>
+        <%= googleres.text_field :title %>
+      </div>
+          <div>
+        <%= googleres.label :content, "description for this google result" %>
+        <%= googleres.text_field :content %>
+      </div>
+          <div>
+        <%= googleres.label :date, "date for this google result" %>
+        <%= googleres.text_field :date %>
+      </div>
+          <div>
+        <%= googleres.label :url, "url for this google result" %>
+        <%= googleres.text_field :url %>
+      </div>
+
+    <%end%>
+    <%end%>
+     
+        </div>
+
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav4"  id="tab4">
+<div class="field">
+<%= form.label :argument_ids, "sailors' arguments" %>
+    <%= form.select("argument_ids", Argument.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit your selection of arguments'}, { size: 5,multiple: true}) %>
+</div>
+<div class="field">
+<%= form.label :technique_ids, "sailors' techniques" %>
+    <%= form.select("technique_ids", Technique.all.collect {|p| [ p.name+' avec '+p.sailors.pluck(:name).join(', '), p.id ] },{prompt: 'edit your selection of techniques'}, { size: 5,multiple: true}) %>
+</div>
+          <h2><%=@colonnes[4]%></h2>
+    <div class="didonce"></div>
+<button type="button" onclick="$.ajax({url: '/addasynonym'});">Add a synonym</button>
+<button type="button" onclick="$.ajax({url: '/addametonymy'});">Add a metonymy</button>
+    <div class="addstuff"></div>
+
+<div class="field actionsidsfield">
+    <button type="button" id="addthosetaskstotext">add those tasks to text</button>
+<%= form.label :action_ids, "Sailors' tasks" %>
+    <%= form.select("action_ids", Task.all.collect {|p| [ p.name+' avec '+p.sailors.pluck(:name).join(', '), p.id ] },{prompt: 'edit your selection of tasks'}, { size: 5,multiple: true}) %>
+</div>
+    <div class="field">
+<%= form.label :usualaction_ids, "Sailors' usual tasks" %>
+    <%= form.select("usualaction_ids", (@post.usualactions+@usualtasksofsailors).collect {|p| [ p.name+' avec '+p.sailors.pluck(:name).join(', '), p.id ] },{prompt: 'edit your selection of tasks'}, { size: 5,multiple: true}) %>
+</div>
+    <div class="field">
+<%= form.label :event_ids, "events" %>
+        <%=form.fields_for :events do |event|%>
+    <%= event.text_field("name") %>
+        <%end%>
+    </div>
+          
+              <div class="allthethingslinkedtothispost">
+                  <%=form.label :thing_ids, "All the things you talk about"%>
+  <%= form.collection_check_boxes("thing_ids", @post.things, :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= Thing.find(stuff.value).name %><%= Thing.find(stuff.value).image ? (image_tag Thing.find(stuff.value).image.to_s, alt: "", class: "imageprofilethread" ) : ""%>
+  <button type="button" onclick="$.ajax({type:'post', url:'/talkaboutthis/<%=stuff.value%>'});">talk about this</button>
+
+                                    <%end%>
+            
+          </div>
+    
+
+
+<div class="field">
+
+    <%= form.label :post_type_ids, "Post type" %>
+    <%= form.select("post_type_ids",PostType.all.collect {|p| [ p.name, p.id ] },{prompt: 'select post types'}, { size: 5,multiple: true }) %>
+</div>
+
+<div class="field">
+
+    <%= form.label :otherposts, "Make an echo to this post" %>
+    <%= form.text_field("otherposts",value: @post.otherposts.pluck(:id).join(','))%>
+</div>
+<div class="field">
+    <%= form.label :commentapost, "Comment a post" %>
+    <%= form.text_field("commentapost",value: (post.oldercomment ? post.oldercomment.id : ""))%>
+</div>
+
+<script>
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+    $( "#post_commentapost" ).keyup(function () {
+      var commentpost=$(this);
+      commentpost.autocomplete({
+        source: function(request, response){
+          $.ajax({url:'/searchpost?post='+commentpost.val(),
+            success:function(data){
+              response(data);
+            }
+          });
+        },
+    select: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    }
+      });
+});
+      var autresposts=$('#post_otherposts');
+    autresposts.on( "keydown", function( event ) {
+
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      }).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          console.log(request,response);
+    $.ajax({
+        type: "GET",
+      url: "/searchpost?post="+autresposts.val(),
+      success:function(availableTags){
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+      }});
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+
+
+
+</script>
+  <div class="field">
+    <%= form.hidden_field :post_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+
+  <% if post.expired %>
+  <div class="field">
+
+      <p>Le post a expiré</p>
+  </div>
+  <%else%>
+    <div class="field">
+      <%= form.label :expired, "Le post a expiré" %>
+      <%= form.check_box :expired %>
+    </div>
+  <%end%>
+
+        </div>
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav12"  id="tab12">
+            <h2><%=check_box_tag(:asifyousentemail, :email)%><%=label :asif, "do as if you send an email"%></h2>
+        <% post.emails.each do |email|%>
+        <%=form.fields_for :emails, email do |emailspost|%>
+<div class="field">
+<%= emailspost.label :to %>
+<%= emailspost.text_field :to %>
+</div>
+<div class="field">
+<%= emailspost.label :from %>
+<%= emailspost.text_field :from %>
+</div>
+<div class="field">
+<%= emailspost.label :subject %>
+<%= emailspost.text_field :subject %>
+</div>
+<div class="field">
+<%= emailspost.label :content %>
+<%= emailspost.text_area :content %>
+</div>
+<div class="field">
+<%= emailspost.label :destroy, "destroy this email" %>
+<%= emailspost.check_box :_destroy %>
+</div>
+
+
+
+             <button class="renderemail" type='button' onclick="$.ajax({type:'post',url: '/renderoneemail/<%=email.id%>.js'});">render this email</button>
+       
+        <%end%>
+        <%end%>
+        </div>
+        <div class="tab-pane fade" role="tabpanel" aria-labelledby="nav5"  id="tab5">
+          <h2><%=@colonnes[5]%></h2>
+
+<div class="field people-jingles">
+</div>
+<%= form.hidden_field :id, value: @post.id%>
+
+    <div class="field">
+<%post.usurpations.each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>
+    <div class="field">
+<%post.hackedpeople.where('people.id NOT IN (?)', post.usurpation_ids).each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>
+<script>
+$('label[for^=post_jingle_ids_]').each(function(){
+$(this).html('<audio src="/assets/'+$(this).html()+'" controls=""></audio>');
+});
+ function on() {
+  document.getElementById("react").style.display = "block";
+  document.getElementById("reactpage").style.display = "block";
+}
+
+function off() {
+  document.getElementById("react").style.display = "none";
+  document.getElementById("reactpage").style.display = "none";
+} 
+</script>
+    <div class="field">
+        <%= render "inputvideo", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputrecording", form: form %>
+    </div>
+    <div class="field">
+        <%= render "inputphotoswebcam", form: form %>
+    </div>
+        </div>
+        <div class="tab-pane fade"  role="tabpanel" aria-labelledby="nav6"  id="tab6">
+          <h2><%=@colonnes[6]%></h2>
+
+<div class="field">
+  <%=form.label :inverse_hacking, "Inverser la relation de hacking"%>
+  <%=form.check_box :inverse_hacking%>
+</div>
+    <%if @post.posts_surnames.where.not(id:nil).last%>
+    <%=link_to "hacker", usurp_post_path(id: @post.id,idsurname: @post.posts_surnames.where.not(id:nil).last.id) %>
+    <%end%>
+            <%@post.moussaillonsdecepost.each do |moussaillon|%>
+
+<%=render partial: 'people', collection: [moussaillon], as: :person%>
+<%end%>
+
+        <%= form.fields_for :posts_surnames do |f| %>
+                          <div class="field">
+
+
+                    </div>
+
+
+
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+
+          <div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="placessurnamesattributes">
+                                <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplacetosurnameattribute=true'});">add a place</button>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy, "remove this place" %>
+
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+                                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+                    <div class="allthesailors-list"> 
+      <%= f.label :person_id, "Sailors " %>
+      <%= f.collection_radio_buttons(:person_id, Person.afficherceuxla, :id, :name) do |ff| %>
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                        <%=  f.radio_button( "person_id", nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>
+
+      </div>
+    <div class="profilepics">
+      <%= f.collection_radio_buttons(:profilepic_id, Profilepicture.all, :id, :name) do |ff| %>
+        <%=ff.radio_button %><%=render Profilepicture.find(ff.value)%>
+                        <%end%>
+    </div>
+          <div>
+    <%=f.hidden_field :sailor_ids, value: @moussaillons.pluck(:id).join(',') %>
+          </div>
+
+    <!--<% @post.moussaillonsdecepost.each_with_index do |mouss,i| %>
+                          <div class="field">
+
+        <p>Hacking <%=render mouss%></p>
+        <%= f.label :people_hacked_ids, "Hacking sailor N°#{i+1} " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_check_boxes(:people_hacked_ids, @peoplesearched+@post.peopleintheusurpations, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render Person.find(ff.value)%>
+                        <%end%>
+      </div>
+        </div>
+
+    <%end%>-->
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+
+<%end%>
+  <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+
+</div>
+
+      </div>
+     
+<% end %>
+
+  
+  </div>

@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+<h1>
+ <%= [(@withorwithoutyou.withthem.length > 0 ? "avec "+@withorwithoutyou.withthem.map{|g|render g}.to_sentence.html_safe : nil),(@withorwithoutyou.withoutthem.length > 0 ? "sans "+@withorwithoutyou.withoutthem.map{|g|render g}.to_sentence.html_safe : nil)].select{|x|x}.to_sentence.html_safe%>
+</h1>
+  <div class="card-group">
+
+<%=render as: :task, partial: "tasks/task", collection: @withorwithoutyou.tasks%>
+</div>
+<%= link_to 'Edit', edit_withorwithoutyou_path(@withorwithoutyou) %> |
+<%= link_to 'Back', withorwithoutyous_path %>

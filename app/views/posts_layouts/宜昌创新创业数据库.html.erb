@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>宜昌创新创业数据库</title><link type="text/css" href="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/style.css" rel="stylesheet">
+
+    <script language="JavaScript" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/tools.js" type="text/javascript"></script>
+    <script language="javascript" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/jquery-1.js" type="text/javascript"></script>
+    <script language="javascript" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/jquery_002.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        #banner {position:relative; width:230px; height:176px; border:1px solid #666; overflow:hidden;}
+        #banner_list img {border:0px;}
+        #banner_bg {position:absolute; bottom:0;background-color:#000;height:30px;filter: Alpha(Opacity=30);opacity:0.3;z-index:1000;cursor:pointer; 
+        width:478px; }
+        #banner_info{position:absolute; bottom:0; left:5px;height:22px;color:#fff;z-index:1001;cursor:pointer}
+        #banner_text {position:absolute;width:120px;z-index:1002; right:3px; bottom:3px;}
+        #banner ul {position:absolute;list-style-type:none;filter: Alpha(Opacity=80);opacity:0.8; border:1px solid #fff;z-index:1002;
+	                margin:0; padding:0; bottom:3px; right:5px;}
+        #banner ul li { padding:0px 8px;float:left;display:block;color:#FFF;border:#e5eaff 1px solid;background:#6f4f67;cursor:pointer}
+        #banner ul li.on { background:#900}
+        #banner_list a{position:absolute; text-align:center; vertical-align:middle}        
+        
+    </style>
+
+    <script type="text/javascript"> 
+function SetImgAutoSize(obj,width,height) 
+{ 
+//var img=document.all.img1;//获取图片 
+var img=obj; 
+var MaxWidth=width;//设置图片宽度界限 
+var MaxHeight=height;//设置图片高度界限 
+var HeightWidth=img.offsetHeight/img.offsetWidth;//设置高宽比 
+var WidthHeight=img.offsetWidth/img.offsetHeight;//设置宽高比 
+//	if(img.readyState!="complete")return false;//确保图片完全加载 
+	if(MaxWidth!="")
+	{
+			if(img.offsetWidth>MaxWidth)
+				{ 
+					img.width=MaxWidth; 
+					img.height=MaxWidth*HeightWidth; 
+				} 
+	}
+
+	if (MaxHeight!="")
+	{
+		if(img.offsetHeight>MaxHeight)
+			{ 
+				img.height=MaxHeight; 
+				img.width=MaxHeight*WidthHeight; 
+			} 
+	}
+
+} 
+    </script>
+
+    <script type="text/javascript">
+    function showDiv()
+    { 
+        var userSession= document.getElementById('ctl00_UserSession')
+        if(null!=userSession)
+        {
+            if(""!=userSession.value)
+            {
+                document.location.href="MRulesList.aspx";
+                return;
+            }
+        }
+        document.getElementById('popDiv').style.display='block';
+        document.getElementById('bg').style.display='block';
+    }
+
+    function closeDiv()
+    {
+        document.getElementById('popDiv').style.display='none';
+        document.getElementById('bg').style.display='none';
+    }
+    function greadreload(){
+        document.images["imggread"].src = "GreadCoad.aspx?dumy=" + Math.random();
+        //alert(document.images["imggread"].src);
+    }
+    function OnKey() {
+        if(event.keyCode==13)
+        {
+            if(document.getElementById('popDiv').style.display=='block')
+            {
+                document.getElementById('ctl00_lbnLogin').focus();
+                document.getElementById('ctl00_lbnLogin').click();
+            }
+        }
+    }
+    
+    function DynamicTitle() {
+        var webSiteName = "";
+        if (webSiteName != "") 
+        {
+            document.title = webSiteName;
+        }
+        else
+        {
+            document.title = "宜昌创新创业数据库";
+        }
+    }
+    
+    </script>
+
+    <style type="text/css">
+        /*弹出层的STYLE*/
+        html,body {height:100%; margin:0px; font-size:12px;}
+
+        .mydiv {
+        text-align: center;
+        font-size: 12px;
+        overflow-y:auto;
+        z-index:99999;
+        width: 265px;
+        height: 400px;
+        left:50%;/*FF IE7*/
+        top: 30%;/*FF IE7*/
+
+        margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+        margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+
+        margin-top:0px;
+
+        position:fixed!important;/*FF IE7*/
+        position:absolute;/*IE6*/
+
+        _top:       expression(eval(document.compatMode &&
+                    document.compatMode=='CSS1Compat') ?
+                    documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+                    document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+
+        }
+
+
+        .bg {
+        background-color: #999;
+        width: 100%;
+        height: 100%;
+        left:0;
+        top:0;/*FF IE7*/
+        filter:alpha(opacity=50);/*IE*/
+        opacity:0.5;/*FF*/
+        z-index:99998;
+
+        position:fixed!important;/*FF IE7*/
+        position:absolute;/*IE6*/
+
+        _top:       expression(eval(document.compatMode &&
+                    document.compatMode=='CSS1Compat') ?
+                    documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+                    document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+
+        }
+        /*The END*/
+
+        .loginbar{ padding:0 0 10px 0; height:22px;}
+        .loginbar span{ display:block; float:left; line-height:22px; font-size:14px; color:#515151;}
+        .loginbar input{ display:block; float:left; width:178px; padding:0 3px; border:#B9C3CC 1px solid; height:20px; line-height:20px;}
+        .loginbar span em{ padding:0 7px;}
+        .loginbar .code{ width:98px;}
+        .loginbar .code_img{ width:79px; height:21px; float:right; border:none; padding:0;}
+</style>
+
+   <script type="text/javascript">
+    //设为首页 www.ecmoban.com
+    function SetHome(obj, url) {
+        try {
+            obj.style.behavior = 'url(#default#homepage)';
+            obj.setHomePage(url);
+        } catch (e) {
+            if (window.netscape) {
+                try {
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                } catch (e) {
+                    alert("抱歉，此操作被浏览器拒绝！nn请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'");
+                }
+            } else {
+                alert("抱歉，您所使用的浏览器无法完成此操作。nn您需要手动将【" + url + "】设置为首页。");
+            }
+        }
+    }
+
+    //收藏本站 bbs.ecmoban.com
+    function AddFavorite(title, url) {
+        try {
+            window.external.addFavorite(url, title);
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            }
+            catch (e) {
+                alert("抱歉，您所使用的浏览器无法完成此操作。nn加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+</script>
+
+
+      
+    <meta name="viewport" content="width=device-width"><link href="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/bootstrap.css" rel="stylesheet">
+     <style type="text/css">
+        .nav li{
+        float: left;
+        font-size: 18px;
+        width: 16.668%;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .nav li:hover{
+        background-color:#ff0012;
+    }
+    .input-group-addon {
+            width: 145px;
+            height: 51px;
+            padding: 6px 12px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1;
+            color: #ffffff;
+            background-color: #0ea7cb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    .col-md-12 img{
+        width:13.9%; 
+    }
+    .btn-primary:hover{
+        color:#fff;
+        background-color:#1e94f3;
+        border-color:#128ef2}
+    .btn-primary:focus{
+        box-shadow:0 0 0 .2rem rgba(66,165,245,.5);
+    }
+    </style>
+</head>
+<body onload="javascript:DynamicTitle()" style="background: #0ea7cb; padding: 0;margin: 0;">
+    <form name="aspnetForm" method="post" action="HBrowseDetail.aspx?id=e8d10eccb7867352c78ee01513df7362&amp;wc=0" id="aspnetForm" onkeydown="OnKey()">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTkzMjM3NjY0OA9kFgJmD2QWAgIDD2QWAgIFD2QWBAIBDw8WAh4EVGV4dAWuLjxkaXYgY2xhc3M9J01ibGtfQ29udGVudCc+PGRpdiBjbGFzcz0nTVRpdGxlJz5Nb3JvY2NhbiBCb3kgWmhvdSBDaGVueHVuOiBZaWNoYW5nLCBhIENpdHkgbGlrZSBhIENoaW5lc2UgUGFpbnRpbmc8L2Rpdj48aHIgY2xhc3M9J01ocicgLz48ZGl2IGNsYXNzPSJNYmxrXzA3Ij4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGFibGUgYm9yZGVyPSIwIiBjZWxsU3BhY2luZz0iMCIgY2VsbFBhZGRpbmc9IjAiID4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGJvZHk+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImRldGFpbGluZm8iIGhlaWdodD0iMjIiIHZBbGlnbj0idG9wIiB3aWR0aD0iMzc1Ij48c3Bhbj7mlofnq6DmnaXmupDvvJo8L3NwYW4+5Lit5Zu9KuWunOaYjDwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KCSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImRldGFpbGluZm8iIGhlaWdodD0iMjIiIHZBbGlnbj0idG9wIiBjb2xTcGFuPSIyIj48c3Bhbj7lhbMg6ZSuIOivje+8mjwvc3Bhbj7lrpzmmIw8L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iZGV0YWlsaW5mbyIgaGVpZ2h0PSIyMiIgdkFsaWduPSJ0b3AiIGNvbFNwYW49IjIiPjxzcGFuPuWOn+aWh+mTvuaOpe+8mjwvc3Bhbj48YSBocmVmPSJodHRwOi8vd3d3LnlpY2hhbmcuZ292LmNuL2NvbnRlbnQtNjEwNTctMTAwNTQ0OC0xLmh0bWwiIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vd3d3LnlpY2hhbmcuZ292LmNuL2NvbnRlbnQtNjEwNTctMTAwNTQ0OC0xLmh0bWw8L2E+PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RyPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3Rib2R5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RhYmxlPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PjxkaXYgc3R5bGU9J21hcmdpbjoxMnB4O292ZXJmbG93OiBhdXRvOyc+PHAgc3R5bGU9InRleHQtYWxpZ246IGNlbnRlcjsiPjwvcD48Y2VudGVyPjxpbWcgaHNwYWNlPSIzIiB2c3BhY2U9IjMiIHNyYz0iR2V0QmluYXJ5RGF0YS5hc3B4P2tleT1iM2U4ODMxYjVkZWZjMWNjZDM1NmQyNDQ1YzRjMjZjNyZ0eXBlPS5qcGciIGJvcmRlcj0iMCIgIG9ubG9hZD0iU2V0SW1nQXV0b1NpemUodGhpcyw2MDAsJycpOyIiPjwvY2VudGVyPjxwIHN0eWxlPSJ0ZXh0LWFsaWduOiBjZW50ZXI7Ij5Nci4gWmhvdSB3YXMgYmVpbmcgaW50ZXJ2aWV3ZWQuIChQaG90b2dyYXBoZWQgYnkgUmVwb3J0ZXIgRnUgQmVpYmllKTwvcD48cD7jgIDjgIBPbiBhIHdlZWtlbmQgaW4gT2N0b2JlciwgWmhvdSBDaGVueHUgYW5kIGhpcyBmcmllbmRzIG9mIGEgYmljeWNsZSBjbHViIHdobyBsb3ZlZCB0byByaWRlLCB0b29rIGEgcm91bmQgdHJpcCBmcm9tIFlpY2hhbmcgQ2l0eSB0byB0aGUgVGhyZWUgR29yZ2VzIFRyaWJlIFNjZW5uaWMgU3BvdC4gVGhlIGRpc3RhbmNlIG9mIDYzIGtpbG9tZXRlcnMgdG9vayAzIGhvdXJzLCA0MSBtaW51dGVzIGFuZCA0NSBzZWNvbmRzLiBaaG91IENoZW54dSB3YXMgdmVyeSBzYXRpc2ZpZWQgd2l0aCB0aGlzIG5ldyByZWNvcmQuIEhlIGRpc3BsYXllZCB0aGlzIHJlY29yZCB0byB0aGUgY2lyY2xlIG9mIGhpcyBXZWNoYXQgZnJpZW5kcyAtLS1hbiBhcHBsaWNhdGlvbiBvbiB0aGUgbW9iaWxlIHBob25lLCBhbmQgcHJvdWRseSBzYWlkIHRoYXQgaGUgaGFzIGNvbXBsZXRlZCB0aGUgY2hhbGxlbmdlLjwvcD48cD7jgIDjgIBMaWtlIGFsbCBmb3JlaWduZXJzIGNvbWluZyB0byBDaGluYSB0byBzdHVkeSwgQXltYW4gQ2hlcmlmaSBmcm9tIE1vcm9jY28sIHdobyBpcyBjdXJyZW50bHkgc3R1ZHlpbmcgYXQgdGhlIFNjaG9vbCBvZiBDaXZpbCBhbmQgRW5naW5lZXJpbmcgYXQgdGhlIFRocmVlIEdvcmdlcyBVbml2ZXJzaXR5LCBnYXZlIGhpbXNlbGYgYSBwb2V0aWMgQ2hpbmVzZSBuYW1lIHdpdGggdGhlIGhlbHAgb2YgaGVyIGZyaWVuZHM6IFpob3UgQ2hlbnh1LiAmbGRxdW87Q2hlbiBYdSBpbiBDaGluZXNlIG1lYW5zIHRoZSBlYXJseS1yaXNpbmcgc3VuLiZyZHF1bztXaXRoIGEgbG92ZSBmb3IgQ2hpbmVzZSBuYW1lcyBhbmQgQ2hpbmVzZSBjdWx0dXJlLCBoZSBoYXMgYmVlbiB3ZWxsIGludGVncmF0ZWQgaW50byB0aGUgY3VycmVudCBjaXJjbGUgYW5kIGxpZmUgaW4gWWljaGFuZyBmb3IgZm91ciB5ZWFycy48L3A+PHA+44CA44CAQXMgYSBzdHJhbmdlciB0byB0aGUgY2l0eSwgWmhvdSBmZWx0IGxvbmVseSBhdCBmaXJzdCB3aGVuIGhlIGFycml2ZWQgaW4gWWljaGFuZy4gQnV0IG5vdywgaGUgaXMgZnJlZSBmcm9tIHRoZSBsb25lbGluZXNzIG9mIGJlaW5nIGFueXdoZXJlIGFsb25lIGJlY2F1c2UgaGUgY291bGQgYWx3YXlzIGZpbmQgaGlzIGZyaWVuZHMgYXJvdW5kIGhpbS48L3A+PHA+44CA44CAWmhvdSBDaGVueHUgYmx1bnRseSBzYWlkIHRoYXQgdGhlIGtpbmRuZXNzIGFuZCBlbnRodXNpYXNtIG9mIFlpY2hhbmcgcGVvcGxlIG1hZGUgaGltIGZlZWwgYXQgaG9tZS4gSGUgZW5qb3lzIGl0IGFuZCBjaGVyaXNoZXMgdGhlIGdvb2QgdGltZXMgaGUgaGFzIGF0IHByZXNlbnQuPC9wPjxwPuOAgOOAgFRoZSBDaGluZXNlIHNlbnRlbmNlICZsZHF1bzvlrpzmmIzlpKombHNxdW875aW96aqRJnJzcXVvO+S6hu+8gSZyZHF1bzsgbWVhbnMgWWljaGFuZyBpcyBhIGdvb2QgY2l0eSBmb3IgcmlkaW5nLiBBbHRob3VnaCB0aGUgQ2hpbmVzZSBleHByZXNzaW9uIGlzIG5vdCB2ZXJ5IGFjY3VyYXRlLCBpdCBkb2VzIG5vdCBoaW5kZXIgaGlzIGxvdmUgZm9yIHJpZGluZyBpbiBZaWNoYW5nLiBBbG1vc3QgZXZlcnkgb25jZSBpbiBhIHdoaWxlLCBoZSB3b3VsZCBnbyBvbiBhIHNob3J0LWRpc3RhbmNlIHJpZGUgd2l0aCBmcmllbmRzIGZyb20gdGhlIHNjaG9vbCBvciBjbHViLiBIaXMgZm9vdHN0ZXBzIGhhdmUgYmVlbiBwcmludGVkIGluIFRoZSBUaHJlZSBHb3JnZXMgRGFtLCB0aGUgVGhyZWUgR29yZ2VzIEdvcmdlcyBUcmliZSwgdGhlIE1vamkgTW91bnRhaW4sIHRoZSBXZW5mbyBNb3VudGFpbiwgdGhlIFl1cXVhbiBUZW1wbGUuLi4gdGhlIGZhbW91cyBzY2VuaWMgc3BvdHMgYW5kIGFsc28gc29tZSB1bmtub3duIHNjZW5pYyBzcG90cy4gVGhlIGxvbmdlc3QgdHJpcCBoZSBoYXMgdGFrZW4gaXMgY3ljbGluZyBmcm9tIHRoZSB1cmJhbiBhcmVhIGFsb25nIHRoZSBuYXRpb25hbCByb2FkIGFsbCB0aGUgd2F5IHRvIENoYW5neWFuZywgdGhyb3VnaCBZaWR1LCBvdmVyIFlpbGluZywgaXQgdG9vayBuZWFybHkgc2l4IGhvdXJzIHRvIHJldHVybiB0byB0aGUgY2l0eS48L3A+PHA+44CA44CAJmxkcXVvO1lpY2hhbmcgaXMgYSBncmVhdCBwbGFjZSwgYW5kIHlvdSBjYW4gZmluZCBtYW55IHN1cnByaXNlcyBoZXJlLiZyZHF1bzsgWmhvdSBDaGVueHUgZGVzY3JpYmVkIHRoZSBzY2VuZXJ5IGhlIGVuY291bnRlcmVkIGR1cmluZyBjeWNsaW5nOiAmbGRxdW87U29tZXRpbWVzIHRoZXJlIGlzIGEgbGFyZ2UgcG9uZCB3aXRoIGdyYXNzLCBpbiB3aGljaCB5b3UgY2FuIHNlZSB3aWxkIGR1Y2tzIGFuZCBzb21lIHVua25vd24gYmlyZHMuIFNvbWV0aW1lcyBpdCBpcyBhIGxhcmdlIHNlY3Rpb24gb2Ygd2luZGluZyByb2FkIC4gV2Ugc2NyZWFtZWQgc2xpZGluZyBkb3duIHRoZSBsb25nIHNsb3BlLCBhbmQgaXQgd2FzIHdvbmRlcmZ1bCB0byBzZWUgdGhlIGNvbG9yZnVsIGxlYXZlcyBpbiB0aGUgZm9yZXN0IGNoYW5naW5nIGNvbnN0YW50bHkuJnF1b3Q7PC9wPjxwPuOAgOOAgEluIHRoZSBjb3Vyc2Ugb2YgY3ljbGluZyBhbG9uZyB0aGUgcm9hZCwgaGUgbWFkZSBmcmllbmRzLCBnYWluZWQgaGFwcGluZXNzIGFuZCBpbmNyZWFzZWQgbG92ZSBmb3IgWWljaGFuZy4gJmxkcXVvO1lpY2hhbmcgaXMgYXMgYmVhdXRpZnVsIGFzIG15IGhvbWV0b3duIENhc2FibGFuY2EuJnJkcXVvOyBIZSBzYWlkOiAmbGRxdW87QnV0IHRoaXMgYmVhdXR5IGRpZmZlcnMgaW4gdGhhdCBDYXNhYmxhbmNhIGlzIGxpa2UgYW4gb2lsIHBhaW50aW5nIHdpdGggYnJpZ2h0IGNvbG9ycyBhcyBZaWNoYW5nIGlzIGxpa2UgYW4gYXJ0aXN0aWMgQ2hpbmVzZSBwYWludGluZy4mcmRxdW87PC9wPjxwPuOAgOOAgEhpcyBmYXZvcml0ZSBwbGFjZSBpbiBZaWNoYW5nIHdhcyBub3Qgb25seSB0aGUgbmF0dXJhbCBiZWF1dHkgYW5kIGZyaWVuZGx5IHBlb3BsZSwgYnV0IGFsc28gdGhlIGF0dGl0dWRlIG9mIHBlb3BsZSBkZWFsaW5nIHdpdGggdGhpbmdzLiAmbGRxdW87VGhleSByZXNwZWN0IG90aGVyIHBlb3BsZSYjMzk7cyBmZWVsaW5ncyBhbmQgbWFrZSBlZmZvcnRzIHRvIHNwZW5kIHRpbWUgaW4gY2hhbmdpbmcgdGhlIGJhZCB0aGluZ3MuJnJkcXVvOyBXaGVuIEkgZmlyc3QgY2FtZSB0byBZaWNoYW5nLCB0aGVyZSB3ZXJlIHNvbWUgc21vZ2d5IGRheXMgZnJvbSB0aW1lIHRvIHRpbWUuICZsZHF1bztQZW9wbGUgaW4gWWljaGFuZyBhcmUgZGV0ZXJtaW5lZCB0byBjaGFuZ2UsIGFuZCBub3cgdGhlIHNreSBpcyBtdWNoIGJsdWVyIHRoYW4gYmVmb3JlISAmcmRxdW87PC9wPjxwPuOAgOOAgFpob3UgQ2hlbnh1IGNvdWxkIHBlcmZvcm0gYSBzdHVudDogQi1ib3ggKEJlYXRib3gpLiBIb2xkaW5nIHRoZSBjaXJjbGUgYXJvdW5kIHRoZSBsaXBzIHdpdGggYm90aCBoYW5kcywgdGhlIHNvdW5kIG9mIHZhcmlvdXMgYmVhdHMgYW5kIG9yY2hlc3RyYWwgaW5zdHJ1bWVudHMgYnVyc3Qgb3V0IGF0IHRoZSBzYW1lIHRpbWUgd2l0aCB0aGUgY2hhbmdlcyBvZiB0b25ndWUgbXVzY2xlIGFuZCBicmVhdGgsIHdoaWNoIGlzIHZlcnkgdml2aWQgYW5kIHF1aXRlIHBvcHVsYXIgd2l0aCB0aGUgYXVkaWVuY2UuIEJlY2F1c2Ugb2YgdGhpcywgWmhvdSBDaGVueHUgYmVjYW1lIGEgcmVndWxhciBndWVzdCBvbiB0aGUgc3RhZ2Ugb2YgVGhyZWUgR29yZ2VzIFVuaXZlcnNpdHkuIEp1c3QgYmVmb3JlIHRoZSB0aGVhdHJpY2FsIHBlcmZvcm1hbmNlIHBhcnR5ICZsZHF1bztSZWNhbGxpbmcgV2FuZyBaaGFvanVuIGluIE1pZC1BdXR1bW4gRmVzdGl2YWwmcmRxdW87IGhlbGQgaW4gWWljaGFuZywgWmhvdSBDaGVueHUgYW5kIGEgZG96ZW4gb3RoZXIgZm9yZWlnbiBmcmllbmRzIHBlcmZvcm1lZCBhIHNvbmcgY2FsbGVkZnJpZW5kcywgYW5kIGhlIGludGVyc3BlcnNlZCB3aXRoIHRoZSBCLWJveCBwZXJmb3JtYW5jZSwgd2hpY2ggYmVjYW1lIHRoZSBiaWdnZXN0IGhpdCBvZiB0aGUgd2hvbGUgc2hvdy48L3A+PHA+44CA44CAJmxkcXVvO0kgbG92ZSBZaWNoYW5nLCBldmVyeXRoaW5nIGhlcmUgaXMgd29uZGVyZnVsLiZyZHF1bzsgWmhvdSBDaGVueHUgc2FpZCB0aGF0IGlmIG9uZSBkYXkgaGUgaGFkIHRvIGxlYXZlLCBoZSBtdXN0IGJlIHZlcnkgdW53aWxsaW5nIHRvLiAmbGRxdW87QmVmb3JlIHRoYXQgbW9tZW50IGNvbWVzLCBJIHdpbGwgcmlkZSBhcm91bmQgZXZlcnkgY29ybmVyIGFuZCBhbGwgbW91bnRhaW5zIGFuZCByaXZlcnMgaW4gWWljaGFuZy4mcmRxdW87IEhpcyBleWVzIHNwYXJrbGVkLCBoZSBzYWlkOiAmbGRxdW87SSB3aWxsIGxlYXZlIG15IGZvb3RwcmludHMgaGVyZSBmb3JldmVyLiZyZHF1bzsgKFJlcG9ydGVyOiBXYW5nIFlpbmcpPC9wPjwvZGl2PjwvZGl2PmRkAgMPZBYCZg9kFgICAQ9kFgICAQ8WAh4LXyFJdGVtQ291bnQCARYCAgEPZBYEZg8VAyBlOGQxMGVjY2I3ODY3MzUyYzc4ZWUwMTUxM2RmNzM2MkJNb3JvY2NhbiBCb3kgWmhvdSBDaGVueHVuOiBZaWNoYW5nLCBhIENpdHkgbGlrZSBhIENoaW5lc2UgUGFpbnRpbmcRTW9yb2NjYW4gQm95IFrigKZkAgEPDxYCHg9Db21tYW5kQXJndW1lbnQFIGU4ZDEwZWNjYjc4NjczNTJjNzhlZTAxNTEzZGY3MzYyZGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFOWN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkaGlzdG9yeVJlcGVhdGVyJGN0bDAxJGxidERlbGV0ZQ8vD2LVmF8iLnBb979IbriH7Ejs">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/WebResource.js" type="text/javascript"></script>
+
+
+<script src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/ScriptResource.js" type="text/javascript"></script>
+<script src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/ScriptResource_002.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBwLtweBDAri6qP0MAofqh/QEAsP/6sQNAs2Og/oHAoze+dkNArXg88cL/fXKWC+8pRuEFKhYnHoMRhszECc=">
+</div>
+    <input name="ctl00$UserSession" type="hidden" id="ctl00_UserSession">
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', document.getElementById('aspnetForm'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tctl00$ContentPlaceHolder1$UpdatePanel18'], [], [], 90);
+//]]>
+</script>
+
+        
+       
+         <div class="navbar-fixed-top" style=" height:679px;width: auto; background: url(img/主题.png)center center no-repeat;">
+            <div class="container" style="padding:0px;">
+                <div class="col-md-12" style="padding-top:73px;">
+                    <ul class="nav" style="list-style:none; height: 70px; background-color: #0ea7cb; color:#ffffff;font-family:Microsoft YaHei;">
+                        <li><a href="http://61.136.150.171:8083/Default.aspx" style="text-decoration:none;color:#ffffff;">首页</a></li>
+                        <li><a href="http://61.136.150.171:8083/SearchNewPage.aspx?class=02.1." target="_blank" style="text-decoration:none;color:#ffffff;">最新动态</a></li>
+                        <li><a href="http://61.136.150.171:8083/SearchNewPage.aspx?class=02.3." target="_blank" style="text-decoration:none;color:#ffffff;">创新创业</a></li>
+                        <li><a href="http://61.136.150.171:8083/SearchNewPage.aspx?class=02.4." target="_blank" style="text-decoration:none;color:#ffffff;">就业服务</a></li>
+                        <li><a href="http://61.136.150.171:8083/SearchNewPage.aspx?class=02.5." target="_blank" style="text-decoration:none;color:#ffffff;">政策指导</a></li>
+                        <li><a href="http://61.136.150.171:8083/SearchNewPage.aspx?class=02.2." target="_blank" style="text-decoration:none;color:#ffffff;">通知公告</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="background: #ffffff; margin-bottom:29px;">
+            <div class="row">
+                
+
+    <script src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/jquery.js" type="text/javascript"></script>
+
+    <style>
+        #divMsg
+        {
+            position: absolute;
+            width: 730px;
+            height: 510px;
+            font-size: 12px;
+            background: #fff;
+            border: 0px solid #000;
+            z-index: 10001;
+            display: none;
+        }
+        #divMsg #aClose
+	{
+		font-family:Tahoma;
+		border:solid 2px #ccc;
+		padding:0px 5px;
+		text-decoration:none;
+		font-size:12px;
+		color:blue;
+		position:absolute;
+		right:5px;
+		top:5px;
+		line-height:14px;
+		height:14px;
+		width:7px;
+		border-radius:14px;
+		-moz-border-radius:14px;
+		background-color:white;
+	}
+	
+	#divMsg #aClose:hover
+	{
+		border:solid 2px red;
+		color:red;
+	}
+</style>
+    <link href="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/style1.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript">
+     var isIe = (document.all) ? true : false;
+       var mourseflag=false;
+       
+        var showMethods = function(e,id) {
+           var pos=mousePosition(e);
+            $("#div_"+id).css({ left:(((pos.x - 300) > 0) ? (pos.x - 300) : pos.x), top:pos.y, position: "absolute",width: "300px" ,border:" #666 1px solid",background:" #fff" });   
+            $("#div_"+id).show();
+        }
+       
+       function mousePosition(ev) {
+            if (ev.pageX || ev.pageY) {
+                return { x: ev.pageX, y: ev.pageY };
+            }
+            return {
+                x: ev.clientX + document.body.scrollLeft - document.body.clientLeft, y: ev.clientY + document.body.scrollTop - document.body.clientTop
+            };
+        }
+        function getUrlParam(name)
+        {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");   
+            var r = window.location.search.substr(1).match(reg);
+            if (r!=null) return unescape(r[2]); return null;
+        }
+          
+   
+        //关闭窗口 
+        var objAjax;
+        function closeWindow(id) {
+             $("#div_"+id).hide();
+        } 
+           var cid = getUrlParam("id");
+           var wc = getUrlParam("wc");
+            if (wc == "" || wc == null)
+                wc = 0;
+            var ajaxManager = $.manageAjax.create('cacheQueue', { queue: true, cacheResponse: true, maxRequests: 4 });
+            var url = "./ASHX/DetailPageHandler.ashx?id=" + cid ;
+            var targetUrlList = new Array(url+"&wc=0",url+"&wc=1",url+"&wc=2",url+"&type=relationline");
+            var targetDivList = new Array("#relationNews", "#relationBlogs", "#relationForum","#timelistList");
+//            var targetUrlList = new Array(url+"&type=relationline");
+//            var targetDivList = new Array("#timelistList");
+           var i = 0;
+            
+        
+          
+            $.each(targetUrlList, function (i) {
+                ajaxManager.add({
+                    url: targetUrlList[i],
+                    success: function (response) {
+                        if (response.length == 0) {
+                            $(targetDivList[i]).html("暂无数据！");
+                            return;
+                        }
+                        if (targetDivList[i].indexOf("#newlist") > -1)
+                            binddata(targetDivList[i], response);
+                        else {
+                            $(targetDivList[i]).html(response);
+                        }
+                        if (targetDivList[i] == "#timelistList") {
+                            BindEvent();
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (errorThrown || textStatus == "error" || textStatus == "parsererror" || textStatus == "notmodified") {
+                            $(targetDivList[i]).html("请求数据时发生错误！");
+                            return;
+                        }
+                        if (textStatus == "timeout") {
+                            $(targetDivList[i]).html("请求数据超时！");
+                            return;
+                        }
+                    },
+                    beforeSend: function (XMLHttpRequest, textStatus) {
+//                        $(targetDivList[i]).html("<li><div class='loading'><img src='../images/wait_bg.gif' /></div></li>");
+                    }
+                });
+            });
+       
+    </script>
+    <div>
+     <table style="width:100%;margin:auto;">
+        <tbody><tr>
+            <td style="vertical-align:top;width:75%;">
+              <div style="width: 100%;">
+                    <div class="MbContent">
+                        
+                        
+                        <span id="ctl00_ContentPlaceHolder1_lblContent"><div class="Mblk_Content"><div class="MTitle">Moroccan Boy Zhou Chenxun: Yichang, a City like a Chinese Painting</div><hr class="Mhr"><div class="Mblk_07">
+                               <table cellspacing="0" cellpadding="0" border="0">
+                                  <tbody>
+                                   <tr>
+                                        <td class="detailinfo" width="375" valign="top" height="22"><span>文章来源：</span>中国*宜昌</td>
+                                        
+                                    </tr>
+	                                <tr>
+                                         <td class="detailinfo" colspan="2" valign="top" height="22"><span>关 键 词：</span>宜昌</td>
+                                    </tr>
+                                    <tr>
+                                       <td class="detailinfo" colspan="2" valign="top" height="22"><span>原文链接：</span><a href="http://www.yichang.gov.cn/content-61057-1005448-1.html" target="_blank">http://www.yichang.gov.cn/content-61057-1005448-1.html</a></td>
+                                     </tr>
+                                   </tbody>
+                                </table>
+                               </div><div style="margin:12px;overflow: auto;"><p style="text-align: center;"></p><center><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/GetBinaryData.jpeg" onload="SetImgAutoSize(this,600,'');" "="" vspace="3" hspace="3" border="0"></center><p style="text-align: center;">Mr. Zhou was being interviewed. (Photographed by Reporter Fu Beibie)</p><p>　
+　On a weekend in October, Zhou Chenxu and his friends of a bicycle club 
+who loved to ride, took a round trip from Yichang City to the Three 
+Gorges Tribe Scennic Spot. The distance of 63 kilometers took 3 hours, 
+41 minutes and 45 seconds. Zhou Chenxu was very satisfied with this new 
+record. He displayed this record to the circle of his Wechat friends 
+---an application on the mobile phone, and proudly said that he has 
+completed the challenge.</p><p>　　Like all foreigners coming to China to 
+study, Ayman Cherifi from Morocco, who is currently studying at the 
+School of Civil and Engineering at the Three Gorges University, gave 
+himself a poetic Chinese name with the help of her friends: Zhou Chenxu.
+ “Chen Xu in Chinese means the early-rising sun.”With a love for Chinese
+ names and Chinese culture, he has been well integrated into the current
+ circle and life in Yichang for four years.</p><p>　　As a stranger to the
+ city, Zhou felt lonely at first when he arrived in Yichang. But now, he
+ is free from the loneliness of being anywhere alone because he could 
+always find his friends around him.</p><p>　　Zhou Chenxu bluntly said 
+that the kindness and enthusiasm of Yichang people made him feel at 
+home. He enjoys it and cherishes the good times he has at present.</p><p>　
+　The Chinese sentence “宜昌太‘好骑’了！” means Yichang is a good city for 
+riding. Although the Chinese expression is not very accurate, it does 
+not hinder his love for riding in Yichang. Almost every once in a while,
+ he would go on a short-distance ride with friends from the school or 
+club. His footsteps have been printed in The Three Gorges Dam, the Three
+ Gorges Gorges Tribe, the Moji Mountain, the Wenfo Mountain, the Yuquan 
+Temple... the famous scenic spots and also some unknown scenic spots. 
+The longest trip he has taken is cycling from the urban area along the 
+national road all the way to Changyang, through Yidu, over Yiling, it 
+took nearly six hours to return to the city.</p><p>　　“Yichang is a great
+ place, and you can find many surprises here.” Zhou Chenxu described the
+ scenery he encountered during cycling: “Sometimes there is a large pond
+ with grass, in which you can see wild ducks and some unknown birds. 
+Sometimes it is a large section of winding road . We screamed sliding 
+down the long slope, and it was wonderful to see the colorful leaves in 
+the forest changing constantly."</p><p>　　In the course of cycling along 
+the road, he made friends, gained happiness and increased love for 
+Yichang. “Yichang is as beautiful as my hometown Casablanca.” He said: 
+“But this beauty differs in that Casablanca is like an oil painting with
+ bright colors as Yichang is like an artistic Chinese painting.”</p><p>　
+　His favorite place in Yichang was not only the natural beauty and 
+friendly people, but also the attitude of people dealing with things. 
+“They respect other people's feelings and make efforts to spend time in 
+changing the bad things.” When I first came to Yichang, there were some 
+smoggy days from time to time. “People in Yichang are determined to 
+change, and now the sky is much bluer than before! ”</p><p>　　Zhou Chenxu
+ could perform a stunt: B-box (Beatbox). Holding the circle around the 
+lips with both hands, the sound of various beats and orchestral 
+instruments burst out at the same time with the changes of tongue muscle
+ and breath, which is very vivid and quite popular with the audience. 
+Because of this, Zhou Chenxu became a regular guest on the stage of 
+Three Gorges University. Just before the theatrical performance party 
+“Recalling Wang Zhaojun in Mid-Autumn Festival” held in Yichang, Zhou 
+Chenxu and a dozen other foreign friends performed a song calledfriends,
+ and he interspersed with the B-box performance, which became the 
+biggest hit of the whole show.</p><p>　　“I love Yichang, everything here 
+is wonderful.” Zhou Chenxu said that if one day he had to leave, he must
+ be very unwilling to. “Before that moment comes, I will ride around 
+every corner and all mountains and rivers in Yichang.” His eyes 
+sparkled, he said: “I will leave my footprints here forever.” (Reporter:
+ Wang Ying)</p></div></div></span>
+                    </div>
+                </div>
+            </td>
+            <td style="vertical-align:top;width:25%;">
+                <div style="width: 100%; ">
+                    <div class="MbContent" style="visibility:hidden;height:0px;">
+                        <div class="MTitle_01">
+                            <h2 class="title">
+                                相关新闻</h2>
+                        </div>
+                        <div class="Mblk_06">
+                            <ul id="relationNews" class="list_009_f12"><li onmouseover="showMethods(event,'1666')" onmouseout="closeWindow(1666)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_1.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=1dfa15fe239a116de941d99ed558781b&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">Moroccan Boy Zhou Chenxun: Yic</a><div id="div_1666" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="clear: right;padding: 2px 6px 0px 6px;"><img style="float: left;" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/ShowPic.html" width="97px" vspace="3" hspace="3" height="97px" border="0"> The distance of 63 kilometers took 3 hours, 41 minutes and 45 seconds. Zhou Chenxu was very satisfied with this new record. </div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'17562')" onmouseout="closeWindow(17562)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_2.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=3eb15220dc43b88fd1d3ea05cd50ef0e&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">宜昌市城东片区CD</a><div id="div_17562" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;"></div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'8229')" onmouseout="closeWindow(8229)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_3.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=1c3299af8c47c0e174e323581e666e92&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">近几年宜昌</a><div id="div_8229" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;"></div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'6237')" onmouseout="closeWindow(6237)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_4.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=e9fb6eabaad01fcd1ab0944dcd962c54&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">发帖时间(7)(11)(14)(1)</a><div id="div_6237" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;"></div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'1964')" onmouseout="closeWindow(1964)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_5.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=d292ecd24cc19b39c48355ecfdc25a62&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">宜昌游记</a><div id="div_1964" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;">宜昌位于长江中游和上游的分界处，沿江而上，经三峡可达巴蜀之地，顺江而下，可抵.</div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'9261')" onmouseout="closeWindow(9261)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_6.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=96bfa854c56852195ee709553e23b39f&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">《微播大宜昌》2018年8月18日</a><div id="div_9261" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;"></div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'26956')" onmouseout="closeWindow(26956)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_7.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=80c0006e752b6cd418ea11d47b8d72cb&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">时局 - 荆楚网宜昌频道(7)(11)(1</a><div id="div_26956" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;">记者从市环保局获悉，宜昌7月1号至29号的环境监测数据显示，29天里，7天为优，22天为良，空气质量.</div>
+                                                    </li>
+                                               </ul>
+                                           </div></li><li onmouseover="showMethods(event,'6529')" onmouseout="closeWindow(6529)"><img src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_8.gif"><a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=53566645a46afb305c48bd72a1aa9f1c&amp;wc=0" style="padding-left: 5px; font-size: 14px;" target="_blank">发帖时间(7)(11)(14)(18)(22)(26</a><div id="div_6529" class="sub" style="display:none;">
+                                                <ul>
+                                                    <li>
+                                                       <div style="padding: 2px 6px 0px 6px;"></div>
+                                                    </li>
+                                               </ul>
+                                           </div></li></ul>
+                        </div>
+                    </div>
+                    <div class="disH" style="visibility:hidden;height:0px;">
+                    </div>
+                    <div class="MbContent" style="visibility:hidden;height:0px;">
+                        <div class="MTitle_01">
+                            <h2 class="title">
+                                相关论坛</h2>
+                        </div>
+                        <div class="Mblk_06">
+                            <ul id="relationForum" class="list_009_f12">暂无数据！</ul>
+                        </div>
+                    </div>
+                    <div class="disH" style="visibility:hidden;height:0px;">
+                    </div>
+                    <div class="MbContent" style="visibility:hidden;height:0px;">
+                        <div class="MTitle_01">
+                            <h2 class="title">
+                                相关博客</h2>
+                        </div>
+                        <div class="Mblk_06">
+                            <ul id="relationBlogs" class="list_009_f12">暂无数据！</ul>
+                        </div>
+                    </div>
+                    <div class="disH" style="visibility:hidden;height:0px;">
+                    </div>
+                    <div id="ctl00_ContentPlaceHolder1_UpdatePanel18">
+	
+                            <div id="ctl00_ContentPlaceHolder1_history">
+                                
+                                        
+                                        <div class="MbContent">
+                                            <div class="MTitle_01">
+                                                <h2 class="title">
+                                                    浏览历史</h2>
+                                            </div>
+                                            <div class="Mblk_06">
+                                                <ul class="list_009_f12">
+                                    
+                                        <li>
+                                            <a href="http://61.136.150.171:8083/HBrowseDetail.aspx?id=e8d10eccb7867352c78ee01513df7362" title="Moroccan Boy Zhou Chenxun: Yichang, a City like a Chinese Painting" target="_blank" style="float:left;">
+                                            Moroccan Boy Z…
+                                        </a>
+                                            <span style="float: right; margin-right: 10px; margin-top: 5px;">
+                                            <input type="image" name="ctl00$ContentPlaceHolder1$historyRepeater$ctl01$lbtDelete" id="ctl00_ContentPlaceHolder1_historyRepeater_ctl01_lbtDelete" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/hot_delete.gif" onclick="return confirm('您确认删除吗?');" style="border-width:0px;"></span>
+                                        </li>
+                                    
+                                        </ul> </div> </div>
+                                    
+                                
+                                
+                                
+                            </div>
+                        
+</div>
+                </div>
+            </td>
+        </tr>
+    </tbody></table>
+                
+              
+    <div id="divMsg">
+        <a id="aClose" href="javascript:;" onclick="closeDiv();">X</a>
+        <div id="frameList">
+        </div>
+    </div>
+    <script type="text/javascript">
+        function BindEvent() {
+            $("#dates li").bind('mouseover', function () {
+
+                if ($("#dates li").size() == "1") {
+                    return;
+                }
+                var id = this.id;
+                var index = id.split("_")[1];
+                $("#dates li").each(function (i) {
+                    if (this.id != "") {
+                        if (index == i) {
+                            $("#" + this.id + " span").attr("class", "timelineOn");
+                        }
+                        else {
+                            $("#" + this.id + " span").attr("class", "timelineOff");
+                        }
+                    }
+                });
+            });
+
+        }
+        //   var frame = document.createElement("iframe");    
+        //   frame.src = "RelationLineList.aspx?id="+cid; 
+        //   frame.scrolling = "auto";     9
+        //   frame.frameborder = "0";    
+        //   frame.width = "730px";   
+        //   frame.height = "510px";  
+        //   $("#frameList").html("");
+        //   document.getElementById("frameList").appendChild(frame);
+
+
+
+        function openDiv() {
+            window.open("RelationLineList.aspx?id=" + cid, 'newwindow', 'height=550, width=750, top=150, left=300, toolbar=no, menubar=no, scrollbars=no,resizable=no,location=no, status=no')
+            // $("#divMsg").OpenDiv();
+        }
+
+        function closeDiv() {
+            //  $("#divMsg").CloseDiv();	
+        }
+
+
+    </script>
+
+    </div>
+
+            </div>
+             <div class="row">
+                <div class="col-md-12">
+                    <p style="font-family:Microsoft YaHei; font-size: 14px; color: #666666; text-align: center; margin-bottom: 66px;margin-top: 48px;">COPYRIGHT&nbsp;©2017-2020&nbsp;宜昌图书馆&nbsp;ALL&nbsp;RIGHT&nbsp;RESERVED</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <div id="bg" class="bg" style="display: none;">
+        </div>
+        <div id="popDiv" class="mydiv" style="display: none;">
+            <table class="lansetable_bian" style="width: 100%;" cellspacing="0" cellpadding="0" bgcolor="white">
+                <tbody><tr>
+                    <td colspan="2" style="height: 26px; font-size: 14px; font-weight: bold;
+                        background-image: url(../images/top_button_bg.jpg); background-repeat: repeat-x;
+                        line-height: 22px" align="center">
+                        用户登录
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-right: 1px solid #88b1df; padding-top: 10px;">
+                        <div class="loginbar">
+                            <span>&nbsp;&nbsp;用户名：</span>
+                            <input name="ctl00$tbxUsername" type="text" id="ctl00_tbxUsername">
+                        </div>
+                        <div class="loginbar">
+                            <span>&nbsp;&nbsp;密<em></em>码：</span>
+                            <input name="ctl00$tbxPassword" type="password" id="ctl00_tbxPassword">
+                        </div>
+                        <div class="loginbar" style="padding-bottom: 5px">
+                            <span>&nbsp;&nbsp;验证码：</span>
+                            <input name="ctl00$tbxVerify" type="text" id="ctl00_tbxVerify" class="code">
+                            <img id="imggread" onclick="greadreload()" src="%E5%AE%9C%E6%98%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%BA%93.html_fichiers/GreadCoad.gif" style="cursor: pointer;" title="看不清换一张" alt="验证码" width="67px" height="20px">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-size: 14px; height: 25px; padding-right: 20px" align="right">
+                        [<a id="ctl00_lbnLogin" href="javascript:__doPostBack('ctl00$lbnLogin','')" style="color:Blue;text-decoration:underline;">登 录</a>] &nbsp; &nbsp;[<a href="#" onclick="javascript:closeDiv()" style="text-decoration: underline; color: Blue">取 消</a>]
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+
+
+</body></html>

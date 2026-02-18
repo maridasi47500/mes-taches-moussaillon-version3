@@ -1,0 +1,14 @@
+        <%=link_to "", onclick:"$('#post_content_fr').html($('#post_content_fr').html()+$(this).html());$('#post_content_fr').focus();return false;" do %><%=image_tag "/assets/flaggaypride.gif", class: "imageprofilethread"%><%end%>
+        <%=link_to "", onclick:"$('#post_content_fr').html($('#post_content_fr').html()+$(this).html());$('#post_content_fr').focus();return false;" do %><%=image_tag "/assets/flagfrench.gif", width: 30, height: 30,  class: "imageprofilethread"%><%end%>
+        <%1.upto(9) do |p|%>
+            <%=link_to "", onclick:"$('#post_content_fr').html($('#post_content_fr').html()+$(this).html());$('#post_content_fr').focus();return false;" do %><%=image_tag "/assets/party#{p}.gif", width: 30, height: 30,  class: "imageprofilethread"%><%end%>
+            <%end%>
+                <% Post.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost' %>
+          
+</div>
+
+  <% end %>
+

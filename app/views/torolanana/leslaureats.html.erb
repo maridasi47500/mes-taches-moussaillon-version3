@@ -1,0 +1,10 @@
+<%=content_for :mylittlecss do %>
+.mycarousel {
+width: 100%;
+padding: 20px;
+}
+<%end%><h1>
+Les lauréats
+
+</h1>
+<%=render partial: 'persongraduatedschools/person', collection: @people, as: :p%>

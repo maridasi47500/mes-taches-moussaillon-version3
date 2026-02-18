@@ -1,0 +1,90 @@
+<%= form_with(model: musicalscore, local: true) do |form| %>
+  <% if musicalscore.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(musicalscore.errors.count, "error") %> prohibited this musical score from being saved:</h2>
+
+      <ul>
+        <% musicalscore.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+    <%= form.label :seethekeys %>
+    <%= form.check_box :seethekeys %>
+  </div>
+  <div class="field">
+    <%= form.label :seemyinstrument %>
+    <%= form.check_box :seemyinstrument %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'musicalkey_ids', collec: musicalscore.musicalkeys, mesmodele:"musicalkeys"%>
+</div>
+
+<div class="field">
+<%=form.collection_check_boxes(:musicalinstrument_ids, musicalscore.musicalinstruments, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Musicalinstrument.find(b.value)%>
+<%end%>
+
+<% end %>
+  </div>
+
+      <div>
+<%=label_tag :my_musical_instruments%>
+<%= text_field_tag :cherchonsattici, "",onchange:"chercherinstrument(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectinstrument(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[json_musicalkeys_path]%>
+<%@choisis=[keys_musicalscores_path]%>
+<%@nom=['musicalkeys']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+
+
+function chercherinstrument(field,al){
+$.ajax({url: '<%=json_musicalinstruments_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name||data[i].name_<%=I18n.locale.to_s%>;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectinstrument(field,greatpeople){
+$.ajax({url: '<%=musicalinstrument_musicalscores_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

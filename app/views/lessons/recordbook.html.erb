@@ -1,0 +1,44 @@
+<h1>Phrases du moussaillon connecté</h1>
+<h3>"<%=@lesson.title%>"</h3>
+<ul>
+<%@lesson.lesson_titles.user(current_user.id).each do |content|%>
+
+<li>
+<%=content.mycontent%>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "users/userauthor", collection: [content.user], as: :user%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+
+<%end%>
+</li>
+<%end%>
+</ul>
+<ul>
+<%@lesson.senrecs.groupbysentence(current_user.id).each do |content|%>
+
+<li>
+<%=content.mycontent%>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "users/userauthor", collection: [content.user], as: :user%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+
+<%end%>
+</li>
+<%end%>
+</ul>
+
+<ul>
+<%@lesson.apprecs.groupbysentence(current_user.id).each do |content|%>
+<li>
+<%=content.mycontent%>
+<%if content.recordingfemme && content.recordinghomme%>
+<%=render partial: "users/userauthor", collection: [content.user], as: :user%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordingfemme], as: :recording%>
+<%=render partial: "recordings/recordingcontent", collection: [content.recordinghomme], as: :recording%>
+
+<%end%>
+</li>
+<%end%>
+</ul>

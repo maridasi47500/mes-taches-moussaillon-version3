@@ -1,0 +1,17 @@
+h1 {
+text-align:center;
+color:purple;
+text-weight:900;
+}
+main {
+background:green;
+color:lightgrey;
+font-size:17px;
+}
+th{
+display:none;
+}
+a{
+color:skyblue;
+font-size:20px;
+}

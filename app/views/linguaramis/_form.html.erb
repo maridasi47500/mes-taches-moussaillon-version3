@@ -1,0 +1,53 @@
+<%= form_with(model: linguarami, local: true) do |form| %>
+  <% if linguarami.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(linguarami.errors.count, "error") %> prohibited this linguarami from being saved:</h2>
+
+      <ul>
+        <% linguarami.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=form.collection_check_boxes(:phrase_ids, linguarami.phrases, :id, :content) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render partial: 'linguaramis/linguaramiphrase', collection: Phrase.where(id: b.value),as: :phrase%>
+<% end %>
+<% end %>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherphrases(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectphrases(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+
+<%if linguarami.new_record?%>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function chercherphrases(field,al){
+$.ajax({url: '<%=json_phrases_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].content_<%=I18n.locale%>;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectphrases(field,greatpeople){
+$.ajax({url: '<%=phrases_linguaramis_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

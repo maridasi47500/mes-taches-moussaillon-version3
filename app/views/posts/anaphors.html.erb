@@ -1,0 +1,51 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, required: true, class:'contentpost' %>
+  </div>
+  <%form.fields_for :anaphors do |f|%>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :name, class:'contentpost' %>
+                    <div class="field">
+
+      <%= f.label :sailor_ids, "Sailors " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list">
+
+      <%= f.collection_check_boxes(:sailor_ids, Person.all, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render Person.find(ff.value)%>
+                        <%end%>
+                        <%=  f.radio_button( "sailor_ids", value: nil)%><%= f.label "sailor_id", "personne"%>
+                        <%=f.fields_for :photos do |foto|%>
+                          <div>
+                       <%= f.label :name, 'Upload a file' %>
+                       <%= f.file_field :name %>
+                          </div>
+                          <div>
+                       <%= f.label :title %>
+                       <%= f.text_field :title %>
+                          </div>
+
+                        <%end%>
+
+                    </div>
+
+      </div>
+
+<%end%>
+  </div>
+
+<%end%>
+

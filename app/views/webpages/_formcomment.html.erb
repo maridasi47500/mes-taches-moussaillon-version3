@@ -1,0 +1,12 @@
+<%= form_with(model: webpage, local: true) do |form| %>
+<%=form.fields_for :comments, Comment.new do |f|%>
+  <div class="field">
+    <%= f.label :text, "Commentaire" %>
+    <%= f.text_area :text %>
+  </div>
+<%=f.hidden_field :user_id, value: current_user.id%>
+<%end%>
+  <div class="actions">
+    <%= form.submit "Laisser un commentaire" %>
+  </div>
+<% end %>

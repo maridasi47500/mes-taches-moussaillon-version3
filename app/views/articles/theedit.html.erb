@@ -1,0 +1,573 @@
+<main class="view__main " role="main" style="margin-top: 60px;">
+				<a id="skip-to-content"></a>
+				<nav class="breadcrumb">
+
+	<div class="breadcrumb__wrap">
+
+		<ol class="breadcrumb__list">
+
+			<li class="breadcrumb__item">
+				<a class="breadcrumb__link" href="/fr/<%= t("name1").downcase%>"><%= t("dictionary.maison")%></a>
+			</li>
+
+					<li class="breadcrumb__item breadcrumbs__item--active">
+							<%=@cat.name%></li>
+					</ol>
+
+	</div>
+
+</nav>
+                                
+<div class=" component component--wrap-normal component--space-normal component--image">
+			
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+		
+		
+		
+			<span class="image-block">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+        
+        
+        
+        
+            <picture class="image-block__wrap" data-format="fill" data-crop="false">
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=2000&amp;fmt=webp" media="(min-width: 1400px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=2000&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 1400px)" type="image/jpeg">
+
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1600&amp;fmt=webp" media="(min-width: 1200px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1600&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 1200px)" type="image/jpeg">
+
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1400&amp;fmt=webp" media="(min-width: 1000px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1400&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 1000px)" type="image/jpeg">
+
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=12000&amp;fmt=webp" media="(min-width: 800px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=12000&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 800px)" type="image/jpeg">
+
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1000&amp;fmt=webp" media="(min-width: 600px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=1000&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 600px)" type="image/jpeg">
+
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=800&amp;fmt=webp" media="(min-width: 320px)" type="image/webp">
+                        <source srcset="https://primedia.primark.com/i/primark/WK26-D8?w=800&amp;fmt=jpg&amp;fmt.jpeg.interlaced=true" media="(min-width: 320px)" type="image/jpeg">
+                        <img class="image-block__image" src="https://primedia.primark.com/i/primark/WK26-D8?w=600" loading="lazy" alt="Image bannière test Primark">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+            </picture>
+        
+    
+    
+
+
+
+
+    
+
+
+
+
+			</span>
+		
+	
+
+
+
+
+
+					</div>
+
+
+
+
+
+
+
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		<div class="content-wrap">
+			<h1 class="page-heading heading heading--h2"><%=@cat.name%></h1>
+			<div class="truncate truncate--truncated truncate--center js-truncate" data-truncate-state="truncate--truncated">
+				<p class="truncate__text paragraph paragraph--flush content" id="category-description"><%=@cat.description.to_s.html_safe%></p>
+				<a class="truncate__toggle link link--inline js-truncate-toggle" href="#category-description">
+					<%= t("other.knowmore")%>
+				</a>
+			</div>
+		</div>
+
+		
+			
+			
+			
+			<div class="button-nav">
+				<ul class="button-nav__list button-nav--editorial">
+					
+						
+
+
+
+
+
+
+
+<%Theeditcat.alleditcat.each_with_index do |cat|%>
+
+	<li class="button-nav__item">
+		
+			<%if cat.currentcat(request)%>
+				<span class="button button--active button--fill"><%=cat.catname%></span>
+			<%else%>
+				<%= link_to cat.catname, cat.myurl(@localevalue), class: "button button--secondary button--fill"%>
+			<%end%>
+		
+	</li>
+
+
+<%end%>
+
+					
+						
+
+
+
+
+
+
+
+					
+				</ul>
+			</div>
+		
+
+	
+	
+
+
+
+
+			
+				
+					
+				
+				
+			
+		
+		
+		
+		
+		
+	
+
+
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="component--full-width-background">
+		<div class=" component component--wrap-normal component--space-normal component--feature-post-list">
+			
+
+        
+
+		
+
+		<div class="feature-list content-listing content-listing--cols-3-lg">
+			<ul class="content-listing__list">
+				
+					<%= render partial: "articles/article", collection: @articles, as: :article %>
+
+				
+			</ul>
+		</div>
+
+		
+
+            
+		    
+		        
+		        
+                    <div class="features-listing__load-more js-features-listing__load-more load-more-features-wrap">
+                        
+                            
+                        
+                        <div class="paging__item paging__item--page paging__item--progress">
+    <p><%=t('dictionary.youhaveseen')%> <span class="js-feature-progress">15</span>&nbsp;<%=t('dictionary.publicationoutoftotal',total: @articles.length)%></p>
+    <progress class="paging__progress" max="127" value="15"></progress>
+    <a href="/fr/la-selection/tous/<%=@cat.name.downcase%>/a/078e1428-e1d5-4a69-a602-845727f4dd58/load-more-features?&amp;page=1" class="button button--invisible-border js-load-more" data-href="/fr/la-selection/tous/<%=@cat.name.downcase%>/a/078e1428-e1d5-4a69-a602-845727f4dd58/load-more-features?&amp;page=1" data-type="feature"><%=t('dictionary.moreproducts')%></a>
+    </div>
+
+
+                    </div>
+		        
+		    
+        
+	</div>
+		</div>
+		
+
+
+
+
+
+		
+		
+	
+
+<div class="scroll-top " style="display: none;">
+	<div class="scroll-top__wrap">
+		<a href="#page" class="scroll-top__button button button--primary button--icon-right js-scroll-top" role="button">
+			<i class="button__icon icon icon--scroll-top-invert"></i>
+			<span class="reader-only">Retour en haut de page</span>
+		</a>
+	</div>
+</div>
+
+
+</main>
+
+
+<%=content_for :allthescripts do%>
+		<script type="text/template" class="js-view-off-canvas-template">
+			<div class="view__off-canvas" tabindex="0">
+				<div class="off-canvas-nav js-off-canvas-nav" data-off-canvas-nav='{"showPanelClass": "off-canvas-nav--show-panel", "showPanelItemClass": "off-canvas-nav__item--show-panel"}'>
+					<div class="off-canvas-nav__header">
+						<button class="off-canvas-nav__back handle js-off-canvas-nav-back">
+							<i class="icon icon--prev"></i>
+							<span class="reader-only">
+								back</span>
+						</button>
+						<h3 class="off-canvas-nav__title js-off-canvas-nav-title">
+							Menu principal</h3>
+						<button class="off-canvas-nav__close handle js-view-off-canvas-toggle" aria-label="menu.button.close">
+							<i class="icon icon--close-invert"></i>
+							<span class="reader-only">
+								close</span>
+						</button>
+					</div>
+					<ol class="off-canvas-nav__list js-off-canvas-nav-list"></ol>
+				</div>
+			</div>
+		</script>
+
+	<script>
+		/*<![CDATA[*/
+		
+		var ACC = { config: {} };
+			ACC.config.contextPath = '';
+			ACC.config.encodedContextPath = '\/<%=@localevalue%>';
+			ACC.config.commonResourcePath = '\/_ui\/responsive\/common';
+			ACC.config.themeResourcePath = '\/_ui\/responsive\/theme-primark';
+			ACC.config.siteResourcePath = '\/_ui\/responsive\/site-primark-fr';
+			ACC.config.rootPath = '\/_ui\/responsive';
+			ACC.config.CSRFToken = '';
+			ACC.pwdStrengthVeryWeak = 'password.strength.veryweak';
+			ACC.pwdStrengthWeak = 'password.strength.weak';
+			ACC.pwdStrengthMedium = 'password.strength.medium';
+			ACC.pwdStrengthStrong = 'password.strength.strong';
+			ACC.pwdStrengthVeryStrong = 'password.strength.verystrong';
+			ACC.pwdStrengthUnsafePwd = 'password.strength.unsafepwd';
+			ACC.pwdStrengthTooShortPwd = 'password.strength.tooshortpwd';
+			ACC.pwdStrengthMinCharText = 'password.strength.minchartext';
+			ACC.accessibilityLoading = 'aria.pickupinstore.loading';
+			ACC.accessibilityStoresLoaded = 'aria.pickupinstore.storesloaded';
+			ACC.config.googleApiKey='';
+			ACC.config.googleApiVersion='';
+
+			
+			ACC.autocompleteUrl = '\/<%=@localevalue%>\/search\/autocompleteSecure';
+
+			
+			ACC.config.loginUrl = '\/<%=@localevalue%>\/login';
+
+			
+			ACC.config.authenticationStatusUrl = '\/<%=@localevalue%>\/authentication\/status';
+
+			
+			
+			ACC.config.sustainableKey = 'Produits durables';
+			ACC.config.sustainableProductLink = 'View product';
+			ACC.config.featureBannerLink = '<%= t("other.knowmore")%>';
+		/*]]>*/
+	</script>
+	<script>
+	/*<![CDATA[*/
+	ACC.addons = {};	//JS namespace for addons properties
+
+	
+		ACC.addons['glexceptionmonitoringaddon'] = [];
+		
+		ACC.addons['ampliencedmaddon'] = [];
+		
+		ACC.addons['smarteditaddon'] = [];
+		
+		ACC.addons['eventtrackingwsaddon'] = [];
+		
+		ACC.addons['hybrisanalyticsaddon'] = [];
+		
+	/*]]>*/
+</script>
+<script src="https://www.primark.com/_ui/shared/js/generatedVariables.js"></script>
+	<script src="https://www.primark.com/_ui/shared/js/analyticsmediator.js"></script>
+<link rel="preload" href="https://www.primark.com/_ui/responsive/common/js/jquery-3.5.1.min.js" as="script">
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/common/js/jquery.cookie.min.js" as="script">
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/common/js/acc.navigation.js" as="script">
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/common/js/jquery.hoverIntent.js" as="script">
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/common/js/acc.autocomplete.js" as="script">
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery-3.5.1.min.js"></script>
+
+		<script src="https://www.primark.com/_ui/responsive/common/js/enquire.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/Imager.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/purify.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.blockUI-2.66.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.cookie.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.doc.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.form.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.hoverIntent.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery-ui-1.12.1.min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/owl.carousel.custom.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/jquery.colorbox-min.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.accordion.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.autocomplete.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.carousel.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.cms.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.common.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.cookienotification.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.form.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.global.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.navigation.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.sanitizer.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.tracking.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.sizeguide.js"></script>
+
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.colorbox.js"></script>
+		<script src="https://www.primark.com/_ui/responsive/common/js/acc.advent.js"></script>
+
+		<script src="https://www.primark.com/_ui/responsive/common/js/_autoload.js"></script>
+
+		<script src="https://www.primark.com/_ui/addons/glexceptionmonitoringaddon/responsive/common/js/glexceptionmonitoringaddon.js"></script>
+		<script src="https://www.primark.com/_ui/addons/ampliencedmaddon/shared/common/js/ecommBridge.js"></script>
+		<script src="https://www.primark.com/_ui/addons/ampliencedmaddon/shared/common/js/bindComponents.js"></script>
+		<script src="https://www.primark.com/_ui/addons/captchaaddon/responsive/common/js/captchaaddon.js"></script>
+		<script src="https://www.primark.com/_ui/addons/hybrisanalyticsaddon/responsive/common/js/hybrisanalyticsaddon.js"></script>
+		<script src="https://www.primark.com/_ui/addons/hybrisanalyticsaddon/shared/common/js/piwik-min.js"></script>
+		<script src="https://www.primark.com/_ui/addons/sapymktrecommendationaddon/shared/common/js/sapymktrecommendationaddon.js"></script>
+		<script src="https://www.primark.com/_ui/addons/smarteditaddon/shared/common/js/webApplicationInjector.js"></script>
+		<script src="https://www.primark.com/_ui/addons/smarteditaddon/shared/common/js/reprocessPage.js"></script>
+		<script src="https://www.primark.com/_ui/addons/smarteditaddon/shared/common/js/adjustComponentRenderingToSE.js"></script>
+		<script src="https://www.primark.com/_ui/addons/smarteditaddon/responsive/common/js/smarteditaddon.js"></script>
+		<!--
+Begin Amplience ecommBridge
+-->
+
+<script>
+	if (!window.ecommBridge)
+	{
+		window.ecommBridge = {};
+	}
+
+	window.ecommBridge.accountConfig = {
+		client: "primark",
+		imageBasePath: "//primedia.primark.com/",
+		contentBasePath: "//c1.adis.ws/"
+	};
+
+	window.ecommBridge.site.locale = "fr-*,en-*,*";
+
+	window.ecommBridge.site.currency = {
+		"code": "EUR",
+		"prefix": "\u20AC ",
+		"suffix": ""
+	};
+
+	window.ecommBridge.site.page = {
+		
+		"type": "standalone-page",
+		"id": "ampliencePage",
+		"name": "Amplience Page"
+		
+	};
+</script>
+
+<!--
+End Amplience ecommBridge
+-->
+<%end%>
+
+<%= content_for :stylesheetsjs do %>
+<link rel="icon" href="https://www.primark.com/_ui/responsive/theme-primark/images/favicon.ico" />
+
+		<link rel="stylesheet" href="https://www.primark.com/_ui/responsive/theme-primark/css/style.css" />
+		<link rel="stylesheet" href="https://use.typekit.net/mml2gde.css">
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/theme-primark/fonts/ArialMTPro-ExtraBoldCond.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="https://www.primark.com/_ui/responsive/theme-primark/fonts/ArialMTPro-ExtraBoldCond.woff" as="font" type="font/woff" crossorigin>
+		<link rel="stylesheet" href="https://www.primark.com/_ui/addons/glexceptionmonitoringaddon/responsive/common/css/glexceptionmonitoringaddon.css" />
+							<link rel="stylesheet" href="https://www.primark.com/_ui/addons/ampliencedmaddon/shared/common/css/rendering-kit/viewer.css" />
+							<link rel="stylesheet" href="https://www.primark.com/_ui/addons/hybrisanalyticsaddon/responsive/common/css/hybrisanalyticsaddon.css" />
+							<link rel="stylesheet" href="https://www.primark.com/_ui/addons/smarteditaddon/responsive/common/css/smarteditaddon.css" />
+							<script>
+
+var googleAnalyticsTrackingId = 'your_google_analytics_tracking_id';
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', googleAnalyticsTrackingId]);
+
+
+		_gaq.push(['_trackPageview']);
+	
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+
+<script>
+
+		var dataLayer = dataLayer || [];
+
+		
+			dataLayer.push({'pageType': 'feature'});
+			dataLayer.push({'featureID': '<%=@cat.name.downcase%>'});
+			dataLayer.push({'featureName': 'Inspire Me'});
+				</script>
+
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-T7JD7G');</script>
+
+	<noscript>
+		<iframe src="//www.googletagmanager.com/ns.html?id=GTM-T7JD7G" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+
+<meta name="google-site-verification" content="vR24HgAYET6Gzo3XJIvi-D-u0NhWYBrGJpmuCSly9bk" />
+
+        <script type="text/javascript" src="//c.webtrends-optimize.com/acs/accounts/96b8abf4-5366-4a7b-9830-6a343bd5c891/js/wt.js"></script>
+<%end%>

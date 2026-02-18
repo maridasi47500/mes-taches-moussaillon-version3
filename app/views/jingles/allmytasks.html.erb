@@ -1,0 +1,10 @@
+<%=fields_for :jingle do |form|%>
+<%=form.collection_check_boxes(:task_ids, @tasks,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render Task.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+

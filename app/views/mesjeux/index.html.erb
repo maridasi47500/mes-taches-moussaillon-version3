@@ -1,0 +1,10 @@
+<p><%=notice ? t('display.sorobot', sailor: Person.find(notice).name) : ""%></p>
+<p><%=t('display.trouver_un_robot')%></p>
+<%=form_with url: mesjeux_trouverunrobot_path do |form| %>
+<%@people.each do |person|%>
+
+<input id="imageperson<%=person.id%>" type="image" width="70" height="70" alt="<%=person.name%>" title="<%=person.name%>" name="person<%=person.id%>"
+       src="<%=person.image%>">
+
+<%end%>
+<%end%>

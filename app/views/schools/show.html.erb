@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag "/assets/"+@school.image %>
+</p>
+<%if @school.mynotes(current_user).length == 0%>
+<p>
+<%=link_to 'noter cette école', noterlycee_school_path(@school.id)%>
+</p>
+<%else%>
+<%=link_to 'notes de cette école', notes_school_path(@school.id)%>
+<%end%>
+<ul>
+<%@school.schoolhpeople.each do |h|%>
+<li>
+<%=render h.person%>
+<br>
+<%= h.mydates%>
+<%=render partial: 'persongraduatedschools/form', collection: h.persongraduatedschools, as: :persongraduatedschool%>
+<%=link_to "voir son profil", h.person%>
+<%= button_to 'nouveau diplôme', graduated_school_path(@school.id, schoolhperson_id: h.id), method: :post, data: { confirm: h.person.name+' a obtenu un diplôme ? êtes-vous sûr ?' } %>
+</li>
+<%end%>
+</ul>
+
+<ul>
+<li><%= link_to 'Edit', edit_school_path(@school) %></li>
+<li><%= link_to 'Back', schools_path %></li>
+<li><%= link_to 'voir les photos de '+@school.name, voirlesphotos_school_path(@school.id) %></li>
+</ul>

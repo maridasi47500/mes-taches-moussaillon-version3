@@ -1,0 +1,99 @@
+<div class="myaccordionspeople" data-id="<%=person.id%>" id="accordionpeople<%=person.id%>">
+  <div class="card">
+    <div class="card-header" id="mypostsurnameaccordion<%=person.id%>">
+      <h5 class="mb-0">
+      <%= person.surname.try(:name).try(:length).to_i > 0 ? ((person.whoiam ? "je suis" : "c'est")+" "+person.surname.name.to_s) : ""%>
+<%=(@post && request.path == polymorphic_path(person.posts[0])) ? button_to('x', deletesurname_post_path(@post.try(:id),psid: person.id), method: :delete, data: { confirm: 'delete this avatar?' }) : ()%>
+</h5>
+
+
+    </div>
+
+    <div id="mypostsurnameaccordioncol<%=person.id%>">
+      <div class="card-body">
+      <b>
+
+      <%= person.person ? ((person.whoiam ? "je suis" : "c'est")+" "+person.person.name.to_s) : ""%></b>
+
+
+</h5>
+
+
+    <%if person.surnamerecording%>
+<%begin%>
+<p class="card-text"><%= render partial:'a/1',collection:person.surnamerecording.languagesandemotions, as: :ll %>
+<p class="card-text"><audio controls src="<%= asset_path  "#{person.surnamerecording.name}" %>"></audio>
+</p>
+
+<%rescue%>
+<%end%>
+<%end%>
+      <%= person.person ? (image_tag(person.person.image, class: "imageprofilethread", alt:"profile pic")) : ""%>
+<%=person && person.surname && person.surname.name && person.surname.name.length > 0 ? (person.fakename ? "#{person.surname.my_relation_surname} #{person.surname.name}" : "") : "" %>
+
+    <%if person.profilepic && person.profilepic.nameimage.length > 0 %>
+      <%= render 'profilepictures/ppicnolegend', profilepic: person.profilepic%>
+    
+    <%end%>
+  <p><%=person.content.to_s.html_safe%></p>
+    <%if person.avatar && person.avatar != person.person%> 
+      <%if person.whoiam%>je suis <%else%>c'est <%end%>
+      <%= render partial: "people/personsimple", collection: [person.avatar], as: :person%> 
+    <%if person.stranger %> 
+      (<%= render partial: "people/personsimple", collection: [person.avatar], as: :person%> 
+    <%if person.destinataire%> ou
+      <%= render person.destinataire%>
+
+      <%= render partial: "people/personsimple", collection: Person.where(id: person.surnamedestinataire_id), as: :person %> 
+    
+    <%end%>
+does not know who is/what is 
+      <%= render partial: "people/personsimple", collection: [person.stranger], as: :person%> )
+    <%end%>
+      
+    <%end%>
+      <% if person.place%>
+      à <%= render person.place%>
+    <%end%>
+      <% if person.thing%>
+     (a 1 <%= render person.thing%>)
+    <%end%>
+    <%if person.destinataire%> à 
+      <%= render person.destinataire%>
+
+      <%= person.surnamedestinataire ? (render partial: "people/personsimple", collection: [person.surnamedestinataire], as: :person) : ""%> 
+    
+    <%end%>
+
+    <%=link_to person do%>
+<%= image_tag("/assets/flagblack.gif", class: "pirate", alt:"profile pic")%>
+  <%end%>
+
+    <%if person.sentencerecording%>
+<%begin%>
+<p class="card-text">my emotions<%= render partial: 'a/1',collection: person.sentencerecording.languagesandemotions, as: :ll %></p>
+<p class="card-text"><audio controls src="<%= asset_path  "#{person.sentencerecording.name}" %>"></audio></p>
+
+
+<%rescue%>
+<%end%>
+<%end%>
+<br>
+          <%=link_to "Écrire un post", new_post_path(monpostsurnameid: person.id), class: "btn btn-primary rounded-pill"%>
+<br>
+          <%=link_to_if request.fullpath != polymorphic_path(person), "voir ce profile", person, class: "btn btn-primary rounded-pill" do
+()
+ end%>
+<br>
+      </div>
+    </div>
+  </div>
+  </div>
+    
+     <%if person.posts_surname_id%> 
+<%=render partial: "posts_surnames/joliiconenoflag", collection: PostsSurname.where(id: person.posts_surname_id).where.not(id:nil), as: :person%>
+<%end%>
+     <%if person.other_posts_surname_id%> 
+<%=render partial: "posts_surnames/joliiconenoflag", collection: PostsSurname.where(id: person.other_posts_surname_id).where.not(id:nil), as: :person%>
+<%end%>
+

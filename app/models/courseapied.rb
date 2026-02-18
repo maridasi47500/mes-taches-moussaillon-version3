@@ -1,0 +1,2 @@
+class Courseapied < ApplicationRecord
+end

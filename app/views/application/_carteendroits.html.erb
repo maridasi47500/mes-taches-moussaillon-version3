@@ -1,0 +1,65 @@
+<% if lieux.length > 0 %>
+  <li>
+<div style="width:500px;height:300px;" id="cartesuper"></div>
+<script>
+var script = document.createElement('script');
+script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCBlUUVFaBPK1w_4WtPmiVXf0iydw8wnzU&libraries=places&callback=nearbyplaces";
+script.defer = true;
+script.async = true;
+
+$(function() {
+  window.nearbyplaces=function() {
+    var placenearby,marker;
+      placenearby = document.getElementById('cartesuper');
+    var locations = JSON.parse(<%=raw json_escape(lieux.to_json).dump%>);
+      lat = parseFloat(locations[0][1]);
+      lon=parseFloat(locations[0][2]);
+      zoom=parseFloat(locations[0][3])||14;
+      
+
+      map = new google.maps.Map(placenearby, {
+      center: {lat: lat, 
+        lng: lon}, 
+        zoom: zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+
+
+
+    
+    var marker, i,type;
+
+    for (i = 0; i < locations.length; i++) {  
+
+
+      lat = parseFloat(locations[i][1]);
+      lon=parseFloat(locations[i][2]);
+      console.log(lat,lon);
+
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lon),
+        map
+        
+
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(placenearby, marker);
+        }
+      })(marker, i));
+    }
+
+
+  };
+
+});
+document.head.appendChild(script);
+
+</script>
+  </li>
+<%end%>

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @fakearticle.title %>
+</p>
+
+<p>
+  <strong>Authorname:</strong>
+  <%= @fakearticle.authorname %>
+</p>
+
+<p>
+  <strong>Authorpseudo:</strong>
+  <%= @fakearticle.authorpseudo %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @fakearticle.content %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @fakearticle.category %>
+</p>
+
+<p>
+  <strong>Pic:</strong>
+  <%= @fakearticle.pic %>
+</p>
+
+<p>
+  <strong>Authorpic:</strong>
+  <%= @fakearticle.authorpic %>
+</p>
+
+<%=select_tag "selectlayout", options_for_select(Mylayout.all.collect{|x|[x.title, x.typelayout]}), include_blank: true, onchange: "window.location='#{fake_fakearticle_path(@fakearticle.id)}/'+String(this.value);" %> | 
+
+<%= link_to 'Edit', edit_fakearticle_path(@fakearticle) %> |
+<%= link_to 'Back', fakearticles_path %>

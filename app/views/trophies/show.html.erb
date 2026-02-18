@@ -1,0 +1,21 @@
+<%=content_for :mylittlecss do%>
+.mytrophy {
+width: 200px;
+height: 300px;
+}
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trophy.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @trophy.image, class: 'mytrophy' %>
+</p>
+
+<%= link_to 'Edit', edit_trophy_path(@trophy) %> |
+<%= link_to 'Back', trophies_path %>

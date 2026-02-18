@@ -1,0 +1,13 @@
+$(function(){
+$('#person_names').change(function(){
+var id=$(this).val();
+$({url: window.location.path+'?jinglesperson='+id,
+success: function(){
+}
+})
+
+});
+<%if params[:jinglesperson]%>
+$('.people-jingles').html('<%=collection_check_boxes(:post, :jingle_ids, Person.find(params[:jinglesperson]).jingles, :id, :name)%>');
+<%end%>
+});

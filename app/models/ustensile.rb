@@ -1,0 +1,2 @@
+class Ustensile < Artobject
+end

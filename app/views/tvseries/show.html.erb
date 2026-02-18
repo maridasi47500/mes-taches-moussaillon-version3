@@ -1,0 +1,112 @@
+<p id="notice"><%= notice %></p>
+<%if params[:page].to_i > 0%>
+<%@tvseries.attitudetvseries.where('note like 4 or note like 5').order('note desc').group_by {|x|x.attitude_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.map{|x|x.name}.join(', ') %>">
+<%=z.pluck(:user_id).uniq.length%>
+<%="personne".pluralize(z.pluck(:user_id).uniq.length)%>
+</span>
+<%="pensent que".pluralize(z.pluck(:user_id).uniq.length)%>
+
+<span title="<%=Person.where(id: z.pluck(:person_id)).distinct.map{|x|x.name}.join(', ') %>">
+<%="joue le role le plus ".pluralize(z.pluck(:person_id).uniq) %>
+<%=Attitude.find(y).name%>
+(dans <%Tvseries.where(id: z.pluck(:tvseries_id)).distinct.each do |a|%>
+<span><%=a.name%></span>
+<%end%>)
+
+.
+<%end%>
+<%end%>
+
+<%=render @tvseries%>
+<br>
+<%=render @tvseries.places%>
+<p>
+  <strong>Description:</strong>
+  <%= @tvseries.description %>
+</p>
+<% if @tvseries.actors.length > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Actors</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tvseries.tvserieshaveactors.each do |a| %>
+      <tr>
+        <td><%=render 'tvserieshaveactor', a: a%>
+    <%=link_to "voir ses rôles dans les épisodes ", actor_tvseries_path(@tvseries.id, actor_id: a.actor.id)%>
+
+<td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+<%if @tvseries.tvserieshavecouples.length > 0%>
+<b>Couples</b>
+<ul>
+<%@tvseries.tvserieshavecouples.each do |a|%>
+        <li>
+        <%=render 'tvserieshaveactor', a: a.tvserieshaveactor%>
+aime
+        <%=render 'tvserieshaveactor', a: a.othertvserieshaveactor%>
+
+</li>
+<%end%>
+</ul>
+<%end%>
+<br>
+<%=render 'idolcomments/form',idolcomment: Idolcomment.new,actors: @tvseries.tvserieshaveactors%>
+<%if @tvseries.myidolcomments.length > 0%>
+<b>Idoles</b>
+<br>
+<%=render @tvseries.myidolcomments%>
+<%end%>
+<br>
+<br>
+<h3>noter un acteur</h3>
+<%=render 'myfavactorform',tvseries: @tvseries%>
+<%if @tvseries.togethertvseriesratings.length > 0%>
+<b>My fav actors</b>
+<ul>
+<%=render @tvseries.togethertvseriesratings%>
+
+</ul>
+<%end%>
+<br>
+
+<%if @tvseries.actors.length > 0%>
+<%= link_to 'Edit roles', editroles_tvseries_path(@tvseries.id) %> |
+<%end%>
+<%if @tvseries.epochs.length > 0%>
+<h6>Epochs of this tv series</h6>
+<br>
+<%= render @tvseries.epochs%>
+<br>
+<%end%>
+<ul>
+<li><%= link_to 'ajouter un épisode', addepisode_tvseries_path(@tvseries.id) %></li>
+<li><%= link_to 'Edit', edit_tvseries_path(@tvseries) %></li>
+<li><%= link_to 'Back', tvseries_index_path %></li>
+</ul>
+<%if @tvseries.episodes.length > 0%>
+<p>épisodes</p>
+<ul>
+<%@tvseries.episodes.each do |t|%>
+<li><%=render t%> <%=link_to "éditer acteurs de l'épisode", edit_episode_path(t.id)%></li>
+<%end%>
+</ul>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_togethertvseriesratings_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['peopletvseries']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of my robot:</strong>
+  <%= @robot.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @robot.description %>
+</p>
+
+<p>
+  <strong>Image of my robot:</strong>
+  <%= image_tag @robot.image %>
+</p>
+<p>
+  <strong>Displaying my robot on the website look like:</strong>
+  <%= render @robot %>
+</p>
+
+<%= link_to 'Edit', edit_robot_path(@robot) %> |
+<%= link_to 'Back', robots_path %>

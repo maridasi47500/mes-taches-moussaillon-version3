@@ -1,0 +1,22 @@
+<%= form_with(model: hairtype, local: true) do |form| %>
+  <% if hairtype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hairtype.errors.count, "error") %> prohibited this hairtype from being saved:</h2>
+
+      <ul>
+        <% hairtype.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

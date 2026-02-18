@@ -1,0 +1,2 @@
+class Moviescene < ApplicationRecord
+end

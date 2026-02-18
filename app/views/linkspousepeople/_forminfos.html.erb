@@ -1,0 +1,49 @@
+<%= form_with(model: linkspouseperson, local: true) do |form| %>
+  <% if linkspouseperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(linkspouseperson.errors.count, "error") %> prohibited this linkspouseperson from being saved:</h2>
+
+      <ul>
+        <% linkspouseperson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+<div class="mypeople">
+      <%= form.label :person_id, "moussaillon 1 : #{linkspouseperson.person.name}" %>
+      <%= form.fields_for :person do |p|%>
+  <div class="field">
+    <%= p.label :sexe %>
+    <%= p.select(:sexe,options_for_select(['F','M']), {prompt: "woman or man"}) %>
+
+  </div>
+
+
+<%end%>
+  </div>
+
+  <div class="field">
+<div class="mypeople">
+      <%= form.label :otherperson_id, "moussaillon 2 : #{linkspouseperson.otherperson.name}" %>
+      <%= form.fields_for :otherperson do |p|%>
+  <div class="field">
+    <%= p.label :sexe %>
+    <%= p.select(:sexe,options_for_select(['F','M']), {prompt: "woman or man"}) %>
+
+  </div>
+
+
+<%end%>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

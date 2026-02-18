@@ -1,0 +1,31 @@
+      <%if p.avatar%>
+        <p><%=link_to "go to #{p.avatar.name} and edit avatar", edit_posts_surname_path(p.id, avatarid: p.avatar.id)%></p>
+        <form action="/posts/new" method="post">
+  <%if p.avatar.tvseries.length > 0%>
+    <input type="hidden" name="personids" value="<%=p.avatar.id%>">
+  <%else%>
+    <input type="hidden" name="personid" value="<%=p.avatar.id%>">
+  <%end%>
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=p.avatar.name%> dans un nouveau post">
+</form>
+
+      <%end%>
+      <%if p.destinataire%>
+        <p><%=link_to "go to #{p.destinataire.name} and edit avatar", edit_posts_surname_path(p.id, destinataireid: p.destinataire.id)%></p>
+        <form action="/posts/new" method="post">
+  <%if p.destinataire.tvseries.length > 0%>
+    <input type="hidden" name="destids" value="<%=p.destinataire.id%>">
+  <%else%>
+    <input type="hidden" name="destid" value="<%=p.destinataire.id%>">
+  <%end%>
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=p.destinataire.name%> comme destinataire dans un nouveau post">
+</form>
+      <%end%>
+      <%if p.place%>
+        <p><%=link_to "go to #{p.place.name} and edit this avatar", edit_posts_surname_path(p.id, placeid: p.place.id)%></p>
+        <form action="/posts/new" method="post">
+    <input type="hidden" name="placeid1" value="<%=p.place.id%>">
+    <input type="submit" class="nav-link" name="hacker" value="hacker <%=p.place.name%> comme lieu dans un nouveau post">
+</form>
+      <%end%>
+

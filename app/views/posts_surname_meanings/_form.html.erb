@@ -1,0 +1,150 @@
+<%= form_with(model: posts_surname_meaning, local: true) do |form| %>
+  <% if posts_surname_meaning.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(posts_surname_meaning.errors.count, "error") %> prohibited this posts_surname_meaning from being saved:</h2>
+
+      <ul>
+        <% posts_surname_meaning.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="mypeople">
+      <%= form.label :ps_id, "quel posts surname preciser" %>
+      <%= form.collection_radio_buttons(:ps_id,PostsSurname.where(id:posts_surname_meaning.ps_id), :id, :person_id) do |ff| %>
+        <%=ff.check_box%>
+        <%=ff.label do%>
+<%=render partial:"posts_surnames/mypostssurnames", collection:PostsSurname.where(ff.value), as: :person%>
+                            <%end%>
+                            <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsla, "",onchange:"cherchertasks(this,cherchela);return false;", id: "cherchonsla",class:"mysearchfieldavatars" %></div>
+        <select onchange="selecttasks(this,avat2);return false;" id="cherchela" data-field="person_ids"></select>
+<div id="avat2"></div>
+</div>
+
+  <div class="field">
+    <%= form.label :post_id %>
+    <%= form.text_field :post_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname_id %>
+    <%= form.text_field :surname_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.text_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sailor_id %>
+    <%= form.text_field :sailor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_id %>
+    <%= form.text_field :place_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :posts_surname_id %>
+    <%= form.text_field :posts_surname_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thing_id %>
+    <%= form.text_field :thing_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_posts_surname_id %>
+    <%= form.text_field :other_posts_surname_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :action_name %>
+    <%= form.text_field :action_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :profilepic_id %>
+    <%= form.text_field :profilepic_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :speaklike_id %>
+    <%= form.text_field :speaklike_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :destinataire_id %>
+    <%= form.text_field :destinataire_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :realname_id %>
+    <%= form.text_field :realname_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fakename %>
+    <%= form.text_field :fakename %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_field :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_field :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_field :content_de %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surnamedestinataire_id %>
+    <%= form.text_field :surnamedestinataire_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stranger_id %>
+    <%= form.text_field :stranger_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+function cherchertasks(field,all){
+$.ajax({url: '<%=allps_posts_surnames_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].psid;
+name=data[i].myname1;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selecttasks(field,greatpeople){
+$.ajax({url: '<%=allps_posts_surname_meanings_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

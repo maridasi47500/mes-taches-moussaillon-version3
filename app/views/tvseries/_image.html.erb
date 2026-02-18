@@ -1,0 +1,12 @@
+<%=notice%>
+`<p><%=t('display.clickon', sailor: acteur.surname.name)%></p>
+<%=form_with scope:"",url: acteurs_tvseries_index_path do |form| %>
+<%=form.hidden_field :someactor, value: acteurs1.map{|x|x.id.to_s}.join(',')%>
+<%=form.hidden_field :nbacteurs, value: nbacteurs%>
+<%=form.hidden_field :acteur_id, value: acteur.id%>
+<%acteurs.to_a.each_with_index do |g,i|%>
+<input id="imageacteur<%=i%>" type="image" width="70" height="70" alt="<%=g.actor.name%>" title="<%=g.actor.name%>" name="actor<%=g.id%>"
+       src="<%=g.actor.image%>">
+<%end%>
+<%end%>
+

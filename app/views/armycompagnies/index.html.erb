@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Armycompagnies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @armycompagnies.length > 0 %>
+    <% @armycompagnies.each do |armycompagny| %>
+      <tr>
+        <td><%= armycompagny.name %></td>
+        <td><%= link_to 'Show', armycompagny %></td>
+        <td><%= link_to 'Edit', edit_armycompagny_path(armycompagny) %></td>
+        <td><%= button_to 'Destroy', armycompagny, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% else %>
+<img src="/assets/aucunecompagniearmee.png"/>
+<p>Aucune compagnie de l'armée .</p>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Armycompagny', new_armycompagny_path %>

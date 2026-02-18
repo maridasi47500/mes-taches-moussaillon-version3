@@ -1,0 +1,9 @@
+  <%= form_with(model: post, local: true, html: {id: "form-post", :multipart => true}) do |form| %>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'socialmovement_ids', collec: post.socialmovements, mesmodele:"socialmovements"%>
+</div>
+
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+
+<%end%>
+

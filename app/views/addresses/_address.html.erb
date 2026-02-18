@@ -1,0 +1,12 @@
+<div class="col">
+<div class="card">
+<div class="card-body">
+<p class="card-text"><%=address.address%>,
+<%=address.city.name%>,
+<%=address.country.name%>,
+<%=address.state.name%>
+<%=link_to "edit my address", edit_address_path(address.id)%></p>
+
+</div>
+</div>
+</div>

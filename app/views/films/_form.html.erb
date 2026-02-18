@@ -1,0 +1,86 @@
+<%= form_with(model: film, local: true) do |form| %>
+  <% if film.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(film.errors.count, "error") %> prohibited this film from being saved:</h2>
+
+      <ul>
+        <% film.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </p>
+
+
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+<div class="mypeople">
+      <%= form.label :actor_ids %>
+      <%= form.collection_check_boxes(:actor_ids, film.actors, :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render Person.find(ff.value)%>
+                            <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercheractors(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectactors(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+</div>
+
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "place_ids", collec: film.places, mesmodele:"places"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "epoch_ids", collec: film.epochs, mesmodele:"epochs"%>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[places_films_path,epochs_films_path]%>
+<%@search=[json_places_path,json_epochs_path]%>
+<%@nom=['places','epochs']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+
+function chercheractors(field,al){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectactors(field,greatpeople){
+$.ajax({url: '<%=actors_films_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

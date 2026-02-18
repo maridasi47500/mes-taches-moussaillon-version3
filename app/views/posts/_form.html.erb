@@ -1,0 +1,272 @@
+<%=content_for :mylittlecss do%>
+.containersubtitle {
+  position: relative;
+  text-align: center;
+  color: white;
+
+
+}
+.subtitle {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  //transform: translate(-70%, -70%);
+  font-size: 2em;
+  margin: 0;
+color:#fcec03;
+  -webkit-text-stroke: 1px #000;
+
+
+}
+<%end%>
+<div id="formpourpost">
+ 
+ <%if @taskselected%> 
+    <h2>about <%=@taskselected.name%></h2>
+
+ 
+  <%end%> 
+
+  
+<!--
+<div>
+    <%= form.label "real_recipients", "les destinataires sont les vrais destinataires" %>
+    <%= form.radio_button "real_recipients", true,{name: "areucomposer"}%>
+</div>
+<div>
+    <%= form.label "real_recipients", "je compose" %>
+    <%= form.radio_button "real_recipients", false,{name:"areucomposer"}%>
+</div>
+-->
+    <%= form.label "title", "titre du post" %>
+    <%= form.text_field "title" %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if params[:robotid] %>
+                <%=form.collection_check_boxes(:robot_ids, Robot.where(id: params[:robotid]), :id, :name) do |b|%>
+                  <h3> Do <i>you</i> find <%=render Robot.find(b.value)%> awesome?</h3>
+              <%=b.check_box(checked: true) %>
+            <%end%>
+  <%end%>
+  <% if params[:supportsailortaskno] %>
+
+                <%=form.collection_check_boxes(:supporttask_ids, Task.where(id: params[:supportsailortaskno]), :id, :name) do |b|%>
+                  <h3>Support <%=render Task.find(b.value).sailors%></h3>
+    <%=render Task.find(b.value)%>
+              <%=b.check_box(checked: true) %>
+            <%end%>
+
+  <% end %>
+  <% if params[:destids] %>
+  <%= render partial: "people/personpic", locals: {person: Person.find(params[:destids])}%>
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+<%=f.hidden_field :destinataire_id, value: params["destids"]%>
+  <% end %>
+  <% end %>
+  <% if params[:destid] %>
+  <%= render partial: "people/personpic", locals: {person: Person.find(params[:destid])}%>
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+<%=f.hidden_field :destinataire_id, value: params["destid"]%>
+  <% end %>
+  <% end %>
+  <% if params[:placeid1] %>
+  <%= render partial: "places/bigplace", locals: {place: Place.find(params[:placeid1])}%>
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+<%=f.hidden_field :place_id, value: params["placeid1"]%>
+  <% end %>
+  <% end %>
+  <% if params[:destinataireid] %>
+  <%= render partial: "people/personpic", locals: {person: Person.find(params[:destinataireid])}%>
+  <% end %>
+  <% if params[:avatarid] %>
+  <%= render partial: "people/personpic", locals: {person: Person.find(params[:avatarid])}%>
+  <% end %>
+  <% if params[:placeid] %>
+  <%= render partial: "places/bigplace", locals: {place: Place.find(params[:placeid])}%>
+  <% end %>
+  <% if params[:personid] %>
+  <p><b>This is </b><%= render partial: "people/personsimple", collection: Person.where(id: params[:personid]), as: :person%></p>
+  <% end %>
+
+
+
+
+  <div class="apercu"></div>
+    <div class="field actions">
+    <%= form.submit (post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+<%if params["personid"] && params["personid"].length > 0%>
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+<%=f.label :new_surname,"surnom rapide"%>
+<%=f.text_field :new_surname%>
+<%=f.hidden_field :speaklike_id, value: params["personid"]%>
+
+<%end%>
+<%end%>
+<%if params[:monpostsurnameid]%>
+
+<div class="field">
+  <%=form.label :inverse_hacking, "Poster avec cet avatar"%>
+  <%= form.collection_check_boxes(:my_posts_surname_ids, [PostsSurname.find(params[:monpostsurnameid])], :id, :name) do |b|%>
+    <%=b.check_box(checked: true) %><%=render PostsSurname.find(b.value)%>
+  <%end%>
+</div>
+<%else%>
+
+<%if params["personids"] && params["personids"].length > 0%>
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+
+<%=f.label :new_surname,"surnom rapide"%>
+<%=f.text_field :new_surname%>
+      <div class="mypeople">
+
+ <% @person = Person.find(params["personids"])%>
+<h2> <%=@person.name%></h2>
+ <div class="containersubtitle">
+<%=image_tag @person.image, width: 1120, height: 630%>
+  <div class="subtitle"></div>
+</div>
+
+
+<%=f.hidden_field :speaklike_id, value: params["personids"].to_i%>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"]%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data);$("#post_content_fr").focus(); }});' id="btn<%=params["personids"]%>" type="button">add him/her to content</button>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"]%>",success:function(data){$(".editable_fr").append(data);$("#post_my_posts_surnames_attributes_0_content_fr").val($("#post_my_posts_surnames_attributes_0_content_fr").val()+data);$("#post_my_posts_surnames_attributes_0_content_fr").focus(); }});' id="btn<%=params["personids"]%>" type="button">add him/her to content of the posts surname</button>
+      </div>
+
+      <%end%>
+      <%end%>
+      <%end%>
+  <% Post.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column, class: 'contentpost', onkeydown: "$('.subtitle').html(this.value);" %>
+          
+</div>
+
+
+
+
+  <% end %>
+  <%=text_field_tag :search, "", id: "searchA"%>
+  <select id="search1"></select>
+  <div id="ps"></div>
+<%=label_tag :search, "chercher une avatar pour écrire le post"%>
+    <%=text_field_tag :search, "",id:"searchB",placeholder: "search a pseudonym quickly"%>
+  <select id="search2"></select>
+  <div id="ps2"></div>
+
+
+
+
+            <ul>
+            <%=form.collection_check_boxes(:photo_ids, post.photos, :id, :name, {},{form: "form-post"}) do |b|%>
+
+              <li><%=b.check_box %><%=render Photo.find(b.value)%></li>
+            <%end%>
+            </ul>
+
+
+
+
+  </div>
+  <%=content_for :myjscode do%>
+  <script>
+  $(function(){
+
+    $("#searchA").change(function(){
+        var deptid = $(this).val();
+
+        $.ajax({
+          url: '<%=mypsa_path%>',
+            type: 'post',
+            data: {name:deptid},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#search1").empty();
+                    $("#search1").append("<option id='nulla' value=''>aucun</option>");
+		var id,name;
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+
+
+                    $("#search1").append("<option id='psa"+id+"' value='"+id+"'>"+name+"</option>");
+
+
+                }
+                    $("#search1").change(function(){
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+			if ($(this).val() == id){
+                    $.ajax({url: '<%=loadpostsurname_people_path%>?id='+id, success:function(data){ps.innerHTML+=data;}});
+			}
+            	}
+			});
+            }
+        });
+    });
+    $("#searchB").change(function(){
+        var deptid = $(this).val();
+
+        $.ajax({
+          url: '<%=mypsb_path%>',
+            type: 'post',
+            data: {name:deptid},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#search2").empty();
+                    $("#search2").append("<option id='nullb' value=''>aucun</option>");
+                  $("#nullb").click(function(){
+                    ps2.innerHTML='';
+                  });
+var id;
+var name;
+                for( var i = 0; i<len; i++){
+                     id = response[i]['psid'];
+                     name = response[i]['myname1'];
+
+
+                    $("#search2").append("<option id='psb"+id+"' value='"+id+"'>"+name+"</option>");
+                  $("#psb"+id).click(function(){
+                    $.ajax({url: '<%=loadpostsurnames_people_path%>?id='+this.value, success:function(data){ps2.innerHTML+=data;}});
+                  });
+
+                }
+                    $("#search2").change(function(event){
+  		event.preventDefault();
+
+                for( var i = 0; i<len; i++){
+                     id = response[i]['psid'];
+                     name = response[i]['myname1'];
+
+			if (id == $(this).val()){
+                    $.ajax({url: '<%=loadpostsurnames_people_path%>?id='+id, success:function(data){ps2.innerHTML+=data;}});
+			}
+
+                }
+			});
+		
+            }
+        });
+    });
+
+});
+  </script>
+<%end%>

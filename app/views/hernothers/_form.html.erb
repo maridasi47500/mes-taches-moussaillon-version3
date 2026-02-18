@@ -1,0 +1,36 @@
+<%= form_with(model: hernother, local: true) do |form| %>
+  <% if hernother.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hernother.errors.count, "error") %> prohibited this hernother from being saved:</h2>
+
+      <ul>
+        <% hernother.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.findbyid(hernother.person_id), mesmodele:"person"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'otherperson_id', collec: Person.findbyid(hernother.otherperson_id), mesmodele:"otherperson"%>
+`
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[person_hernothers_path, otherperson_hernothers_path]%>
+<%@search=[personjson_albums_path,personjson_albums_path]%>
+<%@nom=['person','otherperson']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

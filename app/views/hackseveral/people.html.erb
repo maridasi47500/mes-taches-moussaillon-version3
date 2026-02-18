@@ -1,0 +1,22 @@
+<%= form_with(url: posts_new_path, local: true) do |form| %>
+
+<div class="fields_select_people">
+    <%= form.label :hackseveralpeople, "Sailors of this task (people assigned to this task)"%>
+    <% Collection.all.each do |collection| %>
+        <%=form.label :hackseveralpeople, collection.name%>
+
+    <%= form.select("hackseveralpeople", collection.people.collect {|p| [ p.name, p.id ] },{prompt: 'select people to hack'}, {class:'selectpeopleform', id: "collect#{collection.id}", size: 5,multiple: true }) %>
+<%end%>
+  </div>
+<div class="sailor_ids selectedpeople">
+
+
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%Mylayout.all.each do |layout|%>
+  <%=link_to (layout.title || "voir ce post comme un #{layout.typelayout}"), yourlayoutpeopleyeah_posts_path(layouttype: layout.typelayout), class:"btn",onclick: "window.location='#{yourlayoutpeople_posts_path(layouttype: layout.typelayout)}?'+$('form').serialize();return false;"%>
+    <%end%>
+

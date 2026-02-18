@@ -1,0 +1,35 @@
+<%= form_with(model: thistasknotthistask, local: true) do |form| %>
+  <% if thistasknotthistask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(thistasknotthistask.errors.count, "error") %> prohibited this thistasknotthistask from being saved:</h2>
+
+      <ul>
+        <% thistasknotthistask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'task_id', collec: Task.findbyid(thistasknotthistask.task_id), mesmodele:"task"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'othertask_id', collec: Task.findbyid(thistasknotthistask.othertask_id), mesmodele:"othertask"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[task_thistasknotthistasks_path, othertask_thistasknotthistasks_path]%>
+<%@search=[json_tasks_path,json_tasks_path]%>
+<%@nom=['task','othertask']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

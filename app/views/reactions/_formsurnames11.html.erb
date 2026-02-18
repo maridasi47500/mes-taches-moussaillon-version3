@@ -1,0 +1,102 @@
+<%ind=reactiveperson_iteration.index%>     
+   <%= form.fields_for :posts_surnames,reactiveperson do |f| %>
+                          <div class="field">
+
+
+                    </div>
+
+  <% PostsSurname.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost' %>
+
+</div>
+
+  <% end %>
+
+
+
+
+        <%= f.label :new_surname %>
+        <%= f.text_field :new_surname, value: (reactiveperson.new_surname || reactiveperson.surname.try(:name)) %>
+
+          <div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="placessurnamesattributes">
+                                <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplacetosurnameattribute=true'});">add a place</button>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy, "remove this place" %>
+
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+                                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+
+      </div>
+<%= f.fields_for :profilepic do |g| %>
+<div class="field">
+<%=g.label :name, "Add a profile pic for him/her"%>
+  <%=g.file_field("name")%>
+</div>    
+<div class="field">
+<%=g.label :nameimage, "What's on the pic?"%>
+  <%=g.text_field("nameimage")%>
+</div>    
+
+<%end%>
+  <div>
+    <%=f.label :person_id, "name of this sailor"%>
+    <%= f.collection_radio_buttons(:person_id, reaction.someothersailors, :id, :name) do |b| %>
+      <%= b.label %> <%= b.radio_button %>
+    <% end %>
+  </div>
+
+
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+      <div>
+<%@i||=0%>
+<%@i+=1%>
+        <%= text_field_tag "cherchonsici", "",onchange:"chercherici(this,chercheici#{@i});return false;", id: "cherchaici#{@i}",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectpeoplebis(this,avat<%=@i%>,<%=ind%>,<%=someindex%>);return false;" id="chercheici<%=@i%>" data-field="person_id"></select>
+<div id="avat<%=@i%>"></div>
+<% end %>
+      

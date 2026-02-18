@@ -1,0 +1,70 @@
+<%= form_with(model: foyertask, local: true) do |form| %>
+  <% if foyertask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(foyertask.errors.count, "error") %> prohibited this foyertask from being saved:</h2>
+
+      <ul>
+        <% foyertask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h2>Avez vous bien <%=t('jiramapasse.'+@actionlaver)%> ?</h2>
+<p>Veuillez chercher ci dessous la personne pour qui vous avez bien <%=t('jiramapasse.'+@actionlaver)%>.</p>
+
+<img src="/assets/<%=@image%>" width="200" height="200"/>
+    <%= form.hidden_field :image %>
+    <%= form.hidden_field :nomtache %>
+    <%= form.hidden_field :nomtachepasse %>
+    <%= form.hidden_field :user1 %>
+
+  <div class="field">
+<%=form.collection_radio_buttons(:user2, User.findbyid(foyertask.user2), :id, :name) do |b| %>
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render partial:'users/clientuser',collection: User.findbyid(b.value), as: :user%>
+<%end%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag :cherchonsattici, "",onchange:"chercherpeople(this,cherchewtla);return false;", id: "cherchonswtici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,attwt);return false;" id="cherchewtla" data-field="action_ids"></select>
+<div id="attwt"></div>
+
+
+    <%= form.hidden_field :task, value: @image[0..1] %>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@paths=[user2_foyertasks_path]%>
+<%@paths2=[membresfoyer_path]%>
+<%['people'].each_with_index do |t,i|%>
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+</script>
+<%end%>
+

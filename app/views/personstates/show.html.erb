@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p><%=t('display.remedy')%></p>
+<p>
+  <%= @personstate.state %>
+</p>
+<%=form_with url: myperson_personstate_path(@personstate.id) do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+
+
+
+<%if (@personstate.drinks.to_a+@personstate.foods.to_a).length > 0%>
+remedies :
+<%(@personstate.drinks.to_a+@personstate.foods.to_a).each do |fd|%>
+<%if fd.is_a?(Food)%>
+<input id="imagefood<%=fd.id%>" type="image" width="100" height="100" alt="<%=fd.name%>"
+       src="<%=fd.image%>" name="food<%=fd.id%>">
+<%Remedieshavefood.findby(fd.id, @personstate.id).people.each do |p|%>
+        <%= button_to p.name+' [x]', del_personstate_path(@personstate.id, fd_id: fd.id, person_id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+
+<%elsif fd.is_a?(Drink)%>
+<input id="imagedrink<%=fd.id%>" type="image" width="100" height="100" alt="<%=fd.name%>"
+       src="<%=fd.image%>" name="drink<%=fd.id%>">
+<%Remedieshavedrink.findby(fd.id, @personstate.id).people.each do |p|%>
+        <%= button_to p.name+' [x]', del_personstate_path(@personstate.id, fd_id: fd.id, person_id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<br>
+<%end%>
+<%end%>
+
+
+
+<%end%>
+<%end%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_personstate_path(@personstate) %> |
+<%= link_to 'Back', personstates_path %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[personid_personstates_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

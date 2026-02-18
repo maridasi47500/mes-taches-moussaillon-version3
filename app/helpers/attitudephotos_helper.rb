@@ -1,0 +1,2 @@
+module AttitudephotosHelper
+end

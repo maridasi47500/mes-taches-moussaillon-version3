@@ -1,0 +1,15 @@
+<%=fields_for :reaction, Reaction.new do |farm|%>
+        <%= farm.fields_for :severalpeoplestories,Severalpeoplestory.new do |fm| %>
+        <%= fm.fields_for :posts_surnames,PostsSurname.new do |form| %>
+
+<%=form.collection_radio_buttons(@field, @people, :id, :name, {include_hidden:false}) do |f|%>
+<%=f.radio_button(name: "reaction[severalpeoplestories_attributes][#{params[:o]}][posts_surnames_attributes][#{params[:n]}][person_id]")%>
+
+<%=f.label do%>
+<%=render partial: "people/personsimple",collection:Person.where(id:f.value), as: :person%>
+
+<%end%>
+<%end%>
+<%end%>
+<%end%>
+<%end%>

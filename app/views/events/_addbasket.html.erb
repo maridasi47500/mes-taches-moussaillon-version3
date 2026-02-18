@@ -1,0 +1,13 @@
+ <script> function removefrombasket<%=event.id%>event() {$.ajax({url: "/events/<%=event.id%>/removebasket",
+  success:function(html){
+    $('#basketpeoplecontent').html(html);
+  }});
+ }
+</script>
+<p>
+    
+<%=render event%>
+    
+    <button onclick='$.ajax({url: "/eventdisplay/<%=event.id%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=event.id%>" type="button">add this to content</button>
+    <button onclick='removefrombasket<%=event.id%>event();return false;' id="btn<%=event.id%>" type="button">remove from basket</button>
+</p>

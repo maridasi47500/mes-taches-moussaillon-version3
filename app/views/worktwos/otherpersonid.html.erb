@@ -1,0 +1,12 @@
+<%=fields_for :worktwo,Worktwo.new do |farm|%>
+<%=farm.fields_for :twoperson do |form|%>
+<%=form.collection_radio_buttons(:otherperson_id, @people,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label do%>
+<%=render Person.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+<%end%>
+

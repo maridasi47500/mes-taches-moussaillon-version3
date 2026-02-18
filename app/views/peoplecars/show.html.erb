@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<%=(render 'peoplecars/peoplecarvariant', peoplecar: @peoplecar) if @peoplecar.valid?%>
+<%=render 'moncarouselpeoplecar', photos: @peoplecar.photos%>
+<%= link_to 'Edit', edit_car_peoplecar_path(@peoplecar) %> |
+<%= link_to 'Back', car_peoplecars_path %>

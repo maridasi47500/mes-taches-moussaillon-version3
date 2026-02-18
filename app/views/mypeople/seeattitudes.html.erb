@@ -1,0 +1,11 @@
+<%if @attitudes.length > 0%>
+
+<%=render @attitudes %>
+<%else%>
+<%=render 'attitudes/resultattitude', attitude: @attitude%>
+<%end%>
+<ul>
+<li><%=link_to 'voir toutes les attitudes', attitudes_path %></li>
+<li><%=link_to 'nouvelle attitude', new_attitude_path %></li>
+</ul>
+

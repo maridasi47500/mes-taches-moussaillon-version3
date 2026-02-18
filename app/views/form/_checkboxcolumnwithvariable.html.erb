@@ -1,0 +1,15 @@
+
+  <div class="field">
+<%=form.label fieldname %>
+<%=form.collection_check_boxes(fieldname, collec, :id, columnname, {include_hidden: false}) do |b| %>
+       <%=b.check_box(checked: true,id:"#{fieldname}#{m}",name: n+'['+fieldname+']')%>
+<%=b.label(for:"#{fieldname}#{m}")%>
+
+<% end %>
+
+  </div>
+      <div><%= text_field_tag "cherchons#{mesmodele}", "", placeholder:true,onchange:"chercher#{mesmodele}(this,cherche#{mesmodele}#{m});return false;", id: "cherchons#{mesmodele}ici#{m}",class:"mysearchfieldavatars" %></div>
+        <select onchange="select<%=mesmodele%>(this,att<%=mesmodele%><%=m%>,<%=m%>);return false;" id="cherche<%=mesmodele%><%=m%>"></select>
+<div id="att<%=mesmodele%><%=m%>"></div>
+
+

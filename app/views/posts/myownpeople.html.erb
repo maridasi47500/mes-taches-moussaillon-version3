@@ -1,0 +1,7 @@
+<%@people.pluck(:id).each do |ff|%>
+          <%=render Person.find(ff)%>
+          <button onclick='$.ajax({url: "/persondisplay/<%=ff%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data);$("#post_content_fr").focus(); }});' id="btn<%=ff%>" type="button">add him/her to content</button>
+          <button onclick='$.ajax({url: "/persondisplay/<%=ff%>",success:function(data){$(".editable_fr").append(data);$("#post_my_posts_surnames_attributes_0_content_fr").val($("#post_my_posts_surnames_attributes_0_content_fr").val()+data);$("#post_my_posts_surnames_attributes_0_content_fr").focus(); }});' id="btn<%=ff%>" type="button">add him/her to content of the posts surname</button>
+                         
+    
+    <%end%>

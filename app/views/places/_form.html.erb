@@ -1,0 +1,51 @@
+<%= form_with(model: place, local: true) do |form| %>
+  <% if place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+        <% place.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= form.label :city_id %>
+  <%= form.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+  <%= form.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_id %>
+  <%= form.select(:state_id, State.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a state"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

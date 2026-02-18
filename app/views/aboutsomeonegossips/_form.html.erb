@@ -1,0 +1,170 @@
+<%= form_with(model: aboutsomeonegossip, local: true) do |form| %>
+  <% if aboutsomeonegossip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(aboutsomeonegossip.errors.count, "error") %> prohibited this aboutsomeonegossip from being saved:</h2>
+      <ul>
+        <% aboutsomeonegossip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h2>Réactions apparaissant avant la rumeur</h2>
+  <%= form.collection_check_boxes("beforegossip_ids", aboutsomeonegossip.beforegossips, :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= stuff.label do |mystuff| %>
+    <a href="" onclick="return false;" class="btn btn-secondary">
+  <%=render Reaction.find(stuff.value)%>
+</a>
+<%end%>
+  <%end%>
+      <div><%= text_field_tag :reactbefore, "",onchange:"chercherbefore(this,chercheavant);return false;", id: "reactavant",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectbefore(this,reactbefore);return false;" id="chercheavant" data-field="action_ids"></select>
+<div id="reactbefore"></div>
+<h2>Réactions apparaissant au moment moment que la diffusion de la rumeur</h2>
+  <%= form.collection_check_boxes("duringgossip_ids", aboutsomeonegossip.duringgossips, :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= stuff.label do |mystuff| %>
+    <a href="" onclick="return false;" class="btn btn-secondary">
+  <%=render Reaction.find(stuff.value)%>
+</a>
+<%end%>
+  <%end%>
+      <div><%= text_field_tag :reactduring, "",onchange:"chercherduring(this,cherchependant);return false;", id: "reactpendant",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectduring(this,reactduring);return false;" id="cherchependant" data-field="action_ids"></select>
+<div id="reactduring"></div>
+<h2>Réactions apparaissant après</h2>
+  <%= form.collection_check_boxes("aftergossip_ids", aboutsomeonegossip.aftergossips, :id, :name ) do |stuff| %>
+      <%=stuff.check_box%><%= stuff.label do |mystuff| %>
+    <a href="" onclick="return false;" class="btn btn-secondary">
+  <%=render Reaction.find(stuff.value)%>
+</a>
+<%end%>
+  <%end%>
+
+      <div><%= text_field_tag :reactapres, "",onchange:"chercherafter(this,chercheapres);return false;", id: "reactapres",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectafter(this,reactafter);return false;" id="chercheapres" data-field="action_ids"></select>
+<div id="reactafter"></div>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "tvseries_ids", collec: aboutsomeonegossip.tvseries, mesmodele:"tvseries"%>
+
+</div>
+
+  <% Aboutsomeonegossip.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column%>
+    <%= form.text_area column %>
+  </div>
+<%end%>
+  <div class="field">
+  <%=link_to "add explanation", "?explain=true"%>
+  </div>
+  <div class="field">
+    <div class="field">
+ <%=form.collection_radio_buttons(:reaction_id, Reaction.where(id: aboutsomeonegossip.reaction_id), :id, :name, prompt: true) do |react| %>
+        <%=react.label do%>
+  <p><%=react.radio_button%> <%=render Reaction.find(react.value)%></p>
+  <%end%>
+  <%end%>
+    <p><%=form.radio_button :reaction_id, value: nil%> <%=form.label :reaction_id, value: "Aucune réaction"%></p>
+      <div><%= text_field_tag :cherchonsreactions, "",onchange:"chercherreactions(this,chercheunereaction);return false;", id: "cherchonsreactions",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectreactions(this,reactok);return false;" id="chercheunereaction" data-field="action_ids"></select>
+<div id="reactok"></div>
+  </div>
+<%=form.fields_for :anaphors do |anaphor|%>
+  <div class="field">
+    <%= anaphor.label :epoch_id, "explain to me something impossible/possible, precise epoch:" %>
+    <%= anaphor.select :epoch_id, Epoch.all.collect {|x|[x.nomdecetteepoque,x.id]}, {include_blank: true}%>
+</div>
+  <% Anaphor.locale_columns(:description).each do |column| %>      
+(<%=column.to_s.split('_').last.upcase%>)
+  <div class="field">
+    <%= anaphor.label column, "explain this gossip to me with an anaphor" %>
+    <%= anaphor.text_area column, class: 'contentpost' %>
+</div>
+  <% end %> 
+<%end%>
+<div class="mypeople">
+      <%= form.label :aboutthoseperson_ids, "que fait le moussaillon" %>
+      <%= form.collection_check_boxes(:aboutthoseperson_ids, Person.where(id:aboutsomeonegossip.aboutthoseperson_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render Person.find(ff.value)%>
+ <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsparici, "",onchange:"chercherpeople(this,chercheparla);return false;", id: "cherchonsparici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,avattasks);return false;" id="chercheparla" data-field="action_ids"></select>
+<div id="avattasks"></div>
+</div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+function chercherreactions(field,all){
+$.ajax({url: '<%=jsonreactions_reactions_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectafter(field,greatpeople){
+$.ajax({url: '<%=after_aboutsomeonegossips_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function selectduring(field,greatpeople){
+$.ajax({url: '<%=during_aboutsomeonegossips_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function selectbefore(field,greatpeople){
+$.ajax({url: '<%=before_aboutsomeonegossips_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function selectreactions(field,greatpeople){
+$.ajax({url: '<%=reactionid_aboutsomeonegossips_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function chercherpeople(field,all){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field,greatpeople){
+$.ajax({url: '<%=aboutthem_aboutsomeonegossips_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_tvseries_index_path]%>
+<%@select=[tvseries_aboutsomeonegossips_path]%>
+
+<%@nom=['tvseries']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

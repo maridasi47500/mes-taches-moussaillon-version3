@@ -1,0 +1,12 @@
+<%if params[:edit]=="true"%>
+<h1>Editing recording review with criterias</h1>
+
+<%= render 'form2', recordingreview: @recordingreview %>
+<%else%>
+<h1>Editing Recordingreview</h1>
+
+<%= render 'form', recordingreview: @recordingattempt %>
+<%end%>
+
+<%= link_to 'Show', @recordingreview %> |
+<%= link_to 'Back', recordingreviews_path %>

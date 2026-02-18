@@ -1,0 +1,2 @@
+class Hairtype < Thing
+end

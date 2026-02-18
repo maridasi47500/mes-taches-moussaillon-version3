@@ -1,0 +1,2 @@
+module ShaktistatementsHelper
+end

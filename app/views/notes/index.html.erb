@@ -1,0 +1,33 @@
+<ul>
+<%@notes.to_a.each do |n,o|%>
+<li>
+  <%=n%>
+  <ul>
+    <%o.each do |p|%>
+      <li>
+      <%begin%>
+  <%=render partial: "aidememoires/aidememoire2",collection: [ p], as: :aidememoire%>
+<%rescue => e%>
+  <%=e.message%>
+    <%end%>
+  </li>
+    <%end%>
+  </ul>
+</li>
+<%end%>
+</ul>
+<h2>then, then, then...</h2>
+<ul>
+  <%@notes2.to_a.each do |n,o|%>
+  <li>
+    <%=n%>
+    <ul>
+      <%o.each do |p|%>
+        <li>
+    <%=render partial: "aidememoires/aidememoire2",collection: [p], as: :aidememoire%>
+    </li>
+      <%end%>
+    </ul>
+  </li>
+<%end%>
+</ul>

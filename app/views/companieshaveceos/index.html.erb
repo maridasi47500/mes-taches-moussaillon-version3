@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>C.E.O.s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ceo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companieshaveceos.each do |companieshaveceo| %>
+      <tr>
+        <td><%= render companieshaveceo %></td>
+        <td><%= link_to 'Show', companieshaveceo %></td>
+        <td><%= link_to 'Edit', edit_companieshaveceo_path(companieshaveceo) %></td>
+        <td><%= link_to 'Destroy', companieshaveceo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Companieshaveceo', new_companieshaveceo_path %>

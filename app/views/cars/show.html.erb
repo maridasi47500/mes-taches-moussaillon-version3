@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<%=render @car%>
+
+<%=render partial: "peoplecars/peoplecarphoto", collection: @car.peoplecars, as: :peoplecar%>
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

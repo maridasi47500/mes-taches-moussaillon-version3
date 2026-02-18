@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<%=t('display.secretquestionguess')%>
+<p>
+  <strong>Text:</strong>
+  <%= @secretquestion.text %>
+</p>
+<%=form_with url: guess_secretquestion_path(@secretquestion.id) do |form|%>
+<ul>
+  <%@secretquestion.answers.each do |a| %>
+<li>
+<%=a.text%>
+<%if @secretquestion.typeq=='u'%>
+<%=radio_button_tag "guess", a.id%>
+<%elsif @secretquestion.typeq=='m'%>
+<%=check_box_tag "guess[]", a.id%>
+
+<%end%>
+</li>
+<%end%>
+</ul>
+<%=form.submit 'ok'%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_secretquestion_path(@secretquestion) %> |
+<%= link_to 'Back', secretquestions_path %>

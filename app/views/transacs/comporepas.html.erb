@@ -1,0 +1,19 @@
+
+
+  <h1>Repas du <%= @transac.repas.date %></h1>
+<p>
+  <strong>Composition du repas</strong>
+
+<%if @transac.repas.menus.length > 0%>
+<ul>
+<%@transac.repas.menus.each do |menu|%>
+<li>
+<%=menu.menu%>
+</li>
+<%end%>
+</ul>
+<%end%>
+</p>
+<br>
+<%= link_to 'revevir a ma transaction', transac_path(@transac.id) %> 
+

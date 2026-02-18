@@ -1,0 +1,11 @@
+<div class="row row-cols-3 row-cols-md-3 g-4">
+
+
+<%= render partial: 'programminglanguageshavecoders/a', collection: @coders, as: :aa %>
+
+
+</div>
+
+<%=render "indexpage/paginationnbpeople",g:params[:page].to_i, modelname: Programminglanguage,mypath: peoplearecoders_programminglanguages_path+'?'%>
+
+

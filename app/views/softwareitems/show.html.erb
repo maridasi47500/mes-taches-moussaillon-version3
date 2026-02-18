@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @softwareitem.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @softwareitem.image %>
+</p>
+
+<%= link_to 'Edit', edit_softwareitem_path(@softwareitem) %> |
+<%= link_to 'Back', softwareitems_path %>

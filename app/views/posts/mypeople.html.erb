@@ -1,0 +1,31 @@
+<%=fields_for params[:field], @post do |form|%>
+<%=form.fields_for :my_posts_surnames, PostsSurname.new(profilepic: Profilepicture.new) do |f|%>
+<%= f.label :speaklike_id, "comme si il-elle était-en se prenant pour " %>
+      <%= f.collection_radio_buttons(:speaklike_id, @people, :id, :name) do |ff| %>
+        <%=ff.radio_button(autocomplete:"off",class: "btn-check")%>
+
+        <%=ff.label(class: "btn btn-secondary") do%>
+          <%=render Person.find(ff.value)%>
+        <%end%>
+          <button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data);$("#post_content_fr").focus(); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+          <button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_my_posts_surnames_attributes_0_content_fr").val($("#post_my_posts_surnames_attributes_0_content_fr").val()+data);$("#post_my_posts_surnames_attributes_0_content_fr").focus(); }});' id="btn<%=ff.value%>" type="button">add him/her to content of the posts surname</button>
+                         
+    
+    <%end%>
+        <%=f.radio_button(:speaklike_id,nil, id:"myoption",autocomplete:"off",class: "btn-check")%>
+        
+        
+<%= f.label "speaklike_id", "personne", class: "btn btn-secondary"%>
+    <br>
+<%= f.label :profilepic_id, "ma profile pic " %>
+      <%= f.collection_radio_buttons(:profilepic_id, @myprofilepics, :id, :nameimage) do |ff| %>
+        <%=ff.radio_button(autocomplete:"off",class: "btn-check")%>
+        <%=render Profilepicture.find(ff.value)%>
+      <%end%>
+<%= f.radio_button("profilepic_id", nil)%><%= f.label :profilepic_id, "personne"%>
+    
+<%end%>
+<%end%>
+
+    
+

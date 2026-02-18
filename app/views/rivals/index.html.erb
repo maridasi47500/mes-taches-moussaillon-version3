@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rivals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>lovers</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rivals.each do |rival| %>
+      <tr>
+        <td><%= render rival %></td>
+        <td><%= link_to 'Show', rival %></td>
+        <td><%= link_to 'Edit', edit_rival_path(rival) %></td>
+        <td><%= link_to 'Destroy', rival, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rival', new_rival_path %>

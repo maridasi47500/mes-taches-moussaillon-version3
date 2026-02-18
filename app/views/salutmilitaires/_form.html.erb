@@ -1,0 +1,28 @@
+<h1>
+comment
+</h1><%= form_with(model: salutmilitaire, local: true, html: {id:"formsalut"}) do |form| %>
+  <% if salutmilitaire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(salutmilitaire.errors.count, "error") %> prohibited this salutmilitaire from being saved:</h2>
+
+      <ul>
+        <% salutmilitaire.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%=form.fields_for :tickets do |f|%>
+  <div class="field">
+    <%= f.label :content_.to_s+I18n.locale.to_s%>
+    <%= f.text_field :content_.to_s+I18n.locale.to_s%>
+    <%= f.hidden_field :sender,id: "mysender"%>
+    <%= f.hidden_field :recipient,id:"myrecipient"%>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

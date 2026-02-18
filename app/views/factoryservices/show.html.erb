@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @factoryservice %>
+</p>
+  <%if @factoryservice.factories.length > 0 %>
+<h3>Usine de ce service</h3>
+  <%= render @factoryservice.factories %>
+<%end%>
+<br>
+  <%if @factoryservice.people.length > 0 %>
+<h3>Employés de l'usine</h3>
+  <%= render @factoryservice.people %>
+<%end%>
+
+
+<%= link_to 'Edit', edit_factoryservice_path(@factoryservice) %> |
+<%= link_to 'Back', factoryservices_path %>

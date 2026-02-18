@@ -1,0 +1,50 @@
+<%= form_with(model: pride, local: true) do |form| %>
+  <% if pride.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pride.errors.count, "error") %> prohibited this pride from being saved:</h2>
+
+      <ul>
+        <% pride.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_field :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_field :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_field :content_de %>
+  </div>
+  <div class="field">
+    <%= form.label :job_ids%>
+    <%= form.select :job_ids, Job.all.collect{|x|[x.name,x.id]},{include_blank: true},{multiple:true,length:10} %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "instruction_ids", collec: pride.instructions, mesmodele:"instructions"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+<%@search=[json_instructions_path]%>
+<%@select=[instructions_prides_path]%>
+<%@nom=['instructions']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

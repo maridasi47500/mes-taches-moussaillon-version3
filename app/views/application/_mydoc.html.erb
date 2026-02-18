@@ -1,0 +1,11 @@
+<%if Mydoc.find_by(controller: params[:controller],action: params[:action])%>
+<button type="button" onclick="window.open('<%=mydoc_path(Mydoc.find_by(controller: params[:controller],action: params[:action]).id)%>', 'windowOpenTab', 'scrollbars=1,resizable=1,width=1000,height=580,left=0,top=0');">&#10067;</button>
+<%else%>
+<%=form_with model: Mydoc.new(content:"",user_id: current_user.id,controller: params[:controller],action: params[:action]), url: "/mydocs" do |form|%>
+<%=form.hidden_field :controller%>
+<%=form.hidden_field :action%>
+<%=form.hidden_field :user_id%>
+<%=form.hidden_field :content%>
+<%=form.submit "&#10067;".html_safe%>
+<%end%>
+<%end%>

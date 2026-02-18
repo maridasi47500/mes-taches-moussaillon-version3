@@ -1,0 +1,32 @@
+<%= form_with(model: answermessage, local: true) do |form| %>
+  <% if answermessage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answermessage.errors.count, "error") %> prohibited this answermessage from being saved:</h2>
+
+      <ul>
+        <% answermessage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :invite_id %>
+    <%= form.number_field :invite_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

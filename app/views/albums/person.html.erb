@@ -1,0 +1,9 @@
+<%=fields_for :album, Album.new(person:Person.new) do |form|%>
+<%=form.collection_radio_buttons(:person_id, @people,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label do%>
+<%=render partial: 'people/personsimple', collection:[Person.find(rad.value)], as: :person%>
+<%end%>
+
+<%end%>
+<%end%>

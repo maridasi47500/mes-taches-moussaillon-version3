@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tvshows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>all the tv shows</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tvshows.each do |tvshow| %>
+      <tr>
+        <td><%= render partial: "things/addstufftobasket", collection: [tvshow], as: :thing %></td>
+        <td><%= link_to 'Show', tvshow %></td>
+        <td><%= link_to 'Edit', edit_tvshow_path(tvshow) %></td>
+        <td><%= link_to 'Destroy', tvshow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tvshow', new_tvshow_path %>

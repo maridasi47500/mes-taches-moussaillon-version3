@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+
+  <%= render @optiontask %>
+</p>
+<p>
+variante : 
+
+  <%= render 'optiontasks/optiontaskvariante',optiontask: @optiontask %>
+</p>
+<p>
+<%if @optiontask.task.followingtasks.where.not(id: @optiontask.followingtask_id).any?{|x|x.taskshaveaccomplishments.length > 0}%>
+Ce n'est pas cette tache, ce sont ces taches ont ete accomplies. Ce sont celles-ci :
+<%= render @optiontask.task.followingtasks.where.not(id: @optiontask.followingtask_id).select{|x|x.taskshaveaccomplishments.length > 0}%>
+<%end%>
+</p>
+
+
+<%= link_to 'Edit', edit_optiontask_path(@optiontask) %> |
+<%= link_to 'Back', optiontasks_path %>

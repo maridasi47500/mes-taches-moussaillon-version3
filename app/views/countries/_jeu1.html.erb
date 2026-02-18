@@ -1,0 +1,9 @@
+<%=form_with url: reponses_countries_path do |form|%>
+Clique sur la <%=pays1.name%>
+<%pays2.each do |pays|%>
+<input id="<%=pays.name.parameterize%>" type="image" width="70" height="70" alt="pays a deviner" title="devine" name="pays<%=pays.id%>"
+       src="/assets/<%=pays.mapicon%>">
+<%end%>
+
+<%end%>
+

@@ -1,0 +1,54 @@
+
+
+<%=form_with url: comparetwo_twopeople_path,html: {id: "comparetwopeople"} do |form|%>
+<%=form.hidden_field :person1id, value: @person1.id%>
+<%=form.hidden_field :person2id, value: @person2.id%>
+<%if !(@city || @company || @job) && @person%>
+<table style="border: 1px solid black;">
+<tr>
+<th>
+</th>
+<td>
+<%=render 'people/inputimage',person: @person%>
+
+</td>
+
+</tr>
+<tr>
+<td>
+cities
+</td>
+<td>
+<%=render partial: 'cities/inputimage',collection: @person.pcitiesspecial(@person1,@person2,@twopeople.city_ids), as: :city%>
+</td>
+</tr>
+
+<tr>
+<td>
+jobs
+</td>
+<td>
+<%=render partial: 'jobs/inputimage',collection: @person.cjobsspecial(@person1,@person2,@twopeople.job_ids), as: :job%>
+</td>
+</tr>
+
+<tr>
+<td>
+companies
+</td>
+<td>
+<%=render partial: 'companies/inputimage',collection: @person.ccompaniesspecial(@person1,@person2,@twopeople.company_ids), as: :company%>
+</td>
+</tr>
+</table>
+<%end%>
+
+
+<%end%>
+<%if @city||@company||@job%>
+<script>
+window.onload=function(){
+comparetwopeople.submit();
+}
+</script>
+<%end%>

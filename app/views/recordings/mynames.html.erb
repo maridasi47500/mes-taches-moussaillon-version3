@@ -1,0 +1,3 @@
+<%=select_tag "person[myownsurnames][]", options_from_collection_for_select(Person.all, "id", "name", params[:personid])%>
+<%=text_field_tag "person[contentmyownsurnames][]", "", placeholder: "or write the content of your recorded surname"%>
+

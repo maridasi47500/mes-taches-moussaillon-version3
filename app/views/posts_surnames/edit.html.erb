@@ -1,0 +1,19 @@
+<h1><%=t('editpage.posts_surname.title')%> </h1>
+<%if notice%><h1><%=notice%></h1><%end%>
+  <% if params[:destinataireid] %>
+    <p><%= render partial: "people/personpic", locals: {person: Person.find(params[:destinataireid])}%></p>
+  <% end %>
+  <% if params[:avatarid] %>
+    <p><%= render partial: "people/personpic", locals: {person: Person.find(params[:avatarid])}%></p>
+  <% end %>
+  <% if params[:placeid] %>
+    <p><%= render partial: "places/bigplace", locals: {place: Place.find(params[:placeid])}%></p>
+  <% end %>
+  <% if params[:personid] %>
+    <p><%= render partial: "people/personsimple", collection: Person.where(id: params[:personid]), as: :person%></p>
+  <% end %>
+
+<%= render 'posts_surnames/form2', post: @posts_surname %>
+
+<%= link_to t('editpage.posts_surname.show'), @posts_surname %> |
+<%= link_to t('editpage.posts_surname.back'), posts_surnames_path %>

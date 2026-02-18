@@ -1,0 +1,2 @@
+<span><%=t('display.starsattitudesailor',count:winningattitude.people.length,attitude: winningattitude.content, task: @task.name,sailor: winningattitude.people.take(4).map{|x|x.name}.to_sentence,nbothersailor: (winningattitude.people.length - 4))%></span>
+

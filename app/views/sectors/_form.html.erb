@@ -1,0 +1,66 @@
+<%= form_with(model: sector, local: true) do |form| %>
+  <% if sector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sector.errors.count, "error") %> prohibited this sector from being saved:</h2>
+
+      <ul>
+        <% sector.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'field_id', collec: sector.mysectors, mesmodele:"fields"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'city_ids', collec: sector.cities, mesmodele:"cities"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'bacseries_ids', collec: sector.bacseries, mesmodele:"bacseries"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "admissionfile_ids", collec: sector.admissionfiles, mesmodele:"bacseries"%>
+</div>
+
+
+
+
+  <div class="field">
+    <%= form.label :open_signup %>
+    <%= form.date_select :open_signup %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admission_exam %>
+    <%= form.check_box :admission_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admission_exam_date %>
+    <%= form.date_select :admission_exam_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[bacseries_sectors_path,admissionfiles_sectors_path, field_sectors_path, city_sectors_path]%>
+<%@search=[json_bacseries_index_path,json_admissionfiles_path, json_fields_path, json_cities_path]%>
+<%@nom=['bacseries','admissionfiles','fields','cities']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

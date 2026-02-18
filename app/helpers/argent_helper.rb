@@ -1,0 +1,2 @@
+module ArgentHelper
+end

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Phrases (m17n) (multilingual)</h1>
+<p>You can use several languages in the same phrase in this dictionary.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="7"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @phrases.each do |phrase| %>
+      <tr>
+        <td><%= phrase.content %></td>
+        <%if phrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if phrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if phrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+<%end%>
+
+
+        <td><%= link_to 'Show', phrase %></td>
+        <td><%= link_to 'Edit', edit_phrase_path(phrase) %></td>
+        <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Phrase', new_phrase_path %>

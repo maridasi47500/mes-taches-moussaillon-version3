@@ -1,0 +1,7 @@
+  <%= form_with(model: post, local: true, html: {id: "form-post"}) do |form| %>
+
+        <%=render partial: "posts/#{params[:action]}", locals: {post: post, form: form}%>
+  <div>
+  <%=form.submit "Modifier ce post"%>
+  </div>
+<% end %>

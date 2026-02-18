@@ -1,0 +1,15 @@
+<form target="_blank" method="post" action="<%=opinion_path(params[:id])%>">
+choisis un ustensile d'artiste utilisé et clique le pinceau correpondant au niveau de la pratique artistique
+</br>
+<%=select_tag "uaid", options_for_select(Ustensile.all.collect{|x| [x.name,x.id]}, @ustensile.id), { prompt: "choisir un ustensile", value: ""}%>
+
+<%(1..5).to_a.each_with_index do |h,i|%>
+<input id="image<%=h%>pinceau" type="image" width="100" height="100" title="arist <%=i+1%>/5" alt="artist" name="art<%=h%>"
+
+
+       src="<%=@ustensile.image%>">
+
+
+<%end%>
+</form>
+

@@ -1,0 +1,9 @@
+<%=fields_for :attitudephoto do |form|%>
+<%=form.fields_for :tickets do |ff|%>
+  <div class="field">
+<%=render "form/fieldsforcheckboxcolumnwithvariable",n:"attitudephoto[tickets_attributes][#{params[:n]}]",columnname: :name, form: ff, fieldname: 'recipient_ids', collec: @people, mesmodele:"recipients",m:params[:n]%>
+
+</div>
+<%end%>
+<%end%>
+

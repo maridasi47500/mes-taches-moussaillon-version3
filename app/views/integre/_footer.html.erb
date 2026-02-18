@@ -1,0 +1,47 @@
+<%=form_with url: armeegrade_path do |form|%>
+<input id="imagearmegrade" type="image" width="100" height="100" alt="Login"
+       src="/assets/gradearmeeterre.png">
+
+<%end%>
+<%current_user.userhavearmygrades.each do |t|%>
+<%=button_to t.armygrade.nom+' X', armeegradedelete_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+
+
+
+
+<%=form_with url: armeeclothes_path do |form|%>
+<input id="imageclothegrade" type="image" width="100" height="100" alt="Login"
+       src="/assets/soldatmilitaire.png">
+
+<%end%>
+<%current_user.userhaveclothes.each do |t|%>
+<%=button_to t.clothing.name+' X', armeeclothesdelete_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+<%=form_with url: armeeskill_path do |form|%>
+<input id="imageskillarmee" type="image" width="100" height="100" alt="Login"
+       src="/assets/tractionmilitaire.png">
+
+<%end%>
+<%current_user.userhaveskills.each do |t|%>
+<%=button_to t.skill.name+' X', armeeskilldelete_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+<%=form_with url: armeechanson_path do |form|%>
+<input id="imagesongarmy" type="image" width="100" height="100" alt="Login"
+       src="<%=Categorything.find(3600).image%>">
+
+<%end%>
+<%current_user.userhavesongs.each do |t|%>
+<%=button_to t.song.name+' X', armeegradedelete_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+<%=form_with url: armeefamille_path do |form|%>
+<input id="imagefamilyarmy" type="image" width="100" height="100" alt="Login"
+       src="/assets/familleingalls.png">
+
+<%end%>
+<%current_user.userhavefamilies.each do |t|%>
+<%=button_to t.familylink.name+' '+t.person.name+' X', armeefamilledelete_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+
+
+

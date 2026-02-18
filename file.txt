@@ -1,0 +1,18 @@
+HTTP/2 400 
+access-control-allow-origin: *
+x-fb-request-id: ARCgngRneJ-daaL4K3ggt1o
+strict-transport-security: max-age=15552000; preload
+x-fb-trace-id: FUG2N0ZsyH5
+content-type: application/json; charset=UTF-8
+x-app-usage: {"call_count":31,"total_cputime":0,"total_time":9}
+x-fb-rev: 1003057454
+cache-control: no-store
+pragma: no-cache
+expires: Sat, 01 Jan 2000 00:00:00 GMT
+www-authenticate: OAuth "Facebook Platform" "invalid_token" "Error validating access token: Session has expired on Friday, 30-Oct-20 17:00:00 PDT. The current time is Saturday, 05-Dec-20 15:13:16 PST."
+x-fb-debug: Hc7i3FdIFs7ntDnNcgfFMfyoTZp6d2DVgkcdA8A2/tVC4lRZZ9KZFYTDKnODTMt7U698nO9mxno3q4hbb0QDEg==
+content-length: 257
+date: Sat, 05 Dec 2020 23:13:16 GMT
+alt-svc: h3-29=":443"; ma=3600,h3-27=":443"; ma=3600
+
+{"error":{"message":"Error validating access token: Session has expired on Friday, 30-Oct-20 17:00:00 PDT. The current time is Saturday, 05-Dec-20 15:13:16 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ARCgngRneJ-daaL4K3ggt1o"}}

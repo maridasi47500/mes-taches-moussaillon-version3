@@ -1,0 +1,18 @@
+    <div class="field">
+<%post.usurpations.each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>
+    <div class="field">
+<%post.hackedpeople.where('people.id NOT IN (?)', post.usurpation_ids).each do |person|%>
+<p>Add jingles for <%= person.name%></p>
+<%=form.collection_check_boxes(:jingle_ids, person.jingles, :id, :name) %>
+
+
+
+<%end%>
+</div>

@@ -1,0 +1,9 @@
+<%if @ok%>
+Super ! Tu connais <%=render partial: "countries/countryjeu", locals:{country: @paysadeviner}%> !
+<%else%>
+Dommage ! Pour <%=@paysadeviner.name%>, il fallait choisir <%=image_tag "/assets/"+@paysadeviner.mapicon, class:"mapitem"%> ! Tu avais cliqué sur <%=image_tag "/assets/"+@choixuser.mapicon, class:"mapitem"%> (icône de <%=@choixuser.name%>)
+<%end%>
+<br>
+<p>Rejoue donc, <%=current_user.name%>.</p>
+<%=render 'jeu1', pays1: @pays1, pays2: @pays%>
+

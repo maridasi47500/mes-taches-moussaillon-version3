@@ -1,0 +1,6 @@
+<br>
+<%collection.each do |t|%>
+<input id="<%=t.name.parameterize+t.id.to_s%>" name="<%=t.id%>person" type="image" width="100" height="100" alt="<%=t.name%>"
+       src="<%=t.image%>">
+<%end%>
+

@@ -1,0 +1,171 @@
+<%= form_with(model: jingle, local: true) do |form| %>
+  <% if jingle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jingle.errors.count, "error") %> prohibited this jingle from being saved:</h2>
+
+      <ul>
+        <% jingle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% Jingle.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+  <% Jingle.locale_columns(:name).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+
+<div class="mypeople">
+      <%= form.label :person_ids, "qui dit ce jingle" %>
+      <%= form.collection_check_boxes(:person_ids, Person.where(id:jingle.person_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render partial: "people/personradiobutton",locals: {personid:ff.value}%>
+                            <%end%>
+
+
+      </div>
+      <div>
+        <%= text_field_tag :cherchonsla, "",onchange:"chercherici(this,cherchela);return false;", id: "cherchonsla",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectotherpeople(this,avat2);return false;" id="cherchela" data-field="person_ids"></select>
+<div id="avat2"></div>
+
+<div class="mypeople">
+      <%= form.label :audiencemember_ids, "qui doit l'ecouter" %>
+      <%= form.collection_check_boxes(:audiencemember_ids, Person.where(id:jingle.audiencemember_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render partial: "people/personradiobutton",locals: {personid:ff.value}%>
+                            <%end%>
+
+
+      </div>
+      <div>
+        <%= text_field_tag :cherchonsici, "",onchange:"chercherici(this,chercheici);return false;", id: "cherchonsici",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectpeople(this,avat1);return false;" id="chercheici" data-field="audiencemember_ids"></select>
+<div id="avat1"></div>
+
+<div class="mytasks">
+      <%= form.label :task_ids, "que fait le moussaillon" %>
+      <%= form.collection_check_boxes(:task_ids, Task.where(id:jingle.task_ids), :id, :name) do |ff| %>
+        <%=ff.check_box%>
+<%=render Task.find(ff.value)%>
+                            <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonslatache, "",onchange:"cherchertasks(this,cherchelatache);return false;", id: "cherchonslatache",class:"mysearchfieldavatars" %></div>
+        <select onchange="selecttasks(this,avattache);return false;" id="cherchelatache" data-field="task_ids"></select>
+<div id="avattache"></div>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'radio_ids', collec: jingle.radios, mesmodele:"radios"%>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'reaction_ids', collec: jingle.reactions, mesmodele:"reactions"%>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function chercherici(field,selectfield){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+
+function selectpeople(field,box){
+$.ajax({url: '<%=mypeople_jingles_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectotherpeople(field,box){
+$.ajax({url: '<%=radiopeople_jingles_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+
+</script>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+function cherchertasks(field,all){
+$.ajax({url: '<%=allmytasks_tasks_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selecttasks(field,greatpeople){
+$.ajax({url: '<%=allmytasks_jingles_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[radios_jingles_path]%>
+<%@search=[json_radios_path]%>
+<%@nom=['radios']%>
+<%=render partial:"form/functionjsonradios", collection: @nom.zip(@search, @select), as: :t%>
+function chercherreactions(field,al){
+if (field.value.trim() !== ''){
+$.ajax({url: '<%=json_reactions_path%>?name='+field.value,
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i][0][0];
+name=data[i][0][1]+' - '+data[i][1];
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+}
+};
+function selectreactions(field,greatpeople){
+if (field.value !== ''){
+$.ajax({url: '<%=jinglesreactions_jingles_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+};
+
+</script>
+<%end%>
+

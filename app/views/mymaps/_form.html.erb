@@ -1,0 +1,43 @@
+<%= form_with(model: mymap,url:post_mymap_path(mymap.id, post_id: params[:post_id]), local: true) do |form| %>
+  <% if mymap.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mymap.errors.count, "error") %> prohibited this mymap from being saved:</h2>
+
+      <ul>
+        <% mymap.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :width %>
+    <%= form.text_field :width %>
+  </div>
+
+  <div class="field">
+    <%= form.label :height %>
+    <%= form.text_field :height %>
+  </div>
+<%=form.fields_for :mymapscoords do |f|%>
+  <div class="field">
+
+<%=f.select :place_id, Place.all.collect{|h|[h.name,h.id]}, {include_blank: true}%>
+  </div>
+  <div class="field">
+
+<%=f.label :_destroy, "Supprimer"%>
+<%=f.check_box :_destroy%>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

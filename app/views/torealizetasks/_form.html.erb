@@ -1,0 +1,74 @@
+<%= form_with(model: torealizetask, local: true) do |form| %>
+  <% if torealizetask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(torealizetask.errors.count, "error") %> prohibited this torealizetask from being saved:</h2>
+
+      <ul>
+        <% torealizetask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobuttoncolumn",columnname: :name, form: form, fieldname: 'task_id', collec: Task.findbyid(torealizetask.task_id), mesmodele:"tasks"%>
+
+  </div>
+<%=link_to "ajouter une attitude de la tâche", "",data: {nb: torealizetask.attitudetakentasks.length},onclick:"getattitudes(this);return false;", id: "addatt"%>
+<%=link_to "ajouter une nouvelle attitude pour la tâche", "",onclick:"getnewattitudes(this);return false;"%>
+
+    <%= form.hidden_field :user_id %>
+<div id="attitudetakentask">
+<%torealizetask.attitudetakentasks.each_with_index do |task,i|%>
+<%=form.fields_for :attitudetakentasks,task do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",n:"torealizetask[attitudetakentasks_attributes][#{i}]",columnname: :name, form: ff, fieldname: 'attitude_id', collec: Attitude.findbyid(task.attitude_id), mesmodele:"attitudes",m:i%>
+
+  </div>
+  <div class="field">
+<%=ff.label :real%>
+<%=ff.check_box :real%>
+  
+  </div>
+
+<%end%>
+<%end%>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[tasks_torealizetasks_path,attitudes_torealizetasks_path]%>
+<%@search=[json_tasks_path,attitudejson_attitudes_path]%>
+<%@nom=['tasks','attitudes']%>
+<%=render partial:"form/functionjsonwithvariable", collection: @nom.zip(@search, @select), as: :t%>
+function getattitudes(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=addattitudes_torealizetasks_path%>?n="+String(mynb),
+success: function(data) {
+$(attitudetakentask).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+function getnewattitudes(lik){
+var mynb=Number(addatt.dataset.nb);
+$.ajax({
+url: "<%=addnewattitudes_torealizetasks_path%>?n="+String(mynb),
+success: function(data) {
+$(attitudetakentask).append(data);
+}
+});
+addatt.dataset.nb=mynb + 1;
+return false;
+}
+
+</script>
+<%end%>
+

@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<%=render @frontpage.people%>
+<%=select_tag "selectlayout", options_for_select(Mylayout.all.collect{|x|[x.title, x.typelayout]}), include_blank: true, onchange: "window.location='#{mylayoutfrontpage_post_path(@frontpage.id)}/'+String(this.value);" %>
+
+
+
+<%= link_to 'Edit', edit_frontpage_path(@frontpage) %> |
+<%= link_to 'Back', frontpages_path %>

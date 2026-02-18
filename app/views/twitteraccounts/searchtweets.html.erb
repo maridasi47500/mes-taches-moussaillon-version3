@@ -1,0 +1,29 @@
+<%=render 'formtweets'%>
+<%=content_for :myjscode do%>
+<script>
+function cherchertweets(field,al){
+if (field.value.trim() !== ''){
+$.ajax({url: '<%=searchintweets_twitteraccounts_path%>?q='+field.value,
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].username+' - '+data[i].place+' - '+data[i].content+' - '+data[i].created_at;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+}
+};
+function selecttweets(field,greatpeople){
+if (field.value !== ''){
+$.ajax({url: '<%=jinglesreactions_jingles_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+};
+
+</script>
+<%end%>
+

@@ -1,0 +1,22 @@
+<%= form_with(model: setoftask, local: true) do |form| %>
+  <% if setoftask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(setoftask.errors.count, "error") %> prohibited this setoftask from being saved:</h2>
+
+      <ul>
+        <% setoftask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

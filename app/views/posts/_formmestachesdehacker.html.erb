@@ -1,0 +1,33 @@
+  <%= form_with(model: post, local: true, html: {id: "form-task-hacker"}) do |form| %>
+<div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :content, form: form, fieldname: 'i18nphrase_ids', collec: post.i18nphrases, mesmodele:"i18nphrases"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :taskname, form: form, fieldname: 'thistasknotthistask_ids', collec: post.thistasknotthistasks, mesmodele:"thistasknotthistasks"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :personname, form: form, fieldname: 'hernother_ids', collec: post.hernothers, mesmodele:"hernothers"%>
+
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'hackedperson_ids', collec: post.hackedpeople, mesmodele:"hackedpeople"%>
+
+
+</div>
+<div class="action">
+<%=form.submit%>
+</div>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[i18nphrases_posts_path,thistasknotthistask_posts_path,hernother_posts_path,hackedpeople_posts_path]%>
+<%@search=[json_i18nphrases_path,json_thistasknotthistasks_path,json_hernothers_path,personjson_albums_path]%>
+<%@nom=['i18nphrases','thistasknotthistasks','hernothers','hackedpeople']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

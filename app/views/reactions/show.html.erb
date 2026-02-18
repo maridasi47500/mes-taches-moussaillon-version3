@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Create New Sentence with sailors', new_reaction_path %>
+
+<%= render @reaction %>
+<ul>
+<li><%= link_to 'Edit', edit_reaction_path(@reaction) %></li>
+<li><%= link_to 'Back', reactions_path %></li>
+<li><%= link_to 'Revenir à toutes les phrases basées sur ce modèle', reactions_text_path(@reaction.reaction_id) %></li>
+</ul>
+
+
+

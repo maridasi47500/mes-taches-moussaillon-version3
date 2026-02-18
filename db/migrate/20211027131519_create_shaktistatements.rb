@@ -1,0 +1,11 @@
+class CreateShaktistatements < ActiveRecord::Migration[6.0]
+  def change
+    create_table :shaktistatements do |t|
+      t.text :content_fr
+      t.text :content_en
+      t.text :content_de
+      t.integer :user_id
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,44 @@
+<%= form_with(model: factoryservice, local: true) do |form| %>
+  <% if factoryservice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(factoryservice.errors.count, "error") %> prohibited this factoryservice from being saved:</h2>
+
+      <ul>
+        <% factoryservice.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "factory_ids", collec: factoryservice.factories, mesmodele:"factories"%>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "person_ids", collec: factoryservice.people, mesmodele:"people"%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,json_factories_path]%>
+<%@select=[people_factoryservices_path,factories_factoryservices_path]%>
+
+<%@nom=['people','factories']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

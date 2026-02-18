@@ -1,0 +1,141 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %> <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at, start_year: 1900 %>
+  </div>
+<div id="time-span">
+    Durée<input type="number" name="task[length_a]" min="0" step="1" />:<input name="task[length_b]" type="number" min="0" max="59" step="1" />
+</div>
+
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at, start_year: 1900 %>
+  </div>
+
+<%Task.locale_columns(:name).each do |column|%>
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column %>
+  </div>
+<%end%>
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'city_id', collec: City.findbyid(task.city_id), mesmodele:"cities"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'tasktype_ids', collec: task.tasktypes, mesmodele:"tasktype"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'sailor_ids', collec: task.sailors, mesmodele:"sailors"%>
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :content, form: form, fieldname: 'ticket_ids', collec: task.tickets, mesmodele:"tickets"%>
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :content, form: form, fieldname: 'failingticket_ids', collec: task.failingtickets, mesmodele:"failingtickets"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'worktwo_ids', collec: task.worktwos, mesmodele:"worktwos"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'attitude_ids', collec: task.attitudes, mesmodele:"attitudes"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'google_request_ids', collec: task.google_requests, mesmodele:"googlerequests"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskaction_ids', collec: task.taskactions, mesmodele:"actions"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'place_ids', collec: task.places, mesmodele:"places"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'githubrepo_ids', collec: task.githubrepos, mesmodele:"githubrepos"%>
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :content, form: form, fieldname: 'gossip_ids', collec: task.gossips, mesmodele:"gossips"%>
+
+</div>
+<div>
+<%=select_tag :personid, options_for_select(task.sailors.collect {|x|[x.name,x.id]}), {prompt:t('display.selectsailor')}%>
+</div>
+  <div class="field">
+<%=label_tag t('pagesshow.task.boisson')%>
+<%task.drinksisaid(current_user.id).each do |t|%>
+<%=render "form/imageinputintensity", thing: t.drink,stuff: "drink"%>
+
+<br>
+<%=select_tag "personid#{t.id}", options_for_select(task.sailors.collect {|x|[x.name,x.id]}, t.person_id), {prompt:t('display.selectsailor')}%>
+<%end%>
+<%=render "form/searchfield", mesmodele:"drinks"%>
+</div>
+  <div class="field">
+<%=label_tag t('pagesshow.task.use')%>
+<%task.thingsisaid(current_user.id).each do |t|%>
+<%=render "form/imageinputintensity", thing: t.thing,stuff: "thing"%>
+<br>
+<%=label_tag t('pagesshow.job.qty', qty: t.thing.name.pluralize)%>
+<%=number_field_tag "#{t.thing.id}nb", t.nb.to_i%>
+<%end%>
+<%=render "form/searchfield", mesmodele:"things"%>
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'epoch_ids', collec: task.epochs, mesmodele:"epochs"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :title, form: form, fieldname: 'film_ids', collec: task.films, mesmodele:"films"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'tvseries_ids', collec: task.tvseries, mesmodele:"tvseries"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'followingtask_ids', collec: task.followingtasks, mesmodele:"followingtasks"%>
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn",columnname: :name, form: form, fieldname: 'song_ids', collec: task.songs, mesmodele:"songs"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@cherche=[personjson_people_path,worktwosjson_worktwos_path, attitudejson_attitudes_path,json_tasks_path,json_taskactions_path,json_githubrepos_path,json_gossips_path,json_epochs_path,json_drinks_path]%>
+<%@choisis=[people_tasks_path,worktwo_tasks_path,attitudes_tasks_path,myrelatedtasks_tasks_path,myactions_tasks_path,githubrepos_tasks_path,gossips_tasks_path,epochs_tasks_path,drinks_tasks_path]%>
+<%@nom=['sailors','worktwo','attitudes','myrelatedtasks','actions','githubrepos','gossips','epochs','drinks']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[things_tasks_path,tickets_tasks_path,failingtickets_tasks_path,city_tasks_path,googlerequest_tasks_path,places_tasks_path,tvseries_tasks_path,films_tasks_path,followingtasks_tasks_path,songs_tasks_path]%>
+<%@search=[json_things_path,json_tickets_path,json_tickets_path,json_cities_path,json_google_requests_path,json_places_path,json_tvseries_index_path,json_films_path,json_tasks_path,json_songs_path]%>
+<%@nom=['things','tickets','failingtickets','cities','googlerequests','places','tvseries','films','followingtasks','songs']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

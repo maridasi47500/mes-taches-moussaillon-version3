@@ -1,0 +1,2 @@
+class SkinType < Thing
+end

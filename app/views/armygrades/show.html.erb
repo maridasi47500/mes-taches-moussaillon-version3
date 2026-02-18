@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @armygrade.nom %>
+  (<%= @armygrade.abbreviation %>)
+</p>
+
+<p>
+  <strong>Appellation:</strong>
+  <%= @armygrade.appellation %>
+</p>
+<p>
+  <strong>Pour une femme:</strong>
+  <%= @armygrade.femme %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag '/assets/'+@armygrade.image, width: 300, height: 300 %>
+</p>
+
+<%= link_to 'Edit', edit_armygrade_path(@armygrade) %> |
+<%= link_to 'Back', armygrades_path %>

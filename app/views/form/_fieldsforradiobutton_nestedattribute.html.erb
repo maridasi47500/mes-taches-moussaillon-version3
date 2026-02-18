@@ -1,0 +1,12 @@
+<%=fields_for modelname,model1.new, :child_index => params[:myid] do |form|%>
+<%=form.fields_for attribute1,model2.new do |fff|%>
+<%=fff.collection_radio_buttons(fieldname, collec, :id, :name,{},{include_hidden: false}) do |b| %>
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render b.object%>
+<%end%>
+
+<% end %>
+<% end %>
+<% end %>
+

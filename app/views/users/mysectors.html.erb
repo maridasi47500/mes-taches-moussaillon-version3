@@ -1,0 +1,14 @@
+<%=fields_for :user,User.new do |f|%>
+<%=f.fields_for :usersjobs,Usersjob.new(user: current_user,job: Job.new) do |form|%>
+<div class="field">
+<%=form.fields_for :sectors, Sector.find(params[:id]),child_index: params[:idinput] do |fff|%>
+       <%=fff.check_box :id,checked: true%>
+<%=render Sector.find(params[:id])%>
+
+
+<%end%>
+</div>
+
+<%end%>
+<%end%>
+

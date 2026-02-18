@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<%=render 'attitudes/attitudebis',attitude: @attitude%>
+<br>
+<%=render partial: 'peoplebuyclothes/peoplebuyclothing',collection: @attitude.peoplebuyclothes,as: :peoplebuyclothing,spacer_template: 'backtoline'%>
+<%=render partial: 'peoplebuytraveltickets/peoplebuytravelticket',collection:@attitude.peoplebuytraveltickets,spacer_template: 'backtoline'%>
+
+<ul>
+<li><%=link_to 'Show', @attitude %></li>
+<li><%= link_to 'Back', attitudes_path %></li>
+</ul>
+

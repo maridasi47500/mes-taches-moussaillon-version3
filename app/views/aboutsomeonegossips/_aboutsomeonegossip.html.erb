@@ -1,0 +1,50 @@
+
+
+<%=aboutsomeonegossip.reaction ? (render aboutsomeonegossip.reaction) : ""%>
+
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+<%= aboutsomeonegossip.content%>
+</p>
+
+</div></div>
+<%if aboutsomeonegossip.anaphors.length > 0%>
+<%=render aboutsomeonegossip.anaphors%>
+<%end%>
+
+<%if aboutsomeonegossip.beforegossips.length > 0%>
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+Reactions that already came before the gossips
+</p>
+
+</div></div>
+<%end%>
+
+<%=render aboutsomeonegossip.beforegossips%>
+<%if aboutsomeonegossip.duringgossips.length > 0%>
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+Reactions that came when the gossips came
+</p>
+
+</div></div>
+
+<%=render aboutsomeonegossip.duringgossips%>
+<%end%>
+<%if aboutsomeonegossip.aftergossips.length > 0%>
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+Reactions that came after the gossips were known by all the crowd
+</p>
+
+</div></div>
+<%end%>
+
+<%=render aboutsomeonegossip.aftergossips%>
+<%=render partial: "people/personcard", collection: aboutsomeonegossip.aboutthosepeople, as: :person%>
+

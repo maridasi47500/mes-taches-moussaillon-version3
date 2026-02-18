@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Becausetasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @becausetasks.each do |becausetask| %>
+      <tr>
+        <td><%= render becausetask %></td>
+        <td><%= link_to 'Show', becausetask %></td>
+        <td><%= link_to 'Edit', edit_becausetask_path(becausetask) %></td>
+        <td><%= link_to 'Destroy', becausetask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Becausetask', new_becausetask_path %>

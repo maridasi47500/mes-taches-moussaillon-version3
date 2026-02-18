@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Transacs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Somme</th>
+      <th>Date</th>
+      <th>Motif</th>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transacs.each do |transac| %>
+      <tr>
+        <td><%= transac.somme %></td>
+        <td><%= transac.date %></td>
+        <td><%= transac.motif %></td>
+        <td><%= transac.username %></td>
+        <td><%= link_to 'Show', transac %></td>
+        <td><%= link_to 'Edit', edit_transac_path(transac) %></td>
+        <td><%= link_to 'Destroy', transac, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transac', new_transac_path %>

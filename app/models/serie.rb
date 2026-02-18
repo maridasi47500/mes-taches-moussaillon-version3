@@ -1,0 +1,2 @@
+class Serie < Thing
+end

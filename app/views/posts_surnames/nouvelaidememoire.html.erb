@@ -1,0 +1,2 @@
+    <%=select_tag :tousmesaidememoires, options_for_select(ps.aidememoiresanticlockwise.collect {|a| [a.recordedphrase.content+'-'+a.recordedword.content,a.id]}), {name: "listeaidememoires", size: 5,prompt: "select a form"}%>
+

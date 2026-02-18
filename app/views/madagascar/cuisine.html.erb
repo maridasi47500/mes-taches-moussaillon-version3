@@ -1,0 +1,11 @@
+<h1>Fais la cuisine</h1>
+<%=form_with url: actionmenage_path do |form|%>
+<%["membre.jpg","food2.png", "broom1.jpg", "broom.jpg"].each_with_index do |k,i|%>
+<input id="image<%=i%>" type="image" width="100" height="100" alt="Login"
+       name="<%=k.gsub('.jpg','').gsub('.png','')%>"
+       src="/assets/<%=k%>">
+<%end%>
+
+<%end%>
+<br>
+<%=link_to "revenir a tout pour le foyer", madagascar_menage_path%>

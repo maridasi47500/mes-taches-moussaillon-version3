@@ -1,0 +1,34 @@
+
+<%= form_with(model: scorecriterion, local: true) do |form| %>
+  <% if scorecriterion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scorecriterion.errors.count, "error") %> prohibited this scorecriterion from being saved:</h2>
+
+      <ul>
+        <% scorecriterion.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+
+    <%= form.hidden_field :gooduser_id %>
+  </div>
+
+  <div class="field">
+
+    <%= form.hidden_field :musicalscore_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

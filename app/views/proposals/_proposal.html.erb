@@ -1,0 +1,42 @@
+<div class="col myproposition<%=proposal.id%>">
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+<%=proposal.content%>
+    <%if proposal.notvoted(current_user)%>
+    <%=image_tag "/assets/goodtick1.png", class: "imageprofilethread", onclick: "$.ajax({type:'post', url: '#{yes_proposal_path(proposal.id)}', success: function(code) {$('.myproposition#{proposal.id}')[0].outerHTML = code;}});return false;"%>
+    <%=image_tag "/assets/goodtick2.png", class: "imageprofilethread", onclick: "$.ajax({type:'post', url: '#{no_proposal_path(proposal.id)}', success: function(code) {$('.myproposition#{proposal.id}')[0].outerHTML = code;}});return false;"%>
+    <%else%>
+        <%=link_to "cancel your vote", "", onclick: "$.ajax({type:'post', url: '#{cancel_proposal_path(proposal.id)}', success: function(code) {$('.myproposition#{proposal.id}')[0].outerHTML = code;}});return false;"%>
+        <%=link_to "edit your vote", edit_proposal_path(proposal)%>
+
+    <%=render proposal.myvotes%>
+    <%if proposal.negativeorpositivevotes.length > 0%>
+    <div class="accordion" id="accordionExample<%=proposal.id%>">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading<%=proposal.id%>">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=proposal.id%>" aria-expanded="true" aria-controls="collapse<%=proposal.id%>">
+       voir ceux qui ont voté <%=proposal.ouiounoninverse%>
+      </button>
+    </h2>
+    <div id="collapse<%=proposal.id%>" class="accordion-collapse collapse" aria-labelledby="heading<%=proposal.id%>" data-bs-parent="#accordionExample<%=proposal.id%>">
+      <div class="accordion-body">
+        <strong>Ceux qui ont voté <%=proposal.ouiounoninverse%>.</strong> 
+        <% proposal.negativeorpositivevotes.each do |vote| %>
+        <%=image_tag vote.user.image, class: "imageprofilethread"%> voted <%=proposal.ouiounoninverse%>
+        <p><%= vote.content%></p>
+
+        <%end%>
+      </div>
+    </div>
+  </div>
+  </div>
+    <%end%>
+    <%end%>
+</p>
+<p class="card-text">
+    
+</p>
+</div>
+</div>
+</div>

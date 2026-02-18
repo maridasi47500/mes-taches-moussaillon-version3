@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Jingles</h1>
+<%= link_to 'New Jingle', new_jingle_path %>
+
+<table>
+  <tr>
+    <th>Audio file</th>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Show link</th>
+    <th>Edit link</th>
+    <th>Destroy link</th>
+  </tr>
+    <% @jingles.each do |jingle| %>
+  <tr>
+    <td><%= audio_tag jingle.name, controls: true %></td>
+    <td><%= jingle.name %></td>
+    <td><%= jingle.content %></td>
+    <td><%= link_to 'Show', jingle %></td>
+    <td><%= link_to 'Edit', edit_jingle_path(jingle) %></td>
+    <td><%= link_to 'Destroy', jingle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+    <% end %>
+</table>
+
+      
+<br>
+
+

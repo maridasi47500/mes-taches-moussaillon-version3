@@ -1,0 +1,16 @@
+<%=fields_for :rightaboutsomeone do |form|%>
+<%=form.fields_for :actionlists do |f|%>
+<%=f.fields_for :taskactions do |ff|%>
+<%Taskaction.locale_columns(:name).each do |t|%>
+<div>
+<%=ff.label t%>
+<%=ff.text_area t, name: "rightaboutsomeone[actionlists_attributes][#{params[:myid]}][taskactions_attributes][#{params[:mysecondid]}]#{t}"%>
+
+</div>
+<%end%>
+
+
+<%end%>
+<%end%>
+<%end%>
+

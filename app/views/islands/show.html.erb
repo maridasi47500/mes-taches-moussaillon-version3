@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @island.address_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @island.name %>
+</p>
+<%if @island.beaches.length > 0%>
+  <h2>Mes plages</h2>
+  <ul>
+<%@island.beaches.each do |beach|%>
+  <li><%=link_to beach.name, beach%></li>
+<%end%>
+  </ul>
+<%end%>
+
+<%= link_to 'Edit', edit_island_path(@island) %> |
+<%= link_to 'Back', islands_path %>

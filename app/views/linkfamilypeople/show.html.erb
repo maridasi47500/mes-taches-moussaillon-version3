@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @linkfamilyperson %>
+</p>
+
+<%= link_to "inverser l'ordre des moussaillons", inverseorder_linkfamilyperson_path(@linkfamilyperson.id) %> |
+<%= link_to 'sex of these people', womanman_linkfamilyperson_path(@linkfamilyperson.id) %> |
+<%= link_to 'Edit', edit_linkfamilyperson_path(@linkfamilyperson) %> |
+<%= link_to 'Back', linkfamilypeople_path %>

@@ -1,0 +1,2 @@
+class Softwareitem < Technology
+end

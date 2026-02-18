@@ -1,0 +1,292 @@
+
+<%=form_with model: post, html: {id:'formsurname',onsubmit: "$.ajax({url: this.action+'?'+$(this).serialize()+'&ajax=true',success:function(data){mypersonsubtitle.innerHTML=data;offformavatar();formsurname.outerHTML='';},type:this.method});return false;"} do |form|%>
+
+<%if posts_surname_signed_in?%>
+
+<div class="field">
+  <%=form.label :inverse_hacking, "Poster avec cet avatar"%>
+  <%= form.collection_check_boxes(:my_posts_surname_ids, [current_posts_surname], :id, :name) do |b|%>
+    <%=b.check_box(checked: true) %><%=render PostsSurname.find(b.value)%>
+  <%end%>
+</div>
+<%else%>
+<button type="button" id="myRecordingBtn">let us add avatars</button>
+<div id="myRecordingModal" class="recordingmodal">
+  <!-- Modal content -->
+  <div class="recordingmodal-content">
+    <span class="close">&times;</span>
+<%=label :mysurnamedisp1, "look quickly for a surname", for: "mysurnamedisp1"%>
+<input type="checkbox" id="mysurnamedisp1" checked onchange="$(mysurname001).toggleClass('notdisplayed');">
+<div id="mysurname001">
+<label for="monchemin1">un surnom</label>
+<input type="radio" name="MONCHEMIN" value="<%=mypeople_posts_path%>" id="monchemin1" onfocus="monchemin1ter.checked=true;monchemin1bis.checked=true;">
+<input type="radio" hidden=true name="moncheminbis" value="mypeople" id="monchemin1bis">
+<input type="radio" hidden=true name="moncheminter" value="cherchernom" id="monchemin1ter">
+</div>
+<%=label :mysurnamedisp2, "look quickly for a recipient", for: "mysurnamedisp2"%>
+<input type="checkbox" id="mysurnamedisp2" checked onchange="$(mysurname002).toggleClass('notdisplayed');">
+<div id="mysurname002">
+<label for="monchemin2">un destinataire</label>
+<input type="radio" name="MONCHEMIN" value="<%=mondestinataire_posts_path%>" id="monchemin2" onfocus="monchemin2bis.checked=true;monchemin2ter.checked=true;">
+<input type="radio" hidden=true name="moncheminbis" value="mondestinataire" id="monchemin2bis">
+<input type="radio" hidden=true name="moncheminter" value="mondestinataire" id="monchemin2ter">
+</div>
+        <%= text_field_tag :cherchertoutlesgens, "", id: "cherchertoutlesgens",class:"mysearchfieldavatars" %>
+        <%=link_to "appeler ces gens", "", onclick: "$.ajax({type: 'post',url: String($('[name=MONCHEMIN]:checked').val())+'?'+String($('[name=moncheminter]:checked').val())+'='+$('#cherchertoutlesgens').val(),success: function(code) {$('.'+String($('[name=moncheminbis]:checked').val())).html(code.split('<br>')[0]);$('.seepeople').html(code.split('<br>')[0]);console.log(code);$('#maprofilpic').html(code.split('<br>')[1]);}});return false;"%>
+<div class="seepeople"></div>
+
+</div>
+</div>
+
+
+        <%= form.fields_for :my_posts_surnames, PostsSurname.new(surname:Surname.new,person: Person.new,thing:Thing.new,surnamedestinataire: Surname.new) do |f| %>
+<%#=render partial: "formrecord/recordrecordingtablesurname", locals: {mylabel: "record the surname",meaning:"qui le dit?", myfield: "recordmywords1", form: f, modelderails: PostsSurname.new,am:Recording.new,sot:nil}%>
+<%#=render partial: "formrecord/recordrecordingtablesurname", locals: {mylabel: "record the text of the speech",meaning:"a propos de qui est ce post", myfield: "recordmyphrasesandwords1", form: f, modelderails: PostsSurname.new,am:Recording.new,sot:nil}%>
+                          <div class="field">
+  <button type="button" onclick="$.ajax({type:'post',url: '<%=rendermypostssurnames_path%>?'+$('form').serialize(), success: function(data){$('#post_content_fr').val($('#post_content_fr').val()+data);}});"> add this posts_surname to content </button> </div>
+                          <div class="field">
+        <% PostsSurname.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost', onkeydown: "mypersonsubtitle.innerHTML = this.value;" %>
+
+</div>
+
+  <% end %>
+
+
+                    </div>
+
+
+      <div>
+        <%= text_field_tag :chercherici, "", id: "chercherici",class:"mysearchfieldavatars" %>
+        <%=link_to "appeler ces gens", "", onclick: "$.ajax({type: 'post',url: '#{mypeople_posts_path}?cherchernom='+$('#chercherici').val(),success: function(code) {$('.mypeople').html(code.split('<br>')[0]);console.log(code);$('#maprofilpic').html(code.split('<br>')[1]);}});return false;"%>
+      </div>
+
+
+<div>
+        <%= text_field_tag :mapersonne, nil, id: 'mapersonne' %>
+recherche rapide : 
+        <%=link_to "chercher des gens", "", onclick: "$.ajax({type: 'post',url: '#{myownpeople_posts_path}?'+$('form').serialize(),success: function(code) {$('#mesgens').html(code.split('<br>')[0]);console.log(code);}});return false;"%>
+<div id="mesgens"></div>
+</div>
+<%if params["personids"] && params["personids"].length > 0%>
+      <div class="mypeople">
+
+<h2>comme si j'étais <%=render Person.find(params["personids"][0])%></h2>
+<%=f.hidden_field :speaklike_id, value: params["personids"][0].to_i%>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"][0]%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data);$("#post_content_fr").focus(); }});' id="btn<%=params["personids"][0]%>" type="button">add him/her to content</button>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"][0]%>",success:function(data){$(".editable_fr").append(data);$("#post_my_posts_surnames_attributes_0_content_fr").val($("#post_my_posts_surnames_attributes_0_content_fr").val()+data);$("#post_my_posts_surnames_attributes_0_content_fr").focus(); }});' id="btn<%=params["personids"][0]%>" type="button">add him/her to content of the posts surname</button>
+      </div>
+
+      <%else%>
+      <div class="mypeople">
+      <%= f.label :speaklike_id, "comme si il-elle était-en se prenant pour " %>
+      <%= f.collection_radio_buttons(:speaklike_id, (@person ? [@person] : []), :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render partial: "people/personradiobutton",locals: {personid:ff.value}%>
+                            <%end%>
+<%=  f.radio_button( "speaklike_id", nil)%><%= f.label "speaklike_id", "personne"%>
+
+      </div>
+<%end%>
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name, "donnez lui un surnom" %>
+        <%= surname.text_field :name %>
+      </div>
+
+      <div>
+        <%= surname.label :my_relation, "give me the relation to the person you're talking about, the raison d'être of this surname (basic example : my cousin talks 'as if he were' #{Person.all.sample.name}, your input would be : 'as if he were')" %>
+        <%= surname.text_field :my_relation %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+    <%= f.fields_for :realname do |surname| %>
+      <div>
+        <%= surname.label :name, "dont le vrai nom est" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+
+      <div>
+      <%= f.label :fakename, "prétend-il-elle s'appeler ainsi ? " %>
+      <%= f.check_box(:fakename)%>
+      </div>
+
+      <div class="mondestinataire">
+      <%= f.label :destinataire_id, "le message est pour qui-est destiné à qui ?" %>
+      <%= f.collection_radio_buttons(:destinataire_id, Person.afficherceuxla(@addthosesailors), :id, :name) do |ff| %>
+        
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                                <%=  f.radio_button( "destinataire_id", nil)%><%= f.label "destinataire_id", "personne"%>
+
+      </div>
+    <%= f.fields_for :surnamedestinataire do |surname| %>
+      <div>
+        <%= surname.label :name, "donnez un surnom au destinataire" %>
+        <%= surname.text_field :name %>
+      </div>
+    <%end%>
+
+      <div>
+        <%= label :mondestinataire, "appeler un destinataire" %>
+        <%= text_field_tag :mondestinataire, nil, id: 'mondestinataire', class:"mysearchfieldavatars" %>
+          <%=link_to "appeler ces gens", "", onclick: "$.ajax({type: 'post',url: '#{mondestinataire_posts_path}?mondestinataire='+$('#mondestinataire').val(),success: function(code) {$('.mondestinataire').html(code);}});return false;"%>
+      </div>
+          <div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+                <div class="placessurnamesattributes">
+                                <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplacetosurnameattribute=true'});">add a place</button>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy, "remove this place" %>
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+                    <div class="allthesailors-list sailorsonlylist"> 
+      <%= f.label :person_id, "Sailors " %>
+      <%= f.collection_radio_buttons(:person_id, Person.afficherceuxla(@addthosesailors), :id, :name) do |ff| %>
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                        <%=  f.radio_button( "person_id", nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>
+
+      </div>
+      <div>
+        <%= label :maprofilepic, "chercher un sailor" %>
+        <%= text_field_tag :monsailor, nil, id: 'monsailor',class:'mysearchfieldavatars' %>
+          <%=link_to "chercher des sailors", "", onclick: "$.ajax({type: 'post',url: '#{myavatars_posts_path}?objectname[]=#{f.object_name}&fieldname=person_id&modelname=Person&profilepic='+$('#monsailor').val(),success: function(code) {$('.sailorsonlylist').html(code);}});return false;"%>
+      </div>
+<div id="maprofilpic">
+<%= f.fields_for :profilepic do |g| %>
+<div class="field">
+<%=g.label :name, "Add a profile pic for him/her"%>
+  <%=g.file_field("name")%>
+</div>    
+<div class="field">
+<%=g.label :nameimage, "What's on the pic?"%>
+  <%=g.text_field("nameimage")%>
+</div>    
+
+<%end%>
+</div>
+
+      <div>
+        <%= label :maprofilepic, "chercher une photo de profil" %>
+        <%= text_field_tag :maprofilepic, nil, id: 'maphotodeprofil',class:'mysearchfieldavatars' %>
+          <%=link_to "chercher des photos de profil", "", onclick: "$.ajax({type: 'post',url: '#{myavatars_posts_path}?objectname[]=#{f.object_name}&fieldname=profilepic_id&modelname=Profilepicture&profilepic='+$('#maphotodeprofil').val(),success: function(code) {$('#maprofilpic').html(code);}});return false;"%>
+      </div>
+
+          <div class="field">
+            <%=f.label :photoprofilactuelle, "utiliser la photo de profil actuelle de quelqu'un"%>
+            <%=f.collection_select(:photoprofilactuelle, Person.afficherceuxla(@addthosesailors),:id, :name,{:prompt => 'Please select somebody'})%>
+          </div>
+          <div>
+          </div>
+
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+<%end%>
+<%=content_for :myjs do%>
+ // Get the modal
+var modal = document.getElementById("myRecordingModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myRecordingBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+<%end%>
+<%=content_for :mylittlecss do%>
+.recordingmodal, .recordingmodal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.recordingmodal-content, .recordingmodal-content1 {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close, .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover, .close:focus, close1:hover, .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+<%end%>
+<%= form.submit "ok"%>
+<%end%>
+<%end%>
+

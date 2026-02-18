@@ -1,0 +1,6 @@
+<li class="list-group-item"><%= technique.name %> 
+    <%if technique.sailors.length > 0%>
+    avec
+  <%=technique.sailors.pluck(:name).join(',')%>
+<%end%>
+</li>

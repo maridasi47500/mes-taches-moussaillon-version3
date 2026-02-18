@@ -1,0 +1,13 @@
+<div class="card">
+<h5>recording review for <%=recordingreview.scoreattempts.distinct.pluck(:name).to_sentence%></h5>
+</br>
+Correct sample :
+<audio src="/assets/<%=recordingreview.correctsample.name%>" controls></audio>
+</br>
+Incorrect sample :
+<audio src="/assets/<%=recordingreview.incorrectsample.name%>" controls></audio>
+</br>
+Review by <%=recordingreview.user.name%>
+</br>
+<%=link_to "voir review", recordingreview%>
+</div>

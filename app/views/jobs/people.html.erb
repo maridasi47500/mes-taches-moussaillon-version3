@@ -1,0 +1,10 @@
+<%=fields_for :job do |form|%>
+<%=form.collection_check_boxes(:person_ids, @people, :id, :name) do |b| %> 
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Person.find(b.value)%>
+<%end%>
+
+<% end %> 
+<% end %> 
+

@@ -1,0 +1,48 @@
+<%= form_with(model: winningattitude, local: true) do |form| %>
+  <% if winningattitude.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(winningattitude.errors.count, "error") %> prohibited this winningattitude from being saved:</h2>
+
+      <ul>
+        <% winningattitude.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_area :content_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_area :content_de %>
+  </div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'person_ids', collec: Person.findbyid(winningattitude.person_ids), mesmodele:"people"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_winningattitudes_path]%>
+<%@search=[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,19 @@
+<p><%=notice%></p>
+
+qui est-il ou elle ??
+<%=form_with url: identifyrobot_path do |form|%>
+<%=form.hidden_field :personid, value: @person.id%>
+
+<%=image_tag @person.image, width: 70,height: 70,title: @person.name, alt: @person.name%>
+
+<label for="robot">Choose his(her) name from the list:</label>
+<input list="robots" name="robot" id="robot">
+
+<datalist id="robots">
+<%@people.each do |person|%>
+  <option value="<%=person.name%>">
+<%end%>
+</datalist>
+<%=form.submit "ok"%>
+
+<%end%>

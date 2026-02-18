@@ -1,0 +1,9 @@
+    <audio controls src="<%= asset_path  "/assets/#{recording.name}" %>"></audio>
+                <%if recording.authors.count > 0%>
+  
+        <%= render partial: "user", collection: recording.authors, as: :user %>
+dit : 
+
+    <%end%>
+
+<%=recording.content%>

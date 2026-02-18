@@ -1,0 +1,39 @@
+<a class="nav-link" href="<%=lovers_tvseries_index_path%>"><%=t('monmenu.ajouterdesamoureux')%></a><br>
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <%= render @filmparody %>
+</p>
+<p>
+  <%= render @filmparody.places %>
+</p>
+
+<ul>
+<%@filmparody.filmparodiehaveactors.each do |t|%>
+<li>
+<%=render 'filmparodiehaveactor', a: t%>
+</li>
+<%end%>
+</ul>
+<br>
+<%if @filmparody.filmparodiehavecouples.length > 0%>
+<b>Couples</b>
+<ul>
+<%@filmparody.filmparodiehavecouples.each do |a|%>
+        <li>
+        <%=render 'filmparodiehaveactor', a: a.filmparodiehaveactor%>
+aime
+        <%=render 'filmparodiehaveactor', a: a.otherfilmparodiehaveactor%>
+
+</li>
+<%end%>
+</ul>
+<%end%>
+<br>
+
+
+<%= link_to 'Edit', edit_filmparody_path(@filmparody) %> |
+<%= link_to 'Edit Roles', editroles_filmparody_path(@filmparody.id) %> |
+<%= link_to 'Back', filmparodies_path %>
+

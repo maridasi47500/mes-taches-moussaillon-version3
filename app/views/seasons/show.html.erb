@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Begin at:</strong>
+  <%= @season.begin_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @season.end_at %>
+</p>
+<p>
+  <%= @season.name %>
+</p>
+
+<%=render @season.tasks%>
+
+<%= link_to 'Edit', edit_season_path(@season) %> |
+<%= link_to 'Back', seasons_path %>

@@ -1,0 +1,8 @@
+<%=form_with url: person_city_epoch_path(person_id: params[:person_id],city_id:params[:city_id],id: params[:id]), method: :get do |form|%>
+<input id="<%=@epoch.name.parameterize+@epoch.id.to_s%>" type="image" width="100" height="100" alt="<%=@epoch.name%>"
+title="<%=@epoch.name%>"
+       src="/assets/<%=@epoch.image%>">
+
+
+<%end%>
+

@@ -1,0 +1,19 @@
+<%if defined?(post) && post.posts_surnames.length > 0%>
+<%=render partial: "posts/mysurname", collection: post.posts_surnames_to_display, as: :surname%>
+<%else%>
+<%@maybeiamhimher = person && current_user && !current_user.aliases.include?(person)%>
+<%if person.is_a?(Person) && @maybeiamhimher%>
+  <a href="<%=aliasperson_person_path(person.id)%>" title="je suis cette personne">
+<%=  person.name%>
+</a>
+  <%else%>
+  moi
+  <%end%>
+  <%if person.is_a?(Person)%>
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%= link_to person, title: "who is #{person.name}" do %>
+<%= image_tag((person.aliases.count > 0 ? "redflag.jpeg" : "flagblack.gif"), class: "pirate", alt:"profile pic")%>
+  <%end%>
+<%end%>
+<%end%>
+  

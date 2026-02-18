@@ -1,0 +1,11 @@
+  <a class="surnamewithid<%=  surname.id%>" href="#" onclick="return false;">
+<%= surname.name %>
+<%if surname.profilepic %>
+      <%= render surname.profilepic%>
+
+<%elsif surname.surname_has_image? %>
+<%= image_tag(surname.surname.image, class: "imageprofilethread", alt:"profile pic")%>
+      <%end%>
+<%= image_tag("flagblack.gif", class: "pirate", alt:"profile pic")%>
+  </a>
+

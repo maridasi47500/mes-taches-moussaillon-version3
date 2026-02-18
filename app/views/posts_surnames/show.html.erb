@@ -1,0 +1,26 @@
+<h1><%= render @posts_surname  %> </h1>
+<%=link_to "posts de ce posts' surnames", posts_posts_surname_path(@posts_surname.id)%>
+<%=render partial: "posts_surnames/mypostssurnames", collection: [@posts_surname], as: :person%>
+<%=render partial: "posts_surnames/hack", collection: [@posts_surname], as: :p%>
+
+  <%if @posts_surname.other_posts_surnames.length > 0%>
+<br>
+<h3>D'autres cartes de profiles qui pourraient vous intéresser...</h3>
+  <%=render partial: 'posts_surnames/mypostssurnames', collection: @posts_surname.other_posts_surnames, as: :person%>
+<%end%>
+
+
+        <td><%= link_to "Edit this posts surnames'" , edit_posts_surname_path(@posts_surname) %></td>
+        <%= form_with(model: @posts_surname, url: mysurnames_update_path) do |f| %>
+
+    <div class="field">
+      <%= f.hidden_field :id, value: @posts_surname.id %>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+

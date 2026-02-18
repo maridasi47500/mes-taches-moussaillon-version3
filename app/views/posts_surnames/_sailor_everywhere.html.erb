@@ -1,0 +1,20 @@
+  <%=link_to posts_surname do%>
+      <%= posts_surname.person ? posts_surname.person.name : ""%>
+<%if posts_surname.profilepic %>
+      <%= posts_surname.person ? (image_tag(posts_surname.person.image, class: "imageprofilethread", alt:"profile pic")) : ""%>
+      <%= render posts_surname.profilepic%>
+<%end%>
+          <%= posts_surname.surname.name%>
+
+<%if posts_surname.surname && posts_surname.surname.image %>
+<%= image_tag(posts_surname.surname.image, class: "imageprofilethread", alt:"profile pic")%>
+    <%end%>
+      <%if posts_surname.person%>
+            <%begin%>
+
+      <%= image_tag(posts_surname.person, class: "imageprofilethread", alt:"profile pic")%>
+      <%rescue Sprockets::Rails::Helper::AssetNotFound %>
+      <%end%>
+      <%end%>
+<%= image_tag("flagblack.gif", class: "pirate", alt:"profile pic")%>
+  <%end%>

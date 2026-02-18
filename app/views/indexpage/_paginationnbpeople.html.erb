@@ -1,0 +1,20 @@
+<%if g.to_i > 0%>
+<p>
+Page precedente
+<span><%=link_to_unless_current (g), mypath+{page: (g.to_i - 1)}.to_query%></span>
+</p>
+<%end%>
+</br>
+<%if g.to_i < modelname.nbpeople%>
+<p>
+Page suivante
+<span><%=link_to_unless_current (g+2), mypath+{page: (g.to_i + 1)}.to_query%></span>
+</p>
+<%end%>
+</br>
+<p>
+<%(0..modelname.nbpeople).each do |g|%>
+<span><%=link_to_unless_current (g+1), mypath+{page: g}.to_query%></span>
+<%end%>
+</p>
+

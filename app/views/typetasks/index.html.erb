@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Typetasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @typetasks.each do |typetask| %>
+      <tr>
+        <td><%= typetask.name %></td>
+        <td><%= typetask.image %></td>
+        <td><%= link_to 'Show', typetask %></td>
+        <td><%= link_to 'Edit', edit_typetask_path(typetask) %></td>
+        <td><%= link_to 'Destroy', typetask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Typetask', new_typetask_path %>

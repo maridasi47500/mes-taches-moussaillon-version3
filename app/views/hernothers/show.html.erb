@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= t('display.nothim', sailor1: @hernother.person.name, sailor2: @hernother.otherperson.name) %>
+</p>
+
+
+<%= link_to 'Edit', edit_hernother_path(@hernother) %> |
+<%= link_to 'Back', hernothers_path %>

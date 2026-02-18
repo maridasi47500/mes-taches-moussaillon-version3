@@ -1,0 +1,8 @@
+<div class="field sailorlist">
+
+      <%= f.label field_name, "Sailors " %>
+      <%= f.collection_check_boxes(field_name, list, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render fieldclass.find(ff.value)%>
+                        <%end%>
+
+

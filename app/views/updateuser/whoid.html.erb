@@ -1,0 +1,15 @@
+<%=form_with url: selectcityroom_path do |form|%>
+<%=form.hidden_field :personid, value: @personid%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'cityid', collec: [], mesmodele:"people",label: t('display.wherebooks')%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[cityidupdateuser_path]%>
+<%@search =[json_cities_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

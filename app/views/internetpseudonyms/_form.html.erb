@@ -1,0 +1,30 @@
+<%= form_with(model: internetpseudonym, local: true) do |form| %>
+  <% if internetpseudonym.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(internetpseudonym.errors.count, "error") %> prohibited this internetpseudonym from being saved:</h2>
+
+      <ul>
+        <% internetpseudonym.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "city_ids", collec: internetpseudonym.cities, mesmodele:"cities"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_cities_path]%>
+<%@select=[cities_internetpseudonyms_path]%>
+
+<%@nom=['cities']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content fr:</strong>
+  <%= @anaphor.content_fr %>
+</p>
+
+<p>
+  <strong>Content en:</strong>
+  <%= @anaphor.content_en %>
+</p>
+
+<p>
+  <strong>Content de:</strong>
+  <%= @anaphor.content_de %>
+</p>
+
+<p>
+  <strong>Epoch:</strong>
+  <%= @anaphor.epoch_id %>
+</p>
+
+<%= link_to 'Edit', edit_anaphor_path(@anaphor) %> |
+<%= link_to 'Back', anaphors_path %>

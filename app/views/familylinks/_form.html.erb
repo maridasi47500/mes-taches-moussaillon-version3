@@ -1,0 +1,36 @@
+<%= form_with(model: familylink, local: true) do |form| %>
+  <% if familylink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(familylink.errors.count, "error") %> prohibited this familylink from being saved:</h2>
+
+      <ul>
+        <% familylink.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

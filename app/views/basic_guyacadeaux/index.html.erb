@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Basic Guyacadeaux</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Person</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Guyacadeau.all.ids.each do |id| %>
+<%=button_to "destroy guyacadeau #{id}", basic_guyacadeau_path(id),method: :delete%>
+<%end%>
+    <% if Guyacadeau.all.length == 0 %>
+<img src="/assets/aucunguyacadeau.png"/>
+<p>Aucun guya cadeau pour l'instant. </p>
+<%= link_to 'ajouter un Basic Guyacadeau', new_basic_guyacadeau_path %>
+<%end%>
+    <% Guyacadeau.prices.each do |basicguyacadeau| %>
+      <tr>
+        <td><%= button_to "acheter un guyacadeau de #{basicguyacadeau}€", createguya_basic_guyacadeaux_path(basic_guyacadeau: {price: basicguyacadeau}), method: :post, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Basic Guyacadeau', new_basic_guyacadeau_path %>

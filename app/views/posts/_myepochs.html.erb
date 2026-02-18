@@ -1,0 +1,70 @@
+<%= form.fields_for :epochs do |f| %>
+
+  <div class="field">
+    <%= f.label :end_at %>
+    <%= f.datetime_select :end_at, start_year: 1995 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_at %>
+    <%= f.datetime_select :start_at, start_year: 1995 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city_id %>
+    <%= f.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city type"}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= f.label :country_id %>
+  <%= f.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country type"}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :nbtimes, "Number of times sailor will accomplish this epoch" %>
+    <%= f.number_field :nbtimes %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+
+
+
+<div>
+
+</div>
+<div class="fields_select_people">
+    Sailors of this epoch (people playing a main role in this epoch)
+    <% Collection.all.each do |collection| %>
+        <%=f.label :sailor_ids, collection.name%>
+
+    <%= f.select("sailor_ids", collection.people.collect {|p| [ p.name, p.id ] },{prompt: 'select people to hack'}, {class:'selectpeopleform', id: "collect#{collection.id}", size: 5,multiple: true }) %>
+<%end%>
+  </div>
+<div class="sailor_ids selectedpeople">
+
+
+  </div>
+<button type="button" class="idoit">i do it</button>
+<div class="ireallydoit"></div>
+<% end %>

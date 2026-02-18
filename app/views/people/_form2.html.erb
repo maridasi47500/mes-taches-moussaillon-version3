@@ -1,0 +1,98 @@
+<%= form_with(model: @person, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+  </div>
+  <div class="field">
+    <%= form.label :myprofilepic_id, "chose a profile pic" %>
+    <%= form.collection_radio_buttons(:myprofilepic_id, @person.profilepics, :id, :name) do |b| %>
+      <%= b.radio_button %><%=render Profilepicture.find(b.value)%>
+  <% end %>
+  <%= form.radio_button :myprofilepic_id, value: nil %><%=form.label :myprofilepic_id, "default profile pic"%><%=image_tag @person.defaultprofilepic, class: "imageprofilethread"%>
+  </div>
+  <div class="field">
+    <%= form.label :profilepic_ids, "my profile pics" %>
+    <%= form.collection_check_boxes(:profilepic_ids, @person.profilepics, :id, :name) do |b| %>
+      <%= b.check_box %><%=render Profilepicture.find(b.value)%>
+  <% end %>
+
+  </div>
+  <div class="field">
+    <%= form.label :description, "Description and various info about him/her, his/her life" %>
+    <%= form.text_area :description %>
+
+  </div>
+    <%= form.select("collection", Collection.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose a collection'}, { size: 5})%>
+
+
+<div class="field">
+<%=form.label :pronoun_id, "Chose A Pronoun"%>
+  <%=form.select("pronoun_id", Pronoun.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+</div>
+
+<div class="onetimes">
+    <button type="button" onclick="$.ajax({url:'/addsomethingyoudidonce',method:'post'});">Add something you did once</button>
+<%= form.fields_for "onetimes" do |f| %>
+<div class="field">
+<%=f.label :content, "The thing you did once (for example : married, passes the A levels...)"%>
+  <%=f.text_area("content")%>
+</div>
+        <div class="field">
+
+<%=f.label :title, "add a title for what you did (for example : she did it!, did she do that? )"%>
+  <%=f.text_field("title")%>
+</div>
+
+    <div class="field">
+  <%=f.check_box("_destroy")%>
+  <%=f.label("destroy")%>
+</div>
+    
+
+<%end%>
+
+</div>
+
+<%= form.fields_for :profilepictures do |f| %>
+<div class="field">
+<%=f.label :name, "Add a profile pic for him/her"%>
+  <%=f.file_field("name")%>
+</div>    
+<div class="field">
+<%=f.label :nameimage, "What's on the pic?"%>
+  <%=f.file_field("nameimage")%>
+</div>    
+
+<%end%>
+
+<div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+          <%=form.select "year", options_for_select("2005".upto(Date.today.year.to_s)+[""], "")%>
+          <%=form.select "month", options_for_select("01".upto("12")+ [""], "")%>
+
+
+
+<%= render "inputthisisjingle", form: form %>
+<%= render "inputjingle", form: form %>
+    <%= form.select("place_ids", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose places in relation to this person'}, {multiple:true, size: 5})%>
+    <%= form.select("fact_ids", Fact.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose facts describing this person in relation to this post'}, {multiple:true, size: 5})%>
+
+  <div class="actions">
+    <%= form.submit "Add Those Jingles" %>
+  </div>
+<% end %>
+<%=content_for :javascripts do%>
+<script>
+  $(function(){
+    $('.addajingle').click(function(){
+      $.ajax({
+        url: window.location.pathname+".js"
+      });
+    });
+  });
+</script>
+<%end%>

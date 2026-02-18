@@ -1,0 +1,22 @@
+same task for the second sailor (if same task click on it or search for an other task)
+<br>
+
+<%=form_with url: firstsailor_tasks_path do |form|%>
+<%=form.hidden_field :taskid, value: @task.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskidd', collec: [], mesmodele:"people"%>
+</div>
+<input id="<%=@task.name.parameterize+@task.id.to_s%>" name="<%=@task.id%>task" type="image" width="100" height="100" alt="<%=@task.name%>"
+       src="<%=@task.image%>">
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskid_categorythings_path]%>
+<%@search =[json_tasks_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

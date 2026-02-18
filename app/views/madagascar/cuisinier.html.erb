@@ -1,0 +1,11 @@
+<%=fields_for :user do |form|%>
+<%=form.collection_radio_buttons(:cuisinier, @people, :id, :name) do |b| %> 
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render partial:'users/usertoque',collection: User.findbyid(b.value), as: :user%>
+
+<%end%>
+
+<% end %> 
+<% end %> 
+

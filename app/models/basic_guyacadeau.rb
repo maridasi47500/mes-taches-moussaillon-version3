@@ -1,0 +1,2 @@
+class BasicGuyacadeau < Guyacadeau
+end

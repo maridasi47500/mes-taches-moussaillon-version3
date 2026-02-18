@@ -1,0 +1,8 @@
+<%=fields_for :invite,Invite.new do |form|%>
+<%=form.collection_check_boxes(:person_ids, @people, :id,:name, {include_hidden: false}) do |f|%>
+<%=f.check_box%>
+<%=f.label do %>
+<%=render Person.find(f.value)%>
+<%end%>
+<%end%>
+<%end%>

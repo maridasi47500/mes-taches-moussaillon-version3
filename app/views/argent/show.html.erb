@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @argent.username %>
+</p>
+
+<p>
+  <strong>Mois:</strong>
+  <%= @argent.mois %>
+</p>
+
+<p>
+  <strong>Annee:</strong>
+  <%= @argent.annee %>
+</p>
+
+<p>
+  <strong>Paye:</strong>
+  <%= @argent.paye %>
+</p>
+
+<p>
+  <strong>Apayer:</strong>
+  <%= @argent.apayer %>
+</p>
+
+<%= link_to 'Edit', edit_argent_path(@argent) %> |
+<%= link_to 'Back', argent_index_path %>

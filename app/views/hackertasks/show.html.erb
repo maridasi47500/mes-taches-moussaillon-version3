@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of the task for the <%="hacker".pluralize(@hackertask.sailors.length)%>:</strong>
+  <%= @hackertask.name %>
+</p>
+<p>
+  <strong>Name of the <%="hacker".pluralize(@hackertask.sailors.length)%>:</strong>
+  <%= @hackertask.sailors.pluck(:name).join(', ') %>
+</p>
+  <% if @hackertask.tvseries.length > 0%>
+<p>
+  <strong>Name of the tv series hacked by the <%="sailor".pluralize(@hackertask.sailors.length)%>:</strong>
+  <%= @hackertask.tvseries.pluck(:name).join(', ') %>
+</p>
+<%end%>
+  <% if @hackertask.description.length > 0%>
+<p>
+  <strong>What the <%="sailor".pluralize(@hackertask.sailors.length)%> did more precisely:</strong>
+  <%= @hackertask.description %>
+</p>
+<%end%>
+
+<%= link_to 'Edit', edit_hackertask_path(@hackertask) %> |
+<%= link_to 'Back', hackertasks_path %>

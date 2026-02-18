@@ -1,0 +1,32 @@
+
+
+var synonyms = `<%=fields_for 'post[synonyms_attributes][0]' do |f|%>
+<h2>Add synonyms</h2>
+        <div class="field">
+        <%= f.label :content %>
+        <%= f.hidden_field :synonym_id %>
+        <%= f.text_field :content %>
+        </div>
+        <div class="field">
+        <%= f.label :textedusynonyme, "texte du synonyme" %>
+        <%= f.text_field :textedusynonyme %>
+        </div>
+        <div class="field">
+        <%= f.check_box '_destroy' %>
+        <%= f.label '_destroy', 'Destroy this synonym' %>
+        </div>
+<%end%>
+`;
+function replaceForm(str,nb) {
+  return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+var eladded = "post[synonyms_attributes]",i;
+for (i=0;i<30;i++) {
+if ($(eladded+'['+String(i)+']').length == 0) {
+replaceForm(synonyms,i);
+break;
+}
+}
+
+
+$('.addstuff').append(synonyms);

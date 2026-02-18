@@ -1,0 +1,11 @@
+<h2>Maisons &amp; Propriété
+</h2>
+<center>
+<%if peoplecity%>
+<ul class="ultje">
+<a rel="nofollow" href="<%=peoplecity.try(:photos).try(:first).try(:myimagename)%>"><img src="<%=peoplecity.try(:photos).try(:first).try(:myimagename)%>" rel="nofollow" class="img350 lazyloaded" alt="Photo: la maison de <%=peoplecity.try(:person).name%> en <%=peoplecity.person.city.try(:semifullname)%>.
+" "="" data-ll-status="loaded"><noscript><img src="<%=peoplecity.photos[0].try(:myimagename)%>" rel='nofollow' class='img350' alt='Photo: la maison de <%=peoplecity.person.name%> en <%=peoplecity.person.city.try(:semifullname)%>.'/></noscript></a><br>
+<br>
+</ul>
+<%end%>
+</center>

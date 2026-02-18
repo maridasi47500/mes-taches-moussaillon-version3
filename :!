@@ -1,0 +1,113 @@
+<p id="notice"><%= notice %></p>
+<div>
+        <h2><%=@post.title%></h2>
+
+    <p>Post n° <%= @post.id%>
+  <%=render partial:"formulairenewpost",locals:{edit:true, url:"/posts/#{@post.id}/edit"}%> |
+
+    <%if @post.id%>
+    | <%= link_to "Ajouter une tâche à ce poste", tasks_post_path(@post.id)%>
+  <%end%>
+        | <%= link_to "Ajouter des surnoms aux moussaillons", surnames_post_path(@post.id)%>
+        | <%= link_to "Programmer ce post", thread_post_path(@post.id)%>
+
+    </p>
+    <%if @post.title.to_s.length > 0%>
+    <%end%>
+        <%post.posts_surname_ids.each do |ps|%>
+    <p><%=link_to "edit the surname n°#{ps} of this post", edit_posts_surname_path(ps)%></p>
+    <%end%>
+    <p><%=link_to "link to several recent reactions", linkreaction_post_path(@post.id)%></p>
+<%Mylayout.all.each do |layout|%>
+    <p><%=link_to "voir ce post comme un #{layout.typelayout}", mylayoutpost_path(@post.id, layouttype: layout.typelayout)%></p>
+    <%end%>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="myactionsforthispost" data-bs-toggle="dropdown" aria-expanded="false">    
+      
+      
+      Edit this post
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="myactionsforthispost">
+    <li><%=link_to "new attitude", attitude_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "new jingle", addnewjingles_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "new tendance", newtendances_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add avatar and pseudo", avatars_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "new email", emailsforposts_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "post expired", postexpired_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add a dish", adddishes_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add a tv series", addtvseries_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add a place", postsplaces_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add a google request", googlereq_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add anaphor", anaphorsposts_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add metonymies", metonymies_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add fake comments", fakecomments_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add synonyms", synonyms_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add words", words_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add messages caches", messagescaches_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add tasks to this post", tasksposts_post_path(post.id), class: "dropdown-item"%></li>
+    <li><%=link_to "add contents to this post", addcontent_post_path(post.id), class: "dropdown-item"%></li>
+  </ul>
+</div>
+    <script>
+  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+  return new bootstrap.Dropdown(dropdownToggleEl)
+})
+</script>
+</div>
+<%if !@post.authors.include?(current_user) %>
+
+  <%= form_with path: "/posts/#{@post.id.to_s}", method: :patch do |f|%>
+    <%=f.hidden_field 'valider', value: '1'%>
+    <%=f.submit "i read this post and i feel concerned"%>
+  <%end%>
+
+
+  <%end%>
+
+<%= render @post %>
+<%if @post.techniques.count > 0 %>
+<p>Ce post pourrait te donner l'impression que <%= render partial: "posts/usurppeople", collection: [@post.usurpations.first], as: :person, locals: {post: @post} %>
+</p>
+
+<%=render @post.techniques%>
+    
+<%end%>
+<%if @post.words.count > 0 %>
+<h2>Mots utilisés pour ce post</h2>
+<%=render partial: "posts/wordspost", collection: @post.words, as: :word%>
+<%end%>
+<%if @post.dishes.count > 0 %>
+<h4>Ce post faisait référence à des mets :</h4>
+<p><%=render @post.dishes%></p>
+<%end%>
+
+<%=render @post.anaphors%>
+
+
+<%if @post.actions.count > 0%>
+
+<p>
+<h1><%="Tâche".pluralize(@post.actions.count)%> <%=I18n.t("du", count: @post.sailors.count,locale: :fr)%> <%="moussaillon".pluralize(@post.sailors.count)%></h1>
+<%= render partial: "tasks/task", collection: @post.usualactions, as: :task%>
+</p>
+<%= render @post.actions%>
+
+<%end%>
+
+
+<div>
+</div>
+<div>
+            <%= render partial: "comment", collection: @post.comments, as: :comment, locals: {post: @post} %>
+
+  </div>
+
+<h1>Laisser un commentaire</h1>
+<form action="/posts/new" method="post">
+<%= hidden_field_tag 'postidanswer', @post.id.to_s %>
+<%= submit_tag "leave a comment" %>
+</form>
+<%# render 'jsforreadautomatic' %>
+            <%if @post.id%><%= button_to "Delete This Post", { action: "destroy", id: @post.id },
+      method: :delete, data: { confirm: "Are you sure?" } %><%end%>

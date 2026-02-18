@@ -1,0 +1,2 @@
+class Rue < ApplicationRecord
+end

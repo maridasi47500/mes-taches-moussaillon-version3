@@ -1,0 +1,13 @@
+<h1>Pays olympiques</h1>
+<table>
+<tr>
+<th>codes</th>
+<th>countries</th>
+</tr>
+<%@countries.each do |country|%>
+<tr>
+<td><%=country.code%></td>
+<td><%=link_to country.name, olympiccountry_path(country.id)%></td>
+</tr>
+<%end%>
+</table>

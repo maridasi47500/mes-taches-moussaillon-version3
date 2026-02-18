@@ -1,0 +1,192 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Things</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @things.each do |thing| %>
+      <tr>
+        <td><%= thing.name %></td>
+        <td><%= link_to 'Edit', "/things/"+thing.id.to_s+"/edit" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thing', new_thing_path %>
+<nav>
+<div>
+<ul>
+      <li class="nav-item1">
+        <a class="" href="/collections/new">create new collection</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/dishes/new">add a dish</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/endroits">mes endroits préférés</a>
+      </li>
+
+      <li class="nav-item1">
+        <a class="" href="<%=new_reaction_path%>">create new reaction</a>
+      </li>
+
+      <li class="nav-item1">
+        <a class="" href="/cities/new">create new cities</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/countries/new">create new countries</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/states/new">create new states</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/techniques/new">create new techniques</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/technologies/new">add a new technology</a>
+      </li>
+
+      <li class="nav-item1">
+        <a class="" href="/arguments/new">create new arguments</a>
+      </li>
+      <li class="nav-item1">
+        <%= link_to "hack several", hackseveral_path, class: "" %>
+      </li>
+
+      <li class="nav-item1">
+        <a class="" href="/albums/new">create album</a>
+      </li>        
+      <li class="nav-item1">
+      <%= link_to 'all the jingles', jingles_path, class: ""%>
+      </li>        
+      <%end%>
+
+      <%= yield :fieldstoadd%>
+    </ul>
+
+  </div>
+
+</nav>
+              <nav class=" -light bg-light">
+    <div class="" id="SupportedContent">
+    <ul class="-nav mr-auto">
+      <li class="nav-item1">
+        <a class="" href="/brands">All my Brands</a>
+      </li>          
+
+      <li class="nav-item1">
+        <a class="" href="/reactions">view all reactions</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="<%=historical_characters_path%>">view all historical characters</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="<%=musicalbums_path%>">view all music albums</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/clothes">view all the wardrobe</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/tvshows">view all tv shows</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/ideas">view all ideas</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/companies">view all the companies</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/news">view the news</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/moviescenes">view my movie scenes</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/epochs">view my epochs</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/comicbooks">view the comic books</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/emotions">view all the emotions</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/mylayouts">view my layouts</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/philosophers">view all philosophers</a>
+      </li>
+
+    </ul>
+    </div>
+              </nav>
+              <nav class=" -light bg-light">
+    <div class="" id="SupportedContent">
+    <ul class="-nav mr-auto">
+      <li class="nav-item1">
+        <a class="" href="/aboutsomeonegossips">view all gossips about the superstars</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/fromsomeonegossips">view all gossips from the superstars</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/plantspecies/new">add a new plant specie</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/historicalevents/new">add a new historical event</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/socialmovements/new">add a new social movement</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/robots/new">create a new robot</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/sports/new">add a new sport</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/planets/new">add a new planet</a>
+      </li>
+
+      <li class="nav-item1">
+        <a class="" href="<%=addallcollections_collections_path%>">add people to collections</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/musicalscores/new">add a new musical score</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="<%=new_language_path%>">add a new language</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/programminglanguages/new">add a new programming language</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/setoftasks">see my collections of tasks</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/notes">all my notes</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/beaches">add a beach</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/languages">add a language</a>
+      </li>
+      <li class="nav-item1">
+        <a class="" href="/islands">see my islands</a>
+      </li>
+
+    </ul>
+    </div>
+              </nav>
+

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @collection %>
+</p>
+<%if @collection.collectionpeople.length > 0%>
+<ul>
+<li>
+<%=render partial: "collections_people/collections_person", collection: @collection.collectionpeople, as: :collections_person, spacer_template: "separatorlist"%>
+</li>
+</ul>
+<%end%>
+
+<%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back', collections_path %>

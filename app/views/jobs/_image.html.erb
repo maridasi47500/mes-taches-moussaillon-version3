@@ -1,0 +1,26 @@
+<%= form_with(model: job, local: true) do |form| %>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherjobs(field,al){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectjobs(field,greatpeople){
+$.ajax({url: '<%=people_jobs_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+<%end%>
+

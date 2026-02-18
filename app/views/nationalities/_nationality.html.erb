@@ -1,0 +1,6 @@
+<div class="card">
+<h5><%=nationality.name%></h5>
+<%if nationality.flagicon.to_s.length > 0%>
+<%=image_tag "/assets/"+nationality.flagicon, class:"flagnationicon"%>
+<%end%>
+</div>

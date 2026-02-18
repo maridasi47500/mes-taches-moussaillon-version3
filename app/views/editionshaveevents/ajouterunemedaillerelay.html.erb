@@ -1,0 +1,121 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+
+
+<p>
+  <strong>Olympicevent:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>Sexe:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @editionshaveevent.city.try(:name) %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @editionshaveevent.country.try(:name) %>
+</p>
+<p>
+  <strong>Jeux olympiques:</strong>
+  <%= @editionshaveevent.edition.try(:name) %>
+</p>
+
+<%@editionshaveevent.roundtypes.distinct.each do |roundtype|%>
+<p><%=roundtype.name%></p>
+<%Olympicresult.olres(roundtype.id, @editionshaveevent.id).group_by{|j|j.heat}.to_a.each do |heat,myresults|%>
+<%#[].group_by{|j|j.heat}.to_a.each do |heat,myresults|%>
+
+<p><%=heat.to_i > 0 ? "heat #{heat}" : heat%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>pos</th>
+      <th>lane</th>
+      <th>athlete</th>
+      <th>noc</th>
+
+      <th>reaction</th>
+<%Olympicresult.oldist(roundtype.id, @editionshaveevent.id).each do |y|%>
+      <th><%=y.distancelength[1..]%></th>
+<%end%>
+      <th>result time</th>
+      <th>exchange (pos)</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+<%myresults.group_by{|h|[h.pos, h.lane, h.noccountryname, h.noccountrycode]}.to_a.each do |eachrelay,results|%>
+      <tr>
+
+        <td><%= eachrelay[0] %></td>
+        <td><%= eachrelay[1] %></td>
+        <td><%= eachrelay[2] %></td>
+        <td><%= eachrelay[3] %></td>
+
+        <td></td>
+<%Olympicresult.oldist(roundtype.id, @editionshaveevent.id).each do |y|%>
+      <th></th>
+<%end%>
+<%myres= results.map(&:time).map{|y|y ? [(y.to_i - y.to_date.to_time.to_i + 11000 - 200).to_i, y.strftime('%L').to_i] : nil}%>
+<%thistime=myres.length > 0 ? Time.at(myres.map{|y|y ? y[0] : 0}.sum,myres.map{|y|y ? y[1] : 0}.sum) : nil%>     
+   <td><%=myres.length > 0 ? (thistime < 1.minute ? l(thistime, format: :olympicsmall) : l(thistime, format: :olympic)) : "-"%></td>
+        <td></td>
+<td>
+<%=render 'formmedalrelay',myresult: @editionshaveevent, results: results%></td>
+
+</td>
+      </tr>
+<%@exchangepos = 0%>
+<%@exchangeposmilli = 0%>
+
+<%results.each do |result|%>
+
+      <tr>
+
+        <td></td>
+        <td></td>
+        <td><%= result.athlete.name %></td>
+        <td></td>
+
+        <td><%= result.reaction%></td>
+        <% result.olympicsplits.order(time: :asc).where.not(time: nil).each do |res|%>
+        <td><%= res.time ? (res.time < 1.minute ? l(res.time, format: :olympicsmall) : l(res.time, format: :olympic)) : "-" %></td>
+        <%end%>
+        <td><%= result.time ? (result.time < 1.minute ? l(result.time, format: :olympicsmall) : l(result.time, format: :olympic)) : "-" %></td>
+        <% @exchangepos += result.time ? (result.time.to_i - result.time.to_date.to_time.to_i + 11000 - 200) : 0 %>
+        <% @exchangeposmilli += result.time ? (result.time.strftime('%L').to_i) : 0  %>
+        <td><%= @exchangepos > 0 ? ((Time.at(@exchangepos,@exchangeposmilli) < 1.minute ? l(Time.at(@exchangepos,@exchangeposmilli), format: :olympicsmall) : l(Time.at(@exchangepos,@exchangeposmilli), format: :olympic))) : "-" %></td>
+
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+    <% end %>
+
+<%end%>
+
+<%= link_to 'Edit', edit_editionshaveevent_path(@editionshaveevent) %> |
+<%= link_to 'Back', editionshaveevents_path %>
+
+
+
+
+

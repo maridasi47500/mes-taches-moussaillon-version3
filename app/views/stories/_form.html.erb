@@ -1,0 +1,111 @@
+<%= form_with(model: story, local: true) do |form| %>
+  <% if story.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+        <% story.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=link_to t('links.addheroadventure'), "",data: {nb: story.heroadventures.length},onclick:"getadventures(this);return false;", id: "addadv"%>
+
+
+  <div class="field">
+    <%= form.label :title_en %>
+    <%= form.text_field :title_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_fr %>
+    <%= form.text_field :title_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_de %>
+    <%= form.text_field :title_de %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+    <%= form.hidden_field :user_id %>
+<div id="heroadventure">
+<%story.heroadventures.each_with_index do |adventure,i|%>
+<%=form.fields_for :heroadventures, adventure do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :content, form: ff,n: "story[heroadventures_attributes][#{i}]", fieldname: 'previousstoryevent_id', collec: Heroadventure.findbyid(adventure.previousstoryevent_id), mesmodele:"adventures",m:i%>
+
+  </div>
+  <div class="field">
+
+
+<%=ff.label :image%>
+<%=ff.file_field :image,name:"story[heroadventures_attributes][#{i}][image]", onchange: "loadimage(event,image#{i});return false;"%>
+<%=image_tag (adventure.image ? "/assets/"+adventure.image : ""),alt:"charger une image", width: 70, height: 70,id: "image#{i}"%>
+  </div>
+  <div class="field">
+
+  <% Heroadventure.locale_columns(:content).each do |column| %>
+
+<%=ff.label column%>
+<%=ff.text_field column,name:"story[heroadventures_attributes][#{i}][#{column}]"%>
+<%end%>
+
+  </div>
+  <div class="field">
+<%=ff.label :_destroy%>
+<%=ff.check_box :_destroy%>
+
+  </div>
+<%=ff.hidden_field :user_id%>
+
+
+
+<%end%>
+<%end%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[adventures_stories_path]%>
+<%@search=[json_heroadventures_path]%>
+<%@nom=['adventures']%>
+<%=render partial:"form/functionjsonwithvariable", collection: @nom.zip(@search, @select), as: :t%>
+function getadventures(lik){
+var mynb=Number(lik.dataset.nb);
+$.ajax({
+url: "<%=heroadventures_stories_path%>?n="+String(mynb)+"&userid=<%=current_user.id%>",
+success: function(data) {
+$(heroadventure).append(data);
+}
+});
+lik.dataset.nb=mynb + 1;
+return false;
+}
+function loadimage(event,image) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
+
+  image.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    image.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
+}
+
+
+
+</script>
+<%end%>
+

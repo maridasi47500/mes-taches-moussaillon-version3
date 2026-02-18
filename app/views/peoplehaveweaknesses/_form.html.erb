@@ -1,0 +1,49 @@
+<%= form_with(model: peoplehaveweakness, local: true) do |form| %>
+  <% if peoplehaveweakness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(peoplehaveweakness.errors.count, "error") %> prohibited this peoplehaveweakness from being saved:</h2>
+
+      <ul>
+        <% peoplehaveweakness.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :person_id %>
+<%if peoplehaveweakness.person_id%>
+<%=form.select 'person_id', peoplehaveweakness.linkspouseperson.mysexes, {prompt: true,id:'twoperson'}%>
+<%else%>
+    <%= form.hidden_field :person_id,id:"twoperson" %>
+<%end%>
+
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'weakness_id', collec: Weakness.findbyid(peoplehaveweakness.weakness_id), mesmodele:"weaknesses"%>
+</div>
+
+
+    <%= form.hidden_field :user_id %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'linkspouseperson_id', collec: Linkspouseperson.findbyid(peoplehaveweakness.linkspouseperson_id), mesmodele:"linkspousepeople"%>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[linkspousepeople_peoplehaveweaknesses_path, weaknesses_peoplehaveweaknesses_path]%>
+<%@search=[json_linkspousepeople_path,json_weaknesses_path]%>
+<%@nom=['linkspousepeople','weaknesses']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

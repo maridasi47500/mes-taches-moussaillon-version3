@@ -1,0 +1,76 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.imageprofilethread {
+    height:100px;
+    width:100px;
+}
+#searchform {
+display:none;
+}
+.brainpic {
+width:70px;
+height:70px;
+cursor:pointer;
+}
+.flagnationicon {
+height:50px;
+width:100px;
+}
+.musicalscore {
+width:100px;
+height:170px;
+}
+.nav-item2,.nav-item1,.nav-item3 {
+  border-radius: 50%;
+  margin: 10px;
+  padding: 10px;
+  text-align:center;
+  min-height:100px;
+  min-width:100px;
+  vertical-align:middle;
+  color:#fff;
+display:block;
+
+}
+.nav-item3 {
+  background: linear-gradient(#b82b1c, #e3b0aa); /*rouge*/
+border:10px solid #ffe4e0; 
+}
+.nav-item2 {
+  background: linear-gradient(#65f065, #3bcc12); /*vert*/
+border:10px solid #4bdb4d; 
+}
+.nav-item1 {
+  background: linear-gradient(#3d54ff, #071dba);/*bleu*/
+  border: 3px solid #a4caed;
+}
+.imageitem {
+width:90px;
+height:90px;
+}
+.imageprofilethread, .pirate {
+width:50px;
+height:50px;
+}
+.manav {
+display:inline;
+padding:0 20px 0 20px;
+}
+.manav > * {
+float:left;
+
+padding:0 20px 0 20px;
+}

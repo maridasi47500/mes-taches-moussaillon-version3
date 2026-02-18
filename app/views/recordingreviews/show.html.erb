@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bon :</strong>
+  <%= render @recordingreview.correctsample %>
+</p>
+
+<p>
+  <strong>Incorrect :</strong>
+  <%= render @recordingreview.incorrectsample %>
+</p>
+
+<p>
+  <strong>Gooduser:</strong>
+<%=render partial: 'users/usermicro', collection: User.where(id: @recordingreview.gooduser_id), as: :user%>
+
+</p>
+<p><%=link_to "edit criterias", edit_recordingreview_path(@recordingreview.id, edit: true)%>
+</p>
+  <% if @recordingreview.barcriteria.length > 0 %>
+<h4>Bar criteria</h4>
+  <%= render @recordingreview.barcriteria%>
+<%end%>
+  <% if @recordingreview.scorecriteria.length > 0 %>
+<h4>Score criteria</h4>
+  <%= render @recordingreview.scorecriteria%>
+<%end%>
+
+
+<%= link_to 'Edit review content', edit_recordingreview_path(@recordingreview) %> |
+<%= link_to 'Back', recordingreviews_path %>

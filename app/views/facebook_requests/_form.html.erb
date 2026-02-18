@@ -1,0 +1,29 @@
+<%=content_for :mylittlecss do%>
+.mytext {
+width:100%;
+min-height: 300px;
+}
+<%end%>
+
+<%= form_with(model: facebook_request, local: true) do |form| %>
+  <% if facebook_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(facebook_request.errors.count, "error") %> prohibited this facebook_request from being saved:</h2>
+
+      <ul>
+        <% facebook_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mytext">
+    <%= form.label :name %>
+    <%= form.text_area :name, class:"mytext" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @reactions_text.name %>
+</p>
+<p>
+<%=form_with html: {id: "myform", onsubmit: "window.location='#{new_reaction_path}?'+$('#myform').serialize();return false;"} do |form|%>
+<%=form.hidden_field :reactionid, value: @reactions_text.id%>
+<%=form.hidden_field :number, value: @reactions_text.mynbpeople%>
+<table>
+<%@reactions_text.namesinit.each do |t|%>
+<tr>
+<td>
+<%=t%>
+</td>
+<td>
+<%=form.label "mypeople[]", "#{t} représenter combien de personnes ?"%>
+<%=form.number_field "mypeople[]"%>
+</td>
+<tr>
+<%end%>
+</table>
+<%end%>
+<button type="button" onclick="window.location='<%=new_reaction_path%>?'+$('#myform').serialize();return false;">Ecrire une phrase</button>
+
+</p>
+<%=render @reactions_text.reactions%>
+
+<%= link_to 'Edit', edit_reactions_text_path(@reactions_text) %> |
+<%= link_to 'Back', reactions_texts_path %>

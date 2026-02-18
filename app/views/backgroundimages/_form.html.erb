@@ -1,0 +1,31 @@
+<%= form_with(model: backgroundimage, local: true) do |form| %>
+  <% if backgroundimage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(backgroundimage.errors.count, "error") %> prohibited this backgroundimage from being saved:</h2>
+
+      <ul>
+        <% backgroundimage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    image de fond pour "<%=backgroundimage.url%>"
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mytype, "Choisir mon type d'image de fond" %>
+    <%= form.select :mytype, [["Un motif","fondmotif"], ['Une photo','photo']] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

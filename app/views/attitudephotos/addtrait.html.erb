@@ -1,0 +1,16 @@
+<%=fields_for :attitudephoto do |form|%>
+<%=form.fields_for "photopeoplehavetraits" do |ff|%>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehavetraits_attributes][#{params[:n]}]", fieldname: 'person_id', collec: [], mesmodele:"peopletraits",m:params[:n]%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[photopeoplehavetraits_attributes][#{params[:n]}]", fieldname: 'trait_id', collec: [], mesmodele:"traits",m:params[:n]%>
+
+
+
+  </div>
+<%end%>
+<%end%>
+
+

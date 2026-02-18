@@ -1,0 +1,46 @@
+<%= form_with(model: mymenu, local: true) do |form| %>
+  <% if mymenu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mymenu.errors.count, "error") %> prohibited this mymenu from being saved:</h2>
+
+      <ul>
+        <% mymenu.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%@i=0%>
+<%=form.fields_for :choicemenus,mymenu.withuser(current_user) do |f|%>
+<%=f.object.user.name%> a choisi <%=f.object.webpage.title%>
+<div>
+<%=f.label :content_en%>
+<%=f.text_field :content_en%>
+</div>
+<div>
+<%=f.label :content_fr%>
+<%=f.text_field :content_fr%>
+</div>
+<%end%>
+<%=form.fields_for :webpages do |f|%>
+<%@i=@i+1%>
+page n°<%=@i%>
+<div>
+<%=f.label :url%>
+<%=f.text_field :url%>
+</div>
+<div>
+<%=f.label :title%>
+<%=f.text_field :title%>
+</div>
+<div>
+<%=f.label :image%>
+<%=f.hidden_field :image, value: f.object.read_attribute(:image)%>
+<%=f.file_field :image%>
+</div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

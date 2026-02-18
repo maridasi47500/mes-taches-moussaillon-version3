@@ -1,0 +1,22 @@
+<%=form_with model: person do |form|%>
+
+<%=form.fields_for :interestedpeople do |f|%>
+<div>
+<%=f.label :interested%>
+<%=f.radio_button :interested,value:1%>
+<%=f.radio_button :interested,value:0%>
+</div>
+<div>
+<%=f.label :date%>
+<%=f.date_field :date%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnint", columnname: :name,number: i,attributes: :interstedpeople,form: form, fieldname: "newspaper_ids", collec: person.newspapers, mesmodele:"newspapers"%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttoncolumnint", columnname: :name,number: i,attributes: :interstedpeople,form: form, fieldname: "newspaper_ids", collec: person.newspapers, mesmodele:"newspapers"%>
+</div>
+
+<%end%>
+<%=form.submit%>
+<%end%>

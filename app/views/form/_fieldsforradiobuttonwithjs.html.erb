@@ -1,0 +1,10 @@
+<%=fields_for modelname do |form|%>
+<%=form.collection_radio_buttons(fieldname, collec, :id, :name) do |b| %>
+       <%=b.radio_button(onchange: "(this.checked ? ("+jscode+") : null);return false;")%>
+<%=b.label do%>
+<%=render b.object%>
+<%end%>
+
+<% end %>
+<% end %>
+

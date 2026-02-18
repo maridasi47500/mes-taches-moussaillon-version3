@@ -1,0 +1,70 @@
+<%= form_with(model: argent, local: true) do |form| %>
+  <% if argent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(argent.errors.count, "error") %> prohibited this argent from being saved:</h2>
+
+      <ul>
+        <% argent.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%if argent.new_record?%>
+    <%= form.hidden_field :user_id %>
+  <%end%>
+  <div class="field">
+    <%= form.label :mois %>
+    <%= form.select(:mois, options_for_select(t("date.month_names").to_a, argent.moisvalue), {prompt: 'select a month'}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :annee %>
+    <%= form.number_field :annee %>
+  </div>
+<%if current_user.argent.last%>
+<%if current_user.latesttransaction.length > 0%>
+<p>Depuis la derniere fios que vous avez inscrit vos comptes, voici la liste  des transactions effectuees :</p>
+<ul>
+<%=form.collection_check_boxes "madepense", current_user.latesttransaction, :id, :mescomptes,{},{onchange:"editvalues(toutessommes);return false;"} do |t| %>
+
+<li><%=t.check_box(data: {somme:Transac.find(t.value).somme})%><%=t.label%></li>
+<%end%>
+</ul>
+<p>Cela vous a fait depenser : <span id="toutessommes"><%=current_user.latesttransactionsomme%></span>.</p>
+<%end%>
+
+<%else%>
+
+
+
+
+  <div class="field">
+    <%= form.label :paye %>
+    <%= form.number_field :paye %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apayer %>
+    <%= form.number_field :apayer %>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function editvalues(k) {
+console.log(k);
+var sum=0;
+var h = $("[name='argent[madepense][]']:checked").toArray();
+for (var i = 0 ; i< h.length ; i++){
+sum+= parseInt(h[i].dataset.somme);
+}
+k.innerHTML=String(sum);
+return false;
+}
+</script>
+<%end%>

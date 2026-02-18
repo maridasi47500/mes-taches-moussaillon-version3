@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @torealizetask.task %>
+</p>
+<h5><%=t('mysailors.attitude', sailors: @torealizetask.task.sailors.pluck(:name).to_sentence)%></h5>
+  <p><%= t('mysailors.proposedby',sailors: @torealizetask.user.name) %></p>
+<%if @torealizetask.attitudetakentasks.length > 0%>
+<ul>
+<%@torealizetask.attitudetakentasks.each do |o|%>
+<li><%=t('mysailors.'+(o.real ? '' : 'not')+'realattitude',count:@torealizetask.task.sailors.length, att: o.attitude.name)%></li>
+<%end%>
+</ul>
+<%end%>
+
+
+<%= link_to 'Edit', edit_torealizetask_path(@torealizetask) %> |
+<%= link_to 'Back', torealizetasks_path %>

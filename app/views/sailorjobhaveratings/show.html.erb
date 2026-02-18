@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @sailorjobhaverating.rating %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sailorjobhaverating.user_id %>
+</p>
+
+<p>
+  <strong>Sailorjob:</strong>
+  <%= @sailorjobhaverating.sailorjob_id %>
+</p>
+
+<p>
+  <strong>Datetime:</strong>
+  <%= @sailorjobhaverating.datetime %>
+</p>
+
+<%= link_to 'Edit', edit_sailorjobhaverating_path(@sailorjobhaverating) %> |
+<%= link_to 'Back', sailorjobhaveratings_path %>

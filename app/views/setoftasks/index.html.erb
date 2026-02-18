@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Suites de tâches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @setoftasks.each do |setoftask| %>
+      <tr>
+        <td><%= setoftask.title %></td>
+        <td><%= link_to 'Show', setoftask %></td>
+        <td><%= link_to 'Edit', edit_setoftask_path(setoftask) %></td>
+        <td><%= link_to 'Destroy', setoftask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Setoftask', new_setoftask_path %>

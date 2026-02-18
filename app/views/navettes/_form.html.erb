@@ -1,0 +1,39 @@
+<%= form_with(model: navette, local: true) do |form| %>
+  <% if navette.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(navette.errors.count, "error") %> prohibited this navette from being saved:</h2>
+
+      <ul>
+        <% navette.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=render "myfields/person_ids_navette", path: person_navettes_path,form: form,fieldtype: "radiobutton"%>
+
+
+  <div class="field">
+    <%= form.label :citya_id %>
+    <%= form.select :citya_id,City.all.collect{|x|[x.name,x.id]},{include_blank: "sélectionne une ville"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cityb_id %>
+    <%= form.select :cityb_id,City.all.collect{|x|[x.name,x.id]},{include_blank: "sélectionne une ville"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :go %>
+    <%= form.date_field :go %>
+  </div>
+
+  <div class="field">
+    <%= form.label :back %>
+    <%= form.date_field :back %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

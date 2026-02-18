@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<%if I18n.locale == :de || I18n.locale == :fr%>
+<h1><%=t("titrehabitants", people: @nationality.name.pluralize)%></h1>
+<%elsif I18n.locale == :en%>
+<h1><%=t("titrehabitants", people: @nationality.name)%></h1>
+<%end%>
+<%if @nationality.people.length > 0%>
+<%=render @nationality.people%>
+<%end%>
+<div class="centerbtn">
+<%= link_to 'Edit', edit_nationality_path(@nationality) %> |
+<%= link_to 'Back', nationalities_path %>
+</div>

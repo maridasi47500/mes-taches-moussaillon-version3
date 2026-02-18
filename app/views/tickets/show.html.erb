@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%=render @ticket%>
+<%if @ticket.linkspousepeople.length > 0%>
+<h5><%=t('ticket.title.linkspousepeople')%></h5>
+<%= render @ticket.linkspousepeople%>
+<%end%>
+<%if @ticket.linkfamilypeople.length > 0%>
+<h5><%=t('ticket.title.linkfamilypeople')%></h5>
+<%= render @ticket.linkfamilypeople%>
+<%end%>
+<%if @ticket.worktwos.length > 0%>
+<h5><%=t('ticket.title.worktwos')%></h5>
+<%= render @ticket.worktwos%>
+<%end%>
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_and_time: 2021-01-16 14:42:29
+  name: MyString
+  person_id: 1
+
+two:
+  date_and_time: 2021-01-16 14:42:29
+  name: MyString
+  person_id: 1

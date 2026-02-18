@@ -1,0 +1,318 @@
+---
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: ayanlae
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: hello
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 3
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: whynot
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: gfdgf
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 4
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: jevoulais
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: rajouterdelapate
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 5
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: monpote
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 4
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: 100%dac
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 6
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: maisouiger
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 4
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: gerg
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 7
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: rezr
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 4
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: rzeqrzq
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 8
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: mais og
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 5
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: gfdgdg
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 9
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 4
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: moué
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 10
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: j"aurai pas dit ça
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 11
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: qu'est-ce que t'en sais d'abord?
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 3
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: ''
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 12
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 11
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: qu'est-ce que t'en sais d'abord?
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 13
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 8
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: ":("
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 14
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 2
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: des choses qui me mettentlapatate tu veux savoir?
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 15
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 5
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: bof
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 16
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: hey
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 17
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 16
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: ":S"
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 18
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: incon
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 14
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: non
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 19
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: frds
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: et moi je suis le roi
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 20
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: sousfifre
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 19
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: et toi t'es le roi
+  new_record: false
+  active_record_yaml_version: 2
+- !ruby/object:Post
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 21
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: valet
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: post_id
+    value_before_type_cast: 20
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: content
+    value_before_type_cast: tg
+  new_record: false
+  active_record_yaml_version: 2

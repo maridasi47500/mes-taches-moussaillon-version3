@@ -1,0 +1,5 @@
+<%=form_with url: graduation_school_path(@school.id, schoolhperson_id: @s.id) do |form|%>
+à quelle date ? 
+<%=form.date_field :mydate%>
+<%=form.submit "#{@s.person.name} a eu le diplôme à cette date"%>
+<%end%>

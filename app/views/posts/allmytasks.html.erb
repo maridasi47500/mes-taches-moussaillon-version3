@@ -1,0 +1,10 @@
+<%=fields_for :post do |form|%>
+<%=form.collection_check_boxes(:action_ids, @tasks,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render partial:"tasks/task", collection: Task.findbyid(rad.value),as: :task%>
+<%end%>
+
+<%end%>
+<%end%>
+

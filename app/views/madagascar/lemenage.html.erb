@@ -1,0 +1,51 @@
+<%=content_for :mylittlecss do%>
+.menuitem { 
+  position: relative;
+  color: white;
+float:left;
+width:revert;
+text-align:center;
+}
+.title { 
+  font-size: 1.5em;
+  margin: 0;
+color:#fcec03;
+  -webkit-text-stroke: 1px #000;
+}
+.menu1, .item1 {
+width:100px;
+max-width:100px;
+}
+.menu2, .item2 {
+width:300px;
+}
+<%end%>
+
+<h1>Fais le menage</h1>
+<div>
+<img src="/assets/sorcierehalloween.png" width=100 height=100 class="tig" />
+</div>
+<script>
+setTimeout(() => {
+  $(".tig")[0].remove();
+}, 10000)
+
+</script>
+
+<%=form_with url: actionmenage_path do |form|%>
+<%["trash.png", "wc2.jpg", "sol2.png", "vitre2.jpg", "broom1.jpg", "broom.jpg", "ustencils.jpg"].each_with_index do |k,i|%>
+<div class="menuitem menu1">
+<input id="image<%=i%>" type="image" width="100" height="100" alt="Login"
+name="<%=k.gsub('.jpg','').gsub('.png','')%>"
+
+       src="/assets/<%=k%>">
+<div class="title item1">
+<%=t('jirama.'+k.gsub('.jpg','').gsub('.png',''))%>
+</div>
+</div>
+
+<%end%>
+<%end%>
+<br>
+<%=link_to "revenir a tout pour le foyer", madagascar_menage_path%>
+

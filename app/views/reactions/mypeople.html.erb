@@ -1,0 +1,14 @@
+<%=fields_for :reaction, Reaction.new do |fm|%>
+        <%= fm.fields_for :reactivepeople,PostsSurname.new do |form| %>
+
+<%=form.collection_radio_buttons(@field, @people, :id, :name, {include_hidden:false}) do |f|%>
+<%=f.radio_button(name: "reaction[reactivepeople_attributes][#{params[:n]}][person_id]")%>
+
+<%=f.label do%>
+<%=render partial: "people/personsimple",collection:Person.where(id:f.value), as: :person%>
+
+<%end%>
+
+<%end%>
+<%end%>
+<%end%>

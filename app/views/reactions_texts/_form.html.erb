@@ -1,0 +1,42 @@
+<%= form_with(model: reactions_text,  local: true, html: {id: "formreacttext"}) do |form| %>
+  <% if reactions_text.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reactions_text.errors.count, "error") %> prohibited this reactions_text from being saved:</h2>
+
+      <ul>
+        <% reactions_text.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>cherche les prénoms disponibles dans la liste :</p>
+<div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "cherchersurnames", collec: [], mesmodele:"surname"%>
+
+</div>
+
+  <% ReactionsText.locale_columns(:name).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_field column,id:column %>
+  </div>
+<%end%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_dupontsurnames_path]%>
+<%@select=[cherchersurnames_reactions_texts_path]%>
+<%@nom=['surname']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+</script>
+<%end%>
+

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @philosopher.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @philosopher.image %>
+</p>
+
+<%= link_to 'Edit', edit_philosopher_path(@philosopher) %> |
+<%= link_to 'Back', philosophers_path %>

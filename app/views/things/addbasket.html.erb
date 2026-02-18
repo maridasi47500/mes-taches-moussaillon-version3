@@ -1,0 +1,4 @@
+<button type="button" onclick="offbasket();return false;">i'm done</button>
+<button type="button" onclick="clearbasket();return false;">clear basket</button>
+  <%=@peoplebasket && @peoplebasket.length > 0 ? (render partial: "things/addbasket", collection: @peoplebasket.to_a, as: :thing) : ""%>
+  <%=@basketevents && @basketevents.length > 0 ? (render partial: "events/addbasket", collection: @basketevents.to_a, as: :event) : ""%>

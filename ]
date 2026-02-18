@@ -1,0 +1,15 @@
+class Season < ApplicationRecord
+def tasks
+b=self.begin_at
+e=self.end_at
+cyear=Date.today.year
+b=b.change(year: cyear)
+e=e.change(year: cyear)
+if e < b
+e=e.change(year: (year+1))
+
+end
+Task.where(start_at: (0..50).map{|x|(b.years_ago(x)..e.years_ago)+(b.years_since(x)..e.years_since(x))}.flatten)
+end
+
+end

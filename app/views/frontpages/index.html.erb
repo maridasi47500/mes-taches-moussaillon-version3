@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Frontpages</h1>
+
+    <% @frontpages.each_slice(2).to_a.each do |site| %>
+<div class="row">
+
+    <% site.each do |frontpage| %>
+  <div class="col-sm-6">
+
+      <p><%=frontpage.people.pluck(:name).to_sentence%></p>
+        <p><%= link_to 'Show', frontpage %></p>
+        <p><%= link_to 'Edit', edit_frontpage_path(frontpage) %></p>
+        <p><%= link_to 'Destroy', frontpage, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      
+    
+  </div>
+<% end %>
+  </div>
+<% end %>
+<br>
+
+<%= link_to 'New Frontpage', new_frontpage_path %>

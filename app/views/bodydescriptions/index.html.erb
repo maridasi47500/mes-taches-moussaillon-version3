@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bodydescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bodydescriptions.each do |bodydescription| %>
+      <tr>
+        <td><%= bodydescription.name %></td>
+        <td><%= link_to 'Show', bodydescription %></td>
+        <td><%= link_to 'Edit', edit_bodydescription_path(bodydescription) %></td>
+        <td><%= link_to 'Destroy', bodydescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bodydescription', new_bodydescription_path %>

@@ -1,0 +1,202 @@
+
+<div class="card post">
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <div class="card-text postcontent postcontent<%=post.id%>">
+      
+      <%if post.post_types.where(name:'LinkArticle').count > 0%>
+        <%=link_to "clique ici", "/@#{current_user.name.parameterize}/"+post.content.to_s.parameterize+"-3083373c1185" %>
+      <%elsif post.post_types.where(name:'CourseAPied').count > 0 && post.fakecomments.count > 0%>
+<%post.fakecomments.each do |fake|%>
+        <%=link_to "clique ici", "/fakecomments/#{fake.id}/courseapied" %>
+    <%end%>
+
+       <%elsif post.post_types.where(name:'Réplique de film').count > 0 %>
+        <%=link_to "voir la réplique du film sur le site", repliquefilm_post_path(post.id) %>
+
+      <%else%>
+
+      <%= post.content.to_s.html_safe %>
+    <%end%>
+          <% post.onetimes.each do |ff| %>
+      <%=link_to ff.title, "/didonce/"+ff.id.to_s%>
+    <%end%>
+          <%if post.messagecaches.count > 0%>
+          <%="Message".pluralize(post.messagecaches.count)%> <%="caché".pluralize(post.messagecaches.count)%> : <%= post.messagecaches.pluck(:content).join(', ') %>
+          <%end%>
+    <%=post.metonymies.first ? (render post.metonymies.first):''%>
+          <%= render partial: "posts/renderphotosvideosrecordings", locals: {post: post} %>
+
+    <ul class="list-group"><%=render post.arguments%></ul>
+<%=render post.reactions%>
+<%=render post.things%>
+
+          <% if post.facebook_requests.count > 0 %>
+<%= "Requête".pluralize(post.google_requests.count) %> Google :
+<% post.facebook_requests.each do |req|%>
+Chercher <%= image_tag "facebook.png", class:"smallimagelogo" %> 
+<%= text_field_tag :requetedegoogle, :inputsearch, type: "search", value: req.name, placeholder: req.name %>
+<%req.googleresults.each do |res|%>
+<div class="tF2Cxc" data-hveid="CCEQAA" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtgIoADAMegQIIRAA"><div class="yuRUbf"><a href="<%=res.url%>" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtwIwDHoECCEQAg" onmousedown="return rwt(this,'','','','','AOvVaw1v-du4KmAE7SDwdpCcKxXW','','2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtwIwDHoECCEQAg','','',event)" data-ctbtn="2" data-cthref="<%=res.url%>"><br><h3 class="LC20lb DKV0Md"><span><%=res.title%></span></h3><div class="TbwUpd NJjxre"><cite class="iUh30 Zu0yb qLRx3b tjvcx"><%=res.semiurl.split('/').join(' › ')%></cite></div></a><div class="B6fmyf"><div class="TbwUpd"><cite class="iUh30 Zu0yb qLRx3b tjvcx"><%=res.semiurl.split('/').join(' › ')%></cite></div><div class="eFM0qc"></div></div></div><div class="IsZvec"><div><span class="aCOpRe"><span><%=res.content%></span></span><div class="fG8Fp uo4vr"><%=res.date%> </div></div></div><div jscontroller="m6a0l" id="eob_49" jsdata="fxg5tf;_;AQDq6I" jsaction="rcuQ6b:npT2md" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQ2Z0BMAx6BAghEAY"><div jsname="UTgHCf" class="AUiS2" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQx40DegQIWBAA"><div jsname="d3PE6e" style="display:none"><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAB6BAhYEAE">l'amie prodigieuse analyse</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAF6BAhYEAI">l'amie prodigieuse fin explication</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAJ6BAhYEAM">l'amie prodigieuse personnages</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAN6BAhYEAQ">coffret lamie prodigieuse poche</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAR6BAhYEAU">lamie prodigieuse, tome 3 avis</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAV6BAhYEAY">lamie prodigieuse, le nouveau nom</div></div><div><div jsname="l1CLDf" class="d8lLoc"><h4 jsname="IaVMje" class="eJ7tvc">Recherches associées</h4><span jsname="ZnuYW" class="XCKyNd" jsaction="ornU0b" aria-label="Ignorer les suivis proposés" role="button" tabindex="0"></span><div jsname="CeevUc" class="hYkSRb" style="display:none"></div></div></div></div></div></div>
+<%end%>
+<%end%>
+
+          <% end %>
+          <% if post.facebook_requests.count > 0 %>
+<%= "Requête".pluralize(post.facebook_requests.count) %> Facebook :
+<% post.google_requests.each do |req|%>
+<%= image_tag Thing.find(212).image, class:"smallimagelogo" %> 
+<%= text_field_tag :requetedegoogle, :inputsearch, type: "search", value: req.name, placeholder: req.name %>
+<%req.googleresults.each do |res|%>
+<div class="tF2Cxc" data-hveid="CCEQAA" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtgIoADAMegQIIRAA"><div class="yuRUbf"><a href="<%=res.url%>" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtwIwDHoECCEQAg" onmousedown="return rwt(this,'','','','','AOvVaw1v-du4KmAE7SDwdpCcKxXW','','2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQtwIwDHoECCEQAg','','',event)" data-ctbtn="2" data-cthref="<%=res.url%>"><br><h3 class="LC20lb DKV0Md"><span><%=res.title%></span></h3><div class="TbwUpd NJjxre"><cite class="iUh30 Zu0yb qLRx3b tjvcx"><%=res.semiurl.split('/').join(' › ')%></cite></div></a><div class="B6fmyf"><div class="TbwUpd"><cite class="iUh30 Zu0yb qLRx3b tjvcx"><%=res.semiurl.split('/').join(' › ')%></cite></div><div class="eFM0qc"></div></div></div><div class="IsZvec"><div><span class="aCOpRe"><span><%=res.content%></span></span><div class="fG8Fp uo4vr"><%=res.date%> </div></div></div><div jscontroller="m6a0l" id="eob_49" jsdata="fxg5tf;_;AQDq6I" jsaction="rcuQ6b:npT2md" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQ2Z0BMAx6BAghEAY"><div jsname="UTgHCf" class="AUiS2" data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQx40DegQIWBAA"><div jsname="d3PE6e" style="display:none"><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAB6BAhYEAE">l'amie prodigieuse analyse</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAF6BAhYEAI">l'amie prodigieuse fin explication</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAJ6BAhYEAM">l'amie prodigieuse personnages</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAN6BAhYEAQ">coffret lamie prodigieuse poche</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAR6BAhYEAU">lamie prodigieuse, tome 3 avis</div><div data-ved="2ahUKEwi1ts6_z-TuAhVLLBoKHU4KAZcQsKwBKAV6BAhYEAY">lamie prodigieuse, le nouveau nom</div></div><div><div jsname="l1CLDf" class="d8lLoc"><h4 jsname="IaVMje" class="eJ7tvc">Recherches associées</h4><span jsname="ZnuYW" class="XCKyNd" jsaction="ornU0b" aria-label="Ignorer les suivis proposés" role="button" tabindex="0"></span><div jsname="CeevUc" class="hYkSRb" style="display:none"></div></div></div></div></div></div>
+<%end%>
+<%end%>
+
+          <% end %>
+
+<%if post.actions.count > 0%><h3>Tasks</h3><%end%>
+        <%= render partial: "posts/renderatask", collection: post.actions, as: :task %>
+<%if post.events.count > 0%><h3>Events</h3><%end%>
+        <%= render post.events %>
+
+<%= render partial: "posts/renderthisemail", collection: post.emails, as: :email %>
+
+</div>
+<div class="contentforposts<%=post.id%>" hidden></div>
+<%= render partial: "people", collection: [post.usurpations.first], as: :person, locals: {post: post} %>
+<%=render post.my_posts_surnames%>
+<%# render partial: "people", collection: [post.hackedpeople.first], as: :person, locals: {post: post} %>
+
+
+
+      <p class="card-text">
+        <small class="text-muted"><%= link_to 'Lire le post', post %></small>
+        <%=form_with do%>
+       <!--<small class="text-muted"><%= link_to 'Edit', edit_post_path(post) %></small>-->
+     <%end%>
+    </div>
+  </div>
+<%#=content_for :javascripts do%>
+<%= render post.jingles %>
+<%= render post.tendances %>
+    <%=post.attitude ? (render post.attitude):''%>
+
+<script>
+$(function(){
+      var postcontent = $('.postcontent<%=post.id%>');
+  var toreplace, replacing;
+  var content = JSON.parse(<%=raw json_escape(post.synonyms.pluck(:content,:textedusynonyme)).dump%>);
+  for (var iii=content.length-1;iii>=0;iii--) {
+    if (postcontent.html().indexOf(content[iii][0])) {
+    toreplace =content[iii][0];
+    replacing = toreplace+' / '+content[iii][1];
+    postcontent.html(postcontent.html().replace(toreplace,replacing));
+  }
+  }
+  
+  function replacecitationid(citationid) {
+                  $.ajax({
+                url: "/renderapost/"+citationid.toString(),
+                success: function(codehtml) {
+                  console.log(codehtml);
+                          
+                          $('.postcontent<%=post.id%>').html($('.postcontent<%=post.id%>').html().replaceAll("CITER("+citationid.toString()+")", codehtml));
+                }
+              });
+  }
+  function replacepersonid(personid) {
+                  $.ajax({
+                url: "/renderaperson/"+personid.toString(),
+                success: function(codehtml) {
+                  console.log(codehtml);
+                          
+                          $('.postcontent<%=post.id%>').html($('.postcontent<%=post.id%>').html().replaceAll("PERSON("+personid.toString()+")", codehtml));
+                }
+              });
+
+  }
+  if (postcontent.html().indexOf('CITER(') !== -1) {
+  var myotheridsposts = [<%=  Post.all.pluck('id').join(',')%>], myotherpostswithids;
+  for (var kk = 0;kk<myotheridsposts.length ; kk++) {
+    myotherpostswithids = myotheridsposts[kk];
+    if (postcontent.html().indexOf("CITER("+myotherpostswithids.toString()+")") !== -1) {
+replacecitationid(myotherpostswithids.toString());
+              }
+            }
+
+  }
+  function replacetacheid(mypostswithid) {
+                    $.ajax({
+                url: "/renderatask/"+mypostswithid.toString(),
+                success: function(codehtml) {
+                  console.log(codehtml);
+                                            console.log(mypostswithid);
+
+                  $('.contentforposts<%=post.id%>').html(codehtml);
+  $('.postcontent<%=post.id%>').html($('.postcontent<%=post.id%>').html().replaceAll("TACHE("+mypostswithid.toString()+")", $('.contentforposts<%=post.id%>').html()));
+
+
+                },
+                        complete:function(){
+                    
+                }
+              });
+              }
+  let mots=["cet endroit","là"], motsremplacer;
+  for (var j=0;j<mots.length;j++) {
+    motsremplacer = mots[j];
+    <%post.places.each do |place|%>
+      try {
+      postcontent.html(postcontent.html().replace(motsremplacer,`<%=render place%>`));
+    }
+    catch(e) {
+      console.log(e);
+    }
+    
+      <%end%>
+      }
+      
+    if (postcontent.html().indexOf('TACHE(') !== -1) {
+  var myidsposts = [<%=Task.encemoment.pluck('id').join(',')%>], mypostswithid;
+  for (var ii = 0;ii<myidsposts.length ; ii++) {
+    mypostswithid = myidsposts[ii];
+    
+    if (postcontent.html().indexOf("TACHE("+mypostswithid.toString()+")") !== -1) {
+      console.log(mypostswithid);
+        replacetacheid(mypostswithid);
+    }
+              }
+
+  }
+    if (postcontent.html().indexOf('PERSON(') !== -1) {
+  myidsposts = [<%=Person.afficherceuxla.pluck('id').join(',')%>], mypostswithid;
+  for (var ll = 0;ll<myidsposts.length ; ll++) {
+    mypostswithid = myidsposts[ll];
+    
+    if (postcontent.html().indexOf("PERSON("+mypostswithid.toString()+")") !== -1) {
+      console.log(mypostswithid);
+        replacepersonid(mypostswithid);
+    }
+              }
+
+  }
+  <%post.actions.each_with_index do |task,i|%>
+      let texts<%=i%> = ["fasses ça","a pas fait ça","faire ça","fait pas ça"];
+    var texttoreplace<%=i%>;
+    for (var i<%=i%>=0;i<%=i%><texts<%=i%>.length;i<%=i%>++) {
+      texttoreplace<%=i%> = texts<%=i%>[i<%=i%>];
+      $(this).html($(this).html().replace(texttoreplace<%=i%>, `<%=link_to task do%><%= task.name%> <%end%> <%if task.sailors.count > 0%> with <%= render task.sailors %><%end%>`));
+    }
+    texts<%=i%> = ["faire ça","fais ça","comme ça"];
+
+    for (var j<%=i%>=0;j<%=i%><texts<%=i%>.length;j<%=i%>++){
+      texttoreplace<%=i%> = texts<%=i%>[j<%=i%>];
+      $(this).html($(this).html().replaceAll(texttoreplace<%=i%>, `<%task.relatedtasks.each do |task|%><%=link_to task do%><%=task.name%><%end%> <%end%><%if task.relatedsailors.count > 0%> with <%= render task.relatedsailors %><%end%>`));
+    }
+
+  <%end%>
+
+});
+  
+</script>
+<%#end%>

@@ -1,0 +1,22 @@
+		<ol class="breadcrumb__list">
+
+			<li class="breadcrumb__item">
+				<a class="breadcrumb__link" href="/fr/<%= t("name1").downcase%>"><%= t("dictionary.maison")%></a>
+			</li>
+
+			<li class="breadcrumb__item breadcrumbs__item--section">
+							<a class="breadcrumb__link" href="/<%=@localevalue%>/<%= t("inspiration.inspirationpath")%>"><%= t("name1")%></a>
+						</li>
+                                                <%if @cat.name_en != "All"%>
+			<li class="breadcrumb__item breadcrumbs__item--section">
+							<a class="breadcrumb__link" href="/<%=@localevalue%>/<%= t("inspiration.inspiremepath")%>"><%= t("dictionary.inspireme")%></a>
+						</li>
+                                                <%end%>
+                                                <%if defined?(@art)%>
+			<li class="breadcrumb__item breadcrumbs__item--section">
+							<a class="breadcrumb__link" href="<%=@cat.myurl(@localevalue)%>"><%=@cat.name%></a>
+						</li>
+                                                <%end%>
+					<li class="breadcrumb__item breadcrumbs__item--active">
+							<%=@art ? @art.title.titleize : @cat.name%></li>
+					</ol>

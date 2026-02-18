@@ -1,0 +1,8 @@
+<%=collection_check_boxes(modelname, fieldname, collec, :id, columnname) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render layoutname, objectname => classname.find(b.value)%>
+<%end%>
+
+<% end %>
+

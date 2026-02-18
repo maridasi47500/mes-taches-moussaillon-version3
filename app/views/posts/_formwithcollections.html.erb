@@ -1,0 +1,119 @@
+<%=form_with scope:"",model: Person.new, url: searchppl_path, html: {id: "mysetofpersonne"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomdumoussaillon, value: params[:nomdumoussaillon],id:"mouss", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.person.cherchermoussaillon')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+<%=form_with scope:"", url: searchposts_path, html: {id: "searchmypost"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :content, id:"sentencepost", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.person.chercherpost')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+<%=form_with scope:"", url: lookforsentences_path, html: {id: "searchmysentence"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :contentsentence, id:"sentencemouss", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.person.chercherphrasemoussaillon')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+<%=form_with scope:"", url: lookforstars_path, html: {id: "searchmystar"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomdumoussaillon, id:"starmouss", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.person.cherchermoussaillonceleb')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+
+<%=form_with model:Person.new, scope: "", url: searchactor_path, html: {id: "mysetoftasksform"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomacteur, value: "", id:"acteur",placeholder: true%>
+
+
+         <div id="monmoussaillon"></div>
+        </div>
+    </div>
+</section>
+<section class="carousel carousel4 slide" data-interval="false" data-ride="carousel" id="postsCarousel4">
+        <div class="container">
+                <%=t.select :tvseriesid, options_for_select(Tvseries.all.collect {|x| [x.name, x.id]}), {prompt: t('activerecord.attributes.person.tvseriesid'), id:"tvseriesid"}%>
+                <%=t.select :filmid, options_for_select(Film.all.collect {|x| [x.title, x.id]}), {prompt: t('activerecord.attributes.person.filmid'), id:"filmid"}%>
+
+
+    </div>
+
+</section>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.submit t('activerecord.attributes.person.chercheracteur')%>
+
+
+         <div id="monmoussaillon"></div>
+        </div>
+    </div>
+</section>
+<%end%>
+
+<%=form_with scope:"",model:Task.new,url: searchtask_path, html: {id: "mysetoftask"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomtache, value: "",id:"mouss2", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.task.cherchertache')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+<%=form_with scope:"",model:Surname.new,url: searchsurname_path, html: {id: "mysurname"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomsurname, value: "",id:"mousssurname", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.surname.cherchersurname')%>
+
+        </div>
+    </div>
+</section>
+<%end%>
+<%=form_with scope:"",model:PostsSurname.new,url: seeavatars_path, html: {id: "myavatarssearch"} do |t|%>
+<section>
+    <div class="parent">
+
+        <div class="card-group row">
+            <%=t.text_field :nomavatar, value: "",id:"moussavatar1", placeholder: true%>
+            <%=t.submit t('activerecord.attributes.surname.chercheravatar')%>
+
+        </div>
+    </div>
+</section>
+<%end%>

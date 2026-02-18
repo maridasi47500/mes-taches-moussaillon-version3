@@ -1,0 +1,207 @@
+var content=`<div id="read-zone" class="splitter-pane onRead" style="height: 100%; width: 100%; top: 0px; left: 0px;"><div id="read-view" style="display: block;">
+	
+	<ul class="message-navigation k-buttons show-icons">
+		
+		<li>
+		
+			
+			<span class="icon-previous bt-disabled">Mail précédent</span>
+			
+		
+		</li>
+		<li>
+		
+			<a class="icon-next has-tooltip" href="#read/SF_OUTBOX/540">Mail suivant</a>
+			<span class="tooltip" role="tooltip">Mail suivant</span>
+		
+		</li>
+		
+		
+			<li class="action-close">
+				<a class="icon-close has-tooltip" href="#inbox" id="r-close">
+					Retour à la liste des mails
+				</a>
+				<span class="tooltip" role="tooltip">
+					Retour à la liste des messages
+				</span>
+			</li>
+		
+	</ul>
+
+	<div class="message-details">
+		<h3>
+			
+				
+					
+				
+			
+			<!--<span class="type"><img alt="Free" src="//static-web-mail.laposte.net/1.11.9-LPN.0.9/app/imgs/logo_free.svg"></span>-->
+			
+					<span class="subject"><%=@email.subject%></span>
+		</h3>
+
+		<div class="content">
+			<div class="expedition-data">
+				
+
+				<ul class="no-picture">
+					<li class="dt-sent">Aujourd'hui, à <%=DateTime.now%> (il y a quelques secondes)</li>
+					<li class="dt-sent-hidden"><%=DateTime.now%></li>
+					<li class="urgency">
+						
+
+						
+
+						
+					</li>
+
+
+					
+						
+						<li id="r-followup" class="follow-up ">
+							<a href="#" role="button" class=" has-tooltip">
+								<img src="//static-web-mail.laposte.net/1.11.9-LPN.0.9/app/imgs/ic_suivi.svg" alt="Assurer un Suivi">
+							</a>
+							
+								<span class="tooltip" role="tooltip">Ajouter un drapeau</span>
+							
+						</li>
+						
+					
+
+					<li class="p-sender">
+					
+						
+					
+						<dl>
+							<dt>De :
+							</dt>
+
+							<dd id="from-contacts-menu">
+								
+									<div class="k-actions">
+										
+											<a href="#" class="dd-trigger sender" title=" <%=@email.from%> "><%=@email.from%></a>
+											<ul class="actions-list" aria-expanded="false" aria-hidden="true">
+												<li class="send_email" data-value="from_0">
+													<a href="#write?MSG_TO=Im1hcmllLmdvdWRvbiIgPG1hcmllLmdvdWRvbkBsYXBvc3RlLm5ldD4=!isMail">
+														Envoyer un mail à&nbsp; ...
+													</a>
+												</li>
+
+                                                
+                                                    <li class="copy_address" data-value="from_0">
+                                                        <a href="#" class="copy_address_button">
+                                                            Copier l'adresse mail
+                                                        </a>
+                                                        <input class="text_to_copy" type="text" value="<%=@email.from%>">
+                                                    </li>
+                                                
+
+												
+													
+
+													
+														<li class="">
+															<a href="#contact/736439/107/edit">
+																Modifier ce contact
+															</a>
+														</li>
+													
+												
+
+												
+											</ul>
+
+										
+									</div>
+								
+							</dd>
+						</dl>
+					</li>
+					
+						
+							
+								<li class="p-recipient">
+									<dl>
+										<dt>A :</dt>
+										<dd id="to-contacts-menu" class="toList ">
+											
+												<span class="p-recipient-mail">
+													<div class="k-actions">
+
+														
+															<a href="#" class="dd-trigger" title="<%=@email.to%>"><%=@email.to%> </a>
+														
+
+														
+														<ul class="actions-list" aria-expanded="false" aria-hidden="true">
+															<li class="send_email" data-value="to_0"><a href="#write?MSG_TO=Im1hcmllLmdvdWRvbkBsYXBvc3RlLm5ldCAiIDxtYXJpZS5nb3Vkb25AbGFwb3N0ZS5uZXQ+!isMail">Envoyer un mail à&nbsp; ...</a></li>
+
+                                                            
+                                                                <li class="copy_address" data-value="from_0">
+                                                                    <a href="#" class="copy_address_button">
+                                                                        Copier l'adresse mail
+                                                                    </a>
+                                                                    <input class="text_to_copy" type="text" value="<%=@email.to%>">
+                                                                </li>
+                                                            
+
+															
+																
+
+																
+																	<li class="">
+																		<a href="#contact/736439/107/edit">
+																			Modifier ce contact
+																		</a>
+																	</li>
+																
+															
+														</ul>
+													</div>
+												</span>
+											
+											
+										</dd>
+									</dl>
+								</li>
+							
+						
+					
+
+					<li class="p-recipient p-size">
+						
+						<div class="content">
+							
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			
+			
+
+			<hr>
+
+				
+					
+				
+
+			<div id="read-content-block" class="read-content-block " style="min-height: 361.567px;">
+				<div id="message">
+					<div style="font-family:Arial, Helvetica, sans-serif; font-size:12px;"><%=@email.content%></div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+</div></div>
+
+`;
+
+$('#editable_fr').append(content);

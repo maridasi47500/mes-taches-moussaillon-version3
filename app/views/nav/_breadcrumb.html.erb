@@ -1,0 +1,30 @@
+<nav class="breadcrumb">
+
+	<div class="breadcrumb__wrap">
+
+		<ol class="breadcrumb__list">
+                    <%if defined?(@catanditems)%>
+<%(@cat.supcats+[(@item ? @item.category : nil)]).each do |cat|%>
+			<li class="breadcrumb__item breadcrumbs__item--section">
+                          <a class="breadcrumb__link" href="<%=cat.url%>"><%=cat.name%></a>
+						</li>
+                                                <%end%>
+        			<li class="breadcrumb__item breadcrumbs__item--active">
+                          <%=(@item ? @item.nametitleize : @cat.name)%>
+						</li>
+
+                                                <%elsif defined?(@searchquery)%>
+                             <li class="breadcrumb__item breadcrumbs__item--section">
+                          <a class="breadcrumb__link" href="/<%=%>/"><%=I18n.t("dictionary.maison")%></a>
+						</li>
+        			<li class="breadcrumb__item breadcrumbs__item--active">
+                          <%= I18n.t("dictionary.resultatsrecherche")%>
+						</li>
+
+                                                <%end%>
+                                     
+                </ol>
+
+	</div>
+
+</nav>

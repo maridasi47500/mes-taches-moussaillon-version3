@@ -1,0 +1,17 @@
+<div class="mycard">
+<%if defined?(card.image) && card.image%>
+<img src="<%=card.image%>"/>
+<%end%>
+<%if defined?(card.thing_id) and card.thing_id%>
+<p><%= card.thing.name%></p>
+<%end%>
+<%if defined?(card.person_id) and card.person_id%>
+<p><%= card.person.name%></p>
+<%end%>
+<%if card.is_a?(Recording)%>
+<audio class="myaudio" src="<%=card.name%>" controls/>
+<%else%>
+<b><%=card.name%></b>
+<%end%>
+<p><%=card.content%></p>
+</div>

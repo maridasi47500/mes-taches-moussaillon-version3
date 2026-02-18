@@ -1,0 +1,44 @@
+<%@nom1=['firstlover','secondlover']%>
+<%@nom2=['tvseries','films','tvseriesparodies','filmparodies']%>
+
+<%=form_with url: saylovers_tvseries_index_path,scope: "lovers" do |form| %>
+<%=select_tag :tele,options_for_select(['','tv series','film','film parody','tv series parody']),{onchange: "chooseone(this);return false;"}%>
+
+<%@nom1.each do |n|%>
+<div class="">
+<%=render "form/radiobutton", form: form, fieldname: n, collec: [], mesmodele:n%>
+</div>
+<%end%>
+<%@nom2.each do |n|%>
+<div class="formbutton form<%=n%>">
+<%=render "form/radiobutton", form: form, fieldname: n, collec: [], mesmodele:n%>
+</div>
+<%end%>
+<div>
+<%=form.submit%>
+</div>
+
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+function chooseone(a){
+$('.formbutton').hide();
+if (a.value === 'film') {
+$('.formfilms').show();
+} else if (a.value === 'tv series') {
+$('.formtvseries').show();
+} else if (a.value === 'film parody') {
+$('.formfilmparodies').show();
+} else if (a.value === 'tv series parody') {
+$('.formtvseriesparodies').show();
+}
+}
+<%@nom=@nom1+@nom2%>
+<%@search=[personjson_albums_path,personjson_albums_path,json_tvseries_index_path,json_films_path,json_tvseriesparodies_path,json_filmparodies_path]%>
+<%@select=[firstlover_tvseries_index_path,secondlover_tvseries_index_path,mytvseries_tvseries_index_path,myfilms_tvseries_index_path,mytvseriesparodies_tvseries_index_path,myfilmparodies_tvseries_index_path]%>
+
+
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

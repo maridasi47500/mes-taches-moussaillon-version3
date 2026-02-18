@@ -1,0 +1,19 @@
+<div class="row row-cols-3 row-cols-md-3 g-4">
+<%@arts.to_a.each do |i,art|%>
+  <%next if art.length < 4%>
+  <div class="col">
+    <div class="card">
+      <img src="<%=art[1]%>" class="card-img-top" alt="<%=art[0]%>">
+      <div class="card-body">
+        <h5 class="card-title"><%=art[0]%></h5>
+        <p class="card-text"><%=art[2]%> le <%=art[3].to_date%></p>
+
+        <p class="card-text"><%=art[4].gsub(params[:s].titleize,"<b>#{params[:s].titleize}</b>").html_safe%></p>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>
+
+
+

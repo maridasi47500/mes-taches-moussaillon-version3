@@ -1,0 +1,27 @@
+
+<%= posts_surname.surname ? (render posts_surname.surname) : "" %>
+    
+      
+
+<%=posts_surname && posts_surname.surname && posts_surname.surname.name && posts_surname.surname.name.length > 0 ? (posts_surname.fakename ? "#{posts_surname.surname.my_relation_surname} #{posts_surname.surname.name}" : "") : "" %>
+
+    <%if posts_surname.profilepic && posts_surname.profilepic.nameimage && posts_surname.profilepic.nameimage.length > 0 %>
+
+      <%= render posts_surname.profilepic%>
+    <%else%>
+      <%= posts_surname.person ? (image_tag(posts_surname.person.image, class: "imageprofilethread", alt:"profile pic")) : ""%>
+    <%end%>
+    <%if posts_surname.avatar && posts_surname.avatar != posts_surname.person%> c'est 
+
+      <%= render posts_surname.avatar%> 
+
+
+    <%end%>
+       <%if posts_surname.destinataire%> à <%= render posts_surname.destinataire%> <%end%>
+
+    <%=link_to posts_surname do%>
+<%= image_tag("/assets/flagblack.gif", class: "pirate", alt:"profile pic")%>
+  <%end%>
+    <%=posts_surname.content.to_s.html_safe%>
+      <%= posts_surname.person && posts_surname.person.pronoun ? (posts_surname.person.pronoun.name) : ""%>
+

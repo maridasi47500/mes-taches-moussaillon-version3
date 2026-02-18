@@ -1,0 +1,7 @@
+<%=render personhavelifestate%>
+<%=link_to "editer photos", edit_personhavelifestate_path(personhavelifestate.id)%>
+<br>
+<%=link_to "voir photos", myphotos_personhavelifestate_path(personhavelifestate.id)%>
+<br>
+<%=link_to_if (personhavelifestate.requeststopeople.length > 0), 'voir les tickets où '+personhavelifestate.person.name+' peut participer en tant qu\'il/elle est '+personhavelifestate.lifestate.name, mytickets_lifestate_path(personhavelifestate.lifestate.id, person_id: personhavelifestate.person_id)%>
+<br>

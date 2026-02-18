@@ -1,0 +1,2 @@
+<%=render "form/fieldsforradiobuttonwithjs", collec: @linkspousepeople, fieldname: :linkspouseperson_id,modelname: :peoplehavestrength,classname: Linkspouseperson, jscode: "twoperson.outerHTML='#{j select_tag('peoplehavestrength[person_id]', options_for_select(@linkspousepeople[0].mysexes), {include_blank: true, id: 'twoperson'})}'"%>
+

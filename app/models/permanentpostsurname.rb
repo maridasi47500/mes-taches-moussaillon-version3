@@ -1,0 +1,2 @@
+class Permanentpostsurname < ApplicationRecord
+end

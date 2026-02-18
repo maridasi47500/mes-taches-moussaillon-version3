@@ -1,0 +1,7 @@
+<h1>Tous les posts de ce postsssurname </h1>
+<%=render @posts_surname%>
+<%if @posts_surname.my_posts.length > 0%>
+<%=render @posts_surname.my_posts%>
+<%else%>
+<p>aucun post pour ce postssurname.</p>
+<%end%>

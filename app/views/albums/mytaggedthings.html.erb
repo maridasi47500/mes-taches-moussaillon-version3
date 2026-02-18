@@ -1,0 +1,9 @@
+<%=collection_radio_buttons(:thing, :thingid, @things, :id, :name,{},{onchange: "$('[name=thingid]').val(this.value);return false;"}) do |b| %>
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render Thing.find(b.value)%>
+<%end%>
+
+<% end %>
+
+

@@ -1,0 +1,2 @@
+class Hairlength < Thing
+end

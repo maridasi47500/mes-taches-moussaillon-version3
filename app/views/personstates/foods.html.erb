@@ -1,0 +1,8 @@
+<%=collection_check_boxes(:personstate, :food_ids, @foods, :id, :name) do |b| %>
+       <%=b.check_box%>
+<%=b.label do%>
+<%=render Food.find(b.value)%>
+<%end%>
+
+<% end %>
+

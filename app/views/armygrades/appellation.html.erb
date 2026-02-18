@@ -1,0 +1,16 @@
+<br>
+<br>
+<%= image_tag '/assets/'+@grade.image, width: 300, height: 300 %>
+<%= @grade.nom%>
+<br>
+<br>
+<p><%=t('display.appellation')%></p>
+<%=form_with url: appellation_armygrades_path do |form|%>
+<%=form.hidden_field :gradeid, value: @grade.id%>
+<%=form.text_field :appellation%>
+<%=form.submit t('display.answer')%>
+
+<%end%>
+<br>
+<br>
+

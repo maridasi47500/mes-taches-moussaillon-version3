@@ -1,0 +1,2 @@
+module LaundryjiramapeopleHelper
+end

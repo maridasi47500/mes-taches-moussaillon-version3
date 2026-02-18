@@ -1,0 +1,10 @@
+<%=fields_for :betterperson do |form|%>
+<%=form.collection_radio_buttons(:twoperson_id, @twopeople, :id, :person_id) do |b| %> 
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render Twoperson.find(b.value)%>
+<%end%>
+
+<% end %> 
+<% end %> 
+

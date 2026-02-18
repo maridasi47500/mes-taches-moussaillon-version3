@@ -1,0 +1,2 @@
+class AnaphorSailor < ApplicationRecord
+end

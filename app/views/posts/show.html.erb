@@ -1,0 +1,135 @@
+<p id="notice"><%= notice %></p>
+<div>
+        <h2><%=@post.title%></h2>
+
+    <p>Post n° <%= @post.id%>
+<p>Ajout le <%=@post.created_at.to_date%> </p>
+
+  <%=render partial:"formulairenewpost",locals:{edit:true, url:"/posts/#{@post.id}/edit"}%> |
+
+
+
+    </p>
+        <p><%=link_to "go back to posts",posts_path(page: ())%></p>
+    <p>
+    <%@post.my_posts_surnames.each do |p|%>
+      <%if p.avatar%>
+        <%=link_to "go back to #{p.avatar.name} and edit this post", edit_post_path(@post.id, avatarid: p.avatar.id)%>
+      <%end%>
+      <%if p.destinataire%>
+        <%=link_to "go back to #{p.destinataire.name} and edit this post", edit_post_path(@post.id, destinataireid: p.destinataire.id)%>
+      <%end%>
+      <%if p.place%>
+        <%=link_to "go back to #{p.place.name} and edit this post", edit_post_path(@post.id, placeid: p.place.id)%>
+      <%end%>
+    <%end%>
+    <%if @post.title.to_s.length > 0%>
+    <%end%>
+        <%post.posts_surname_ids.each do |ps|%>
+    <%=link_to "edit the surname n°#{ps} of this post", edit_posts_surname_path(ps), class:"btn"%>
+    <%end%>
+    <%=link_to "link to several recent reactions", linkreaction_post_path(@post.id), class:"btn"%>
+    <%=link_to "reproduire ce post",reproduire_post_path(@post.id), class:"btn"%>
+
+    <%=link_to "use current profile pics", currentprofilepic_post_path(@post.id), class:"btn"%>
+    </p>
+  <h3>    
+      
+      
+      <%=t('monmenu.editpost')%>
+  </h3>
+  
+
+    <script>
+  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+  return new bootstrap.Dropdown(dropdownToggleEl)
+})
+</script>
+</div>
+<%if !@post.authors.include?(current_user) %>
+
+  <%= form_with path: "/posts/#{@post.id.to_s}", method: :patch do |f|%>
+    <%=f.hidden_field 'valider', value: '1'%>
+    <%=f.submit "i read this post and i feel concerned"%>
+  <%end%>
+
+
+  <%end%>
+
+<%= render @post %>
+<% @post.my_posts_surnames.each do |t|%>
+<% if t.avatar%>
+<form action="/posts/new" method="post">
+      <%if t.avatar.tvseries.length > 0%>
+    <input type="hidden" name="personids" value="<%=t.avatar.id%>">
+  <%else%>
+    <input type="hidden" name="personid" value="<%=t.avatar.id%>">
+  <%end%>
+
+    <input type="submit" class="nav-link" name="hacker" value="rehacker <%=t.avatar.name%> dans un post">
+</form>
+
+<%end%>
+<%end%>
+
+<%if @post.techniques.count > 0 %>
+<p>Ce post pourrait te donner l'impression que <%= render partial: "posts/usurppeople", collection: [@post.usurpations.first], as: :person, locals: {post: @post} %>
+</p>
+
+<%=render @post.techniques%>
+
+    
+<%end%>
+<%if @post.words.count > 0 %>
+<h2>Mots utilisés pour ce post</h2>
+<%=render partial: "posts/wordspost", collection: @post.words, as: :word%>
+<%end%>
+<%if @post.movies.count > 0 %>
+<h4>Ce post faisait référence à des films :</h4>
+<p><%=render @post.movies%></p>
+<%end%>
+<%if @post.tvseries.count > 0 %>
+<h4>Ce post faisait référence à des séries tv :</h4>
+<p><%=render @post.tvseries%></p>
+<%end%>
+<%if @post.dishes.count > 0 %>
+<h4>Ce post faisait référence à des mets :</h4>
+<p><%=render @post.dishes%></p>
+<%end%>
+
+<%=render @post.anaphors%>
+
+
+<%if @post.actions.count > 0%>
+
+<p>
+<h1><%="Tâche".pluralize(@post.actions.count)%> <%=I18n.t("du", count: @post.sailors.count,locale: :fr)%> <%="moussaillon".pluralize(@post.sailors.count)%></h1>
+<%= render partial: "tasks/task", collection: @post.usualactions, as: :task%>
+</p>
+<%= render partial:"tasks/task", collection: @post.actions,as: :task%>
+
+<%end%>
+
+
+<div>
+</div>
+<div>
+            <%= render partial: "comment", collection: @post.comments, as: :comment, locals: {post: @post} %>
+
+  </div>
+
+<h1>Laisser un commentaire</h1>
+<form action="/posts/new" method="post">
+<%= hidden_field_tag 'postidanswer', @post.id.to_s %>
+<%= submit_tag "leave a comment" %>
+</form>
+<%# render 'jsforreadautomatic' %>
+            <%if @post.id%><%= button_to "Delete This Post", { action: "destroy", id: @post.id },
+      method: :delete, data: { confirm: "Are you sure?" } %><%end%>
+<ul> 
+<% %w(addnewavatars editavatars tasks surnames thread addaposttype addamap addasongtothispost mestachesdehacker socialmovements myjingles attitude addnewaddress addnewjingles newtendances photosorfilms avatars emailsforposts myproposals postexpired adddishes addtvseries myhistoricalcharacters addmovie mycomicbooks mymoviescenes myepochs postsplaces googlereq anaphorsposts metonymies fakecomments addwebpages synonyms addcompany words messagescaches tasksposts addcontent tweets facebookreq mesicones).to_a.each do |link|%>
+
+    <li> <%= link_to_unless_current I18n.t('monmenu.'+link.to_s), controller: 'posts',action: link,id: @post.id%></li>
+<%end%>
+</ul>

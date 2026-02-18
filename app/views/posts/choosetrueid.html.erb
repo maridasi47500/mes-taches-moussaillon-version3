@@ -1,0 +1,45 @@
+<h1></h1>
+
+<table>
+<tr>
+<th>content</th>
+<th>identity</th>
+<th>il/elle dit ca</th>
+</tr>
+<%@posts[0].my_posts_surnames.each do |post|%>
+<tr>
+<td>
+<%=@posts[0].content%>
+</td>
+<td>
+<%=render 'posts_surnames/mypostssurnames',person: post%>
+</td>
+<td>
+<%Reactiontrueimage.icons(@posts[0].id, post.id).each do |k|%>
+<%=image_tag k.reactionpic.image,width: 100,height:100%>
+
+<%end%>
+<%=form_with scope: :ilditca, url: personsaysthat_posts_path do |form|%>
+<%=form.hidden_field :user_id, value: current_user.id%>
+<%=form.hidden_field :post_id, value: @posts[0].id%>
+<%=form.hidden_field :posts_surname_id, value: post.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"emoticons#{post.id}"%>
+</div>
+
+
+
+<%end%>
+</td>
+</tr>
+<%end%>
+</table>
+<%=content_for :myjscode do%>
+<script>
+<%@select=Array.new(@posts[0].my_posts_surnames.length,emoticonid_posts_path)%>
+<%@search =Array.new(@posts[0].my_posts_surnames.length,json_emoticons_path)%>
+<%@nom=@posts[0].my_posts_surnames.map{|x|"emoticons#{x.id}"}%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

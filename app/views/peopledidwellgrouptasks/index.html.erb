@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Peopledidwellgrouptasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Sailorgrouptask</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @peopledidwellgrouptasks.each do |peopledidwellgrouptask| %>
+      <tr>
+        <td><%= peopledidwellgrouptask.user_id %></td>
+        <td><%= peopledidwellgrouptask.rating %></td>
+        <td><%= peopledidwellgrouptask.sailorgrouptask_id %></td>
+        <td><%= link_to 'Show', peopledidwellgrouptask %></td>
+        <td><%= link_to 'Edit', edit_peopledidwellgrouptask_path(peopledidwellgrouptask) %></td>
+        <td><%= link_to 'Destroy', peopledidwellgrouptask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Peopledidwellgrouptask', new_peopledidwellgrouptask_path %>

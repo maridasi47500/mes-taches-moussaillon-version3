@@ -1,0 +1,11 @@
+<%= form_with(model: backgroundimage, url: (backgroundimage.persisted? ? backgroundimage_path(backgroundimage.id,edit: true) : backgroundimages_path(edit: true)),local: true) do |form| %>
+ 
+
+ 
+    <%= form.hidden_field :url %>
+ 
+
+  <div class="actions">
+    <%= form.submit "edit background image" %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+		<ol class="breadcrumb__list">
+
+			<li class="breadcrumb__item">
+				<a class="breadcrumb__link" href="/fr/<%= t("name1").downcase%>"><%= t("dictionary.maison")%></a>
+			</li>
+
+			<li class="breadcrumb__item breadcrumbs__item--section">
+							<a class="breadcrumb__link" href="#"><%= @art.category%></a>
+						</li>
+					<li class="breadcrumb__item breadcrumbs__item--active">
+							<%=@art.title.titleize%></li>
+					</ol>

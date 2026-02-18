@@ -1,0 +1,71 @@
+<%= form_with(model: i18nphrase, local: true) do |form| %>
+  <% if i18nphrase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(i18nphrase.errors.count, "error") %> prohibited this i18nphrase from being saved:</h2>
+
+      <ul>
+        <% i18nphrase.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <% I18nphrase.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column %>
+  </div>
+<%end%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'person_ids', collec: Person.findbyid(i18nphrase.person_ids), mesmodele:"people"%>
+
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'place_ids', collec: Place.findbyid(i18nphrase.place_ids), mesmodele:"places"%>
+
+
+
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'thing_ids', collec: Thing.findbyid(i18nphrase.thing_ids), mesmodele:"things"%>
+
+
+
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'city_ids', collec: City.findbyid(i18nphrase.city_ids), mesmodele:"cities"%>
+
+
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumnlayout",l: 'aliases/alias',ln: :a,modelname: Alias, form: form, fieldname: 'alias_ids', collec: Alias.findbyid(i18nphrase.alias_ids), mesmodele:"aliases",columnname: :user_id%>
+
+
+
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumnlayout",l: 'i18nphrases/i18nphrase',ln: :i18nphrase,modelname: I18nphrase, form: form, fieldname: 'otheri18nphrase_ids', collec: I18nphrase.findbyid(i18nphrase.otheri18nphrase_ids), mesmodele:"i18nphrases",columnname: :content_en%>
+
+
+
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_i18nphrases_path,things_i18nphrases_path, places_i18nphrases_path,cities_i18nphrases_path,aliases_i18nphrases_path,otheri18nphrases_i18nphrases_path]%>
+<%@search=[personjson_albums_path,json_things_path, json_places_path,json_cities_path,personjson_albums_path,json_i18nphrases_path]%>
+<%@nom=['people','things','places','cities','aliases','i18nphrases']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

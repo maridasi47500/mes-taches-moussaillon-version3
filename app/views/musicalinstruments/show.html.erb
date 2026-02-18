@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @musicalinstrument.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @musicalinstrument.image %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @musicalinstrument.description %>
+</p>
+<p>
+  <strong>Musicien-ne-s:</strong>
+<%=render @musicalinstrument.players%>
+</p>
+
+<%= link_to 'Edit', edit_musicalinstrument_path(@musicalinstrument) %> 
+<%= link_to 'Back', musicalinstruments_path, class: "nav-item2" %>

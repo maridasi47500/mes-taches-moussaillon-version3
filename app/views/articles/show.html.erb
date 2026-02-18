@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+<h1><%=@article.title%></h1>
+<p ><%=@article.content %></p>
+<p >Authors : <%@article.authors.each do |auth|%><%=link_to auth.name, auth %><%end%></p>
+

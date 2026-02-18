@@ -1,0 +1,67 @@
+<h1>Medals by athlete</h1>
+<%=render "mydoc"%>
+<%=form_with scope: "my.scope",model: @medal,url: "", html:{class: "form-inline", id: "filter"} do |form|%>
+<% I18n.with_options(scope: 'my.scope') do |i18n| %>
+
+<div class="field">
+
+<%=form.select :sport_id, Olympicevent.all.collect {|u|[u.name,u.id]}, {include_blank: i18n.t('sport_id')}%>
+</div>
+
+<div class="field">
+<%=form.select :sport_group_id, SportGroup.all.collect {|u|[u.name,u.id]}, {include_blank: i18n.t('sport_group_id')}%>
+</div>
+<div class="field">
+<%=form.select :edition_id, Edition.allmy, {include_blank: i18n.t('edition_id')}%>
+</div>
+
+<div class="field">
+<%=form.select :competition_type_id,Olympicgame.all.collect{|y|[y.name, y.id]}, {include_blank: i18n.t('competition_type_id')}%>
+</div>
+<div class="field">
+<%=form.select :season_id,Olympicgame.seasons, {include_blank: i18n.t('season_id')}%>
+</div>
+
+<div class="field">
+<%=form.select :athlete_gender, Person.sexesolympiques, {include_blank: i18n.t('athlete_gender')}%>
+</div>
+<div class="field">
+<%=form.select :gender,Editionshaveevent.sexes, {include_blank: i18n.t('gender')}%>
+</div>
+<div class="field">
+<%=form.select :event_name_id,Editionshaveevent.allmyeditions, {include_blank: i18n.t('event_name_id')}%>
+</div>
+<div class="field">
+<%=form.select :sort, Olympicmedal.allcolors%>
+</div>
+<div class="field">
+<%=form.select :number, ["10","25","tous"], {include_blank: "le nombre d'athlètes à afficher "}%>
+</div>
+<div>
+<%=form.submit "chercher"%>
+</div>
+<%end%>
+<%end%>
+
+
+<table>
+<tr>
+<th>Name</th>
+<th>Nation</th>
+<th>Or</th>
+<th>Argent</th>
+<th>Bronze</th>
+<th>Total</th>
+</tr>
+<%@allmedals.each do |t|%>
+<tr>
+<td><%=t.athletename%></td>
+<td><%=t.countryname%> (<%=t.countrycode%>)</td>
+<td><%=t.gold%></td>
+<td><%=t.silver%></td>
+<td><%=t.bronze%></td>
+<td><%=t.total%></td>
+</tr>
+<%end%>
+
+</table>

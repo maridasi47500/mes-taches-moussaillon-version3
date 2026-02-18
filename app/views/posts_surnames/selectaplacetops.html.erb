@@ -1,0 +1,13 @@
+<%=fields_for :posts_surname, PostsSurname.new do |f|%>
+      <%= f.collection_radio_buttons(:place_id, @places, :id, :name) do |ff| %>
+        <%=ff.radio_button(autocomplete:"off",class: "btn-check")%>
+
+        <%=ff.label(class: "btn btn-secondary") do%>
+          <%=render Place.find(ff.value)%>
+        <%end%>
+
+
+    <%end%>
+
+<%end%>
+

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @company.name %>
+  <%= image_tag @company.image, class: "imageitem" %>
+</p>
+  <% if @company.companieshaveemployees.length > 0 %>
+<%=render @company.companieshaveemployees%>
+<%end%>
+  <% if @company.companieshaveceos.length > 0 %>
+<%=render @company.companieshaveceos%>
+<%end%>
+  <% if @company.companieshavecustomers.length > 0 %>
+<%=render @company.companieshavecustomers%>
+<%end%>
+  <% if @company.tickets.length > 0 %>
+<%=render @company.tickets%>
+
+<%end%>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

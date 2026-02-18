@@ -1,0 +1,24 @@
+<%if @sailorjob.clothes.length == 0%>
+<%=t('display.clothessailor', sailor: @person.name, task: @task.name)%>
+<%else%>
+<%=t('display.clothessailorall', sailor: @person.name, task: @task.name,clothes: @sailorjob.clothes.map{|x| x.name}.to_sentence)%>
+
+<%end%>
+<%=form_with url: sailorwhatclothing_people_path do |form|%>
+
+<%=form.hidden_field :mypersonid, value: @person.id%>
+<%=form.hidden_field :mytaskid, value: @task.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'clothingid', collec: [], mesmodele:"people", label: I18n.t("display.searchaclothing")%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[whatclothing_people_path]%>
+<%@search =[json_clothes_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

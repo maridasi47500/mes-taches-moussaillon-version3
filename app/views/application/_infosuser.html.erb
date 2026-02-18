@@ -1,0 +1,77 @@
+<%if comment.usurpations.count > 0%>
+      ici c'est <%= render partial: "people", collection: comment.usurpations, as: :person, locals: {post: comment} %> 
+    <%end%>
+
+    <%if comment.commentedpeople.count > 0%>
+        <%= render partial: "people", collection: comment.commentedpeople, as: :person, locals: {post: comment} %>
+
+<%= comment.usurpations.count <= 1 ? 'a' : 'ont'%> répondu.
+
+    <%end%>
+
+<%if comment.destinataires.count > 0%>
+       Le message était destiné à <%= render partial: "people", collection: comment.destinataires, as: :person, locals: {post: comment} %>.
+    <%end%>
+<%if comment.commeelles.count > 0%>
+       
+        <%= render partial: "people", collection: comment.commeelles, as: :person, locals: {post: comment} %> 
+        <%= comment.commeelles.count <= 1 ? 'a' : 'ont'%> ont lu.
+        
+    <%end%>
+            <%if comment.hackedpeople.count > 0%>
+
+        <%= render partial: "photoshackedpeople", collection: comment.hackedpeople, as: :person, locals: {post: comment} %>.
+        <%= comment.commeelles.count <= 1 ? 'est' : 'sont'%> concernés.
+
+
+    <%end%>
+            <%if comment.actions.count > 0%>
+<%="La".pluralize(@post.actions.count)%> <%="tâche".pluralize(@post.actions.count)%> <%=I18n.t("du", count: @post.sailors.count,locale: :fr)%> <%="moussaillon".pluralize(@post.sailors.count)%> : 
+        <%= render comment.actions %>.
+
+
+    <%end%>
+
+            <%if comment.usurpationrelatedpeople.count > 0%>
+<%="Le".pluralize(comment.usurpationrelatedpeople.count)%> <%="destinataire".pluralize(comment.usurpationrelatedpeople.count)%> :
+<%= render partial: "people", collection: comment.usurpationrelatedpeople, as: :person, locals: {post: comment} %>.
+
+
+    <%end%>
+<%if comment.validators.include?(current_user)%>
+<%= image_tag("greenflag.jpeg", class: "pirate", alt: "profile pic")%>
+<%end%>
+<div class="jingles-comment">
+<%comment.jingles.each do |jingle|%>
+<audio src="/assets/<%=jingle.name%>" controls=""></audio>
+<%= render partial: "posts/recordings", collection: jingle.person.thisisjinglesinputs, as: :recording %>
+<%end%>
+</div>
+            <%if comment.otherposts.count > 0 && comment.usurpations.count > 0%>
+<p><%= comment.usurpations.pluck(:name).join(', ').sub(/.*\K, /, ' et ')%> <%= comment.usurpations.count <= 1 ? 'a' : 'ont'%> trollé <%= I18n.t("le", count: comment.trolledpeople.distinct.count,locale: :fr)%><%= I18n.t("auteur", count: comment.trolledpeople.distinct.count,locale: :fr)%> <%=I18n.t("du", count: comment.otherposts.count,locale: :fr)%> <%= I18n.t("post", count: comment.otherposts.count,locale: :fr)%> No. <% comment.otherposts.each do |post1|%> <a href="/posts/<%=post1.id%>" data-toggle='tooltip' data-html="true" title='<%=(h render 'tooltipcomment',comment: post1).gsub("'","\'")%>'><%=post1.id%></a><%end%></p>
+  <%= render comment.reactions %>  
+  
+  <%end%>
+
+
+<p>
+    <%if comment.commentedpeopleinputs.count > 0%>
+  
+    
+<%= comment.usurpations.pluck(:name).join(', ').sub(/.*\K, /, ' et ')%> 
+    
+        <%if comment.commentedpeopleinputs.count > 0%>(à la manière de <%= comment.commentedpeopleinputs.pluck(:name).join(', ').sub(/.*\K, /, ' et ')%>) <%= comment.commentedpeopleinputs.count > 1 ? 'auraient' : 'aurait'%> dit :<%end%>
+    
+      <%elsif comment.hackedpeople.count > 0%>
+<%= comment.hackedpeople.count%> <%= "personne".pluralize(comment.hackedpeople.count) %> 
+<%= comment.hackedpeople.count > 1 ? 'ont' : 'a'%> dit :
+            <%elsif comment.usurpations.count > 0%>
+<%= comment.usurpations.count%> <%= "personne".pluralize(comment.usurpations.count) %> 
+
+    <%= comment.usurpations.count > 1 ? 'auraient' : 'aurait'%> dit :
+
+    <%end%>
+
+</p>
+
+

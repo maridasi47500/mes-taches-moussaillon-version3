@@ -1,0 +1,122 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+<hr>
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+<%#if params[:addaliases]%>
+
+<%#=render "devise/registrations/selectdoubles", f: f%>
+<%#else%>
+
+<%#if resource.aliases.length > 0%>
+<%#resource.aliases.each do |al|%>
+<%#=f.fields_for :aliases, al do |ff|%>
+<%#=render "people/formsimple", form: ff,person: al%>
+<hr>
+<%#end%>
+<%#end%>
+<%#else%>
+<%#=render "devise/registrations/selectdoubles", f: f%>
+<%#end%>
+
+
+
+
+<%#end%>
+ <div class="field">
+    <%= f.label :city_id %>
+    <%=f.select :city_id,City.all.collect{|h|[h.name,h.id]},{include_blank:true}%>
+  </div>
+ <div class="field">
+    <%= f.label :job_id %>
+    <%=f.select :job_id,Job.all.collect{|h|[h.name,h.id]},{include_blank:true}%>
+  </div>
+ <div class="field">
+    <%= f.label :musicalinstrument_id %>
+    <%=f.select :musicalinstrument_id,Musicalinstrument.all.collect{|h|[h.name,h.id]},{include_blank:true}%>
+  </div>
+  <div class="field">
+    <%#= f.label :meuf_id %>
+<%#=render partial: "formrecord/recordrecordinghiddentitle", locals: {recordtextcontent: t('menu.recordmeuf'),textcontent: t('menu.meuf'),mylabel: "#{t('menu.recordmeuf')}", myfield: "meuf1", form: f, modelderails: resource}%>
+
+  </div>
+  <div class="field">
+    <%#= f.label :mec_id %>
+<%#=render partial: "formrecord/recordrecordinghiddentitle", locals: {recordtextcontent: t('menu.recordmec'),textcontent: t('menu.mec'),mylabel: "#{t('menu.recordmec')}", myfield: "mec1", form: f, modelderails: resource}%>
+
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+<%if params[:addaliases]%>
+<%=link_to("edit alias' list", edit_user_registration_path)%>
+
+<%else%>
+<%=link_to("add aliases", edit_user_registration_path(addaliases: true))%>
+<%end%>
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+<%=content_for :myscriptjs do%>
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@paths=[myalias2_people_path]%>
+<%@paths2=[personjson_people_path]%>
+<%['people'].each_with_index do |t,i|%>
+function chercher<%=t%>(field,al){
+$.ajax({url: '<%=@paths2[i]%>?name='+field.value, 
+success:function(data){
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function select<%=t%>(field,greatpeople){
+$.ajax({url: '<%=@paths[i]%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+<%end%>
+</script>
+<%end%>
+

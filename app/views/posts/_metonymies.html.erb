@@ -1,0 +1,22 @@
+<%=form.fields_for :metonymies do |f|%>
+	<div class="field">
+
+	<%= f.label :thing_id, "Stuff " %>
+	<%= f.hidden_field :post_id, value:post.id %>
+	<%@stuff.each_slice(6).to_a.each do |st|%>
+	<div class="card-deck">
+	<%= f.collection_radio_buttons(:thing_id, st, :id, :name) do |ff| %>
+	<div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+	<%end%>
+	</div>
+	<%end%>
+        </div>
+
+
+	<div class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	</div>
+	<%= f.check_box '_destroy' %>
+	<%= f.label '_destroy', 'Destroy this metonymy' %>
+<%end%>

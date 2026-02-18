@@ -1,0 +1,79 @@
+<div class="selectedpeople usurpation_ids">
+Hacked people
+<%=form.collection_check_boxes(:usurpation_ids, post.usurpations, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%= image_tag Person.find(b.value).image, class: "imageprofilethread"%>
+
+<% end %>
+<%=form.collection_check_boxes(:usurpation_ids, Person.joins(:collections).where(collections:[]), :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople hackedperson_ids">
+Your main subjects of matter
+<%=form.collection_check_boxes(:hackedperson_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+            <div class="selectedpeople avissimilaire_ids">
+Person of the same opinion
+<%=form.collection_check_boxes(:avissimilaire_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+            <div class="selectedpeople personnessimilaire_ids">
+Person in the same case
+<%=form.collection_check_boxes(:personnessimilaire_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+
+<div class="selectedpeople commeelle_ids">
+Alias
+<%=form.collection_check_boxes(:commeelle_ids, post.commeelles+Person.withoutanycollection, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+<div class="selectedpeople destinataire_ids">
+Your recipients 
+<%=form.collection_check_boxes(:destinataire_ids, post.destinataires, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+<div class="selectedpeople commentedperson_ids">
+Person that are the subjects of the conversation in the way of other people (thehacked people), for ex. the vegetable is .. or the bike is..
+<%=form.collection_check_boxes(:commentedperson_ids, post.commentedpeople, :id, :name) do |b| %>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<% end %>
+  </div>
+            
+                        <div class="selectedpeople postsaproposdelle_ids">
+Person that are the subjects of this post
+<%=form.collection_check_boxes(:postsaproposdelle_ids, Person.withoutanycollection, :id, :name) do |b|%>
+    <%=b.check_box(class: 'people2') %><%=render partial: 'people', collection: [Person.find(b.value)], as: :person%>
+
+<%end%>
+
+  </div>
+
+
+<div class="field">
+<%= form.label :argument_ids, "sailors' arguments" %>
+    <%= form.select("argument_ids", Argument.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit your selection of arguments'}, { size: 5,multiple: true}) %>
+</div>
+<div class="field">
+<%= form.label :technique_ids, "sailors' techniques" %>
+    <%= form.select("technique_ids", Technique.all.collect {|p| [ p.name+' avec '+p.sailors.pluck(:name).join(', '), p.id ] },{prompt: 'edit your selection of techniques'}, { size: 5,multiple: true}) %>
+</div>
+

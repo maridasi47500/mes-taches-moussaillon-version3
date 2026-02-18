@@ -1,0 +1,47 @@
+<%= form_with(model: styleofmusic, local: true) do |form| %>
+  <% if styleofmusic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(styleofmusic.errors.count, "error") %> prohibited this styleofmusic from being saved:</h2>
+
+      <ul>
+        <% styleofmusic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "listener_ids", collec: styleofmusic.listeners, mesmodele:"listeners"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "practicer_ids", collec: styleofmusic.practicers, mesmodele:"practicers"%>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,personjson_albums_path]%>
+<%@select=[practicers_styleofmusics_path,listeners_styleofmusics_path]%>
+
+<%@nom=['practicers','listeners']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+
+</script>
+<%end%>
+

@@ -1,0 +1,118 @@
+<%@id=1%>
+
+<%if !@postsurname.posts_surname%>
+<%=link_to "hacker le premier hacking", surnames_post_path(@post.id) %>
+<%end%>
+
+<%@post.posts_surnames.each do |ps|%>
+<ul><li><%#=render ps%>
+        
+   <%#if ps==@postsurname%><!--vous hackez celui-là--><%#else%><%=link_to "hacker celui-là", edit_posts_surname_path(ps.id) %><%#end%>
+
+<%ps.posts_surnames.each do |ps2|%>
+        <ul><%#=render ps2%>
+        <%#if ps2==@postsurname%><%#else%><%=link_to "hacker celui-là", edit_posts_surname_path(ps2.id) %><%#end%>
+</ul>
+<%end%>
+    </li></ul>
+<%end%>
+<%= form_with(model: @postsurname, local: true,remote:true) do |f| %>
+    <h2>Hacking the sailors</h2>
+<div class="field">
+
+
+      </div>
+
+
+        <div>
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+        </div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+                                            <div class="field">
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+                        </div>
+
+            <div>
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="field">
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+
+                </div>
+                                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+      <%= f.label :person_id, "Sailors " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_radio_buttons(:person_id, Person.all, :id, :name) do |ff| %>
+                        <%=ff.radio_button%><%=render Person.find(ff.value)%>
+                        <%end%>
+                        <%=  f.radio_button( "person_id", value: nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>
+
+      </div>
+    
+
+</div>
+
+    <%=f.hidden_field :sailor_ids %>
+    <% @post.moussaillonsdecepost.each_with_index do |mouss,i| %>
+      <div class="field">
+        <%= f.label :people_hacked_ids, "Hacking sailor N°#{i+1} " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_check_boxes(:people_hacked_ids, @peoplesearched+@post.peopleintheusurpations, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render Person.find(ff.value)%>
+                        <%end%>
+      </div>
+        </div>
+
+    <%end%>
+
+
+    </div>
+</div>
+<button type="button" onclick="$.ajax({type:'post',url:'/hacksomeone/<%=@postsurname.id%>'});">i want to hack <%=@postsurname.surname.name %></button>
+<div class="divtohacksomeone"></div>
+  <div class="field actions">
+    <%= f.submit ("Usurpate all") %>
+  </div>
+<%end%>

@@ -1,0 +1,53 @@
+
+    <div class="card-header">
+    My phrase
+<%=aidememoire.name1%>
+  </div>
+
+<div class="card-body">
+    <%if aidememoire.notopposite%>
+<%begin%>
+<p class="card-text"><audio controls src="<%= asset_path  "#{}" %>"></audio>
+      
+
+<%=aidememoire.firstrelation%>
+
+<%=aidememoire.recordedphrase.content%>
+<%rescue%>
+  pas deenregistrement
+<%end%>
+</p>
+<%aidememoire.middlerelations.each do |x|%>    
+<%=x.name%>
+<%end%>
+<p class="card-text"><audio controls src="<%= asset_path  "#{}" %>"></audio>
+      
+<%=aidememoire.secondrelation%> je fais 
+
+<%=aidememoire.recordedword.content%>
+</p>
+<%else%>
+<p class="card-text"><audio controls src="<%= asset_path  "#{}" %>"></audio>
+      
+<%=aidememoire.secondrelation%> 
+
+<%=aidememoire.recordedword.content%>
+</p>
+<%aidememoire.middlerelations.each do |x|%>    
+<%=x.name%>
+<%end%>
+
+<%begin%>
+<p class="card-text"><audio controls src="<%= asset_path  "#{}" %>"></audio>
+      
+
+<%=aidememoire.firstrelation%> je fais 
+
+<%=aidememoire.recordedphrase.content%>
+<%rescue%>
+  pas deenregistrement
+<%end%>
+</p>
+
+<%end%>
+</div>

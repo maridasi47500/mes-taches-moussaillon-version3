@@ -1,0 +1,18 @@
+<form class="site-search__form js-site-search" name="search_form_searchbox" method="get" action="/<%=@localevalue%>/search" role="search">
+		<label class="reader-only" for="site-search">
+			<%= I18n.t "dictionary.chercher"%></label>
+		<input id="site-search" title="<%= I18n.t "dictionary.chercher"%>" class="site-search__input input input--search input--fill js-site-search-input" type="search"
+			name="text" maxlength="100" placeholder="<%= I18n.t "dictionary.chercher"%>" data-options="{
+		&#034;autocompleteUrl&#034;: &#034;/es/search/autocomplete/searchbox&#034;,
+		&#034;minCharactersBeforeRequest&#034;: &#034;3&#034;,
+		&#034;waitTimeBeforeRequest&#034;: &#034;500&#034;,
+		&#034;displayProductImages&#034;: &#034;true&#034;
+	}" data-products="<%= I18n.t "dictionary.produits"%> " data-features="<%= I18n.t "dictionary.articles"%>" />
+
+		<button class="site-search__button button button--square button--sm button--invisible js-site-search-button" type="submit" disabled="true">
+			<i class="icon icon--search-outline"></i>
+			<span class="reader-only">
+				search.form.close</span>
+		</button>
+
+	</form>

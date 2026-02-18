@@ -1,0 +1,42 @@
+.tig {
+animation-name:slideIn;
+animation-delay:0s;
+animation-duration:10s;
+    transform: translateX(-200px) rotate(30deg);
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(0px) rotate(0deg);
+    color: red;
+
+  }
+  30% {
+    transform: translateX(100px) rotate(30deg);
+    color: green;
+  }
+  50% {
+    transform: translateX(200px) rotate(-30deg);
+    color: green;
+  }
+  70% {
+    transform: translateX(300px) rotate(30deg);
+    color: green;
+  }
+  75% {
+    transform: translateX(500px) rotate(-30deg);
+    color: green;
+  }
+  80% {
+    transform: translateX(800px) rotate(-30deg);
+    color: green;
+  }
+  90% {
+    transform: translateX(880px) rotate(30deg);
+    color: green;
+  }
+  100% {
+    transform: translateX(900px) rotate(30deg);
+    color: green;
+  }
+}
+

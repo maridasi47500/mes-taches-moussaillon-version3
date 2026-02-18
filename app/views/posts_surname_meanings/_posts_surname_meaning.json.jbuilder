@@ -1,0 +1,2 @@
+json.extract! posts_surname_meaning, :id, :ps_id, :post_id, :surname_id, :person_id, :sailor_id, :place_id, :posts_surname_id, :thing_id, :other_posts_surname_id, :action_name, :profilepic_id, :speaklike_id, :destinataire_id, :realname_id, :fakename, :content_en, :content_fr, :content_de, :surnamedestinataire_id, :stranger_id, :created_at, :updated_at
+json.url posts_surname_meaning_url(posts_surname_meaning, format: :json)

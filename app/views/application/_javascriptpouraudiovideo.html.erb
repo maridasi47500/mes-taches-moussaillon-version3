@@ -1,0 +1,251 @@
+<script>
+<% if (defined?(recordings)||defined?(jingles)) || (!defined?(jingles)&&!defined?(profilephotos)&&!defined?(photos)&&!defined?(videos))%>
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+   console.log('getUserMedia supported.');
+   navigator.mediaDevices.getUserMedia (
+      {
+         audio: true
+      })
+      // Success callback
+      .then(function(stream) {
+const record<%if defined?(thisisjingles)%>jingles<%end%> = document.querySelector('.record<%if defined?(thisisjingles)%>jingles<%end%>');
+const stop<%if defined?(thisisjingles)%>jingles<%end%> = document.querySelector('.stop<%if defined?(thisisjingles)%>jingles<%end%>');
+const soundClips<%if defined?(thisisjingles)%>jingles<%end%> = document.querySelector('<%if defined?(recordings)%>#recording_recordings<%elsif defined?(jingles)%>#person_<%if defined?(thisisjingles)%>thisis<%end%>jingles<%else%>#post_recordings<%end%>');
+const mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%> = new MediaRecorder(stream);
+record<%if defined?(thisisjingles)%>jingles<%end%>.onclick = function() {
+  mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.start();
+  console.log(mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.state);
+  console.log("recorder started");
+  record<%if defined?(thisisjingles)%>jingles<%end%>.style.background = "red";
+  record<%if defined?(thisisjingles)%>jingles<%end%>.style.color = "black";
+}
+let chunks = [];
+mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.ondataavailable = function(e) {
+  chunks.push(e.data);
+}
+stop<%if defined?(thisisjingles)%>jingles<%end%>.onclick = function() {
+  mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.stop();
+  console.log(mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.state);
+  console.log("recorder stopped");
+  record<%if defined?(thisisjingles)%>jingles<%end%>.style.background = "";
+  record<%if defined?(thisisjingles)%>jingles<%end%>.style.color = "";
+};
+mediaRecorder<%if defined?(thisisjingles)%>jingles<%end%>.onstop = function(e) {
+  console.log("recorder stopped");
+  var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+  chunks = [];
+        var vendorURL = window.URL || window.webkitURL;
+
+  var audioURL = vendorURL.createObjectURL(blob);
+let file = new File([blob], audioURL);
+if (!window.list<%if defined?(thisisjingles)%>jingles<%end%>){
+  window.list<%if defined?(thisisjingles)%>jingles<%end%>=[];
+}
+window.list<%if defined?(thisisjingles)%>jingles<%end%>.push(file);
+var list, myFileList<%if defined?(thisisjingles)%>jingles<%end%>;
+list = new DataTransfer();
+window.list<%if defined?(thisisjingles)%>jingles<%end%>.forEach(function(file){
+list.items.add(file);
+
+});
+myFileList<%if defined?(thisisjingles)%>jingles<%end%> = list.files;
+  soundClips<%if defined?(thisisjingles)%>jingles<%end%>.files = myFileList<%if defined?(thisisjingles)%>jingles<%end%>;
+  document.getElementsByClassName("recordingsfield")[0].innerHTML +=`<audio controls src="${audioURL}"></audio><br/>`;
+};
+      })
+      .catch(function(err) {
+         console.log('The following getUserMedia error occured: ' + err);
+      }
+   );
+} else {
+   console.log('getUserMedia not supported on your browser!');
+}
+<%end%>
+<% if defined?(videos) || (!defined?(jingles)&&!defined?(profilephotos)&&!defined?(recordings) && !defined?(photos))%>
+
+/* Vidéo */
+let preview = document.getElementById("preview");
+let recording = document.getElementById("recording");
+let stopButton = document.getElementById("stopButton");
+let downloadButton = document.getElementById("downloadButton");
+let logElement = document.getElementById("log");
+
+let recordingTimeMS = 10000;
+function log(msg) {
+  logElement.innerHTML += msg + "\n";
+};
+function wait(delayInMS) {
+  return new Promise(resolve => setTimeout(resolve, delayInMS));
+};
+function startRecording(stream, lengthInMS) {
+  let recorder = new MediaRecorder(stream);
+  let data = [];
+ 
+  recorder.ondataavailable = event => data.push(event.data);
+  recorder.start();
+  log(recorder.state + " for " + (lengthInMS/1000) + " seconds...");
+ 
+  let stopped = new Promise((resolve, reject) => {
+    recorder.onstop = resolve;
+    recorder.onerror = event => reject(event.name);
+  });
+
+  let recorded = wait(lengthInMS).then(
+    () => recorder.state === "recording" && recorder.stop()
+  );
+ 
+  return Promise.all([
+    stopped,
+    recorded
+  ])
+  .then(() => data);
+}
+function stop(stream) {
+  stream.getTracks().forEach(track => track.stop());
+};
+let startButton = document.getElementById("startButton");
+
+startButton.addEventListener("click", function() {
+  let videoClips = document.getElementById('<%if defined?(videos)%>video_videos<%else%>post_videos<%end%>');
+  navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true
+  }).then(stream => {
+    preview.srcObject = stream;
+    preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+    return new Promise(resolve => preview.onplaying = resolve);
+  }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+  .then (recordedChunks => {
+    let recordedBlob = new Blob(recordedChunks, { type: "video/ffmpeg" });
+    var videoUrl = URL.createObjectURL(recordedBlob); 
+    let file = new File([recordedBlob], videoUrl);
+    if (!window.listvideos){
+      window.listvideos =[];
+    }
+    window.listvideos.push(file);
+    var list, myFileList;
+    list = new DataTransfer();
+    window.listvideos.forEach(function(file){
+    list.items.add(file);
+    });
+myFileList = list.files;
+  videoClips.files = myFileList;
+  document.getElementsByClassName("videosfield")[0].innerHTML +=`<video width="160" height="120" controls src="${videoUrl}"></video><br/>`;
+
+    log("Successfully recorded " + recordedBlob.size + " bytes of " +
+        recordedBlob.type + " media.");
+  })
+  .catch(log);
+}, false);
+stopButton.addEventListener("click", function() {
+  stop(preview.srcObject);
+}, false);
+<%end%>
+<%if (defined?(profilephotos)||defined?(photos))||(!defined?(jingles)&&!defined?(videos) && !defined?(recordings))%>
+
+<!-- take photos webcam-->
+    (function() {
+
+        var width = 320; // We will scale the photo width to this
+        var height = 0; // This will be computed based on the input stream
+
+        var streaming = false;
+
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+
+        function startup() {
+            video = document.getElementById('videowebcam');
+            canvas = document.getElementById('canvaswebcam');
+            photo = document.getElementById('photowebcam');
+            startbutton = document.getElementById('startbuttonwebcam');
+
+            navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    console.log("An error occurred: " + err);
+                });
+
+            video.addEventListener('canplay', function(ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+
+                    if (isNaN(height)) {
+                        height = width / (4 / 3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev) {
+                takepicture();
+                ev.preventDefault();
+            }, false);
+
+            clearphoto();
+        }
+
+
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                //photo.setAttribute('src', data);
+    canvas.toBlob(function(blob) {
+      let photos = document.querySelector("<%if defined?(photos)%>#photo_photos<%elsif defined?(profilephotos)%>#user_photos<%else%>#post_photos<%end%>");
+    //    var vendorURL = window.URL || window.webkitURL;
+    //alert(blob);
+    var imageUrl = URL.createObjectURL(blob); 
+    //photo.setAttribute('src', imageUrl);
+    let file = new File([blob], imageUrl);
+    if (!window.listphotoswebcam){
+      window.listphotoswebcam =[];
+    }
+    window.listphotoswebcam.push(file);
+    var list, myFileList;
+    list = new DataTransfer();
+    window.listphotoswebcam.forEach(function(file){
+    list.items.add(file);
+    });
+    myFileList = list.files;
+    photos.files = myFileList;
+    document.getElementsByClassName("photosfield")[0].innerHTML +=`<img width="160" height="120" src="${imageUrl}"></img><br/>`;
+    });
+
+            } else {
+                clearphoto();
+            }
+        }
+
+        window.addEventListener('load', startup, false);
+    })();
+<%end%>
+//
+//  
+</script>

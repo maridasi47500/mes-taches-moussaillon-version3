@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= link_to @linkspouseperson.person.name, @linkspouseperson.person %>
+</p>
+
+<p>
+  <strong>Otherperson:</strong>
+  <%= link_to @linkspouseperson.otherperson.name, @linkspouseperson.otherperson %>
+</p>
+
+<p>
+  <strong>Spouselink:</strong>
+  <%= @linkspouseperson.spouselink.name %>
+</p>
+  <%if @linkspouseperson.begindating && @linkspouseperson.enddating %>
+de <%=l(@linkspouseperson.begindating, format: :monthyear)%>
+a <%=l(@linkspouseperson.enddating, format: :monthyear)%>
+  <%elsif @linkspouseperson.begindating %>
+depuis <%=l(@linkspouseperson.begindating, format: :monthyear)%>
+<%end%>
+  <%if @linkspouseperson.otherlinkspousepeople.length > 0%>
+<br>
+<h3>D'autres couples qui pourraient vous intéresser...</h3>
+  <%=render @linkspouseperson.otherlinkspousepeople%>
+<%end%>
+<br>
+<%if @linkspouseperson.coupleevents.length > 0%>
+<table>
+<tr>
+<th>date</th>
+<th>event</th>
+</tr>
+<% @linkspouseperson.coupleevents.order(date: :asc).each do |e|%>
+<tr>
+<td><%=l(e.date, format: :long)%></td>
+<td><%=e.content%></td>
+</tr>
+<%end%>
+
+</table>
+<br>
+<%end%>
+<%=render "formloverstory",linkspouseperson: @linkspouseperson%>
+<br>
+<%=form_with url: rel_linkspouseperson_path(@linkspouseperson.id) do |form|%>
+<%=select_tag :mylover, options_for_select(Peoplerelation.all.collect {|y|[y.name ,y.id]}), {include_blank: "CHoisir une relation que les deux peuvent avoir"}%>
+<%=form.submit "ok"%>
+<%end%>
+<%@linkspouseperson.loverrelations.each do |r|%>
+<p><%=r.user.name%> a dit que <%=@linkspouseperson.loversnames%> peuvent être <%=r.peoplerelation.name%></p>
+<%end%>
+<br>
+<ul>
+<li><%= link_to 'sex of those people', womanman_linkspouseperson_path(@linkspouseperson.id) %></li>
+<li><%= link_to 'Edit', edit_linkspouseperson_path(@linkspouseperson) %></li>
+<li><%= link_to 'Back', linkspousepeople_path %></li>
+</ul>

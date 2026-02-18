@@ -1,0 +1,33 @@
+<%= form_with(model: frontpage, local: true) do |form| %>
+  <% if frontpage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(frontpage.errors.count, "error") %> prohibited this frontpage from being saved:</h2>
+
+      <ul>
+        <% frontpage.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "person_ids", collec: frontpage.people, mesmodele:"withoutyou"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path]%>
+<%@select=[people_frontpages_path]%>
+
+<%@nom=['withoutyou']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+
+</script>
+<%end%>
+

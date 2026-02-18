@@ -1,0 +1,2 @@
+class Movie < Thing
+end

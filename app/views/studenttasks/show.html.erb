@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of the task for the <%="hacker".pluralize(@task.sailors.length)%>:</strong>
+  <%= @task.name %>
+</p>
+<p>
+  <strong>Name of the <%="hacker".pluralize(@task.sailors.length)%>:</strong>
+  <%= @task.sailors.pluck(:name).join(', ') %>
+</p>
+  <% if @task.description.length > 0%>
+<p>
+  <strong>What the <%="sailor".pluralize(@task.sailors.length)%> did more precisely:</strong>
+  <%= @task.description %>
+</p>
+<%end%>
+
+<%= link_to 'Edit', edit_studenttask_path(@task) %> |
+<%= link_to 'Back', studenttasks_path %>

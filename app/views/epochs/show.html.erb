@@ -1,0 +1,65 @@
+<%=content_for :mylittlecss do%>
+.cartesoldat {
+padding: 10px;
+margin: 10px;
+border: dotted green 2px;
+}
+p, .card {
+margin: 10px;
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render @epoch %>
+</p>
+<p>Usurper l'identité d'un grade pour essayer d'obtenir une carte :</p>
+<%=render "laundrycaptains/coloc", coloc: @laundry%>
+<%@epoch.cities.distinct.to_a.each do |es|%>
+<%=link_to "Add people living in #{es.name} during #{@epoch.nomdecetteepoque}", addpeoplecity_epoch_city_path(epoch_id: @epoch.id,id:es.id)%>
+<%end%>
+<%if @person && @city%>
+<div>
+<%=t('display.someonelive',sailor:@person.name, city: @city.name)%>
+</div>
+<%end%>
+<%if @person && @city && @epoch.people_citiesnot(@person,@city).length > 0%>
+<ul>
+<%@epoch.people_citiesnot(@person,@city).each do |p|%>
+<li>
+<%=t('display.someonelive',sailor:p.person.name, city: p.city.name)%>
+</li>
+<%end%>
+</ul>
+<%end%>
+
+  <% if @epoch.epochstudents.length > 0 %>
+<ul>
+<%@epoch.epochstudents.group(:epoch_id, :grade_id).where.not(person_id: nil).to_a.each do |es|%>
+<%=link_to "Add students in #{es.grade.name} during #{es.epoch.nomdecetteepoque}", addstudents_epoch_grade_people_path(grade_id: es.grade_id,epoch_id:es.epoch_id)%>
+<%end%>
+  <% @epoch.epochstudents.each do |student| %>
+<li><%=t('showpage.epoch.epochstudent', sailor: (render 'people/personsimple', person: student.person), grade: student.grade.name).html_safe%> - <%=link_to "usurper l'identite de #{student.person.name} avec un grade", usurpate_epoch_grade_person_user_armygrades_path(user_id: current_user.id,grade_id:student.grade_id, epoch_id:student.epoch_id,person_id:student.person_id)%></li>
+  <% end %>
+</ul>
+  <% end %>
+<%if @epoch.peoplehavejobs.length > 0%>
+<p>Souviens-toi à l'époque :</p>
+<ul>
+<li>
+<%=render partial: "peoplehavejobs/peoplehavejob", collection: @epoch.peoplehavejobs, as: :peoplehavejob, spacer_template: "separatorlist"%>
+</li>
+</ul>
+<%end%>
+<%if @epoch.factoriesservicehaveemployees.length > 0%>
+<p>Souviens-toi à l'époque :</p>
+<ul>
+<li>
+<%=render partial: "factoriesservicehaveemployees/factoriesservicehaveemployee", collection: @epoch.factoriesservicehaveemployees, as: :factoriesservicehaveemployee, spacer_template: "separatorlist"%>
+</li>
+</ul>
+<%end%>
+
+
+<%= link_to t('editpage.epoch'), edit_epoch_path(@epoch) %> |
+<%= link_to t('editpage.back.epoch'), epochs_path %>

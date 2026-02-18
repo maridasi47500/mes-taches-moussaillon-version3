@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= render 'mymaps/addaplace',mymap: @mymap %>
+</p>
+<%= link_to 'Revenir au post', post_path(@post.id) %> |
+<%= link_to 'Edit', edit_post_mymap_path(@mymap.id,post_id: @post.id) %> |
+<%= link_to 'Back', post_mymaps_path %> |
+<%=link_to "ajouter un endroit", addaplace_post_mymap_path(post_id: @post.id, id: @mymap.id)%> |
+<%=link_to "voir en grand", post_mymap_path(post_id: @post.id, id: @mymap.id)%>
+
+

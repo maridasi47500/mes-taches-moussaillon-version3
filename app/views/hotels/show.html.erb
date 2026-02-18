@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<%=render @hotel%>
+<p>
+  <strong>Description:</strong>
+  <%= @hotel.description %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @hotel.country_id %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @hotel.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @hotel.latitude %>
+</p>
+
+<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+<%= link_to 'Back', hotels_path %>

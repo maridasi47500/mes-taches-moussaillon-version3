@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @content.type %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @content.content %>
+</p>
+
+<p>
+  <strong>Other data:</strong>
+  <%= @content.other_data_id %>
+</p>
+ <%= render 'form_comment', comment: Comment.new(content_id:@content.id), content: @content %>
+ <%= render 'showcomments', commentsofthiscontent: @content.comments %>
+
+
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

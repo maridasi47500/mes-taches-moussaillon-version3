@@ -1,0 +1,36 @@
+<%= form_with(model: twopeoplemeet, local: true) do |form| %>
+  <% if twopeoplemeet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(twopeoplemeet.errors.count, "error") %> prohibited this twopeoplemeet from being saved:</h2>
+
+      <ul>
+        <% twopeoplemeet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.findbyid(twopeoplemeet.person_id), mesmodele:"person"%>
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'otherperson_id', collec: Person.findbyid(twopeoplemeet.otherperson_id), mesmodele:"otherperson"%>
+`
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[person_twopeoplemeets_path, otherperson_twopeoplemeets_path]%>
+<%@search=[personjson_albums_path,personjson_albums_path]%>
+<%@nom=['person','otherperson']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

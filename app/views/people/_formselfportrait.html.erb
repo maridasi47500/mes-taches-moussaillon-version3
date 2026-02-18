@@ -1,0 +1,292 @@
+
+<%if person.sexe != 'F'%>
+<%=link_to "compléter les époux/épouses de #{person.name}", new_linkfamilyperson_path(epouxid: person.id, epoux: Familylink.find_by_name_fr("époux").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%> |
+<%else%>
+<%=link_to "compléter les époux/épouses de #{person.name}", new_linkfamilyperson_path(epouxid: person.id, epoux: Familylink.find_by_name_fr("épouse").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+<%end%>
+<br>
+<%if person.sexe != 'F'%>
+<%=link_to "ajouter un enfant de #{person.name}", new_linkfamilyperson_path(epouxid: person.id, epoux: Familylink.find_by_name_en("father ").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%> |
+<%else%>
+<%=link_to "ajouter un enfant de #{person.name}", new_linkfamilyperson_path(epouxid: person.id, epoux: Familylink.find_by_name_en("mother ").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+<%end%>
+<br>
+
+<%=link_to "ajouter la mère de #{person.name}", new_linkfamilyperson_path(epoux2: person.id, epoux: Familylink.find_by_name_en("mother ").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%> |
+
+<%=link_to "ajouter le père de #{person.name}", new_linkfamilyperson_path(epoux2: person.id, epoux: Familylink.find_by_name_en("father ").id), onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+
+<br>
+<%=form_with model: person do |form|%>
+<%=form.fields_for :selfportrait, (person.selfportrait||Selfportrait.new) do |f|%>
+
+<div class="field">
+<%=f.label :bodydescription_id%>
+<%=f.select(:bodydescription_id, Bodydescription.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "bodydescription1"})%>
+<%=link_to "ajouter des descriptions", new_bodydescription_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger toutes les descriptions", bodydescriptions_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, bodydescription1)}});return false;"%>
+</div>
+<div class="field">
+<%=f.label :faceshape_id%>
+<%=f.select(:faceshape_id, Faceshape.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "faceshape1"})%>
+<%=link_to "ajouter des formes de visage", new_faceshape_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger toutes les formes de visage", faceshapes_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, bodydescription1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :haircolor_id%>
+<%=f.select(:haircolor_id, Haircolor.all.collect{|x|[x.name,x.id]}, {include_blank: true},{id: "haircolor1"})%>
+<%=link_to "ajouter des couleurs de cheveux", new_haircolor_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger toutes les couleurs de cheveux", haircolors_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, haircolor1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :clothescolor_id%>
+<%=f.select(:clothescolor_id, Clothescolor.all.collect{|x|[x.name,x.id]}, {include_blank: true},{id: 'clothescolor1'})%>
+<%=link_to "ajouter des couleurs de vêtements", new_clothescolor_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger toutes les couleurs de vêtements", clothescolors_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, clothescolor1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :hairtype_id%>
+<%=f.select(:hairtype_id, Hairtype.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "hairtype1"})%>
+<%=link_to "ajouter des types de cheveux", new_hairtype_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les types de cheveux", hairtypes_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, hairtype1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :hairlength_id%>
+<%=f.select(:hairlength_id, Hairlength.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "hairlength1"})%>
+<%=link_to "ajouter des longueurs de cheveux", new_hairlength_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les longueurs de cheveux", hairlengths_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, hairlength1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :skin_type_id%>
+<%=f.select(:skin_type_id, SkinType.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "skintype1"})%>
+<%=link_to "ajouter des types de peau", new_skin_type_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les types de peau", skin_types_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, skintype1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :skin_color_id%>
+<%=f.select(:skin_color_id, SkinColor.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "skincolor1"})%>
+<%=link_to "ajouter des couleurs de peau", new_skin_color_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les couleurs de peau", skin_colors_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, skincolor1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :eyecolor_id%>
+<%=f.select(:eyecolor_id, Eyecolor.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "eyecolor1"})%>
+<%=link_to "ajouter des couleurs des yeux", new_eyecolor_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les couleurs d'yeux", eyecolors_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, eyecolor1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :makeupstyle_id%>
+<%=f.select(:makeupstyle_id, Makeupstyle.all.collect{|x|[x.name,x.id]}, {include_blank: true}, {id: "makeupstyle1"})%>
+<%=link_to "ajouter des styles de maquillage", new_makeupstyle_path, onclick: "window.open(this.href,'targetWindow',
+                                   `toolbar=no,
+                                    location=no,
+                                    status=no,
+                                    menubar=no,
+                                    scrollbars=yes,
+                                    resizable=yes,
+                                    width=SomeSize,
+                                    height=SomeSize`);
+ return false;"%>
+| <%=link_to "charger tous les styles de maquillage", makeupstyles_path(format: [:json]), onclick: "$.ajax({url: this.href, type: 'get', success:function(data){appenddata(data, makeupstyle1)}});return false;"%>
+
+</div>
+<div class="field">
+<%=f.label :clothesstyle, "style vestimentaire"%>
+<%=f.text_field(:clothesstyle)%>
+</div>
+<div class="field">
+<%=f.label :particularite%>
+<%=f.text_field(:particularite)%>
+</div>
+<div class="field">
+<%="fume #{person.name} ?"%>
+<div>
+<%=f.label :smoke, "oui, occasionnellement", for: "fume1" %><%=f.radio_button(:smoke, true, id: "fume1")%>
+<br>
+<%=f.label :smoke, "non, jamais", for: "fume0"  %><%=f.radio_button(:smoke, false, id: "fume0")%>
+
+</div>
+</div>
+<div class="field">
+<%=f.label :taillecm, "taille (cm)"%>
+<%=f.number_field(:taillecm)%>
+</div>
+<div class="field">
+<%=f.label :poidskg, "poids (kg)"%>
+<%=f.number_field(:poidskg)%>
+</div>
+<div class="field">
+<%=f.label :shoessize, "taille des chaussures"%>
+<%=f.number_field(:shoessize)%>
+</div>
+<div class="field">
+<%=f.label :biceps, "taille des biceps (cm)"%>
+<%=f.number_field(:biceps)%>
+</div>
+<div class="field">
+<%="#{person.name} a des tatouages ?"%>
+<div>
+<%=f.label :tattoo, "oui", for: "tattoo1" %><%=f.radio_button(:tattoo, true, id: "tattoo1")%>
+<br>
+<%=f.label :tattoo, "non", for: "tattoo0"  %><%=f.radio_button(:tattoo, false, id: "tattoo0")%>
+
+</div>
+</div>
+<%end%>
+<div class="field">
+<%=form.submit "envoyer"%>
+</div>
+<%end%>
+
+<script>
+function appenddata(mydata, selectfield){
+selectfield.innerHTML = "<option></option>";
+for(var i=0;i<mydata.length;i++) {
+selectfield.innerHTML += "<option value='"+String(mydata[i].id)+"'>"+(mydata[i].name_<%=I18n.locale.to_s%>||mydata[i].name)+"</option>";
+
+}
+}
+</script>

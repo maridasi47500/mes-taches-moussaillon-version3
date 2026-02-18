@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Languages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.name %></td>
+        <td><%= language.image !="/assets/" ? image_tag(language.image, {width:50,height:50}) : "" %></td>
+        <td><%= link_to 'Show', language %></td>
+        <td><%= link_to 'Edit', edit_language_path(language) %></td>
+        <td><form method="post" action="/languages/<%=language.id%>">
+
+<input type="hidden" name="_method" value="delete"/>
+<input type="submit" value="supprimer"/>
+</form></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Language', new_language_path %>

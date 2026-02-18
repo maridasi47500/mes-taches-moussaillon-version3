@@ -1,0 +1,165 @@
+<%=content_for :csscode do %>
+#container {
+  height:300px;
+  width:100%;
+  overflow-y:scroll;
+  overflow-x:auto;
+  white-space: nowrap;
+}
+
+.hdiv {
+  border:solid 1px black;
+  height:100%;
+  min-width:100px;
+  overflow-y:scroll;
+  display:inline-block;
+  vertical-align: top;
+}
+<%end%>
+<%= form_with(model: mysentence, local: true,html:{onsubmit:"return beforesend();"}) do |form| %>
+
+  <% if mysentence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mysentence.errors.count, "error") %> prohibited this mysentence from being saved:</h2>
+
+      <ul>
+        <% mysentence.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div id="container">
+<%mysentence.myinfo.each_with_index do |myinfo,i|%>
+<div class="hdiv" id="hdiv<%=i%>">
+<%if myinfo.is_a?(Aboutsomething)%>
+<%=form.fields_for :aboutsomethings, myinfo do |f|%>
+  <div class="field">
+<%=f.label :myid%>
+<%=f.number_field :myid%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobutton_nestedattribute", form: f, fieldname: "thing_id", collec: Thing.findbyid(myinfo.thing_id), mesmodele:"thing",ii: f.index%>
+
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :name_fr %>
+    <%= f.text_area :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_en %>
+    <%= f.text_area :name_en %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name_de %>
+    <%= f.text_area :name_de %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_fr %>
+    <%= f.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_en %>
+    <%= f.text_area :content_en %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_de %>
+    <%= f.text_area :content_de %>
+  </div>
+
+<% end %>
+<% end %>
+
+<%if myinfo.is_a?(Recording)%>
+<%=form.fields_for :recordings, myinfo do |f|%>
+<%=render partial: "formrecord/record_mysentence", locals: {mylabel: "Audio", myfield: "recordings", form: f,ii:f.index, modelderails: Mysentence.new}%>
+<%end%>
+
+<%end%>
+<%if myinfo.is_a?(Aboutsomeone)%>
+<%=form.fields_for :aboutsomeones, myinfo do |f|%>
+  <div class="field">
+<%=f.label :myid%>
+<%=f.number_field :myid%>
+
+  </div>
+  <div class="field">
+<%=render "form/radiobutton_nestedattribute", form: f, fieldname: "person_id", collec: Person.findbyid(myinfo.person_id), mesmodele:"person",ii: f.index%>
+
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :name_fr %>
+    <%= f.text_area :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_en %>
+    <%= f.text_area :name_en %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name_de %>
+    <%= f.text_area :name_de %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_fr %>
+    <%= f.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_en %>
+    <%= f.text_area :content_en %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_de %>
+    <%= f.text_area :content_de %>
+  </div>
+<% end %>
+<% end %>
+</div>
+<% end %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function beforesend(){
+var hdiv=$('.hdiv');
+for(var i = 0;i<hdiv.length;i++){
+var radio = $("#"+hdiv[i].id+" input[type=radio]");
+var isChecked = $("#"+hdiv[i].id+" input[type=radio]:checked");
+//alert(hdiv[i].id+" input[type=radio]:checked");
+if (radio.length > 0 && isChecked.length === 0){
+alert("choisir l'enregistrement à sauvegarder ")
+return false;
+}
+}
+return true;
+}
+<%@search=[json_things_path,personjson_albums_path]%>
+<%@select=[thing_mysentences_path,person_mysentences_path]%>
+<%@nom=['thing','person']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+</script>
+<%end%>

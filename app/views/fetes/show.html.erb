@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @fete.name %>
+</p>
+
+
+<p>
+  <strong>Date:</strong>
+  <%= l(@fete.date, format: :jourmois) %>
+</p>
+<p>
+  <strong>Countries:</strong>
+<%=render @fete.countries%>
+</p>
+
+<%= link_to 'Edit', edit_fete_path(@fete) %> |
+<%= link_to 'Back', fetes_path %>

@@ -1,0 +1,3 @@
+class Brand < Thing
+  
+end

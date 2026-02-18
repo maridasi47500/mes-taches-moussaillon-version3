@@ -1,0 +1,126 @@
+<%= form_with(model: rightaboutsomeone, local: true,html:{onsubmit:"seerightanswers();return false;"}) do |form| %>
+  <% if rightaboutsomeone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rightaboutsomeone.errors.count, "error") %> prohibited this rightaboutsomeone from being saved:</h2>
+
+      <ul>
+        <% rightaboutsomeone.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p><%=rightaboutsomeone.question%></p>
+<p><%=rightaboutsomeone.description%></p>
+<div id="myanswers">
+<%=form.collection_check_boxes(:isittruephrase_ids, rightaboutsomeone.phrases, :id, :content) do |b|%>
+<div>
+"<%=render Phrase.find(b.value)%>"
+  <%=b.label(class: "check_box") { b.check_box(class: "myphrases check_box") }%>
+</div>
+<%end%>
+
+
+
+
+
+
+
+<%=form.collection_check_boxes(:isittrueactionlist_ids, rightaboutsomeone.actionlists, :id, :title) do |b|%>
+<div>
+<%= Actionlist.find(b.value).title%>
+(<%= Actionlist.find(b.value).taskactions.map{|x|x.name}.to_sentence(last_word_connector: ' puis ')%>)
+  <%=b.label(class: "check_box") { b.check_box(class: "myactions check_box") }%>
+</div>
+<%end%>
+
+
+
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<%=content_for :myjscode do%>
+<script>
+$.fn.shuffleChildren = function() {
+    $.each(this.get(), function(index, el) {
+        var $el = $(el);
+        var $find = $el.children();
+
+        $find.sort(function() {
+            return 0.5 - Math.random();
+        });
+
+        $el.empty();
+        $find.appendTo($el);
+    });
+};
+function seerightanswers(){
+var phrasevalues=$(".myphrases:checked").toArray().map(x=>x.value).join('-');
+var actionvalues=$(".myactions:checked").toArray().map(x=>x.value).join('-');
+$.ajax({
+url: "<%=wrongta_rightaboutsomeone_path(rightaboutsomeone.id)%>?phrases="+phrasevalues+"&actions="+actionvalues,
+
+type: "post",
+success:function(data){
+//
+console.log(data);
+var phrase=data.phrase;
+$('.wrong').remove();
+$('.other').remove();
+var wrongphrase=$(".myphrases").toArray().filter(x=>phrase.wrong.includes(Number(x.value)));
+$(wrongphrase).after("<span class=\"wrong\">wrong</span>");
+var otherphrase=$(".myphrases").toArray().filter(x=>phrase.other.includes(Number(x.value)));
+$(otherphrase).after("<span class=\"other\">maybe this one</span>");
+
+var action=data.a;
+var wrongaction=$(".myactions").toArray().filter(x=>action.wronga.includes(Number(x.value)));
+$(wrongaction).after("<span class=\"wrong\">wrong</span>");
+var otheraction=$(".myactions").toArray().filter(x=>action.other.includes(Number(x.value)));
+$(otheraction).after("<span class=\"other\">maybe this one</span>");
+if (data.gagne) {
+alert("ok");
+$("#myModal").modal('show');
+}
+}
+});
+};
+window.onload=function() {
+$(myanswers).shuffleChildren();
+$("#myModal").on("show.bs.modal", function(e) {
+    
+    $(this).find(".modal-body").load("<%=goodgame_path%>");
+});
+
+};
+</script>
+
+<%end%>
+<a href="<%=goodgame_path%>" data-remote="false" id="myownlink" hidden="true" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+    Launch Modal
+</a>
+
+<!-- Default bootstrap modal example -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

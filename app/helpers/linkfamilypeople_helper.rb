@@ -1,0 +1,2 @@
+module LinkfamilypeopleHelper
+end

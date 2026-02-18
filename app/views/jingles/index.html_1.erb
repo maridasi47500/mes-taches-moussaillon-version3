@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Jingles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Posts surname</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jingles.each do |jingle| %>
+      <tr>
+        <td><%= jingle.name %></td>
+        <td><%= jingle.content %></td>
+        <td><%= jingle.posts_surname_id %></td>
+        <td><%= link_to 'Show', jingle %></td>
+        <td><%= link_to 'Edit', edit_jingle_path(jingle) %></td>
+        <td><%= link_to 'Destroy', jingle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Tweeter avec ce jingle', newpostwithcollections_posts_path(jingleid: jingle.id) %></td>
+        <td><%= check_box_tag :myjingle, jingle.id %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+        <td><%= link_to 'Tweeter avec ces jingles', newpostwithcollections_posts_path(jingleid: []), onclick: "window.location=$(this).attr('href')+'?jingleid[]='+$('[name=myjingle]:checked').toArray().map(x=>x.value).join('&jingleid[]=');return false;" %></td>
+
+<br>
+
+<%= link_to 'New Jingle', new_jingle_path %>

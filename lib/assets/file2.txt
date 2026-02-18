@@ -1,0 +1,18 @@
+HTTP/2 400 
+access-control-allow-origin: *
+x-fb-request-id: Aa73qmos-vtcB--Se-gu_H3
+strict-transport-security: max-age=15552000; preload
+x-fb-trace-id: AgCZCDRSlQE
+content-type: application/json; charset=UTF-8
+x-app-usage: {"call_count":0,"total_cputime":0,"total_time":0}
+x-fb-rev: 1003058981
+cache-control: no-store
+pragma: no-cache
+expires: Sat, 01 Jan 2000 00:00:00 GMT
+www-authenticate: OAuth "Facebook Platform" "invalid_token" "Error validating access token: The session is invalid because the user logged out."
+x-fb-debug: 4kWu7H/rZ7bppRRjTti9JYXk6MWtFpPQKCOXVj95yFig1o0n4ZG9Rj2de6VdkAbHeiC7PN9SluDFQ5drw0TeYA==
+content-length: 200
+date: Mon, 07 Dec 2020 17:34:57 GMT
+alt-svc: h3-29=":443"; ma=3600,h3-27=":443"; ma=3600
+
+{"error":{"message":"Error validating access token: The session is invalid because the user logged out.","type":"OAuthException","code":190,"error_subcode":467,"fbtrace_id":"Aa73qmos-vtcB--Se-gu_H3"}}

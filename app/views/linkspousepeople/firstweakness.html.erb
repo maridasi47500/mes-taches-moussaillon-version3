@@ -1,0 +1,20 @@
+first force chosen
+<%=form_with url: forcefaiblessetruth_linkspousepeople_path do |form|%>
+<%=form.hidden_field :personid, value: @person.id%>
+<%=form.hidden_field :otherpersonid, value: @otherperson.id%>
+<%=form.hidden_field :forceid, value: @force.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'weaknessid', collec: [], mesmodele:"people"%>
+</div>
+
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[weaknessid_linkspousepeople_path]%>
+<%@search =[json_weaknesses_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

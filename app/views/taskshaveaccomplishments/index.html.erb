@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Taskshaveaccomplishments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Ticket</th>
+      <th>Sailor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taskshaveaccomplishments.each do |taskshaveaccomplishment| %>
+      <tr>
+        <td><%= taskshaveaccomplishment.task_id %></td>
+        <td><%= taskshaveaccomplishment.ticket_id %></td>
+        <td><%= taskshaveaccomplishment.sailor_id %></td>
+        <td><%= link_to 'Show', taskshaveaccomplishment %></td>
+        <td><%= link_to 'Edit', edit_taskshaveaccomplishment_path(taskshaveaccomplishment) %></td>
+        <td><%= link_to 'Destroy', taskshaveaccomplishment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Taskshaveaccomplishment', new_taskshaveaccomplishment_path %>

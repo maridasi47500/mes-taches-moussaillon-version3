@@ -1,0 +1,59 @@
+
+<a class="nav-link" href="<%=lovers_tvseries_index_path%>"><%=t('monmenu.ajouterdesamoureux')%></a><br>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @film.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @film.description %>
+</p>
+
+<p>
+  <%= image_tag @film.image %>
+</p>
+<br>
+<%=render @film.places%>
+
+<ul>
+  <% @film.phavefilms.each do |h| %>
+<li>
+<%=render h.person%>
+<%if h.surname && h.surname.name.to_s.length > 0%>
+(<%=render h.surname%>)
+<%end%>
+</li>
+<%end%>
+</ul>
+<br>
+<%if @film.phavefilms.length > 0%>
+<b>Couples</b>
+<ul>
+<%@film.filmhavecouples.each do |a|%>
+        <li>
+        <%=render 'phavefilm', a: a.phavefilm%>
+aime
+        <%=render 'phavefilm', a: a.otherphavefilm%>
+
+</li>
+<%end%>
+</ul>
+<%end%>
+<br>
+<%if @film.epochs.length > 0%>
+<h6>Epochs of this film</h6>
+<br>
+<%= render @film.epochs%>
+<br>
+<%end%>
+
+
+<ul>
+<li><%= link_to 'Edit Roles', editroles_film_path(@film) %></li>
+<li><%= link_to 'Edit', edit_film_path(@film) %></li>
+<li><%= link_to 'Back', films_path %></li>
+</ul>

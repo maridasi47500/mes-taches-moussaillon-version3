@@ -1,0 +1,10 @@
+<div class="col">
+<div class="card">
+<div class="card-body">
+<%=image_tag mymap.image, width: 200,height:200%>
+<p class="card-text"><%=link_to "chercher puis ajouter un endroit", searchaplace_post_mymap_path(post_id: @post.id, id: mymap.id)%></p>
+<p class="card-text"><%=link_to "ajouter un emplacement", addaplace_post_mymap_path(post_id: @post.id, id: mymap.id)%></p>
+<p class="card-text"><%=link_to "voir en grand", post_mymap_path(post_id: @post.id, id: mymap.id)%></p>
+</div>
+</div>
+</div>

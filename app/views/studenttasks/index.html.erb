@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Student tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sailor Links</th>
+      <th>Sailor Name</th>
+      <th>Name</th>
+      <th>Precisions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @studenttasks.each do |hackertask| %>
+      <tr>
+        <td><ul><% hackertask.sailors.each do |s| %><li><%=link_to s.name, s%></li><%end%></ul></td>
+        <td><%= render partial: "people/personsimple", collection: hackertask.sailors, as: :person%>
+        <td><%= hackertask.name %></td>
+<td>
+<%=hackertask.description%>
+</td>
+        <td><%= link_to 'Show', hackertask %></td>
+        <td><%= link_to 'Edit', edit_studenttask_path(hackertask) %></td>
+        <td><%= link_to 'Destroy', hackertask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New student task', new_studenttask_path %>

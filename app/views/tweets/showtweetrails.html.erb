@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @tweetrails.content %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @tweetrails.username %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @tweetrails.created_at %>
+</p>
+
+<p>
+  <strong>Lieu:</strong>
+  <%= @tweetrails.place %>
+</p>
+<%= link_to 'Edit', edit_tweet_path(@tweetrails) %> |
+<%= link_to 'Back', indextweetrails_tweets_path %>

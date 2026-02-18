@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @m17nphrase.content %>
+</p>
+
+        <%if @m17nphrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if @m17nphrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if @m17nphrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+<%end%>
+<%if @m17nphrase.people.length > 0%>
+<p><%=t('display.genslies')%></p>
+
+<%= render @m17nphrase.people%>
+<%end%>
+
+
+
+<%= link_to 'Edit', edit_m17nphrase_path(@m17nphrase) %> |
+<%= link_to 'Back', m17nphrases_path %>

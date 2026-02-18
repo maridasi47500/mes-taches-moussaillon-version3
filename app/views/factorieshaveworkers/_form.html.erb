@@ -1,0 +1,31 @@
+<%= form_with(model: factorieshaveworker, local: true) do |form| %>
+  <% if factorieshaveworker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(factorieshaveworker.errors.count, "error") %> prohibited this factorieshaveworker from being saved:</h2>
+
+      <ul>
+        <% factorieshaveworker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "epoch_ids", collec: factorieshaveworker.epochs, mesmodele:"epochs"%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_epochs_path]%>
+<%@select=[epochs_factorieshaveworkers_path]%>
+
+<%@nom=['epochs']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

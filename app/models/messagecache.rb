@@ -1,0 +1,3 @@
+class Messagecache < ApplicationRecord
+  
+end

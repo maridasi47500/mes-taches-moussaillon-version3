@@ -1,0 +1,8 @@
+<h1>New Video</h1>
+
+<%= render 'form', video: @video %>
+
+<%= link_to 'Back', videos_path %>
+  <%= content_for :jsforrecorder do %> 
+<%= render "javascriptpouraudiovideo", videos: true %>
+<%end%>

@@ -1,0 +1,9 @@
+<%=fields_for :post do |form|%>
+<div class="field">
+  <%=form.label :inverse_hacking, "Poster avec cet avatar"%>
+  <%= form.collection_check_boxes(:my_posts_surname_ids, @people, :psid, :myname1,{include_hidden: false}) do |b|%>
+    <%=b.check_box(checked: true) %><%=render partial: "posts_surnames/mypostssurnames", collection: PostsSurname.where(id: b.value),as: :person%>
+  <%end%>
+</div>
+  <%end%>
+

@@ -1,0 +1,32 @@
+<%= form_with(model: scheduledtask, local: true) do |form| %>
+  <% if scheduledtask.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scheduledtask.errors.count, "error") %> prohibited this scheduledtask from being saved:</h2>
+
+      <ul>
+        <% scheduledtask.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date_and_time %>
+    <%= form.datetime_select :date_and_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

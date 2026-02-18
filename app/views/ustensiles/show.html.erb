@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ustensile.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @ustensile.image %>
+</p>
+
+<%= link_to 'Edit', edit_ustensile_path(@ustensile) %> |
+<%= link_to 'Back', ustensiles_path %>

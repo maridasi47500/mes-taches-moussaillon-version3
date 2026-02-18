@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @fakecomment.author %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @fakecomment.content %>
+</p>
+
+<%= link_to 'Edit', edit_fakecomment_path(@fakecomment) %> |
+<%= link_to 'Back', fakecomments_path %>

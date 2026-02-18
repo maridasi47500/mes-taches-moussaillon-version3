@@ -1,0 +1,20 @@
+<%@maybeiamhimher = !current_user.aliases.include?(person)%>
+<%if @maybeiamhimher%>
+<a href="<%=aliasperson_person_path(person.id)%>" title="je suis cette personne"><%end%>
+
+<%=  person.name%> 
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+    
+    <%@sesdoubles =person%>
+    <%while @sesdoubles.sondouble do%>
+    <%@sesdoubles =@sesdoubles.sondouble%>
+      <%=  @sesdoubles.usurpation.name%> 
+      <%= image_tag(@sesdoubles.usurpation.image, class: "imageprofilethread", alt:"profile pic")%>
+    <%end%>
+<%if @maybeiamhimher%>
+</a>
+<a href="<%=person_path(person)%>" title="who is <%=person.name %>?">
+<%= image_tag("flagblack.gif", class: "pirate", alt:"profile pic")%>
+</a>
+
+<%end%>

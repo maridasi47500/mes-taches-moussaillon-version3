@@ -1,0 +1,2 @@
+module BetterpeopleHelper
+end

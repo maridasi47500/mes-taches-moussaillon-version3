@@ -1,0 +1,101 @@
+$(function(){
+//image video
+$('.ytd-player').html(``);
+$('head').append(`<style>.ytd-player{background:#FFFFFF;font-size:30px;}</style>`);
+//titre
+$('#title').html(`musique de bach`);
+$('head').append(`<style>#title{background:#FFFFFF;font-size:30px;}</style>`);
+
+
+//#count
+//nbviews
+$('#count').html(`1458464897 views`);
+$('head').append(`<style>#count{background:#FFFFFF;font-size:20px;}#owner-name{background:#FFFFFF;font-size:20px;}#published-date{background:#FFFFFF;font-size:20px;}#subscribe-button,#published-date,.video-title.text-shell.skeleton-bg-color,.video-meta.text-shell.skeleton-bg-color,.thumbnail.skeleton-bg-color,.nav-item{background:#FFFFFF;font-size:20px;}#count{background:#FFFFFF;font-size:20px;}#count{background:#FFFFFF;font-size:20px;}#count{background:#FFFFFF;font-size:20px;}#count{background:#FFFFFF;font-size:20px;}</style>`);
+//#channel-icon
+$('#channel-icon').html(`<%= image_tag(@person.image, class: "imageprofilethread", alt:"profile pic")%>`);
+
+//avatar utilisateur
+//#owner-name
+$('#owner-name').html(`<%= @person.name%>`);
+//#published date
+$('#published-date').html(`<%= (Date.today-7.days).strftime("%m %b %Y")%>`);
+//#subscribe-button
+$('#published-date').html(`Subscribe`);
+//.video-title text-shell skeleton-bg-color
+//video sur le cote titre
+
+try {
+
+
+
+$('.video-title.text-shell.skeleton-bg-color')[0].innerHTML=`vdf`;
+$('.video-meta.text-shell.skeleton-bg-color')[0].innerHTML=`fsdfsw`;
+//.thumbnail .skeleton-bg-color
+//suggestion video sur le cote
+$('.thumbnail.skeleton-bg-color')[0].innerHTML=`fdsg`;
+//video-meta text-shell skeleton-bg-color
+//video sur le cote autres infos
+} catch (error) {  console.error(error);
+
+}
+
+
+//menu-button skeleton-bg-color
+//nb votes positif, negatif , bouton partage, bouton enregistrer, plus d'options
+<%['23455 votes positif', '39874 votes négatifs' , 'partager', 'enregistrer', 'plus d\'options'].each_with_index do |btn,i|%>
+$('.menu-button.skeleton-bg-color')[<%=i%>].innerHTML = `<%=btn%>`;
+<%end%>
+
+ setTimeout(function(){ console.log("Hello"); 
+
+$('#sections').html(`
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/posts">Posts</a>
+      </li>          
+
+<%if user_signed_in?%>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts/new">New post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts/editall">Edit a post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/edit">edit user information</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/editoptions">edit options</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/people/new">create new person</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tasks/new">create new event</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/collections/new">create new collection</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/post_types/new">create new post type</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tweets">tweets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/places/new">create new place</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/facts/new">create new fact</a>
+      </li>
+      <%end%>
+
+      <%= yield :fieldstoadd%>
+    </ul>
+
+  
+`);
+//icone de profile avec drop down
+$('.masthead-skeleton-icon')[3].html(``);
+}, 8000);
+});

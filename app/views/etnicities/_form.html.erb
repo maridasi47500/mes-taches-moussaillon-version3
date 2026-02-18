@@ -1,0 +1,27 @@
+<%= form_with(model: etnicity, local: true) do |form| %>
+  <% if etnicity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(etnicity.errors.count, "error") %> prohibited this etnicity from being saved:</h2>
+
+      <ul>
+        <% etnicity.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

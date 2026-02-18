@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Actionlists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title fr</th>
+      <th>Title en</th>
+      <th>Title de</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @actionlists.each do |actionlist| %>
+      <tr>
+        <td><%= actionlist.title_fr %></td>
+        <td><%= actionlist.title_en %></td>
+        <td><%= actionlist.title_de %></td>
+        <td><%= link_to 'Show', actionlist %></td>
+        <td><%= link_to 'Edit', edit_actionlist_path(actionlist) %></td>
+        <td><%= link_to 'Destroy', actionlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Actionlist', new_actionlist_path %>

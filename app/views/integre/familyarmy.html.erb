@@ -1,0 +1,25 @@
+<h5><%=t('armyq.family')%></h5>
+<p><%=t('armyq.family1')%></p>
+<%=form_with do |form|%>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+
+<%@members.each do |grade|%>
+<input id="imagefamily<%=grade.id%>" type="image" width="100" height="100" alt="grade"
+       src="/assets/<%=grade.image rescue grade.image%>" name="family<%=grade.id%>">
+<%=grade.name%>
+
+<%end%>
+<%end%>
+
+<%=render 'footer'%>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[mytaggedpeople_albums_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

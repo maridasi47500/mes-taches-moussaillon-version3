@@ -1,0 +1,21 @@
+<%=form_with scope: 'loveisland', url: loveisland2_path do |form|%>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'wantedcouple_id', collec: [], mesmodele:"wantedcouple", label: "couple que je veux"%>
+</div>
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'notwantedcouple_id', collec: [], mesmodele:"notwantedcouple",label: "couple que je veux pas"%>
+</div>
+<div class="actions">
+<%=form.submit 'ok'%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[wantedidrsma_path,notwantedidrsma_path]%>
+<%@search =[json_linkspousepeople_path,json_linkspousepeople_path]%>
+<%@nom=['wantedcouple','notwantedcouple']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

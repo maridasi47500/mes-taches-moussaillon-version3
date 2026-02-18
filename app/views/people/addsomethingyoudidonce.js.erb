@@ -1,0 +1,26 @@
+var content = `
+<%= fields_for "person[onetimes_attributes][0]" do |f| %>
+<div class="field">
+<%=f.label :content, "The thing you did once (for example : married, passes the A levels...)"%>
+  <%=f.text_area("content")%>
+</div>    
+    <div class="field">
+
+<%=f.label :title, "add a title for what you did (for example : she did it!, did she do that? )"%>
+  <%=f.text_field("title")%>
+</div>
+  <%=f.check_box("_destroy")%>
+
+<%end%>
+
+`;
+function replaceForm(str,nb) {
+  return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+
+for (var i = 0;i<100;i++) {
+if ($('[name*="person[onetimes_attributes]['+String(i)+']"]').length === 0) {
+$('.onetimes').append(replaceForm(content,i));
+break;
+}
+}

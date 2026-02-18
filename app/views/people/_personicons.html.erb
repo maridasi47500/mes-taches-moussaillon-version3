@@ -1,0 +1,13 @@
+<li>
+<%if person.has_currently_lover?%>
+<%=image_tag "/assets/velolover.png", class: "imageprofilethread",title: "has current got a lover" %>
+<%end%>
+<%=  person.name%>
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%=link_to person do %>
+voir le profil
+<%end%>
+<%=link_to jingles_person_path(person.id) do %>
+éditer le profil
+<%end%>
+</li>

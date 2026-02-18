@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Internetpseudonyms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @internetpseudonyms.each do |internetpseudonym| %>
+      <tr>
+        <td><%= link_to 'Show', internetpseudonym %></td>
+        <td><%= link_to 'Edit', edit_internetpseudonym_path(internetpseudonym) %></td>
+        <td><%= link_to 'Destroy', internetpseudonym, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Internetpseudonym', new_internetpseudonym_path %>

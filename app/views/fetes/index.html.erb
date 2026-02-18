@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fetes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fetes.each do |fete| %>
+      <tr>
+        <td><%= fete.name %></td>
+        <td><%= l(fete.date, format: :jourmois) %></td>
+        <td><%= link_to 'Show', fete %></td>
+        <td><%= link_to 'Edit', edit_fete_path(fete) %></td>
+        <td><%= button_to 'Destroy', fete, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fete', new_fete_path %>

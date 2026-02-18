@@ -1,0 +1,11 @@
+<%=fields_for :posts_surname_meaning do |form|%>
+<%=form.collection_radio_buttons(:ps_id, @posts_surnames,:id, "surnamename", {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label do%>
+<%=render partial:"posts_surnames/mypostssurnames", collection:PostsSurname.find_by_id(rad.value), as: :person%>
+
+<%end%>
+
+<%end%>
+<%end%>
+

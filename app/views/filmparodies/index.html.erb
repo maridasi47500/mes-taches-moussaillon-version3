@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Filmparodies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @filmparodies.each do |filmparody| %>
+      <tr>
+        <td><%= render filmparody %></td>
+        <td><%= link_to 'Show', filmparody %></td>
+        <td><%= link_to 'Edit', edit_filmparody_path(filmparody) %></td>
+        <td><%= link_to 'Edit Roles', editroles_filmparody_path(filmparody.id) %></td>
+
+        <td><%= link_to 'Destroy', filmparody, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Filmparody', new_filmparody_path %>

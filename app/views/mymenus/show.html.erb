@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<h1>Construire le menu</h1>
+<%=form_with scope: "",model: @mymenu, url: choose_mymenu_path(@mymenu.id) do |form|%>
+<%=form.collection_radio_buttons(:webpage_ids, @mymenu.webpages, :id, :image) do |b|%>
+<%=b.radio_button%>
+<%=b.label do%>
+  <%=image_tag b.object.image,width: 200,height:200%>
+<%end%>
+
+<%end%>
+<%=form.submit "send"%>
+
+<%end%>
+<%@mymenu.choicemenus.each do |y|%>
+<p><%=y.user.name%> a choisi <%=y.webpage.title%>. 
+<%=y.content%>
+<%if y.content.nil? || y.content.empty?%>
+editez le menu pour préciser pourquoi
+<%end%>
+</p>
+<%end%>
+<%= link_to 'ajouter une page', edit_mymenu_path(@mymenu,addpage:true) %> |
+<%= link_to 'Edit', edit_mymenu_path(@mymenu) %> |
+<%= link_to 'Back', mymenus_path %>

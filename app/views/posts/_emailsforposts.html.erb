@@ -1,0 +1,33 @@
+        <div class="" role="tabpanel" aria-labelledby="nav12">
+            <h2><%=check_box_tag(:asifyousentemail, :email)%><%=label :asif, "do as if you send an email"%></h2>
+        <% post.emails.each do |email|%>
+        <%=form.fields_for :emails, email do |emailspost|%>
+<div class="field">
+<%= emailspost.label :to %>
+<%= emailspost.text_field :to %>
+</div>
+<div class="field">
+<%= emailspost.label :from %>
+<%= emailspost.text_field :from %>
+</div>
+<div class="field">
+<%= emailspost.label :subject %>
+<%= emailspost.text_field :subject %>
+</div>
+<div class="field">
+<%= emailspost.label :content %>
+<%= emailspost.text_area :content %>
+</div>
+<div class="field">
+<%= emailspost.label :destroy, "destroy this email" %>
+<%= emailspost.check_box :_destroy %>
+</div>
+
+
+
+             <button class="renderemail" type='button' onclick="$.ajax({type:'post',url: '/renderoneemail/<%=email.id%>.js'});">render this email</button>
+       
+        <%end%>
+        <%end%>
+        </div>
+

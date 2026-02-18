@@ -1,0 +1,7 @@
+e<!--<%=form_with model: @task do |f|%>-->
+<%=render partial: "formrecord/recordrecordingtable", locals: {sot: @sot, am: @am, mylabel: "record a phrase", myfield: "recordmyphrasesandwords1", form: f, modelderails: @task}%>
+<%=select_tag "#{@task.class.to_s.downcase}[addmymiddlerelation_id][]", options_for_select(Relation.mostusual.collect {|x| [x.name, x.id]},@am.myrelationtoselect), {prompt: "Select a relation in the middle of your sentence", size:4, multiple: true}%>
+
+<%=render partial: "formrecord/recordrecordingtable", locals: {sot: @sot, am: @newrec, mylabel: "record a word", myfield: "recordmywords1", form: f, modelderails: @task}%>
+
+<!--<%end%>-->

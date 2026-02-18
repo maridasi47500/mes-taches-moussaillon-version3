@@ -1,0 +1,104 @@
+
+<span class="content-post__image image-block">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+        
+        
+        
+        
+            <picture class="image-block__wrap" data-format="content" data-crop="true">
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 700px)" type="image/webp">
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 700px)" type="image/jpeg">
+
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 500px)" type="image/webp">
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 500px)" type="image/jpeg">
+
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 300px)" type="image/webp">
+                        <source srcset="/assets/<%=image.name%>" media="(min-width: 300px)" type="image/jpeg">
+
+                        <img class="image-block__image" src="/assets/<%=image.name%>" loading="lazy" alt="">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+            </picture>
+        
+    
+    
+
+
+
+
+    
+
+
+
+
+			</span>
+<%if defined?(image.caption)%>
+<figcaption class="figure__caption">
+			
+			
+				<div class="paragraph"><%=image.caption%></div>
+			
+		</figcaption>
+<%end%>

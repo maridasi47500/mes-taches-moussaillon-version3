@@ -1,0 +1,3 @@
+class MeansOfTransport < ApplicationRecord
+  
+end

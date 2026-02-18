@@ -1,0 +1,11 @@
+<%=form_with url:cherchelogementresto_path do |form|%>
+<%=form.hidden_field :personid, value: params[:personid]%>
+<%=form.hidden_field :cityid, value: @cityid%>
+<input id="resto" name="resto" type="image" width="100" height="100" alt="restaurant"
+title="restaurant"
+       src="">
+<input id="hotel" name="hotel" type="image" width="100" height="100" alt="hotel"
+title="hotel"
+       src="">
+<%end%>
+

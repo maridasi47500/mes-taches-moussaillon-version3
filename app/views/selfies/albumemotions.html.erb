@@ -1,0 +1,12 @@
+<%=fields_for :selfie,@selfie do |furm|%>
+<%=furm.fields_for "photohavesailors_attributes" do |form|%>
+
+<%=form.collection_radio_buttons(:emotion_id, @emotions,:id, :name,{include_hidden: false}) do |rad|%>
+<%=rad.radio_button(name: "selfie[selfiehavesailors_attributes][#{params[:nth]}]emotion_id")%>
+<%=rad.label do%>
+<%=render Emotion.find(rad.value)%>
+<%end%>
+
+<%end%>
+<%end%>
+<%end%>

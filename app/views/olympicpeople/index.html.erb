@@ -1,0 +1,41 @@
+<%=content_for :mylittlecss do%>
+.olympiccard {
+padding: 10px;
+margin: 10px;
+border: dotted red 2px;
+}
+p, .card {
+margin: 10px;
+}
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Olympicpeople</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>game</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @olympicpeople.each do |olympicperson| %>
+      <tr>
+        <td><%= olympicperson.relationship %></td>
+        <td><%= link_to 'Show', olympicperson %></td>
+        <td><%= link_to 'Edit', edit_olympicperson_path(olympicperson) %></td>
+        <td><%= link_to 'Destroy', olympicperson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p>créer un match olympique et voter pour obtenir une (des) carte(s) de battle</p>
+<%=render @vs%>
+<br>
+
+<%= link_to 'Nouveau match olympique', new_olympicperson_path %>

@@ -1,0 +1,2 @@
+class CreateWebpage < ApplicationRecord
+end

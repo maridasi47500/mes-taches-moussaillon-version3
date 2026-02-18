@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Emoticons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @emoticons.each do |emoticon| %>
+      <tr>
+        <td><%= render emoticon %></td>
+        <td><%= link_to 'Show', emoticon %></td>
+        <td><%= link_to 'Edit', edit_emoticon_path(emoticon) %></td>
+        <td><%= link_to 'Destroy', emoticon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Emoticon', new_emoticon_path %>

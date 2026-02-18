@@ -1,0 +1,7 @@
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%if current_user != person && !current_user.aliases.include?(person)%>
+<a href="<%=user_path(person)%>" title="who is <%=person.name%>?">
+<%= image_tag((person.aliases.count > 0 ? "redflag.jpeg" : "flagblack.gif"), class: "pirate", alt:"profile pic")%>
+</a>
+<%end%>
+    

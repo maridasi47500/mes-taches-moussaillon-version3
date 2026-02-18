@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Historical Characters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historical_characters.each do |historical_character| %>
+      <tr>
+        <td><%= historical_character.name %></td>
+        <td><%= historical_character.image %></td>
+        <td><%= link_to 'Show', historical_character %></td>
+        <td><%= link_to 'Edit', edit_historical_character_path(historical_character) %></td>
+        <td><%= link_to 'Destroy', historical_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Historical Character', new_historical_character_path %>

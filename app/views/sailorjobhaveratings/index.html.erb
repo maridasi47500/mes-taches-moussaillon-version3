@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sailorjobhaveratings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>User</th>
+      <th>Sailorjob</th>
+      <th>Datetime</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sailorjobhaveratings.each do |sailorjobhaverating| %>
+      <tr>
+        <td><%= sailorjobhaverating.rating %></td>
+        <td><%= sailorjobhaverating.user_id %></td>
+        <td><%= sailorjobhaverating.sailorjob_id %></td>
+        <td><%= sailorjobhaverating.datetime %></td>
+        <td><%= link_to 'Show', sailorjobhaverating %></td>
+        <td><%= link_to 'Edit', edit_sailorjobhaverating_path(sailorjobhaverating) %></td>
+        <td><%= link_to 'Destroy', sailorjobhaverating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sailorjobhaverating', new_sailorjobhaverating_path %>

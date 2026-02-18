@@ -1,0 +1,32 @@
+<%= form_with(model: taskshaveaccomplishment, local: true) do |form| %>
+  <% if taskshaveaccomplishment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(taskshaveaccomplishment.errors.count, "error") %> prohibited this taskshaveaccomplishment from being saved:</h2>
+
+      <ul>
+        <% taskshaveaccomplishment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :task_id %>
+    <%= form.number_field :task_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ticket_id %>
+    <%= form.number_field :ticket_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sailor_id %>
+    <%= form.number_field :sailor_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

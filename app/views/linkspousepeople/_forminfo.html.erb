@@ -1,0 +1,49 @@
+<%= form_with(model: linkfamilyperson, local: true) do |form| %>
+  <% if linkfamilyperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(linkfamilyperson.errors.count, "error") %> prohibited this linkfamilyperson from being saved:</h2>
+
+      <ul>
+        <% linkfamilyperson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+<div class="mypeople">
+      <%= form.label :person_id, "moussaillon 1 : #{linkfamilyperson.person.name}" %>
+      <%= form.fields_for :person do |p|%>
+  <div class="field">
+    <%= p.label :sexe %>
+    <%= p.select(:sexe,options_for_select(['F','M']), {prompt: "woman or man"}) %>
+
+  </div>
+
+
+<%end%>
+  </div>
+
+  <div class="field">
+<div class="mypeople">
+      <%= form.label :otherperson_id, "moussaillon 2 : #{linkfamilyperson.otherperson.name}" %>
+      <%= form.fields_for :otherperson do |p|%>
+  <div class="field">
+    <%= p.label :sexe %>
+    <%= p.select(:sexe,options_for_select(['F','M']), {prompt: "woman or man"}) %>
+
+  </div>
+
+
+<%end%>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

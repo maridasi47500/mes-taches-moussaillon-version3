@@ -1,0 +1,19 @@
+<div class="card">
+
+<p><%=companieshaveemployee.employee.name%>
+(<%=companieshaveemployee.job.name%>) 
+(<%=companieshaveemployee.nationality.name%>)</p>
+<br/>
+<%if companieshaveemployee.employer%>
+<p>Employer : <%=companieshaveemployee.employer.name%></p>
+
+<br/>
+<%end%>
+<%if companieshaveemployee.company%>
+<p><%=link_to companieshaveemployee.company.name,companieshaveemployee.company%></p>
+<%end%>
+
+<br/>
+
+</div>
+

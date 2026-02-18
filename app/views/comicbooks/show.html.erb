@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<%=render @comicbook%>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @comicbook.description %>
+</p>
+
+<%= link_to 'New comic book', new_comicbook_path %> |
+<%= link_to 'Edit', edit_comicbook_path(@comicbook) %> |
+<%= link_to 'Back', comicbooks_path %>

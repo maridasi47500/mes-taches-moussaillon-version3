@@ -1,0 +1,14 @@
+selectionner les gens cites dans les posts dans cette periode
+<%=form_with url: postrangeposts_posts_path do |form|%>
+<div>
+<%=form.label :begin%>
+<%=form.date_field :begin%>
+</div>
+<div>
+<%=form.label :end%>
+<%=form.date_field :end%>
+</div>
+<div>
+<%=form.submit 'ok'%>
+</div>
+<%end%>

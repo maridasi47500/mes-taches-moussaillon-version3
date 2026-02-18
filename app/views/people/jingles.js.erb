@@ -1,0 +1,25 @@
+var nb=$('[name^="person[jingles_attributes"]').length;
+function replaceForm(str,nb) {
+return str.replaceAll('[0]','['+nb.toString()+']').replaceAll('_0_','_'+nb.toString()+'_');
+}
+
+$('.allthejingles').append(replaceForm(`
+  <%= fields_for "person[jingles_attributes][0]" do |jingle| %>
+  <div class="field">
+    <%= jingle.label :name, "Audio file for this jingle" %>
+    <%= jingle.file_field :name %>
+      
+  </div>
+    <div class="field">
+
+      <%= jingle.label :content, "text for this jingle" %>
+    <%= jingle.text_field :content %>
+  </div>
+        <div class="field">
+
+    Delete this jingle: <%= jingle.check_box :_destroy %>
+        </div>
+
+  <%end%>
+
+`,nb));

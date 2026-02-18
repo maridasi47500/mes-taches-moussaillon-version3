@@ -1,0 +1,12 @@
+<%=form.fields_for :tendances do |jingle|%>
+  <div class="field">
+    <%= jingle.label :_destroy, "destroy this tendance" %>
+    <%= jingle.check_box :_destroy %>
+  </div>
+
+
+  <div class="field">
+    <%= jingle.label :content, "give a variation for this tendance" %>
+    <%= jingle.text_field :content %>
+  </div>
+    <%end%>

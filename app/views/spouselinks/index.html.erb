@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spouselinks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spouselinks.each do |spouselink| %>
+      <tr>
+        <td><%= spouselink.name %></td>
+        <td><%= link_to 'Show', spouselink %></td>
+        <td><%= link_to 'Edit', edit_spouselink_path(spouselink) %></td>
+        <td><%= link_to 'Destroy', spouselink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spouselink', new_spouselink_path %>

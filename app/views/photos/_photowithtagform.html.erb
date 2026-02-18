@@ -1,0 +1,24 @@
+<div>
+<%=image_tag '/assets/'+photo.name.to_s, width: 500, height: 300,alt:photo.title, usemap: "#workmap#{photo.id}"%>
+    <%=link_to "voir", photo_path(photo.id)%>
+
+</div>
+<%if photo.photohavesailors.withcoord.length > 0 || photo.photoshavethings.withcoord.length > 0%>
+<map name="workmap<%=photo.id%>">
+<%photo.photoshavethings.withcoord.each do |thing|%>
+  <area shape="rect" class="myclass" coords="<%=thing.rectanglecoord%>" title="<%=thing.thing.name%>" alt="<%=thing.thing.name%>" href="<%=thing_path(thing.thing.id)%>">
+        <div><%= button_to thing.thing.name+' [X] ', thing, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+<%if thing.owners.length > 0%>
+<%=t('display.displaythingphoto',thing: thing.thing.name, owner: thing.owners.map{|x|x.name}.to_sentence)%>
+<%end%>
+<%=render "photoshavethings/form",photoshavething: thing%>
+
+<%end%>
+<%photo.photohavesailors.withcoord.each do |sailor|%>
+  <area shape="rect" class="myclass" coords="<%=sailor.rectanglecoord%>" title="<%=sailor.person.name%>" alt="<%=sailor.person.name%>" href="<%=person_path(sailor.person.id)%>">
+        <div><%= button_to sailor.person.name+' [X] ', sailor, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+
+<%end%>
+</map>
+<%end%>
+

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<h1>ville de <%=@citymayor.city.name%></h1>
+<table style="width:300px;float:left;">
+  <thead>
+    <tr>
+      <th>News</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @citynews.each do |citynews| %>
+      <tr>
+        <td><%= citynews.content %></td>
+        <td><%= link_to 'Show', citynews %></td>
+        <td><%= link_to 'Edit', edit_citynews_path(citynews) %></td>
+        <td><%= link_to 'Destroy', citynews, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div style="width:300px;float:right;">
+<img width=200 height=200 style="float:right;" src="<%=@citymayor.person.image%>">
+
+<P style="float:right;">Le mot du(de la) maire:<%=@citymayor.mot%></p>
+</div>
+<%= link_to 'Edit', edit_citymayor_path(@citymayor) %> |
+<%= link_to 'Back', citymayors_path %>

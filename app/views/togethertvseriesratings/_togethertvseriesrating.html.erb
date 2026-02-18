@@ -1,0 +1,5 @@
+<li><%= togethertvseriesrating.people.map{|x|(render x)}.to_sentence.html_safe%> - 
+<%=togethertvseriesrating.rating%> /5 - 
+<%=render togethertvseriesrating.tvserieshaveactor%> - 
+<%= togethertvseriesrating.comment%> - 
+</li>

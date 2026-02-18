@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Content de:</strong>
+  <%= t('display.contentpride',content: @pride.content) %>
+</p>
+<%if @pride.instructions.length > 0%>
+<%=t('display.pridequestion',content: @pride.content)%>
+<%=render @pride.instructions%>
+<%end%>
+
+<%= link_to 'Edit', edit_pride_path(@pride) %> |
+<%= link_to 'Back', prides_path %>

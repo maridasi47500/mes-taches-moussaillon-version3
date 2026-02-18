@@ -1,0 +1,1 @@
+<%= button_to 'create', taskactions_path(taskaction: {"name_#{I18n.locale}" => params[:name], person_id: params[:person_id], task_id: params[:id], grouptask_id: params[:grouptask_id] }), {method: :post, onclick: ('return confirm("'+params[:name]+' n\'existe pas , voulez-vous le créer ?");'),hidden:true,id: "mylastbtn"} %>

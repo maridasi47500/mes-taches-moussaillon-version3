@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<%=@styleofmusic.name%>
+<p>Practice : <%= @styleofmusic.practicers.first(5).pluck(:name).to_sentence%></p>
+<p>Listen : <%= @styleofmusic.listeners.first(5).pluck(:name).to_sentence%></p>
+<%=link_to "list of practicers", allpracticers_styleofmusic_path(@styleofmusic.id)%>
+<%=link_to "list of listeners", alllisteners_styleofmusic_path(@styleofmusic.id)%>
+<%= link_to 'Edit', edit_styleofmusic_path(@styleofmusic) %> |
+<%= link_to 'Back', styleofmusics_path %>

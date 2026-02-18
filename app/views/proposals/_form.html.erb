@@ -1,0 +1,26 @@
+<%= form_with(model: @vote, local: true) do |form| %>
+  <% if proposal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(proposal.errors.count, "error") %> prohibited this proposal from being saved:</h2>
+
+      <ul>
+        <% proposal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% Proposalvalidation.locale_columns(:content).each do |column| %>
+<%=column.to_s.split('_')[1].upcase%>
+  <div class="field">
+    <%= form.label column, "dis pourquoi tu as voté #{@vote.avoteouiounon}" %>
+    <%= form.text_area column %>
+          
+</div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<%= form_with model: @post, remote: true, local: true do |form|%>
+<p>Tasks</p> 
+<%=form.collection_check_boxes(:action_ids, Task.encemoment, :id, :name) do |b| %> 
+       <%=b.check_box(checked: @post.actions.include?(Task.find(b.value)), class: 'people2') %><%=render Task.find(b.value)%>
+
+<% end %> 
+<%= form.submit "edit the tasks"%>
+<% end %> 
+

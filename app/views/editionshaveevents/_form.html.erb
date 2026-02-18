@@ -1,0 +1,47 @@
+<%= form_with(model: editionshaveevent, local: true) do |form| %>
+  <% if editionshaveevent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(editionshaveevent.errors.count, "error") %> prohibited this editionshaveevent from being saved:</h2>
+
+      <ul>
+        <% editionshaveevent.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :edition %>
+    <%= form.text_field :edition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :olympicevent %>
+    <%= form.text_field :olympicevent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexe %>
+    <%= form.text_field :sexe %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

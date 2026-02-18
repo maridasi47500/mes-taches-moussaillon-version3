@@ -1,0 +1,2 @@
+class Haircolor < Thing
+end

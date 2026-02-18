@@ -1,0 +1,44 @@
+
+<%=form_with html: {method:'get',id: "mytwitteraccount"} do |f| %>
+<div class="field"><%=f.label :keyword, "search tweets by keyword" %><%= f.text_field :keyword, value: params[:keyword] %></div>
+<div class="field"><%=f.label :myid, "search tweets by id" %><%= f.text_field :myid, value: params[:myid] %></div>
+<div class="field"><%= f.select("taccount", Twitteraccount.all.collect {|p| [ p.name, p.id ] }, { selected: params[:taccount], include_blank: 'twitter account name' }, {onchange: "$('#mytwitteraccount').submit();"})%></div>
+<div class="field"><%= f.select("tlang", I18n.available_locales.excluding(:frimages).map{|p| [ t('langname.'+p.to_s), p ] }, { selected: params[:tlang], include_blank: 'langue' }, {onchange: "$('#mytwitteraccount').submit();"})%></div>
+<%=f.submit "search"%>
+<%end%>
+<%if @tweetstwitter[0]%>
+<br>
+<p><%=@tweetstwitter[0].user.description%></p>
+<br>
+<%end%>
+
+<table>
+      <thead>
+        <tr>
+            <th>content</th>
+            <th>username</th>
+            <th>created at</th>
+            <th>lieu</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      <%@tweetstwitter.each_with_index do |tweet,i|%>
+        <tr>
+          <td><%= tweet.full_text %></td>
+          <td><%= tweet.user.name %></td>
+          <td><%= l tweet.created_at, format: :long %></td>
+          <td><%= tweet.place.full_name.to_s+' '+tweet.user.location.to_s%></td>
+          <td><%= link_to "voir le tweet", tweet_path(i)+"?#{@myparams}"%></td>
+          <td><%tweet.full_text.split(' ').each do |x|%>
+<%if x[0..3]=='http'%>
+  <!--<iframe src="<%=x%>" width="200" height="200"></iframe>-->
+<%end%>
+<%end%>
+</td>
+        </tr>
+      <%end%>
+    </tbody>
+
+</table>

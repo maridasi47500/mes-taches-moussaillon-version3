@@ -1,0 +1,30 @@
+<%= form_with(model: sailorandaction, local: true) do |form| %>
+  <% if sailorandaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sailorandaction.errors.count, "error") %> prohibited this sailorandaction from being saved:</h2>
+
+      <ul>
+        <% sailorandaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'sailor_ids', collec: sailorandaction.sailors, mesmodele:"people"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[sailors_sailorandactions_path]%>
+<%@search=[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,46 @@
+<div class="card">
+<h5>Bar attempt no. <%=barattempt.id%> from <%=barattempt.bar.musicalscore.name%></h5>
+</br>
+  <%= image_tag "/assets/"+barattempt.bar.image.to_s %>
+</br>
+
+
+
+  <%if barattempt.bar.nb > 0 %>
+</br>
+<p>
+  <strong>mesure no. </strong>
+
+  <%= barattempt.bar.nb %>
+</p>
+<%end%>
+</br>
+  <%if barattempt.user %>
+</br>
+<p>
+  <strong>Played by: </strong>
+
+  <%= render partial: "users/usermicro", collection: [barattempt.user], as: :user %>
+</p>
+<%end%>
+</br>
+</br>
+<p>
+  <strong>Excerpt of the attempt</strong>
+  <audio src="/assets/<%= barattempt.sample.name %>" controls></audio>
+</p>
+  <%if barattempt.person %>
+</br>
+<p>
+  <strong>Played as if he/she were </strong>
+
+  <%= render barattempt.person %>
+</p>
+<%end%>
+<%=link_to "essayer de jouer cette mesure", new_barattempt_path(barid: barattempt.bar.id), class: "nav-item3"%>
+</br>
+<%=link_to "edit bar attempt", edit_barattempt_path(barattempt.id)%>
+</br>
+<%=link_to "see bar attempt", barattempt_path(barattempt.id)%>
+</div>
+

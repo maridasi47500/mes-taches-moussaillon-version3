@@ -1,0 +1,15 @@
+<%if params[:edit]=="true"%>
+<h1>Editing Bar review with criterias</h1>
+
+<%= render 'form2', barreview: @barreview %>
+
+
+<%else%>
+
+<h1>Editing Barreview</h1>
+
+<%= render 'form', barreview: @barattempt %>
+<%end%>
+
+<%= link_to 'Show', @barreview %> |
+<%= link_to 'Back', barreviews_path %>

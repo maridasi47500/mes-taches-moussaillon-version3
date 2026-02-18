@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Musicalbums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @musicalbums.each do |musicalbum| %>
+      <tr>
+        <td><%= musicalbum.name %></td>
+        <td><%= musicalbum.image %></td>
+        <td><%= link_to 'Show', musicalbum %></td>
+        <td><%= link_to 'Edit', edit_musicalbum_path(musicalbum) %></td>
+        <td><%= link_to 'Destroy', musicalbum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Musicalbum', new_musicalbum_path %>

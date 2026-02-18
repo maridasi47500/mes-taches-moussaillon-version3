@@ -1,0 +1,46 @@
+<%= form_with(model: peoplehavestrength, local: true) do |form| %>
+  <% if peoplehavestrength.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(peoplehavestrength.errors.count, "error") %> prohibited this peoplehavestrength from being saved:</h2>
+
+      <ul>
+        <% peoplehavestrength.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" >
+    <%= form.label :person_id %>
+<%if peoplehavestrength.person_id%>
+<%=form.select('person_id', peoplehavestrength.linkspouseperson.mysexes, {prompt: true,id:'twoperson'})%>
+<%else%>
+    <%= form.hidden_field :person_id,id:"twoperson" %>
+<%end%>
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'strength_id', collec: Strength.where(peoplehavestrength.strength_id), mesmodele:"strengths"%>
+</div>
+
+    <%= form.hidden_field :user_id %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'linkspouseperson_id', collec: Streng.where(peoplehavestrength.linkspouseperson_id), mesmodele:"linkspousepeople"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[linkspousepeople_peoplehavestrengths_path, strengths_peoplehavestrengths_path]%>
+<%@search=[json_linkspousepeople_index_path,json_strengths_path]%>
+<%@nom=['linkspousepeople','strengths']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

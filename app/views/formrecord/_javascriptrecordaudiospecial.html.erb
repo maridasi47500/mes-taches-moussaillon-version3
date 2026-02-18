@@ -1,0 +1,71 @@
+<script>
+<% if (defined?(fieldaudio))%>
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+   console.log('getUserMedia supported.');
+   navigator.mediaDevices.getUserMedia (
+      {
+         audio: true
+      })
+      // Success callback
+      .then(function(stream) {
+const record<%=fieldaudio.to_s%> = document.querySelector('.record<%=fieldaudio.to_s%>');
+const stop<%=fieldaudio.to_s%> = document.querySelector('.stop<%=fieldaudio.to_s%>');
+  var myfieldstr = `<%=form.file_field fieldaudio%>`;
+  var idfield<%=fieldaudio.to_s%>=myfieldstr.split("id=\"")[1].split("\"")[0];
+  console.log(idfield<%=fieldaudio.to_s%>);
+const soundClips<%=fieldaudio.to_s%> = document.querySelector('#'+idfield<%=fieldaudio.to_s%>);
+const mediaRecorder<%=fieldaudio.to_s%> = new MediaRecorder(stream);
+record<%=fieldaudio.to_s%>.onclick = function() {
+  mediaRecorder<%=fieldaudio.to_s%>.start();
+  console.log(mediaRecorder<%=fieldaudio.to_s%>.state);
+  console.log("recorder started <%=fieldaudio.to_s%>");
+  record<%=fieldaudio.to_s%>.style.background = "red";
+  record<%=fieldaudio.to_s%>.style.color = "black";
+}
+let chunks = [];
+mediaRecorder<%=fieldaudio.to_s%>.ondataavailable = function(e) {
+  chunks.push(e.data);
+}
+stop<%=fieldaudio.to_s%>.onclick = function() {
+  mediaRecorder<%=fieldaudio.to_s%>.stop();
+  console.log(mediaRecorder<%=fieldaudio.to_s%>.state);
+  console.log("recorder stopped <%=fieldaudio.to_s%>");
+  record<%=fieldaudio.to_s%>.style.background = "";
+  record<%=fieldaudio.to_s%>.style.color = "";
+};
+mediaRecorder<%=fieldaudio.to_s%>.onstop = function(e) {
+  console.log("recorder stopped");
+  var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+  chunks = [];
+        var vendorURL = window.URL || window.webkitURL;
+
+  var audioURL = vendorURL.createObjectURL(blob);
+let file = new File([blob], audioURL);
+if (!window.list<%=fieldaudio.to_s%>){
+  window.list<%=fieldaudio.to_s%>=[];
+}
+window.list<%=fieldaudio.to_s%>.push(file);
+var list, myFileList<%=fieldaudio.to_s%>;
+list = new DataTransfer();
+window.list<%=fieldaudio.to_s%>.forEach(function(file){
+list.items.add(file);
+
+});
+myFileList<%=fieldaudio.to_s%> = list.files;
+  soundClips<%=fieldaudio.to_s%>.files = myFileList<%=fieldaudio.to_s%>;
+  
+  $.ajax({url: "<%=myownrecordingscontentbis_path(personid: modelderails.id, objectname: [form.object_name], fieldname: fieldaudio.to_s)%>", success:function(data){
+      document.getElementsByClassName("recordingsfield<%=fieldaudio.to_s%>")[0].innerHTML +=`<tr><td><audio controls src="${audioURL}"></audio></td>`+'<td>'+data.split('<br>')[0]+`</td><td>`+data.split('<br>')[1]+`</td></tr>`;
+    }});
+
+};
+      })
+      .catch(function(err) {
+         console.log('The following getUserMedia error occured: ' + err);
+      }
+   );
+} else {
+   console.log('getUserMedia not supported on your browser!');
+}
+<%end%>
+</script>

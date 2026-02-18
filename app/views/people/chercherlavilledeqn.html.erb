@@ -1,0 +1,16 @@
+<%=fields_for :person do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[villedeqn_people_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

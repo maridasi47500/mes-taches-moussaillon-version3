@@ -1,0 +1,8 @@
+Jusqu'ici , <%=gossips.nombregossipstrue%> gossips ont des faits pour laquelle la rumeur peut être vraie.
+Les faits auxquelles il est fait allusion sont :
+<ul>
+  <%gossips.each do |g|%>
+    <li><%=g.CONTENT%><%=link_to "voir cette gossip", aboutsomeonegossip_path(g['gossipsid'])%></li>
+  <%end%>
+</ul>
+

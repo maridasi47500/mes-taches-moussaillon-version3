@@ -1,0 +1,116 @@
+<%= form_with(model: worktwo, local: true) do |form| %>
+  <% if worktwo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(worktwo.errors.count, "error") %> prohibited this worktwo from being saved:</h2>
+
+      <ul>
+        <% worktwo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%if worktwo.twoperson.alreadyexist%>
+<%=form.select :twoperson_id, options_for_select([worktwo.twoperson.alreadyexist].collect {|x|[x.person.name+" "+x.otherperson.name,x.id]},worktwo.twoperson.alreadyexist.id), {prompt: "please select the two people"}%>
+<%else%>
+
+
+      <%= form.fields_for :twoperson do |f|%>
+  <div class="field">
+<div class="mypeople">
+      <%= f.label :person_id, "moussaillon 1" %>
+      <%= f.collection_radio_buttons(:person_id, Person.where(id:worktwo.person_id), :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render Person.find(ff.value)%>
+ <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsp, "",onchange:"chercherpeople(this,cherchep);return false;", id: "cherchonsp",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectp(this,avatpeople);return false;" id="cherchep" data-field="action_ids"></select>
+<div id="avatpeople"></div>
+  </div>
+
+  <div class="field">
+<div class="mypeople">
+      <%= f.label :otherperson_id, "moussaillon 2" %>
+      <%= f.collection_radio_buttons(:otherperson_id, Person.where(id:worktwo.otherperson_id), :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render Person.find(ff.value)%>
+ <%end%>
+      </div>
+      <div><%= text_field_tag :cherchonsparici, "",onchange:"chercherpeople(this,chercheparla);return false;", id: "cherchonsparici",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectpeople(this,avattasks);return false;" id="chercheparla" data-field="action_ids"></select>
+<div id="avattasks"></div>
+  </div>
+<%end%>
+<%end%>
+  <div class="field">
+    <%= form.label :link_id, "Relation they have" %>
+      <%= form.collection_radio_buttons(:link_id, Peoplerelation.where(id:worktwo.link_id), :id, :name) %>
+  </div>
+      <div><%= text_field_tag :cherchonsrel, "",onchange:"chercherrel(this,chercheunerel);return false;", id: "cherchonsrel",class:"mysearchfieldavatars" %></div>
+        <select onchange="selectrel(this,rel);return false;" id="chercheunerel" data-field="action_ids"></select>
+<div id="rel"></div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+function chercherpeople(field,all){
+$.ajax({url: '<%=personjson_people_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectp(field,greatpeople){
+$.ajax({url: '<%=personid_worktwos_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function selectpeople(field,greatpeople){
+$.ajax({url: '<%=otherpersonid_worktwos_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+function chercherrel(field,all){
+$.ajax({url: '<%=json_peoplerelations_path%>?name='+field.value, 
+success:function(data){
+all.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+all.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectrel(field,greatpeople){
+$.ajax({url: '<%=rel_worktwos_path%>?id='+field.value, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+</script>
+
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@paths=[json_tickets_path]%>
+<%@paths2=[tickets_worktwos_path]%>
+<%@nom=['tickets']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@paths2, @paths), as: :t%>
+</script>
+<%end%>
+

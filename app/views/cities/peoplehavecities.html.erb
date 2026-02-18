@@ -1,0 +1,13 @@
+<div class="row row-cols-3 row-cols-md-3 g-4">
+
+
+<%= render @people_cities %>
+
+
+
+
+
+</div>
+
+<%=render "indexpage/pagination",g:params[:page].to_i, modelname: PeopleCity,mypath: peoplehavecities_cities_path+'?'%>
+

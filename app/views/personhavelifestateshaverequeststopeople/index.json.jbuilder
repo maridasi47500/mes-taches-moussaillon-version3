@@ -1,0 +1,1 @@
+json.array! @personhavelifestateshaverequeststopeople, partial: "personhavelifestateshaverequeststopeople/personhavelifestateshaverequeststoperson", as: :personhavelifestateshaverequeststoperson

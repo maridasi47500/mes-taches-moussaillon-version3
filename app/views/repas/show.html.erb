@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @repas.user.name %>
+</p>
+
+<p>
+  <strong>Somme:</strong>
+  <%= @repas.somme %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @repas.date %>
+</p>
+<p>
+  <strong>Composition du repas</strong>
+
+<%if @repas.menus.length > 0%>
+<ul>
+<%@repas.menus.each do |menu|%>
+<li>
+<%=menu.menu%>
+</li>
+<%end%>
+</ul>
+<%end%>
+</p>
+
+<%= link_to 'Edit', edit_repas_path(@repas) %> |
+<%= link_to 'Back', repas_index_path %>

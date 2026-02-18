@@ -1,0 +1,8 @@
+<%=fields_for :sector do |form|%>
+<%=form.collection_radio_buttons(:field_id, @k, :id, :name) do |b| %>
+       <%=b.radio_button%>
+<%=b.label%>
+
+<% end %>
+<% end %>
+

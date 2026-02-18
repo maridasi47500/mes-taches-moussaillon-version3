@@ -1,0 +1,36 @@
+<%= form_with(model: withorwithoutyou, local: true) do |form| %>
+  <% if withorwithoutyou.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(withorwithoutyou.errors.count, "error") %> prohibited this withorwithoutyou from being saved:</h2>
+
+      <ul>
+        <% withorwithoutyou.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "withthem_ids", collec: withorwithoutyou.withthem, mesmodele:"withyou"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "withoutthem_ids", collec: withorwithoutyou.withoutthem, mesmodele:"withoutyou"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,personjson_albums_path]%>
+<%@select=[withyous_withorwithoutyous_path, withoutyous_withorwithoutyous_path]%>
+
+<%@nom=['withyou','withoutyou']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+
+</script>
+<%end%>
+

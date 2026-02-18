@@ -1,0 +1,2 @@
+module TvseriesparodiesHelper
+end

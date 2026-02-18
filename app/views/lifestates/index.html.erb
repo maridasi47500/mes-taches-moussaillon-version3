@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lifestates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lifestates.each do |lifestate| %>
+      <tr>
+        <td><%= lifestate.name_fr %></td>
+        <td><%= lifestate.name_en %></td>
+        <td><%= lifestate.name_de %></td>
+        <td><%= link_to 'Show', lifestate %></td>
+        <td><%= link_to 'Edit', edit_lifestate_path(lifestate) %></td>
+        <td><%= link_to 'Destroy', lifestate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lifestate', new_lifestate_path %>

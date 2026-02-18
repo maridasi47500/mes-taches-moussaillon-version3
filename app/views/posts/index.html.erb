@@ -1,0 +1,99 @@
+<%=content_for :myjscode do%>
+<%= javascript_tag 'chat_channel.js' %>
+<%end%>
+<%=content_for :mytitle do%>
+<%=t('mytitles.allposts')%>
+<%end%>
+<p id="notice"><%= notice %></p>
+<%if params[:q]%>
+<p>tu cherches : <%=params[:q]%></p>
+<%end%>
+<%if params[:qa]%>
+            <%=form_with url: searchpost_path, method: "get" do |f|%>
+          <%= f.label :q, "Search an actor:" %> <%= f.text_field :qa, value: "" %>
+          <%=f.submit "search" %>
+          <%end%>
+
+<%end%>
+<% if defined?(@allplaces) %>
+  <%@allplaces.each_with_index do |person,i|%>
+    <%= i == 0 ? "<h2>All the places</h2>".html_safe : ""%>
+
+    <p><%=render @allplaces%></p>
+
+  <%end%>
+<%end%>
+<% if defined?(@allpeople) %>
+<% if @allpeople.length > 0 %>
+  <%@allpeople.each_with_index do |person,i|%>
+    <%= i == 0 ? "<h2>All the people</h2>".html_safe : ""%>
+
+    <p><%=render person%>
+  <%=render partial:"myformulairenewpost",locals: {person:person, url:"/posts/new"}%> 
+    </p>
+    <p><%= link_to "edit me (#{person.name})", jingles_person_path(person.id)%></p>
+    <p><%= link_to "====> My page (#{person.name}) ! <====", person_path(person.id)%></p>
+  <%end%>
+
+  <%else%>
+<p>Aucune personne trouve.</p>
+  <%end%>
+<%end%>
+<% if defined?(@alltasks) %>
+  <%@alltasks.each_with_index do |collection,i|%>
+    <%= i == 0 ? "<h2>All the tasks</h2>".html_safe : ""%>
+
+    <p><%=render collection%></p>
+  <%end%>
+<%end%>
+<% if defined?(@allcollections) %>
+  <%@allcollections.each_with_index do |collection,i|%>
+    <%= i == 0 ? "<h2>All the collections</h2>".html_safe : ""%>
+
+    <p><%=render collection%></p>
+  <%end%>
+<%end%>
+<!--<% if defined?(@allprofilepics) %>
+  <%@allprofilepics.each_with_index do |collection,i|%>
+    <%= i == 0 ? "<h2>All the profile pics</h2>".html_safe : ""%>
+
+    <p><%=render collection%></p>
+  <%end%>
+<%end%>-->
+
+<div class="row row-cols-3 row-cols-md-3 g-4">
+
+
+<%= render partial: 'posts/postshow', collection: @posts, as: :post %>
+<%= render partial: 'attitudes/attitude', collection: Attitude.todays, as: :attitude %>
+<%= render partial: 'posts_surnames/mypostssurnames', collection: PostsSurname.todays, as: :person %>
+<%= render partial: 'aboutsomeonegossips/aboutsomeonegossip', collection: Aboutsomeonegossip.todays, as: :aboutsomeonegossip %>
+<%= render partial: 'people/seeperson', collection: Person.todays, as: :person %>
+<%= render partial: 'webpages/webpage', collection: Webpage.todays, as: :webpage %>
+<%= render partial: 'things/thing', collection: Thing.todays, as: :thing %>
+
+
+
+
+
+</div>
+
+
+<br>
+<%=link_to_if (params[:page].to_i > 0 && @posts.length > 0), "page précédente", posts_path(page: (params[:page].to_i - 1)) %>
+<%=link_to_if (@posts.length == 10), "page suivante", posts_path(page: (params[:page].to_i + 1)) %>
+
+<br>
+
+<%=content_for :footer do%>
+<%if params[:action] == "searchposts"%>
+      <%=render partial: "posts/paginationsearch"%>
+<%else%>
+      <%=render partial: "posts/pagination"%>
+
+<%end%>
+<%end%>
+<%=content_for :fieldstoadd do%>
+              <%=render partial: "posts/tachesfetiches"%>
+
+<%end%>

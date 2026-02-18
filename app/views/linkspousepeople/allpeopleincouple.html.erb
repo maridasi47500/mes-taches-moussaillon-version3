@@ -1,0 +1,23 @@
+<h1>Tous les gens en couple</h1>
+<br>
+
+<table>
+<th>
+<td>
+premier lover
+</td>
+<td>
+2e lover
+</td>
+</th>
+<%@couples.each do |t|%>
+<tr>
+<td>
+<%=t.name%>
+</td>
+<td>
+<%=t.othername%>
+</td>
+</tr>
+<%end%>
+</table>

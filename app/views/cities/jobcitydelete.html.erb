@@ -1,0 +1,9 @@
+<%=button_to "ok back to this person",cherchersaville_person_path(id: @person.id), method: :post, onclick: "return confirm('dire dans quelle ville habite le moussaillon ?');",id: "mybtn"%>
+<%=content_for :myjscode do %>
+<script>
+
+window.onload=function(){
+mybtn.click();
+};
+</script>
+<%end%>

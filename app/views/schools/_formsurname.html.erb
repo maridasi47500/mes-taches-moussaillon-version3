@@ -1,0 +1,523 @@
+
+
+                          <div class="field">
+<%=f.label :whoiam%>
+<%=f.check_box :whoiam%>
+</div>
+                          <div class="field">
+  <button type="button" onclick="$.ajax({type:'post',url: '<%=rendermypostssurnames_path%>?'+$('form').serialize(), success: function(data){$('#post_content_fr').val($('#post_content_fr').val()+data);}});"> <%=t('showpage.posts_surname.addtocontent')%> </button> </div>
+                          <h2><%=t('showpage.posts_surname.addacontent')%></h2>
+                          <div class="field">
+        <% PostsSurname.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost', onkeydown: "mypersonsubtitle.innerHTML = this.value;" %>
+
+</div>
+
+  <% end %>
+
+
+                    </div>
+
+
+
+
+
+<%if params["personids"] && params["personids"].length > 0%>
+      <div class="mypeople">
+
+<h2><%=t('display.asifiwere',sailor: Person.find(params["personids"][0])).html_safe%></h2>
+<%=f.hidden_field :speaklike_id, value: params["personids"][0].to_i%>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"][0]%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data);$("#post_content_fr").focus(); }});' id="btn<%=params["personids"][0]%>" type="button">add him/her to content</button>
+          <button onclick='$.ajax({url: "/persondisplay/<%=params["personids"][0]%>",success:function(data){$(".editable_fr").append(data);$("#post_my_posts_surnames_attributes_0_content_fr").val($("#post_my_posts_surnames_attributes_0_content_fr").val()+data);$("#post_my_posts_surnames_attributes_0_content_fr").focus(); }});' id="btn<%=params["personids"][0]%>" type="button"><%=t('showpage.posts_surname.addtocontent')%></button>
+      </div>
+
+
+      <%else%>
+      <div class="mypeople">
+      <%= f.label :speaklike_id %>
+      <%= f.collection_radio_buttons(:speaklike_id, Person.where(id:[post.speaklike_id,(@person ? @person.id : nil)]), :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%=render partial: "people/personradiobutton",locals: {personid:ff.value}%>
+                            <%end%>
+<%=  f.radio_button( "speaklike_id", nil)%><%= f.label "speaklike_id", "personne"%>
+
+      </div>
+<%end%>
+      <div>
+        <%= text_field_tag :cherchonsici, "",onchange:"chercherici(this,chercheici);return false;", id: "cherchonsici",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectpeople(this,avat1);return false;" id="chercheici" data-field="speaklike_id"></select>
+<div id="avat1"></div>
+      <div class="mythings">
+      <%= f.label :thing_id %>
+      <%= f.collection_radio_buttons(:thing_id, Thing.where(id:post.thing_id), :id, :name) do |ff| %>
+        <%=ff.radio_button do%>
+<%=render partial: "things/thingsimple",locals: {thing:Thing.find(ff.value)}%>
+                            <%end%>
+                            <%end%>
+<%=  f.radio_button( "thing_id", nil)%><%= f.label "thing_id", "rien"%>
+
+      </div>
+      <div>
+        <%= text_field_tag :cherchonslabas, "",onchange:"chercherstuff(this,cherchela);return false;", id: "cherchonslabas",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectstuff(this,avatstuf1);return false;" id="cherchela" data-field="thing_id"></select>
+<div id="avatstuf1"></div>
+      <div class="mypseudonim">
+      <%= f.label :new_surname %>
+      <%= f.text_field :new_surname,value: post.surname.try(:name)%>
+
+      </div>
+      <div>
+        <%= text_field_tag :cherchonsicibas, "",onchange:"cherchersurname(this,cherchelabas);return false;", id: "cherchonsicibas",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectsurnames(this,avatruby1);return false;" id="cherchelabas" data-field="surname_id"></select>
+<div id="avatruby1"></div>
+      <div class="mypseudonim">
+      <%= f.label :surnamedestinataire_id %>
+      <%= f.collection_radio_buttons(:surnamedestinataire_id, Surname.where(id:post.surnamedestinataire_id), :id, :name) do |ff| %>
+        <%=ff.radio_button %>
+<%=ff.label%>
+                            <%end%>
+<%=  f.radio_button( "surnamedestinataire_id", nil)%><%= f.label "surnamedestinataire_id", "personne"%>
+
+      </div>
+      <div>
+        <%= text_field_tag :cherchonsicimeme, "",onchange:"cherchersurname(this,cherchelabasaussi);return false;", id: "cherchonsicimeme",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectsurnamesdestinataire(this,avatruby2);return false;" id="cherchelabasaussi" data-field="surname_id"></select>
+<div id="avatruby2"></div>
+
+      <div>
+      <%= f.label :fakename %>
+      <%= f.check_box(:fakename)%>
+      </div>
+
+      <div class="monetranger">
+      <%= f.label :stranger_id%>
+      <%= f.collection_radio_buttons(:stranger_id, Person.where(id: post.stranger_id), :id, :name) do |ff| %>
+        
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button"><%=t('showpage.posts_surname.addtocontent')%></button>
+                            <%end%>
+                                <%=  f.radio_button( "stranger_id", nil)%><%= f.label "stranger_id",t('display.nostranger') %>
+
+      </div>
+      <div>
+        <%= label :monetranger, "appeler une personne inconnue/etrangere au locuteur" %>
+        <%= text_field_tag :monetranger, nil, id: 'monetranger', class:"mysearchfieldavatars", onchange: "chercherici(this, unetranger);return false;" %>
+        <select onchange="selectpeople(this,avat2);return false;" id="unetranger" data-field="stranger_id"></select>
+<div id="avat2"></div>
+
+
+
+      </div>
+      <div class="mondestinataire">
+      <%= f.label :destinataire_id %>
+      <%= f.collection_radio_buttons(:destinataire_id, Person.where(id: post.destinataire_id), :id, :name) do |ff| %>
+        
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                                <%=  f.radio_button( "destinataire_id", nil)%><%= f.label "destinataire_id", "personne"%>
+
+      </div>
+
+      <div>
+        <%= label :mondestinataire, "appeler un destinataire" %>
+        <%= text_field_tag :mondestinataire, nil, id: 'mondestinataire', class:"mysearchfieldavatars",onchange:"chercherici(this,mondesti);return false;" %>
+        <select onchange="selectpeople(this,avat3);return false;" id="mondesti" data-field="destinataire_id"></select>
+<div id="avat3"></div>
+
+
+      </div>
+          <div>
+        <%= f.label :action_name %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+
+<div class="field">
+  <%=f.label :inverse_hacking%>
+  <%= f.collection_radio_buttons(:posts_surname_id, PostsSurname.where(id: post.posts_surname_id), :psid, :myname1,{include_hidden: false}) do |b|%>
+    <%=b.radio_button(checked: true) %><%=render partial: "posts_surnames/mypostssurnames", collection: PostsSurname.where(id: b.value),as: :person%>
+  <%end%>
+</div>
+
+
+  <%=text_field_tag :search, "", id: "searchA"%>
+  <select id="search1"></select>
+  <div id="ps"></div>
+<div class="field">
+  <%=f.label :inverse_hacking2%>
+  <%= f.collection_radio_buttons(:other_posts_surname_id, PostsSurname.where(id: post.try(:other_posts_surname_id)), :psid, :myname1,{include_hidden: false}) do |b|%>
+    <%=b.radio_button(checked: true) %><%=render partial: "posts_surnames/mypostssurnames", collection: PostsSurname.where(id: b.value),as: :person%>
+  <%end%>
+</div>
+
+
+
+  <%=text_field_tag :search, "", id: "searchB"%>
+  <select id="search2"></select>
+  <div id="ps2"></div>
+                        <h2><%=t('showpage.posts_surname.addplace')%></h2>
+                <div class="placessurnamesattributes">
+                  <%=radio_button_tag :where1, "", {autocomplete:"off",checked:false},{onchange: "$(p2).toggleClass('vis');$(p1).toggleClass('vis');return false;",id: "addanewplace",class: "btn-check",name:"where"}%>
+
+                          <%=label :where1, "", {class: "btn btn-secondary",for:"addanewplace"} do%>
+
+                        <%=t('showpage.posts_surname.selectplace')%>
+        <%end%>
+        <%=radio_button_tag :where2, "", {autocomplete:"off",checked:true},{onchange: "$(p2).toggleClass('vis');$(p1).toggleClass('vis');return false;",name:"where",id: "selectplace",class: "btn-check"}%>
+
+                          <%=label :where2, "", {class: "btn btn-secondary",for:"selectplace"} do%>
+                        <%=t('showpage.posts_surname.newplace')%>
+
+        <%end%>
+
+                  <div class="invis vis" id="p1">
+                                    <button  type="button" onclick="$.ajax({url:'<%=addaplacetosurnameattribute_path%>',success:function(data){myplace.innerHTML=data;}});return false;">
+                        <%=t('showpage.posts_surname.newplace')%>
+
+
+</button></div>
+                  <div class="invis" id="p2">
+                                    <%=text_field_tag :myplacename, "",placeholder:t('showpage.posts_surname.searchplace'),id:"nameplace"%>
+                                    <button id="p3" type="button" onclick="$.ajax({url:'<%=selectaplacetosurnameattribute_path%>?name='+nameplace.value,success:function(data){myplace.innerHTML=data;}});return false;">
+
+                        <%=t('showpage.posts_surname.selectplace')%>
+</button>
+                                    <select id="propp3"></select>
+                  </div>
+                                    <div id="myplace"></div>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy %>
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+
+                        <h2><%=t('showpage.posts_surname.addsailor')%></h2>
+                <div class="field">
+
+                    <div class="allthesailors-list sailorsonlylist"> 
+<%if post.person%>
+      <%= f.label :person_id %>
+      <%= f.collection_radio_buttons(:person_id, [post.person], :id, :name) do |ff| %>
+        <%=ff.radio_button%><%=render Person.find(ff.value)%><button onclick='$.ajax({url: "/persondisplay/<%=ff.value%>",success:function(data){$(".editable_fr").append(data);$("#post_content_fr").val($("#post_content_fr").val()+data); }});' id="btn<%=ff.value%>" type="button">add him/her to content</button>
+                            <%end%>
+                        <%=  f.radio_button( "person_id", nil)%><%= f.label "person_id", t('display.nobody')%>
+<%end%>
+
+                    </div>
+
+      </div>
+      <div>
+        <%= label :maprofilepic, t('showpage.posts_surname.maprofilepic') %>
+        <%= text_field_tag :monsailor, nil, id: 'monsailor',class:'mysearchfieldavatars',onchange:"chercherici(this,sailorshere);return false;" %>
+        <select onchange="selectpeople(this,avat4);return false;" id="sailorshere" data-field="person_id"></select>
+<div id="avat4"></div>
+
+
+      </div>
+                    <div class=""> 
+      <%= f.label :profilepic_id %>
+      <%= f.collection_radio_buttons(:profilepic_id, Profilepicture.where(id:post.profilepic_id),:id, :title) do |ff| %>
+        <%=ff.radio_button%><%=render Profilepicture.find(ff.value)%>                            <%end%>
+                        <%=  f.radio_button( "profilepic_id", nil)%><%= f.label "profilepic_id", t('display.noprofilepic')%>
+
+                    </div>
+      <div>
+        <%= label :mypic, t('showpage.posts_surname.profilepic') %>
+        <%= text_field_tag :mypic, nil, id: 'mypic',class:'mysearchfieldavatars',onchange:"chercherpics(this,sailorspic);return false;" %>
+        <select onchange="selectpics(this,avatpic);return false;" id="sailorspic" data-field="profilepic_id"></select>
+<div id="avatpic"></div>
+
+
+      </div>
+
+      </div>
+
+  <div class="field">
+<%=render "form/checkbox", form: f, fieldname: "other_posts_surname_ids", collec: @posts_surname.try(:other_posts_surnames).to_a, mesmodele:"posts_surnames"%>
+  </div>
+
+
+
+
+<%=content_for :myjs do%>
+ // Get the modal
+var modal = document.getElementById("myRecordingModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myRecordingBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+<%if !post.new_record?%>
+function sendmyspecialaudiofiles(){
+  var formData = new FormData($(formsurname)[0]);
+                          event.preventDefault();
+          $.ajax({processData: false,data:formData,
+            contentType: false,
+            url:'<%=nouvelaidememoire_posts_surname_path(post.id)%>',
+type: 'post',success:function(aidememoires){console.log(aidememoires);mylatestam.innerHTML = aidememoires;}});return false;
+}
+<%end%>
+<%end%>
+
+<%=content_for :mylittlecss do%>
+.recordingmodal, .recordingmodal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.recordingmodal-content, .recordingmodal-content1 {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close, .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover, .close:focus, close1:hover, .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+function cherchersurname(field,selectfield){
+$.ajax({url: '<%=names_surnames_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function chercherici(field,selectfield){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function chercherstuff(field,selectfield){
+$.ajax({url: '<%=json_things_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function chercherpics(field,selectfield){
+$.ajax({url: '<%=mypics_profilepictures_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].title;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectsurnames(field,box){
+$.ajax({url: '<%=names_posts_surnames_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectsurnamesdestinataire(field,box){
+$.ajax({url: '<%=namesdestinataire_posts_surnames_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectpeople(field,box){
+$.ajax({url: '<%=mypeople_posts_surnames_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectstuff(field,box){
+$.ajax({url: '<%=mystuff_posts_surnames_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectpics(field,box){
+$.ajax({url: '<%=mypics_posts_surnames_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+</script>
+<% end %>
+  <%=content_for :myjscode do%>
+  <script>
+  $(function(){
+
+    $("#searchA").change(function(){
+        var deptid = $(this).val();
+
+        $.ajax({
+          url: '<%=mypsa_path%>',
+            type: 'post',
+            data: {name:deptid},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#search1").empty();
+                    $("#search1").append("<option id='nulla' value=''>aucun</option>");
+		var id,name;
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+
+
+                    $("#search1").append("<option id='psa"+id+"' value='"+id+"'>"+name+"</option>");
+
+
+                }
+                    $("#search1").change(function(){
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+			if ($(this).val() == id){
+                    $.ajax({url: '<%=ps1_posts_surnames_path%>?id='+id, success:function(data){ps.innerHTML+=data;}});
+			}
+            	}
+			});
+            }
+        });
+    });
+
+    $("#searchB").change(function(){
+        var deptid = $(this).val();
+
+        $.ajax({
+          url: '<%=mypsa_path%>',
+            type: 'post',
+            data: {name:deptid},
+            dataType: 'json',
+            success:function(response){
+
+                var len = response.length;
+
+                $("#search2").empty();
+                    $("#search2").append("<option id='nulla' value=''>aucun</option>");
+		var id,name;
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+
+
+                    $("#search2").append("<option id='psb"+id+"' value='"+id+"'>"+name+"</option>");
+
+
+                }
+                    $("#search2").change(function(){
+                for( var i = 0; i<len; i++){
+                    id = response[i]['psid'];
+                    name = response[i]['myname1'];
+			if ($(this).val() == id){
+                    $.ajax({url: '<%=ps2_posts_surnames_path%>?id='+id, success:function(data){ps2.innerHTML+=data;}});
+			}
+            	}
+			});
+            }
+        });
+    });
+   
+
+});
+  </script>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_posts_surnames_path]%>
+<%@select=[otherpostssurnames_posts_surnames_path]%>
+
+<%@nom=['posts_surnames']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

@@ -1,0 +1,2 @@
+class Typetask < Thing
+end

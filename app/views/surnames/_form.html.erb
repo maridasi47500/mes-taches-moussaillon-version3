@@ -1,0 +1,44 @@
+<%= form_with(model: surname, local: true) do |form| %>
+  <% if surname.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(surname.errors.count, "error") %> prohibited this surname from being saved:</h2>
+
+      <ul>
+        <% surname.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+<div>
+<%=render "form/checkbox", form: form, fieldname: 'person_ids', collec: surname.people, mesmodele:"people"%>
+</div>
+<div>
+<%=render "form/checkbox", form: form, fieldname: 'nationality_ids', collec: surname.nationalities, mesmodele:"nationalities"%>
+</div>
+<div>
+<%=render "form/checkbox", form: form, fieldname: 'school_ids', collec: surname.schools, mesmodele:"schools"%>
+</div>
+<div>
+<%=render "form/checkbox", form: form, fieldname: 'website_ids', collec: surname.websites, mesmodele:"websites"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_surnames_path,nationalities_surnames_path,schools_surnames_path,websites_surnames_path]%>
+<%@search=[personjson_albums_path,json_nationalities_path,json_schools_path,jsonwebsites_surnames_path]%>
+<%@nom=['people','nationalities','schools','websites']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

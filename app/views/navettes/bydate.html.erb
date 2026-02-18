@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Navettes</h1>
+<p><%=@message%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @navettes.each do |navette| %>
+      <tr>
+        <td><%= navette.go %></td>
+        <td><%= link_to 'Show', bydate_navettes_path(date: l(navette.go,format: :mydateurl)) %></td>
+        <td><%= link_to 'Edit', edit_navette_path(navette) %></td>
+        <td><%= link_to 'Destroy', navette, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Navette', new_navette_path %>

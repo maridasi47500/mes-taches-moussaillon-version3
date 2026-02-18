@@ -1,0 +1,23 @@
+<%= form_with(model: armycompagny, local: true) do |form| %>
+  <% if armycompagny.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(armycompagny.errors.count, "error") %> prohibited this armycompagny from being saved:</h2>
+
+      <ul>
+        <% armycompagny.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=render "myfields/person_ids",form:form,fieldtype:"checkbox",path:person_armycompagnies_path%>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

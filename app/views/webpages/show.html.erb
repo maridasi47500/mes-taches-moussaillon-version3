@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @webpage.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= link_to "cliquer ici",@webpage.url %>
+</p>
+<h6>Commentaires</h6>
+<%if @webpage.comments.length > 0%>
+<ul>
+<%@webpage.comments.each do |com|%>
+<li><%=com.text%> - <%=com.user.name%></li>
+<%end%>
+</ul>
+<%end%>
+<%=render "formcomment", webpage: @webpage%>
+<%= link_to 'Edit', edit_webpage_path(@webpage) %> |
+<%= link_to 'Back', webpages_path %>

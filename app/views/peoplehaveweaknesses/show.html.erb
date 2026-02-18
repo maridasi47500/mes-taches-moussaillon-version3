@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<p><%=t('pagesshow.peoplehaveweakness.question',sailor: (I18n.t("pagesshow.person.#{@peoplehaveweakness.person.mysexedisplayspecde}")+" (#{@peoplehaveweakness.person.name})"),weakness: @peoplehaveweakness.weakness.name)%></p>
+<p><%= render @peoplehaveweakness.linkspouseperson%></p>
+<p>by <%= @peoplehaveweakness.user.name %></p>
+<%= link_to 'Edit', edit_peoplehaveweakness_path(@peoplehaveweakness) %> |
+<%= link_to 'Back', peoplehaveweaknesses_path %>

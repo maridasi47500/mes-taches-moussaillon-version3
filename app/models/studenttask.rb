@@ -1,0 +1,2 @@
+class Studenttask < Task
+end

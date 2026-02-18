@@ -1,0 +1,43 @@
+<%= form_with(model: barattempt, local: true) do |form| %>
+  <% if barattempt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(barattempt.errors.count, "error") %> prohibited this barattempt from being saved:</h2>
+
+      <ul>
+        <% barattempt.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.findbyid(barattempt.person_id), mesmodele:"person"%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :sample_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: barattempt.bar.musicalscore.name,mylabel: "record #{barattempt.bar.musicalscore.name}", myfield: "correctsample", form: form, modelderails: barattempt.bar}%>
+
+  </div>
+
+<%if barattempt.new_record?%>
+    <%= form.hidden_field :bar_id %>
+    <%= form.hidden_field :user_id %>
+<%end%>
+<%=render barattempt.bar%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do %>
+<script>
+<%@cherche=[personjson_albums_path]%>
+<%@choisis=[person_barattempts_path]%>
+<%@nom=['person']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+</script>
+<%end%>

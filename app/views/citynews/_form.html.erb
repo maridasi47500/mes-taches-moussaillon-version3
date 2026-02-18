@@ -1,0 +1,35 @@
+<%= form_with(model: citynews, local: true) do |form| %>
+  <% if citynews.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(citynews.errors.count, "error") %> prohibited this citynews from being saved:</h2>
+
+      <ul>
+        <% citynews.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: "city_id", collec: Person.findbyid(citynews.city_id), mesmodele:"city"%>
+</div>
+  <div class="field">
+<%=form.text_area :content%>
+</div>
+<%=form.hidden_field :user_id%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+
+<%@search=[json_cities_path]%>
+<%@select=[city_citynews_index_path]%>
+
+<%@nom=['city']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>

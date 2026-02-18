@@ -1,0 +1,3 @@
+<%=render internetpseudonym.website%>
+<p><%=internetpseudonym.cities.length > 0 ? t('display.hackercities',website: internetpseudonym.website.name,hacker: internetpseudonym.surname.name, cities: internetpseudonym.cities.map{|x|x.name}.to_sentence) : nil%></p>
+<p><%=link_to "villes pour se connecter", edit_internetpseudonym_path(internetpseudonym.id)%></p>

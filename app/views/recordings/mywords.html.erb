@@ -1,0 +1,2 @@
+<%=select_tag "#{@myparam}[myownwords][]", options_from_collection_for_select(Word.all, "id", "content"), prompt: "Select a word"%>
+<%=text_field_tag "#{@myparam}[contentmyownwords][]", "", placeholder: "or write the content of your recorded word"%>

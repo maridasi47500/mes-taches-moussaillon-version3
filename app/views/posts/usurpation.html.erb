@@ -1,0 +1,19 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :usurpationrelatedperson_ids, "Add acquaintances to reach out for this usurpation, ideally who know your acquaintances" %>
+
+<%= form.collection_check_boxes(:usurpationrelatedperson_ids, Person.all, :id, :name, required: true)%><br />
+  </div>
+  <div class="field">
+    <%= form.label :hackedperson_ids, "Add your acquaintances to hack" %>
+
+<%= form.collection_check_boxes(:hackedperson_ids, Person.all, :id, :name, required: true)%><br />
+  </div>
+  <div class="field">
+    <%= form.label :usurpationname, "Add a name for your acquaintances to hack, in relation to previous facts" %>
+    <%= form.text_field :usurpationname, required: true %>
+      
+  </div>
+    <%= form.submit :send %>
+
+<%end%>

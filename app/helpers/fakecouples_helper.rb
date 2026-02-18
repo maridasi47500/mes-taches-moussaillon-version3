@@ -1,0 +1,2 @@
+module FakecouplesHelper
+end

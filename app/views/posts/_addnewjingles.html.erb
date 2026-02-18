@@ -1,0 +1,17 @@
+<%=form.fields_for :jingles do |jingle|%>
+  <div class="field">
+    <%= jingle.label :_destroy, "destroy this jingle" %>
+    <%= jingle.check_box :_destroy %>
+  </div>
+
+
+  <div class="field">
+    <%= jingle.label :content, "give a variation for this jingle" %>
+    <%= jingle.text_field :content %>
+  </div>
+    <%end%>
+    <%post.jingles.each do |jingle|%>
+      <%if !jingle.posts_surname && !jingle.new_record?%>
+        <p><%=link_to "add a new avatar and surname to jingle n°#{jingle.id}", addsurname_jingle_path(jingle.id) %></p>
+      <%end%>
+    <%end%>

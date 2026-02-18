@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t('display.allthe', model: Categorything.model_name.human(count: 10))%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categorythings.each do |categorything| %>
+      <tr>
+        <td><%= render categorything %></td>
+        <td><%= link_to 'Show', categorything %></td>
+        <td><%= link_to 'Edit', edit_categorything_path(categorything) %></td>
+        <td><%= link_to 'Destroy', categorything, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Categorything', new_categorything_path %>

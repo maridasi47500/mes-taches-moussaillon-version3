@@ -1,0 +1,8 @@
+<p>Selectionnez un soir, 2 amoureux-ses et une sortie/une tache a realiser lendemain</p>
+<br>
+<%=form_with url: candlelight2_url do |form|%>
+<%=form.label :date%>
+<%=form.date_field :date%>
+<%=form.submit :suivant%>
+
+<%end%>

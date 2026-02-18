@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Backgroundimages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Url</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @backgroundimages.each do |backgroundimage| %>
+      <tr>
+        <td><%= backgroundimage.image %></td>
+        <td><%= backgroundimage.url %></td>
+        <td><%= backgroundimage.type %></td>
+        <td><%= link_to 'Show', backgroundimage %></td>
+        <td><%= link_to 'Edit', edit_backgroundimage_path(backgroundimage) %></td>
+        <td><%= link_to 'Destroy', backgroundimage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Backgroundimage', new_backgroundimage_path %>

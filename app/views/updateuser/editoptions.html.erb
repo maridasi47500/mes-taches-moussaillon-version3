@@ -1,0 +1,25 @@
+<%=form_with do |f|%>
+    <%= f.label :microphoneyes, "pouvoir utiliser le micro" %><br />
+    <%=@microphoneyes%>
+    <%= f.check_box :microphoneyes, checked: (@microphoneyes == "1" ? "checked" : "").to_s %>
+
+    <%= f.label :changeid, "pouvoir usurper l'identité" %><br />
+    <%= f.label :changeid, "Yes", :value => "true"  %>
+    <%= f.radio_button :changeid, true, :checked => !@changeuserid %>
+    <%= f.label :changeid, "No", :value => "false" %>
+    <%= f.radio_button :changeid, false, :checked => @changeuserid %><br />
+    <%= f.label :dest, "Destinataires" %><br />
+<%= collection_check_boxes(:post, :recipients, Person.all, :id, :name)%><br />
+<button type="button" 
+  onclick="$('input[id^=post_recipients]').prop('checked',false);">clear recipients</button><br />
+    <%= f.label :recipients, "pouvoir ajouter des destinataires" %><br />
+    <%= f.label :recipients, "Yes", :value => "true"  %>
+    <%= f.radio_button :recipients, true, :checked => !@recipientoption%>
+    <%= f.label :recipients, "No", :value => "false" %>
+        <%= f.radio_button :recipients, false, :checked => @recipientoption %><br />
+
+  <%= f.submit "ok" %>
+<%end%>
+<script>window.onload= 
+          function(){
+                  $($('input[id^=post_recipients]').toArray().filter(x=>[<%= html_escape_once  ( @displayrecipients ? @displayrecipients.join(",") : '')%>].includes(parseInt(x.value)))).prop('checked',true);};</script>

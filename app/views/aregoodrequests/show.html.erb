@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<%=render @aregoodrequest%>
+<br>
+<%=render 'requeststopeople/formrequesttopeople', requeststoperson: @aregoodrequest.requeststoperson%>
+
+
+<%= button_to 'back to all senders /receivers', asksotoo_requeststoperson_path(id: @aregoodrequest.requeststoperson.id, alias_id: @aregoodrequest.alias_id, emoticon_id: @aregoodrequest.emoticon_id), method: :post, onclick: "return confirm('are you sure');",data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Edit', edit_aregoodrequest_path(@aregoodrequest) %> |
+<%= link_to 'Back', aregoodrequests_path %>

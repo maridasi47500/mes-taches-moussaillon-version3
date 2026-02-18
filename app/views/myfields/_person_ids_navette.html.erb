@@ -1,0 +1,12 @@
+<div class="field">
+<%=render "form/#{fieldtype}", form: form, fieldname: "person_ids", collec: [], mesmodele:"person"%>
+</div>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personnavette_navettes_path]%>
+<%@select=[path]%>
+<%@nom=["person"]%>
+<%=render partial:"form/functionjsoncompagnie", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

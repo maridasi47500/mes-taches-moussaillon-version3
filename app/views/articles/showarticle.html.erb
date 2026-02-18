@@ -1,0 +1,6 @@
+<% if params[:edit] || !@article.id%>
+  <%= render 'form'%>
+<%else%>
+  <%= render @article%>
+  <%= link_to 'Editer', showarticle_path(@article.id,user:current_user.name.parameterize,title:@article.title.parameterize, edit: "true")%>
+<%end%>

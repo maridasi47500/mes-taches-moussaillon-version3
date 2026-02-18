@@ -1,0 +1,67 @@
+<p>Nombre de gens au total : <%=@nbpeopletotal%></p>
+<%= form_with(model: reaction, local: true) do |form| %>
+  <% if reaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reaction.errors.count, "error") %> prohibited those sailors from being saved:</h2>
+
+      <ul>
+        <% reaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :everypeople,"every person's name is the person's name" %>
+    <%= form.check_box :everypeople%>
+  </div>
+  <div class="field">
+    <%= form.label :emotion_id,"your emotion" %>
+    <%= form.collection_select(:emotion_id, Emotion.all, :id, :name, prompt: true) %>
+  </div>
+    <%#if reaction.name %>
+    <%#= form.label :name, "Choose your reaction" %>
+    <%#=form.select("name", Reaction.ofallkind, { selected:@myreaction, include_blank: true })%>
+    <%#else%>
+      <%= form.label :reaction_id, "Choose your text to fill in" %>
+      <%=form.select("reaction_id", ReactionsText.all.map{|x|[x.name,x.id]}, { selected: @myreaction, include_blank: true })%>
+    <%#end%>
+      Delete: <%= form.check_box :_destroy %>
+        <%=render partial: 'formreactionpeople11', collection: reaction.reactivepeople, as: :reactiveperson, locals: {form: form, reaction: reaction} %>
+        <%=render partial: 'formseveralpeople11', collection: reaction.severalpeoplestories, as: :story, locals: {form: form, reaction: reaction} %>
+        <%=render 'speakerform', form: form, reaction: reaction %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function chercherici(field,selectfield){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field,box,i){
+$.ajax({url: '<%=mypeople_reactions_path%>?field='+field.dataset.field+'&id='+field.value+'&n='+String(i), 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function selectpeoplebis(field,box,i,j){
+$.ajax({url: '<%=mypeople_reactions_path%>?field='+field.dataset.field+'&id='+field.value+'&n='+String(i)+'&o='+String(j), 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+</script>
+<% end %>

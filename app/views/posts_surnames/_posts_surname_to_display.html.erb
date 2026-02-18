@@ -1,0 +1,7 @@
+<a class="surnamewithid<%=posts_surname.id%>"  <%if !posts_surname.is_a?(Person)%>href="#" onclick="$.ajax({url:'/displayusurpation.js?surname=<%=posts_surname.id%>'});"<%else%>href="<%=person_path(posts_surname.id)%>"<%end%>>
+<%@image=posts_surname.image%>
+<%= image_tag(@image, class: "imageprofilethread", alt:"profile pic")%>
+<%=  posts_surname.name || posts_surname.surname.name %>
+<%= image_tag("flagblack.gif", class: "pirate", alt:"profile pic")%>
+  </a>
+

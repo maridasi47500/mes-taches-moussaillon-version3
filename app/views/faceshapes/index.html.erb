@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Faceshapes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @faceshapes.each do |faceshape| %>
+      <tr>
+        <td><%= faceshape.name %></td>
+        <td><%= link_to 'Show', faceshape %></td>
+        <td><%= link_to 'Edit', edit_faceshape_path(faceshape) %></td>
+        <td><%= link_to 'Destroy', faceshape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Faceshape', new_faceshape_path %>

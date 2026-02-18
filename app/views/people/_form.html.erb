@@ -1,0 +1,502 @@
+<%=content_for :mylittlecss do%>
+.vanish {
+display:none;
+}
+#mysize {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+<%end%>
+
+
+<%= form_with(model: @person, local: true) do |form| %>
+<button type="button" id="myRecordingBtn">let us record phrases and surnames</button>
+
+<!-- The Modal -->
+<div id="myRecordingModal" class="recordingmodal">
+
+  <!-- Modal content -->
+  <div class="recordingmodal-content">
+    <span class="close">&times;</span>
+  <div class="field">
+    <%= render partial: "formrecord/recordrecording", locals: {mylabel: "record a phrase", myfield: "recordmyphrases", form: form, modelderails: @person} %>
+    <%= form.label :phrases, "record sentences or phrases" %>
+
+  </div>
+  <div class="field">
+    <%= render partial: "formrecord/recordrecording", locals: {mylabel: "record your name or surname", myfield: "recordmynames", form: form, modelderails: @person} %>
+    <%= form.label :mynames, "record my names" %>
+
+  </div>
+  </div>
+
+</div>
+
+<button type="button" id="myRecordingBtn1">let us record phrases and words</button>
+
+<!-- The Modal -->
+<div id="myRecordingModal1" class="recordingmodal1">
+
+  <!-- Modal content -->
+  <div class="recordingmodal-content1">
+    <span class="close1">&times;</span>
+  <div class="field">
+    <%= render partial: "formrecord/recordrecording", locals: {mylabel: "record a phrase", myfield: "recordmyphrasesandwords", form: form, modelderails: @person} %>
+    <%= form.label :recordmyphrasesandwords, "record sentences or phrases" %>
+
+  </div>
+  <div class="field">
+    <%= render partial: "formrecord/recordrecording", locals: {mylabel: "and record a word", myfield: "recordmywords", form: form, modelderails: @person} %>
+    <%= form.label "recordmywords", "record my names" %>
+
+  </div>
+  </div>
+
+</div>
+  <div class="field">
+    <%= form.label :sexe %>
+    <%= form.select :sexe,[[t('pagesshow.person.fille'),'F'],[t('pagesshow.person.gars'),'M']], {include_blank: true},onchange: "tonsexe(this);return false;" %>
+
+
+  </div>
+  <div class="field">
+    <%= form.label :celeb %>
+    <%= form.check_box :celeb %>
+
+  </div>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+  </div>
+  <div class="field">
+    <%= form.label :nationality %>
+    <%= form.select :nationality_id, options_for_select(Nationality.all.collect{|x|[x.name,x.id]}, person.nationality_id), {prompt: "select nationality"} %>
+
+  </div>
+  <div class="field">
+    <%= form.label :firstnames %>
+    <%= form.text_field :firstnames %>
+
+  </div>
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+
+  </div>
+  <div class="field">
+    <%= form.label :dateofbirth %>
+    <%= form.date_field :dateofbirth %>
+
+  </div>
+  <div class="field">
+    <%= form.label :eyescolor %>
+    <%= form.color_field :eyescolor %>
+
+  </div>
+  <div class="field">
+    <%= form.label :colorhair %>
+    <%= form.color_field :colorhair %>
+
+  </div>
+  <div class="field">
+    <%= form.label :phonenumber %>
+
+    <%= form.telephone_field :phonenumber %>
+
+  </div>
+<%=link_to "size","#",class:"btn",onclick: "$('.precisesize').toggleClass('vanish');"%>
+  <div id="" class="precisesize field <%= !person.size ? "vanish" : ""%>">
+    <%= form.label :size %>
+
+    <%= form.range_field :size,value:person.size.to_i, min: 0, max: 230,class: "#{!person.size ? "vanish" : ""} precisesize", step:1, orient:"vertical",id: "mysize",onchange:"mysizedisplay.innerHTML=String(Number(this.value)/100)+' m';" %>
+<span id="mysizedisplay"></span>
+
+  </div>
+    <div class="field">
+    <%= form.label :religion_ids%>
+    <%= form.collection_check_boxes(:religion_ids, Religion.all, :id, :name, {selected: @person.religions}) do |b| %>
+<%=b.label%>
+      <%= b.check_box %>
+
+  <% end %>
+  </div>
+    <div class="field">
+    <%= form.label :etnicity_ids%>
+    <%= form.collection_check_boxes(:etnicity_ids, Etnicity.all, :id, :name, {selected: @person.etnicities}) do |b| %>
+<%=b.label%>
+      <%= b.check_box %>
+
+  <% end %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+
+  </div>
+
+<div class="field">
+<%=form.label :facebook%>
+<%=form.text_field("facebook")%>
+</div>    
+<div class="field">
+<%=form.label :pronoun_id%>
+  <%=form.select("pronoun_id", Pronoun.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+</div>
+  <div class="field">
+    <%= form.label :city_id %>
+  <%= form.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city "}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= form.label :cityofbirth_id %>
+  <%= form.select(:cityofbirth_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city "}, {:class => "s"} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+  <%= form.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country"}, {:class => "s"} )%>
+  </div>
+
+
+
+<%= form.fields_for :githubaccounts do |f| %>
+<div class="field">
+<%=f.label :nameowner, "Name Github account owner"%>
+  <%=f.text_field("nameowner")%>
+</div>    
+<div class="field">
+<%=f.label :username, "Github username"%>
+  <%=f.text_field("username")%>
+</div>    
+<div class="field">
+<%=f.label :_destroy, "destroy Github account"%>
+  <%=f.check_box("_destroy")%>
+</div>    
+
+<%end%>
+<%= form.fields_for :twitteraccounts do |f| %>
+<div class="field">
+<%=f.label :name, "Name Twitter account owner"%>
+  <%=f.text_field("name")%>
+</div>    
+<div class="field">
+<%=f.label :username, "Twitter username"%>
+  <%=f.text_field("username")%>
+</div>    
+<div class="field">
+<%=f.label :_destroy, "supprimer le compte Twitter"%>
+  <%=f.check_box("_destroy")%>
+</div>    
+
+<%end%>
+<hr>
+<h3>Photo de profile</h3>
+<div id="apercuppic1"></div>
+<%= form.fields_for :profilepictures do |f| %>
+<div class="field">
+<%=f.label :name, "Ajouter une photo de profile pour lui/elle"%>
+  <%=f.file_field("name")%>
+</div>    
+<div class="field">
+<%=f.label :nameimage, "What's on the pic?"%>
+  <%=f.file_field("nameimage")%>
+</div>    
+
+<%end%>
+<div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield",multiple:false, form: form, myfield: "image", apercu: "apercu",onchange: "voirapercu(this,apercuppic1);" %>
+  </div>
+  <div class="field">
+    <%= form.label :addprofilepics %>
+    <%= render "form/imagefield", form: form, myfield: "addprofilepics", apercu: "autreapercu",onchange: "voirapercu(this,apercuppic2);",multiple: true%>
+
+  </div>
+    <div class="field">
+    <%= form.label :myprofilepic_id%>
+    <%= form.collection_radio_buttons(:myprofilepic_id, @person.profilepics, :id, :title) do |b| %>
+      <%= b.radio_button %><%=render Profilepicture.find(b.value)%>
+  <% end %>
+  <%= form.radio_button :myprofilepic_id, @ppic %>
+<%=form.label :myprofilepic_id%>
+<%=image_tag @person.defaultprofilepic, class: "imageprofilethread"%>
+  </div>
+
+<div id="apercuppic2"></div>
+  <div class="field">
+    <%= form.label :profilepic_ids %>
+    <%= form.collection_check_boxes(:profilepic_ids, @person.profilepics, :id, :title) do |b| %>
+      <%= b.check_box %><%=render Profilepicture.find(b.value)%>
+  <% end %>
+
+  </div>
+                    <div class="">
+      <%= form.label :myprofilepic_id %>
+      <%= form.collection_radio_buttons(:myprofilepic_id, Profilepicture.where(id:person.myprofilepic_id),:id, :title) do |ff| %>
+        <%=ff.radio_button%><%=render Profilepicture.find(ff.value)%>                            <%end%>
+
+                    </div>
+      <div>
+        <%= label :mypic, "chercher une profile pic" %>
+        <%= text_field_tag :mypic, nil, id: 'mypic',class:'mysearchfieldavatars',onchange:"chercherpics(this,sailorspic);return false;" %>
+        <select onchange="selectpics(this,avatpic);return false;" id="sailorspic" data-field="myprofilepic_id"></select>
+<div id="avatpic"></div>
+
+
+      </div>
+<hr>
+<div class="field">
+<%person.tvserieshaveactors.each do |actor|%>
+<%=form.fields_for :tvserieshaveactors, actor do |f|%>
+<%=f.fields_for :surname, (actor.surname || Surname.new) do |fff|%>
+<%=fff.label :name, t('nomacteur', sailor: actor.actor.name, tvseries: actor.tvseries.name)%>
+<%=fff.text_field :name%>
+<%end%>
+<%end%>
+<%end%>
+  </div>
+
+          <%=form.select "year", options_for_select("2005".upto(Date.today.year.to_s)+[""], "")%>
+          <%=form.select "month", options_for_select("01".upto("12")+ [""], "")%>
+
+
+
+<%= render "inputthisisjingle", form: form, title: t('person.title.personaljingle') %>
+<%= render "inputjingle", form: form,title: t('person.title.jingles')%>
+    <%= form.select("place_ids", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose places in relation to this person'}, {multiple:true, size: 5})%>
+    <%= form.select("fact_ids", Fact.all.collect {|p| [ p.name, p.id ] },{prompt: 'choose facts describing this person in relation to this post'}, {multiple:true, size: 5})%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "dreamjob_ids", collec: person.dreamjobs, mesmodele:"dreamjobs"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "compar1_ids", collec: person.compar1, mesmodele:"compar1"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "sosie_ids", collec: person.sosies, mesmodele:"sosies"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "newspaper_ids", collec: person.newspapers, mesmodele:"newspapers"%>
+</div>
+
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "surname_ids", collec: person.surnames, mesmodele:"surnames"%>
+</div>
+  <div class="field">
+<%=render "form/checkboxcolumn", columnname: "mycar" ,form: form, fieldname: "peoplecar_ids", collec: person.peoplecars, mesmodele:"marquevoituregens"%>
+</div>
+ <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "famousfriend_ids", collec: person.famousfriends, mesmodele:"famousfriends"%>
+</div>
+ <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "bacseries_ids", collec: person.bacseries, mesmodele:"bacseries"%>
+</div>
+<%=form.hidden_field :hiddenuserid, value: current_user.id%>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :javascripts do%>
+<script>
+  $(function(){
+    $('.addajingle').click(function(){
+      $.ajax({
+        url: window.location.pathname+".js"
+      });
+    });
+  });
+</script>
+<%end%>
+<%=content_for :mylittlecss do%>
+.recordingmodal, .recordingmodal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.recordingmodal-content, .recordingmodal-content1 {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close, .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus, close1:hover, .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+<%end%>
+<%=content_for :myjs do%>
+ // Get the modal
+var modal = document.getElementById("myRecordingModal");
+var modal1 = document.getElementById("myRecordingModal1");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myRecordingBtn");
+var btn1 = document.getElementById("myRecordingBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close1")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  } else if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+} 
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+function chercherpics(field,selectfield){
+$.ajax({url: '<%=mypics_profilepictures_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].title;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+
+function selectpics(field,box){
+$.ajax({url: '<%=mypics_people_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+function tonsexe(champsexe){
+if (champsexe.value === "F") {
+var audio = new Audio('/assets/<%=current_user.meuf ? current_user.meuf.name : nil%>');
+audio.play();
+
+} else if(champsexe.value === "M") {
+var audio = new Audio('/assets/<%=current_user.mec ? current_user.mec.name : nil%>');
+audio.play();
+
+}
+return false;
+}
+</script>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+function voirapercu(filefield,emptydiv){
+console.log(filefield.files)
+console.log(filefield.files.length)
+console.log(filefield.multiple ? "multiple" : "un seul fichier")
+
+
+var myfiles= filefield.files;
+if (FileReader && myfiles && myfiles.length){
+
+    
+var fr=new FileReader();
+
+   if (!filefield.multiple) {
+   emptydiv.innerHTML="<img id=\"newpic\" src=\"\" width=\"100\" height=\"100\"/>";
+
+	  const preview = document.getElementById("newpic");
+  const file = filefield.files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    // convert image file to base64 string
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+  }else{
+    const preview = emptydiv;
+  const files = filefield.files;
+    preview.innerHTML="";
+  function readAndPreview(file) {
+    // Make sure `file.name` matches our extensions criteria
+    if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        const image = new Image();
+        image.height = 100;
+         image.width = 100;
+        image.title = file.name;
+        image.src = reader.result;
+        preview.appendChild(image);
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  if (files) {
+    Array.prototype.forEach.call(files, readAndPreview);
+  }
+  }
+
+// si le champ a prend plusieurs photos
+
+//si le champ prend une photo
+
+}
+}
+<%@search=[json_jobs_path,personjson_albums_path,personjson_albums_path,json_newspapers_path,json_surnames_path,personjson_albums_path,json_bacseries_index_path]%>
+<%@select=[dreamjobs_people_path,compar1_people_path,sosies_people_path,newspapers_people_path,surnames_people_path, famousfriends_people_path,searchmybacseries_people_path]%>
+
+<%@nom=['dreamjobs','compar1','sosies','newspapers','surnames', 'famousfriends','bacseries']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+
+<%@search=[(@person.id ? json_cars_path : nil)]%>
+<%@select=[(@person.id ? cars_person_path(@person.id) : nil)]%>
+
+<%@nom=[(@person.id ? 'marquevoituregens' : nil)]%>
+<%=render partial:"form/functionjsonwithparams", collection: @nom.zip(@search, @select), as: :t%>
+
+</script>
+<%end%>
+

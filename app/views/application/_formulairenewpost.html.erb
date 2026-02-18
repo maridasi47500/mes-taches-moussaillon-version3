@@ -1,0 +1,6 @@
+<%@var||=0%>
+  <%@var+=1%>
+<%=form_with url: url, method:'get',id:'form'+@var.to_s do |f|%>
+
+           <%=f.submit (defined?(edit) ? 'edit this post' : 'new post ')%>
+      <%end%>

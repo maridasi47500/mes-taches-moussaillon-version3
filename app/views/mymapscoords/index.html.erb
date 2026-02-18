@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mymapscoords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mymap</th>
+      <th>Tagx</th>
+      <th>Tagy</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mymapscoords.each do |mymapscoord| %>
+      <tr>
+        <td><%= mymapscoord.mymap_id %></td>
+        <td><%= mymapscoord.tagx %></td>
+        <td><%= mymapscoord.tagy %></td>
+        <td><%= link_to 'Show', mymapscoord %></td>
+        <td><%= link_to 'Edit', edit_mymapscoord_path(mymapscoord) %></td>
+        <td><%= link_to 'Destroy', mymapscoord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mymapscoord', new_mymapscoord_path %>

@@ -1,0 +1,32 @@
+<p><%=notice%>  </p>
+
+<br>
+<br>
+<%= image_tag '/assets/'+@grade.image, width: 300, height: 300 %>
+<br>
+<br>
+<%=form_with url: appellation_armygrades_path do |form|%>
+<%=form.hidden_field :gradeid, value: @grade.id%>
+<label for="grade"><%=t('display.whatisit')%></label>
+<input list="grades" name="grade" id="grade">
+
+<datalist id="grades">
+<%Armygrade.grades.each do |g|%>
+  <option value="<%=g%>">
+<%end%>
+</datalist>
+<%=form.submit t('display.answer')%>
+<%end%>
+<br>
+<br>
+<h3>Exercice 2</h3>
+  <p><%= t('armygrade.find',grade:@grade1.nom) %></p>
+<%=form_with url: q2_armygrades_path do |form|%>
+<%=form.hidden_field :gradeid, value: @grade1.id%>
+<%@grades.each_with_index do |g,i|%>
+<input id="image<%=i%>" type="image" name="grade<%=g.id%>" width="100" height="100" alt="grade"
+       src="/assets/<%=g.image%>">
+<%end%>
+
+
+<%end%>

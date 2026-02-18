@@ -1,0 +1,6 @@
+
+<li><%=  event.name%> | <%= link_to "Edit", edit_event_path(event.id)%> | <%= link_to 'Show', event %>
+    <ul>
+      <%= render event.tasks %>
+    </ul>
+</li>

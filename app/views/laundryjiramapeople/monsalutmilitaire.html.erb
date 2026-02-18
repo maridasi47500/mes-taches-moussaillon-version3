@@ -1,0 +1,5 @@
+<div id="salutmili">
+<%=render @l%>
+</div>
+<%=button_tag "inverse", {onclick: "$.ajax({url: '#{inversesalut_laundryjiramapeople_path(id: @l.id)}',type: 'post',success:function(data){salutmili.innerHTML=data;r=myrecipient.value;s=mysender.value;myrecipient.value=s;mysender.value=r;}});return false;"}%>
+<%=render 'salutmilitaires/form',salutmilitaire: @l%>

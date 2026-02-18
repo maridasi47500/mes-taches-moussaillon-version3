@@ -1,0 +1,15 @@
+<%if photo.name && photo.name.length > 0%>
+
+<article class="photo">
+    <img width="160" height="120" src="<%= asset_path  "/assets/#{photo.name}" %>"></img>
+<%=photo.title%>
+
+                <%if photo.authors.count > 0%>
+par  
+        <%= render partial: "user", collection: photo.authors, as: :user %>
+
+
+    <%end%>
+
+</article>
+<%end%>

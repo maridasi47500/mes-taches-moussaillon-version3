@@ -1,0 +1,21 @@
+<%=content_for :mylittlecss do%>
+body {
+text-align:center;
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+<h1><%=@story.title%></h1>
+<p><%=t('showpage.story.proposedby', sailor: @story.user.name)%>
+<%if @story.image && @story.heroadventures.length > 0%>
+
+<%=form_with url: story_heroadventure_path(story_id: @story.id, id: @story.firstadventureid), method: :get do |form|%>
+<input id="image" type="image" width="300" height="300" alt="<%=t('showpage.story.debut')%>"
+       src="/assets/<%=@story.image%>">
+<%end%>
+<%else%>
+<p><%=t('showpage.story.noimage')%></p>
+
+<%end%>
+
+<%= link_to t('editpage.story'), edit_story_path(@story) %> |
+<%= link_to t('editpage.back.story'), stories_path %>

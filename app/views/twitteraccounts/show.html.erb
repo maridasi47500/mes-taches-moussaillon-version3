@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @twitteraccount.name %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @twitteraccount.username %>
+</p>
+  <%if @twitteraccount.twitteraccounts.length > 0 || @twitteraccount.othertwitteraccounts.length > 0 %>
+<p>
+  <strong>en couple avec:</strong>
+  <%= render @twitteraccount.twitteraccounts %>
+  <%#= render @twitteraccount.othertwitteraccounts %>
+</p>
+<%end%>
+
+<%= link_to 'View latest tweets', tweets_path(taccount: @twitteraccount.id) %> |
+<%= link_to 'Edit', edit_twitteraccount_path(@twitteraccount) %> |
+<%= link_to 'Back', twitteraccounts_path %>

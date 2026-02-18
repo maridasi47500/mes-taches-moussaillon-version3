@@ -1,0 +1,2 @@
+module InternetpseudonymsHelper
+end

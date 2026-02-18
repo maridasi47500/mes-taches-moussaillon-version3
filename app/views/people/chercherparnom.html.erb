@@ -1,0 +1,7 @@
+<%@people.each do |p|%>
+<%=label("mysailorname", {}, {for: "person#{p.id}"}) do%>
+<input type="radio" name="mysailorname" value="<%=p.id%>" id="person<%=p.id%>"/>
+<%=render partial: "people/personsimple", collection: [p], as: :person%>
+<%end%>
+
+  <%end%>

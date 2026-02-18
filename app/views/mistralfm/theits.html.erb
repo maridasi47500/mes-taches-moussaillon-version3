@@ -1,0 +1,109 @@
+<%=render @person%>
+<%=form_with model: @person,scope: "",url: opinion_path(id:params[:id]),html:{ id: "formpers#{params[:id]}", onsubmit: "$.ajax({url: this.href, type:'post', success: function(data){formpers#{params[:id]}.outerHTML=data;}})"} do |form|%>
+
+
+<%=form.radio_button :sexe, "M", id: "imagegarcon"%>
+<%=form.label :sexe, for: "imagegarcon" do %>
+    <img width="40" height="70" alt="garcon" title="garcon"  src="/assets/garcontoilet1.png"/>
+<%end%>
+ <%=form.radio_button :sexe, "F", id: "imagefille"%>
+<%=form.label :sexe, for: "imagefille" do %>
+
+<img width="40" height="70" alt="fille" title="fille" src="/assets/filletoilet1.png"/>
+<%end%>
+ <%=form.check_box :rbs, {id: "rbs"}, "yes", "no"%>
+<%=form.label :rbs, for: "rbs" do %>
+
+<img width="40" height="70" alt="rbs" title="il est de la communauté bracelets rouges" 
+       src="/assets/braceletrouge1.png"/>
+<%end%>
+<input type="hidden" name="userid" value="<%=current_user.id%>" />
+<input type="text" name="personname" placeholder="chercher une personne" value="" onchange="seekthosepeople(this, mylist);return false;" />
+<select name="personid" id="mylist" class="invisfield"></select>
+
+ <%=form.check_box :lgbt, {id: "lgbt"}, "yes", "no"%>
+<%=form.label :lgbt, for: "lgbt" do %>
+
+<img id="imagelg" width="40" height="70" alt="lgbt" title="il est de la communauté lgbt" 
+       src="/assets/flaggaypride.gif">
+<%end%>
+ <%=form.check_box :robot, {id: "robot"}, "yes", "no"%>
+<%=form.label :robot, for: "robot" do %>
+
+<img id="imagerob" width="40" height="70" alt="robot" title="c'est un(e) robot(e)" src="/assets/robotatlas.png"/>
+<%end%>
+ <%=form.check_box :car, {id: "car"}, "yes", "no"%>
+<%=form.label :car, for: "car" do %>
+
+<img id="imagecar"  width="70" height="70" alt="car" title="c'est une voiture" 
+       src="/assets/voiturerouge.png"/>
+<%end%>
+ <%=form.check_box :sauve, {id: "sauve"}, "yes", "no"%>
+<%=form.label :sauve, for: "sauve" do %>
+
+
+<img id="imagesauve" width="40" height="70" alt="sauve" title="il est sauvé" 
+       src="/assets/lifebuoyatthesea.png"/>
+<%end%>
+<input id="imageanswer" type="image" width="70" height="70" alt="answer" name="answer"
+
+       src="/assets/elenagreco11.png">
+<input id="imagenocar" type="image" width="70" height="70" alt="nocar" name="nocar"
+
+       src="/assets/velo0001.png">
+<br>sa(ses) voiture(s)
+<br>
+<%=form.collection_check_boxes :voituregen_ids, Car.all, :image, :id, {prompt: 'Selectionnez sa voiture'}, {} do |f|%>
+<%=f.check_box %>
+<%=f.label do%>
+<img  width="30" height="70" alt="dontlike" name="aimepas"
+
+       src="<%=f.object.image%>"/>
+
+<%end%>
+<%end%>
+<br>combien je l'aime
+<br>
+<%=form.radio_button :monamour, "pasdutout", id: "amourpasdutout"%>
+<%=form.label :monamour, for: "amourpasdutout" do %>
+
+<img id="image" type="image" width="30" height="70" alt="dontlike" 
+
+       src="/assets/coeurbriserum.png">
+<%end%>
+<%@love=['un peu','beaucoup','passionnement','a la folie','pas du tout']%>
+<%(1..5).to_a.each_with_index do |h,i|%>
+
+<%=form.radio_button :monamour, @love[i], id: "amour#{@love[i].underscore}"%>
+<%=form.label :monamour, for: "amour#{@love[i].underscore}" do %>
+
+<img id="image<%=h%>loveyou" width="100" height="30" title="love intensity (<%=@love[i]%>)" alt="Login" 
+
+       src="/assets/coeurrum.png"/>
+
+<%end%>
+<%end%>
+<%=select_tag "qid", options_for_select(Question.all.collect{|x| [x.text,x.id]}), { prompt: "choisir une question", value: "", onchange: "seekanswers(this, myanswers);return false;"}%>
+<select name="ansid" id="myanswers" class=""></select>
+Chercher une personne puis cliquer sur le coeur de l'intensite de l'amour
+<br/>
+choisis une question et une reponse et clique sur elena
+</br>
+choisis un instrument de musique pratiqué et décris si tu as beaucoup pratiqué aujourd'hui ou pas
+</br>
+<%=select_tag "miid", options_for_select(Musicalinstrument.all.collect{|x| [x.name,x.id]}), { prompt: "choisir un instrument de musique", value: "",onchange:"chercherinstruments('#{@person.id}',this,instrumentsmus);return false;"}%>
+<%=select_tag "mypiid", options_for_select(Programminglanguage.all.collect{|x| [x.name,x.id]}), { prompt: "choisir un langage de programmation", value: "",onchange:"chercherlangage('#{@person.id}',this,langagepr);return false;"}%>
+<%=select_tag "uaid", options_for_select(Ustensile.all.collect{|x| [x.name,x.id]}), { prompt: "choisir un ustensile d'artiste", value: "",onchange:"chercherustensiles('#{@person.id}',this,ustensilesart);return false;"}%>
+<%=@person.name%> joue <%=@person.musicalinstrumentspratiques.map {|x|(link_to "du "+x.name, "",onclick: "chercherinstruments('#{@person.id}',this,instrumentsmus); return false;", data:{id: x.id}).html_safe}.to_sentence.html_safe%>
+
+
+
+
+
+<%end%>
+</br>
+
+<div id="instrumentsmus"></div>
+<div id="ustensilesart"></div>
+<div id="langagepr"></div>
+

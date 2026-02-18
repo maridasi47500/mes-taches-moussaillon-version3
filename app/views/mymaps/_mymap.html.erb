@@ -1,0 +1,12 @@
+<%=image_tag mymap.image, width: mymap.width, height: mymap.height, usemap: "#workmap#{mymap.id}"%>
+</div>
+<%if mymap.mymapscoords.length > 0%>
+<map name="workmap<%=mymap.id%>">
+<%mymap.mymapscoords.each_with_index do |sailor,i|%>
+  <area shape="circle" class="myclass" coords="<%=sailor.tagx%>,<%=sailor.tagy%>,10" title="lieu" id='area<%=sailor.id.to_s%>' alt="liey" href="<%=post_mymap_mymapscoord_path(post_id: @post.id,mymap_id: @mymap.id,id: sailor.id.to_s)%>">
+        <div><%= button_to 'lieu no.'+(i+1).to_s+' [X] ', post_mymap_mymapscoord_path(post_id: @post.id,mymap_id: @mymap.id,id: sailor.id), onmouseover: "area"+sailor.id.to_s+'.focus();',onmouseout:'area'+sailor.id.to_s+'.blur();',method: :delete, data: { confirm: 'Are you sure?' } %></div>
+
+<%end%>
+</map>
+<%end%>
+

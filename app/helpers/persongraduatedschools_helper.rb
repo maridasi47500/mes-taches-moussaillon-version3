@@ -1,0 +1,2 @@
+module PersongraduatedschoolsHelper
+end

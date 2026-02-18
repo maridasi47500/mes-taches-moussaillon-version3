@@ -1,0 +1,26 @@
+<table>
+      <thead>
+        <tr>
+            <th>content</th>
+            <th>username</th>
+            <th>created at</th>
+            <th>lieu</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      <%@tweetstwitter.each_with_index do |tweet,i|%>
+        <%=form_with url: newtweet_tweets_path, model: Tweet.new(content: tweet.full_text, username: tweet.user.name, created_at: tweet.created_at, place: tweet.place.full_name.to_s+' '+tweet.user.location.to_s),html: {id: "tweet#{i}",onsubmit: "$.ajax({type:'post',url:'#{newtweet_tweets_path}?'+$('#tweet#{i}').serialize(),success: function(data){$('#mytweetsfeed').append(data);}});return false;"} do |f| %>
+        <tr>
+          <td class="montweetcontenu<%=i%>"><%= f.text_area :content, form: "tweet#{i}"  %></td>
+          <td class="montweetcontenu<%=i%>"><%= f.text_area :username, form: "tweet#{i}"  %></td>
+          <td class="montweetcontenu<%=i%>"><%= f.text_area :created_at, form: "tweet#{i}"   %></td>
+          <td class="montweetcontenu<%=i%>"><%= f.text_area :place, form: "tweet#{i}"   %></td>
+          <td class="montweetcontenu<%=i%>"><%= f.submit "save tweet", form: "tweet#{i}"  %></td>
+        </tr>
+        <%end%>
+      <%end%>
+    </tbody>
+
+</table>
+

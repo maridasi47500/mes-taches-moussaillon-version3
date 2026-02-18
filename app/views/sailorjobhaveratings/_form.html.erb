@@ -1,0 +1,31 @@
+<%= form_with(model: sailorjobhaverating, local: true) do |form| %>
+  <% if sailorjobhaverating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sailorjobhaverating.errors.count, "error") %> prohibited this sailorjobhaverating from being saved:</h2>
+
+      <ul>
+        <% sailorjobhaverating.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%(1..5).to_a.each do |g|%>
+<input id="imageattitude<%=g%>" type="image" width="50" height="50" alt="attitude" name="task<%=g%>"
+       src="/assets/starrum.png">
+<%end%>
+
+    <%= form.hidden_field :user_id %>
+
+  <div class="field">
+<%=render sailorjobhaverating.sailorjob%>
+    <%= form.hidden_field :sailorjob_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :datetime %>
+    <%= form.datetime_select :datetime %>
+  </div>
+
+<% end %>

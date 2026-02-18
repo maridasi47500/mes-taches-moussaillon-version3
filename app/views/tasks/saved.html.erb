@@ -1,0 +1,12 @@
+
+<%=t('savedsailors', count: @task.risktasksailors.map {|x|x.person}.uniq.length)%>
+<%=t('accordingtosailors', count: @task.risktasksailors.group('user_id').length)%>
+<%@task.risktasksailors.group_by {|x|x.person}.each do |sailor,list|%>
+<p><%=t('sailorissaved', sailor: sailor.name)%></p>
+<ul>
+<%list.map {|x|x.user}.uniq.each do |sail|%>
+<li><%=render sail%></li>
+<%end%>
+</ul>
+
+<%end%>

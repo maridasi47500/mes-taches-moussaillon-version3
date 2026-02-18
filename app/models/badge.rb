@@ -1,0 +1,3 @@
+class Badge < Thing
+
+end

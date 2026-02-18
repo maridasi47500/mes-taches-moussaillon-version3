@@ -1,0 +1,271 @@
+<%=content_for :mylittlecss do%>
+.vanish {
+display:none;
+}
+#mysize {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+<%end%>
+
+
+
+  <div class="field">
+    <%= form.label :sexe %>
+    <%= form.select :sexe,[[t('pagesshow.person.fille'),'F'],[t('pagesshow.person.gars'),'M']], {include_blank: true} %>
+
+
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+  </div>
+  <div class="field">
+    <%= form.label :nationality %>
+    <%= form.select :nationality_id, options_for_select(Nationality.all.collect{|x|[x.name,x.id]}, person.nationality_id), {prompt: "select nationality"} %>
+
+  </div>
+  <div class="field">
+    <%= form.label :firstnames %>
+    <%= form.text_field :firstnames %>
+
+  </div>
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+
+  </div>
+  <div class="field">
+    <%= form.label :dateofbirth %>
+    <%= form.date_field :dateofbirth %>
+
+  </div>
+  <div class="field">
+    <%= form.label :eyescolor %>
+    <%= form.color_field :eyescolor %>
+
+  </div>
+  <div class="field">
+    <%= form.label :colorhair %>
+    <%= form.color_field :colorhair %>
+
+  </div>
+  <div class="field">
+    <%= form.label :phonenumber %>
+
+    <%= form.telephone_field :phonenumber %>
+
+  </div>
+<%=link_to "size","#",class:"btn",onclick: "$('.precisesize').toggleClass('vanish');"%>
+  <div id="" class="precisesize field <%= !person.size ? "vanish" : ""%>">
+    <%= form.label :size %>
+
+    <%= form.range_field :size,value:person.size.to_i, min: 0, max: 230,class: "#{!person.size ? "vanish" : ""} precisesize", step:1, orient:"vertical",id: "mysize",onchange:"mysizedisplay.innerHTML=String(Number(this.value)/100)+' m';" %>
+<span id="mysizedisplay"></span>
+
+  </div>
+
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+
+  </div>
+
+<div class="field">
+<%=form.label :facebook%>
+<%=form.text_field("facebook")%>
+</div>    
+<div class="field">
+<%=form.label :pronoun_id%>
+  <%=form.select("pronoun_id", Pronoun.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+</div>
+  <div class="field">
+    <%= form.label :city_id %>
+  <%= form.select(:city_id, City.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a city "}, {:class => "s"} )%>
+  </div>
+  <div class="field">
+    <%= form.label :country_id %>
+  <%= form.select(:country_id, Country.all.collect {|d| [d.name,d.id]}, {:include_blank => "Select a country"}, {:class => "s"} )%>
+  </div>
+
+
+
+<%= form.fields_for :githubaccounts do |f| %>
+<div class="field">
+<%=f.label :nameowner, "Name Github account owner"%>
+  <%=f.text_field("nameowner")%>
+</div>    
+<div class="field">
+<%=f.label :username, "Github username"%>
+  <%=f.text_field("username")%>
+</div>    
+<div class="field">
+<%=f.label :_destroy, "destroy Github account"%>
+  <%=f.check_box("_destroy")%>
+</div>    
+
+<%end%>
+<%= form.fields_for :twitteraccounts do |f| %>
+<div class="field">
+<%=f.label :name, "Name Twitter account owner"%>
+  <%=f.text_field("name")%>
+</div>    
+<div class="field">
+<%=f.label :username, "Twitter username"%>
+  <%=f.text_field("username")%>
+</div>    
+<div class="field">
+<%=f.label :_destroy, "destroy Twitter account"%>
+  <%=f.check_box("_destroy")%>
+</div>    
+
+<%end%>
+<%= form.fields_for :profilepictures do |f| %>
+<div class="field">
+<%=f.label :name, "Add a profile pic for him/her"%>
+  <%=f.file_field("name")%>
+</div>    
+<div class="field">
+<%=f.label :nameimage, "What's on the pic?"%>
+  <%=f.file_field("nameimage")%>
+</div>    
+
+<%end%>
+<div class="field">
+<%person.tvserieshaveactors.each do |actor|%>
+<%=form.fields_for :tvserieshaveactors, actor do |f|%>
+<%=f.fields_for :surname, (actor.surname || Surname.new) do |fff|%>
+<%=fff.label :name, t('nomacteur', sailor: actor.actor.name, tvseries: actor.tvseries.name)%>
+<%=fff.text_field :name%>
+<%end%>
+<%end%>
+<%end%>
+  </div>
+<div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+
+
+
+
+<%=content_for :mylittlecss do%>
+.recordingmodal, .recordingmodal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.recordingmodal-content, .recordingmodal-content1 {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close, .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus, close1:hover, .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+  $(function(){
+    $('.addajingle').click(function(){
+      $.ajax({
+        url: window.location.pathname+".js"
+      });
+    });
+  });
+</script>
+<script>
+ // Get the modal
+var modal = document.getElementById("myRecordingModal");
+var modal1 = document.getElementById("myRecordingModal1");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myRecordingBtn");
+var btn1 = document.getElementById("myRecordingBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close1")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  } else if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+} 
+function chercherpics(field,selectfield){
+$.ajax({url: '<%=mypics_profilepictures_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].title;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+
+function selectpics(field,box){
+$.ajax({url: '<%=mypics_people_path%>?field='+field.dataset.field+'&id='+field.value, 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+</script>
+
+
+<script>
+<%@select=[dreamjobs_people_path,compar1_people_path]%>
+<%@search=[json_jobs_path,personjson_albums_path]%>
+<%@nom=['dreamjobs','compar1']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

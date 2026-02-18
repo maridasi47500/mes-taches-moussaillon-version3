@@ -1,0 +1,7 @@
+<%if @people.length > 0%>
+<ul>
+<%=render partial:'people/personicons', collection: @people, as: :person%>
+</ul>
+<%else%>
+<p>Aucun moussaillon ne correspond à votre recherche.</p>
+<%end%>

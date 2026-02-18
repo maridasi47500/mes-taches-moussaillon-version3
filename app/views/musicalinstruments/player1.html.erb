@@ -1,0 +1,6 @@
+<%=fields_for :musicalinstrumentshaveplayer do |form|%>
+<div>
+<%=form.radio_button :person_id, @person.id,checked: true%>
+<%=render @person%>
+</div>
+<%end%>

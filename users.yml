@@ -1,0 +1,14 @@
+---
+- !ruby/object:User
+  concise_attributes:
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: id
+    value_before_type_cast: 1
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: name
+    value_before_type_cast: marymary
+  - !ruby/object:ActiveModel::Attribute::FromDatabase
+    name: image
+    value_before_type_cast: m.jpg
+  new_record: false
+  active_record_yaml_version: 2

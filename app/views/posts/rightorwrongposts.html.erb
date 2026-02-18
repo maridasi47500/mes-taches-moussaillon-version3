@@ -1,0 +1,21 @@
+<h1>have a guess</h1><br><table>
+<tr>
+<th>content</th>
+<th>identity</th>
+<th>il/elle dit ca</th>
+</tr>
+<%@r.each do |mypost|%>
+<tr>
+<td>
+<%=mypost.post.content%>
+</td>
+<td>
+<%=render 'posts_surnames/mypostssurnames',person: mypost.posts_surname%>
+</td>
+<td>
+<%=link_to "have a guess as #{@person.name}", reactiontrueanswer_posts_path(reactiontrueimage_id: mypost.id,person_id: @person.id) %>
+</td>
+</tr>
+<%end%>
+
+</table>

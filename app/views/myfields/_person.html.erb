@@ -1,0 +1,13 @@
+<div class="field">
+<%=render "form/#{fieldtype}", form: form, fieldname: "person", collec: [], mesmodele:"person"%>
+</div>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path]%>
+<%@select=[path]%>
+<%@nom=["person"]%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+
+

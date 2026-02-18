@@ -1,0 +1,3 @@
+<%=t('display.twosailor',sailor1: twosailorjob.sailorjob.sailor.name,sailor2: twosailorjob.othersailorjob.sailor.name,task2: twosailorjob.othersailorjob.task.name,task1: twosailorjob.sailorjob.task.name)%>
+<%=t('display.displayrapprochesailor',sailor: twosailorjob.sailorjob.sailor.name,othersailor: twosailorjob.othersailorjob.sailor.name,linkothertask: polymorphic_url(twosailorjob.othersailorjob.task),task: twosailorjob.sailorjob.task.name).html_safe%>
+

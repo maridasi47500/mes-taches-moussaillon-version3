@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= l @attitudephoto.start_at, format: :long %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= l @attitudephoto.end_at, format: :long %>
+</p>
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @attitudephoto.title %>
+<%=t('display.during',time: distance_of_time_in_words(@attitudephoto.start_at, @attitudephoto.end_at))%>
+</p>
+
+  <% if @attitudephoto.photopeoplehaveattitudes.length > 0%>
+
+  <% @attitudephoto.photopeoplehaveattitudes.each do |attitude|%>
+    <p><%=t('showpage.attitudephoto.attitude',sailor:(render 'people/personsimple', person:attitude.person), attitude: (render 'attitudes/attitudesimple', attitude: attitude.attitude)).html_safe%></p>
+  <%end%>
+  <%end%>
+  <% if @attitudephoto.photopeoplehavetraits.length > 0%>
+  <% @attitudephoto.photopeoplehavetraits.each do |trait|%>
+    <p><%=t('showpage.attitudephoto.trait',sailor:(render 'people/personsimple', person:trait.person), trait: (render trait.trait)).html_safe%></p>
+  <%end%>
+  <%end%>
+  <% if @attitudephoto.tickets.length > 0%>
+  <%= render @attitudephoto.tickets %>
+  <%end%>
+<%= link_to 'Edit', edit_attitudephoto_path(@attitudephoto) %> |
+<%= link_to 'Back', attitudephotos_path %>

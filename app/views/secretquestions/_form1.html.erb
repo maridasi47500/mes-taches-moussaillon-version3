@@ -1,0 +1,53 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
+  </div>
+  <div class="field">
+    <%= form.label :typeq, "type question" %>
+    <%= form.select :typeq, options_for_select([['Only one answer possible','u'],['Multiple answers possible','m']]) %>
+  </div>
+<table>
+<tr>
+<th>text</th>
+<th>1 reponse</th>
+<th>plusieurs reponses</th>
+</tr>
+<%(1..params[:nb].to_i).each do |nb|%>
+<%=form.fields_for :answers, Answer.new do |f|%>
+  <tr>
+  <td class="field">
+    <%= f.label :text, "answer #{nb} :" %>
+    <%= f.text_field :text %>
+  </td>
+  <td class="field">
+    <%= f.label "u", "one answer" %>
+    <%= f.radio_button "u", "1", name: "question[u]"%>
+
+  </td>
+  <td class="field">
+    <%= f.label "m", "multiple answers" %>
+
+    <%= f.check_box "m",value:"", include_hidden: false %>
+  </td>
+  </tr>
+<%end%>
+<%end%>
+</table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

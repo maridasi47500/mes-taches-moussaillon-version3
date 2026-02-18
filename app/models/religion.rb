@@ -1,0 +1,2 @@
+class Religion < Thing
+end

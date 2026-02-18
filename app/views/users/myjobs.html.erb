@@ -1,0 +1,12 @@
+<%=fields_for :user,User.new do |f|%>
+<%=f.fields_for :usersjobs,Usersjob.new(user: current_user,job: Job.find(params[:id])),child_index: params[:idinput] do |form|%>
+<div>
+<%=form.radio_button :job_id,true%>
+<%=render form.object.job%>
+</div>
+<div>
+<%=render "myfields/mysectors",form: form,path2:mysectorstext_users_path,path: mysectors_users_path,fieldtype: "checkbox",findex: (params[:idinput] || form.index || 0)%>
+</div>
+
+<%end%>
+<%end%>

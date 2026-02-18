@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <%= @lifestate.name %>
+  <%= render collection: @lifestate.personhavelifestates,partial: 'personhavelifestates/links', as: :personhavelifestate%>
+</p>
+
+<%= link_to 'Edit', edit_lifestate_path(@lifestate) %> |
+<%= link_to 'Back', lifestates_path %>

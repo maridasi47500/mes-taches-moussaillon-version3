@@ -1,0 +1,55 @@
+<h1>love or dont love </h1>
+<h2>les gens qui sont sauvés</h2>
+<table>
+<tr>
+<td>sauvé</th>
+<td>nom personne</th>
+</tr>
+
+<%current_user.sauvegens.each do |p|%>
+<tr>
+<td><%=image_tag "/assets/lifebuoyatthesea.png", width: 70, height: 70,alt:'aime'%></td>
+<td><%=render p%></td>
+</tr>
+<%end%>
+</table>
+<h2>les taches que j'aime ou j'aime pas </h2>
+<table>
+<tr>
+<td>aime ou aime pas</th>
+<td>nom tache</th>
+</tr>
+
+<%current_user.aimetaches.each do |p|%>
+<tr>
+<td><%=image_tag "/assets/coeurrum.png", width: 40, height: 40,alt:'aime'%></td>
+<td><%=render p%></td>
+</tr>
+<%end%>
+<%current_user.aimepastaches.each do |p|%>
+<tr>
+<td><%=image_tag "/assets/coeurbriserum.png", width: 40, height: 40,alt:'aime pas'%></td>
+<td><%= p.name%></td>
+</tr>
+<%end%>
+</table>
+<h2>les gens que j'aime ou j'aime pas </h2>
+<table>
+<tr>
+<td>aime ou aime pas</th>
+<td>person</th>
+</tr>
+
+<%current_user.aimegens.each do |p|%>
+<tr>
+<td><%=image_tag "/assets/coeurrum.png", width: 40, height: 40,alt:'aime'%></td>
+<td><%=render p%></td>
+</tr>
+<%end%>
+<%current_user.aimepasgens.each do |p|%>
+<tr>
+<td><%=image_tag "/assets/coeurbriserum.png", width: 40, height: 40,alt:'aime pas'%></td>
+<td><%=render p%></td>
+</tr>
+<%end%>
+</table>

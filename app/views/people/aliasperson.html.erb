@@ -1,0 +1,16 @@
+<p><%= @person.name %></p>
+<!-- il faut montrer cette image -->
+<div hidden><%=image_tag(@person.image, class:'personalphoto')%></div>
+<%=form_with do%>
+<%if !@otheralias%>
+<%if !@addedalias%>
+<p><%=label :confirm, "Je confirme que je suis bien cette personne"%> <%=check_box_tag 'confirm'%></p>
+<%end%>
+
+<p><%=label :otheralias, "j'ai un autre alias"%> <%=check_box_tag 'otheralias'%></p>
+<%else%>
+<p><%=select_tag "person", options_from_collection_for_select(Person.all, "id", "name"), include_blank: 'Veuillez sélectionnez votre alias dans la liste', required: true%></p>
+<%end%>
+<%= submit_tag "confirmer" %>
+<%end%>
+<p></p><%= link_to "Retour à la page d'accueil",'/' %>

@@ -1,0 +1,16 @@
+<div class="card">
+
+  <div class="card-header">
+    <%=t('display.chanson')%>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+<%=song.name%>
+    </h5>
+<%=song.artists.map{|x|(render x)}.to_sentence.html_safe%>
+
+</p>
+  </div>
+
+</div>
+

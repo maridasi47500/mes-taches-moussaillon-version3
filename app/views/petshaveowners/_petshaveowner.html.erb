@@ -1,0 +1,9 @@
+<br>
+<p><%=t('display.petowner',pet: petshaveowner.pet.name, owner: (render petshaveowner.person)).html_safe%></p>
+<p><%=link_to_if (petshaveowner.photos.length > 0), "voir des photos du (de la) #{petshaveowner.pet.name}", petshaveowner do
+('')
+
+end%></p>
+<p><%=link_to_if (petshaveowner.photos.length == 0), "ajouter des photos du (de la) #{petshaveowner.pet.name}", edit_petshaveowner_path(petshaveowner.id) do
+()
+end%></p>

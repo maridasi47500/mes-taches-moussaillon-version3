@@ -1,0 +1,16 @@
+<%=render fakecouple.someoneelse.person%> est en couple avec <%=render fakecouple.someoneelse.otherperson%>
+c'est la même chose que quand
+<%=render fakecouple.otherperson.person%> est en couple avec <%=render fakecouple.otherperson.otherperson%>
+<br>
+<br>
+
+
+
+
+<%=render fakecouple.otherperson.person%> : 
+<%=render fakecouple.otherperson.otherperson%>, aime moi comme 
+<%=fakecouple.otherperson != fakecouple.someoneelse ? (render fakecouple.someoneelse.person) : "tu"%> 
+
+
+aime
+<%=render fakecouple.someoneelse.otherperson%>

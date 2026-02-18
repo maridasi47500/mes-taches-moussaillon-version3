@@ -1,0 +1,10 @@
+  <%= form_with(model: post, local: true, html: {id: "form-post"}) do |form| %>
+    <div class="field">
+  <%=form.label :tweet_ids, "Mes tweets"%>
+  <%= form.collection_check_boxes(:tweet_ids, post.tweets+Tweet.all.last(10), :id, :content) do |b|%>
+    <p><%=b.check_box(checked: false) %><%=render Tweet.find(b.value)%></p>
+  <%end%>
+  <%=form.submit "Ajouter Mes tweets"%>
+</div>
+
+  <%end%>

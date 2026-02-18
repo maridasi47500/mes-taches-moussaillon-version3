@@ -1,0 +1,9 @@
+                  <%=form.label :moviescene_ids, "All the movie scenes"%>
+<%= form.collection_check_boxes(:moviescene_ids, @post.mymoviescenes, :id, :title) do |stuff| %>
+              <div class="">
+
+      <%=stuff.check_box%><%= render Moviescene.find(stuff.value) %>
+
+          </div>
+                                    <%end%>
+

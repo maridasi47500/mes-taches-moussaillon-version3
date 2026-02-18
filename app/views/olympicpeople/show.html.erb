@@ -1,0 +1,90 @@
+<%=content_for :mylittlecss do%>
+
+
+.entrecesdeuximg {
+width: 200px;
+height:200px;
+display:block;
+
+
+float:left;
+
+text-align:center;
+margin:0 auto;
+
+
+}
+.entrecesdeux {
+
+
+display:inline-block;
+width:100%;
+clear:both;
+}
+.entrecesdeuximg1 {
+width:70px;
+}
+.entrecesdeuximg1 > span {
+
+
+vertical-align:middle;
+margin: 0 auto;
+position: relative;
+float: left;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+<%if @olympicperson.skill.people.length > 0%>
+<%=t('entrecesdeuxpersonskillsleader', skill: link_to(@olympicperson.skill.name,@olympicperson.skill),leaders: @olympicperson.skill.people[0..2].pluck(:name).to_sentence).html_safe%>
+<%else%>
+<%=t('entrecesdeuxpersonskills', skill: link_to(@olympicperson.skill.name,@olympicperson.skill)).html_safe%>
+<%end%>
+<form class="entrecesdeux">
+  <input id="im1" type="image" class="entrecesdeuximg" src="<%=@olympicperson.twoperson.person.image %>" name="person" title="<%=@olympicperson.twoperson.person.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1"><span>ou</span></div>
+  <input id="im2" type="image" class="entrecesdeuximg" src="<%=@olympicperson.twoperson.otherperson.image %>" name="otherperson" title="<%=@olympicperson.twoperson.otherperson.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>?</span>
+</div>
+
+<input type="hidden" name="userid" value="<%=current_user.id%>">
+</form>
+
+
+<p>
+  Proposé par <%= @olympicperson.user.name %>
+</p>
+<%if @olympicperson.events.length > 0%>
+<ul>
+<% @olympicperson.events.each do |t|%>
+<li><%=link_to t.name, t%></li>
+<%end%>
+
+</ul>
+<%end%>
+<%if @olympicperson.findthebests.length > 0%>
+<ul>
+<%@olympicperson.findthebests.each do |t|%>
+<li><%=t.user.name%> a repondu 
+<%case t.winner%>
+<%when 1%>
+<%=render @olympicperson.twoperson.person%>
+<%when 2%>
+<%=render @olympicperson.twoperson.otherperson%>
+<%end%>
+<%if t.user.id = current_user.id%>
+<form>
+  <input id="cancelvote1" type="image" class="calcelvote" src="/assets/cancelmyvote.png" name="cancel" title="cancel my vote for this question">
+</form>
+<%end%>
+</li>
+
+<%end%>
+</ul>
+<%end%>
+<%= link_to 'Edit', edit_olympicperson_path(@olympicperson) %> |
+<%= link_to 'Back', olympicpeople_path %>

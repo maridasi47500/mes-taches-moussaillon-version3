@@ -1,0 +1,140 @@
+<%= form_with(model: rightaboutsomeone, local: true) do |form| %>
+  <% if rightaboutsomeone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rightaboutsomeone.errors.count, "error") %> prohibited this rightaboutsomeone from being saved:</h2>
+
+      <ul>
+        <% rightaboutsomeone.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :question_fr %>
+    <%= form.text_area :question_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question_en %>
+    <%= form.text_area :question_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :question_de %>
+    <%= form.text_area :question_de %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description_fr %>
+    <%= form.text_area :description_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description_en %>
+    <%= form.text_area :description_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description_de %>
+    <%= form.text_area :description_de %>
+  </div>
+<div id="phrases">
+<%=link_to "add phrase", "", onclick:"addphrase(this);return false;",data: {myid: rightaboutsomeone.phrases.length}%>
+<%rightaboutsomeone.phrases.each_with_index do |phrase,idphrase|%>
+<%=form.fields_for :phrases,phrase do |f|%>
+
+<%Phrase.locale_columns(:content).each do |t|%>
+<div>
+<%=f.label t%>
+<%=f.text_area t, name: "rightaboutsomeone[phrases_attributes][#{idphrase}]#{t}"%>
+
+</div>
+<%end%>
+
+
+<%end%>
+<%end%>
+
+</div>
+<div id="actions">
+
+<%=link_to "add list of actions", "", onclick:"addlistofactions(this);return false;",data: {myid: rightaboutsomeone.actionlists.length}%>
+<%rightaboutsomeone.actionlists.each_with_index do |actionlist,actionlistid|%>
+<%=form.fields_for :actionlists,actionlist do |f|%>
+
+<%Actionlist.locale_columns(:title).each do |t|%>
+<div>
+<%=f.label t%>
+<%=f.text_area t, name: "rightaboutsomeone[actionlists_attributes][#{actionlistid}]#{t}"%>
+
+</div>
+<%end%>
+<div>
+<%=link_to "add actions","",onclick:"addactions('#{actionlistid}',this);return false;",data: {myid: actionlist.taskactions.length}%>
+<%actionlist.taskactions.each_with_index do |taskaction,taskactionid|%>
+<%=f.fields_for :taskactions,taskaction do |ff|%>
+<%Taskaction.locale_columns(:name).each do |t|%>
+<div>
+<%=ff.label t%>
+<%=ff.text_area t, name: "rightaboutsomeone[actionlists_attributes][#{actionlistid}][taskactions_attributes][#{taskactionid}]#{t}"%>
+
+</div>
+<%end%>
+<%end%>
+
+
+<%end%>
+<%end%>
+
+<br>
+</div>
+
+
+<%end%>
+
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function addphrase(j){
+var w=j.dataset.myid;
+$.ajax({
+url: '<%=newphrase_rightaboutsomeones_path%>?myid='+w,
+success: function(html){
+$(phrases).append(html);
+}
+});
+j.dataset.myid = Number(w) + 1;
+
+return false;
+};
+function addlistofactions(j){
+var w=j.dataset.myid;
+$.ajax({
+url: '<%=newactionlist_rightaboutsomeones_path%>?myid='+w,
+success: function(html){
+$(actions).append(html);
+}
+});
+j.dataset.myid = Number(w) + 1;
+return false;
+};
+function addactions(j,button){
+var w=button.dataset.myid;
+$.ajax({
+url: '<%=newaction_rightaboutsomeones_path%>?myid='+String(j)+'&mysecondid='+String(w),
+success: function(html){
+$(button.parentElement).append(html);
+}
+});
+button.dataset.myid = Number(w) + 1;
+return false;
+};
+</script>
+<%end%>

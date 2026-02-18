@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @githubrepo.name %>
+</p>
+
+<p>
+  <strong>Githubrepo:</strong>
+  <%= render @githubrepo.githubaccount %>
+  <%= render @githubrepo.programminglanguages %>
+</p>
+<br>
+  <%= render @githubrepo.places %>
+<br>
+
+<%= link_to 'Edit', edit_githubrepo_path(@githubrepo) %> |
+<%= link_to 'Back', githubrepos_path %>

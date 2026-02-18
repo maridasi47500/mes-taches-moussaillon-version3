@@ -1,0 +1,79 @@
+<%= form_with(model: concert, local: true) do |form| %>
+  <% if concert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(concert.errors.count, "error") %> prohibited this concert from being saved:</h2>
+
+      <ul>
+        <% concert.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_at %>
+    <%= form.datetime_select :start_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_at %>
+    <%= form.datetime_select :end_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "musician_ids", collec: concert.musicians, mesmodele:"musicians"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "musicalcomposition_ids", collec: concert.musicalcompositions, mesmodele:"musicalcompositions"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "song_ids", collec: concert.songs, mesmodele:"songs"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "musicalscore_ids", collec: concert.musicalscores, mesmodele:"musicalscores"%>
+</div>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: "city_ids", collec: concert.cities, mesmodele:"cities"%>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[personjson_albums_path,json_musicalcompositions_path,json_songs_path,json_musicalscores_path,json_cities_path]%>
+
+<%@select=[musician_concerts_path,musicalcomposition_concerts_path,song_concerts_path,musicalscore_concerts_path,city_concerts_path]%>
+
+<%@nom=['musicians','musicalcompositions','songs','musicalscores','cities']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

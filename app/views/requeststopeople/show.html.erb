@@ -1,0 +1,31 @@
+<%=content_for :mylittlecss do%>
+.myrequestperson {
+border: 2px dashed dotted grey;
+}
+<%end%>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= (render 'aliases/alias', a: @requeststoperson.alias) rescue "1telle" %> dit que :
+<br>
+  <%= render @requeststoperson.requestperson.persona %>
+dit à
+  <%= render @requeststoperson.requestperson.personb %>
+</p>
+
+<p>
+  <%= @requeststoperson.content %>
+
+</p>
+<%if @requeststoperson.requeststopersonhaverequestpeople.length > 0%>
+<h4>Autres moussaillons pour cette phrase</h4>
+<ul><li>
+<%= render partial: 'requeststopersonhaverequestpeople/requeststopersonhaverequestpersonsentence', collection: @requeststoperson.requeststopersonhaverequestpeople,as: :requeststopersonhaverequestperson,spacer_template: 'mypersolist'%>
+</li>
+</ul>
+<%end%>
+
+<%= link_to 'choisir les bons destinataires', bestrequestpeople_requeststoperson_path(@requeststoperson) %> |
+<%= link_to 'nouveaux moussaillons', newrequestpeople_requeststoperson_path(@requeststoperson) %> |
+<%= link_to 'Edit', edit_requeststoperson_path(@requeststoperson) %> |
+<%= link_to 'Back', requeststopeople_path %>

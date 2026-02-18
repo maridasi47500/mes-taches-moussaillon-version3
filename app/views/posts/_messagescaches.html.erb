@@ -1,0 +1,15 @@
+	<%= form.fields_for :messagecaches do |mc| %>
+	<div class="field">
+	<%= mc.label :content, "Code du message caché (exemple : compter 2 lettres en arrière)" %>
+	<%= mc.text_area :content %>
+        </div>
+	<div class="field">
+	<%= mc.check_box :_destroy %>
+	<%= mc.label :_destroy, "delete this hidden message" %>
+        </div>
+	<%end%>
+	<div class="field">
+	<%= form.label :messagecache, "Nouveau message caché" %>
+	<%= form.text_area :messagecache %>
+        </div>
+

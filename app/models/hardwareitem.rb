@@ -1,0 +1,3 @@
+class Hardwareitem < Technology
+
+end

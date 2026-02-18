@@ -1,0 +1,2 @@
+module BarreviewsHelper
+end

@@ -1,0 +1,13 @@
+<%=content_for :mylittlecss do%>
+.redborder {
+border: 2px solid #ff0707;
+}
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<%=render @instruction.firstinstruction%>
+
+<%= link_to 'Edit first instruction', edit_instruction_path(@instruction.firstinstruction) %> |
+<%= link_to 'Edit', edit_instruction_path(@instruction) %> |
+<%= link_to 'Back', instructions_path %>

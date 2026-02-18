@@ -1,0 +1,24 @@
+<%=fields_for :attitudephoto do |form|%>
+<%=form.fields_for "tickets_attributes" do |ff|%>
+  <div class="field">
+<%=render "form/checkboxcolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[tickets_attributes][#{params[:n]}]", fieldname: 'sender_ids', collec: [], mesmodele:"senders",m:params[:n]%>
+
+  </div>
+  <div class="field">
+<%=render "form/checkboxcolumnwithvariable",columnname: :name, form: ff,n: "attitudephoto[tickets_attributes][#{params[:n]}]", fieldname: 'recipient_ids', collec: [], mesmodele:"recipients",m:params[:n]%>
+
+
+
+  </div>
+  <% Ticket.locale_columns(:content).each do |column| %>
+  <div class="field">
+<%=ff.label column, name: "attitudephoto[tickets_attributes][#{params[:n]}]["+column.to_s+']'%>
+<%=ff.text_area column, name: "attitudephoto[tickets_attributes][#{params[:n]}]["+column.to_s+']'%>
+  </div>
+
+<%end%>
+
+<%end%>
+<%end%>
+
+

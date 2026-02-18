@@ -1,0 +1,20 @@
+<p>trouve ce que tu veux faire le lendemain de ton diner en chandelle avec ton amoureux-amoureuse</p>
+<br>
+<%=form_with url: candlelight5_path do |form|%>
+<%=form.hidden_field :date, value: params[:date]%>
+<%=form.hidden_field :person, value: @person.id%>
+<%=form.hidden_field :otherperson, value: @otherperson.id%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskid_categorythings_path]%>
+<%@search =[json_tasks_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

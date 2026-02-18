@@ -1,0 +1,23 @@
+<%=render @categorything%>
+<br>
+<%=render @person%>
+<br>
+<%=t('display.categorythingwhotask',count: params[:qty].to_i,qui: @person.name,chose: @categorything.name)%>
+
+<%=form_with url: who_categorything_path(@categorything.id) do |form|%>
+<%=form.hidden_field :qty, value: params[:qty]%>
+<%=form.hidden_field :personid, value: @int%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'taskid', collec: [], mesmodele:"people"%>
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[taskid_categorythings_path]%>
+<%@search =[json_tasks_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

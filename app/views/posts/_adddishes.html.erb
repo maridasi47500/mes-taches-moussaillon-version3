@@ -1,0 +1,19 @@
+<%=form.fields_for :dishes do |dish|%>
+  <div class="field">
+    <%= dish.label :_destroy, "destroy this dish" %>
+    <%= dish.check_box :_destroy %>
+  </div>
+
+  <div class="field">
+    <%= dish.label :image, "give a pic for this dish" %>
+    <%= dish.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= dish.label :name, "name this dish" %>
+    <%= dish.text_field :name %>
+  </div>
+    <%end%>
+    <button type="button" data-action="/dishes/adddishnow">Add a dish </button>
+    <div id="mamodale"><div id="contenumamodale"><button type="button" class="closemodale">close </button></div></div>
+

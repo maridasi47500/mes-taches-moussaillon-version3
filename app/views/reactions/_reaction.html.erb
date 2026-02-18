@@ -1,0 +1,20 @@
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+<%= reaction.speaker && reaction.speaker.surname && reaction.speaker.surname.name && reaction.speaker.surname.name.length > 0 ? (""+(render partial: "posts_surnames/mysailors", collection: [reaction.speaker], as: :posts_surname)+" a dit :").html_safe : "" %>
+<%=reaction.emotion ? (render reaction.emotion) : ""%>
+</p>
+<p class="card-text">
+<% reaction.name_parts.each_with_index do |person,i| %>
+  
+<%= person %>
+
+<%if reaction.myreactivepeople[i] && reaction.nbpeople >= 1%>
+<%= reaction.myreactivepeople[i].map{|y|(render partial: "posts_surnames/mysailors", collection: [y], as: :posts_surname, locals: {i: i})}.to_sentence.html_safe %>
+  
+<%end%>
+<%end%>
+
+<%= params[:controller] != "reactions" ? (link_to "lire cette phrase", reaction ) : ""%></p>
+</div>
+</div>

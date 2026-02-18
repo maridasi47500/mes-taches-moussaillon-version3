@@ -1,0 +1,6 @@
+class Tvseriesparodiehavecouple < ApplicationRecord
+belongs_to :tvseriesparodiehaveactor
+belongs_to :othertvseriesparodiehaveactor, class_name: 'Tvseriesparodiehaveactor'
+validates_uniqueness_of :tvseriesparodiehaveactor_id, scope: :othertvseriesparodiehaveactor_id
+has_many :tvseriesparodiehavecouples
+end

@@ -1,0 +1,36 @@
+<%= form_with(model: airline_company, local: true) do |form| %>
+  <% if airline_company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(airline_company.errors.count, "error") %> prohibited this airline_company from being saved:</h2>
+
+      <ul>
+        <% airline_company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_fr %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_de %>
+    <%= form.text_field :name_de %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<%= form_with(model: recordingreview, local: true) do |firm| %>
+<%recordingreview.recordingreviews.each do |b|%>
+
+<%=firm.fields_for :recordingreviews,b do |form|%>
+
+<h2>Bad Player sample</h2>
+<%=render @barattempt.sample%>
+<h2>Score overview</h2>
+<img src="/assets/<%=@barattempt.bar.image%>"/>
+
+
+
+
+<h2>Record the correct/incorrect sample</h2>
+  <div class="field">
+    <%= form.label :correctsample_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: @barattempt.bar.musicalscore.name,mylabel: "record the correct sample", myfield: "correctsamplerecording", form: form, modelderails: recordingreview}%>
+
+
+  </div>
+  <div class="field">
+    <%= form.label :incorrectsample_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: @barattempt.bar.musicalscore.name,mylabel: "record the incorrect sample", myfield: "incorrectsamplerecording", form: form, modelderails: recordingreview}%>
+
+
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :gooduser_id %>
+  </div>
+<input type="hidden" name="barattemptid" value="<%=@barattempt.id%>"/>
+
+
+<% end %>
+<% end %>
+  <div class="actions">
+    <%= firm.submit %>
+  </div>
+<% end %>

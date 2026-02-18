@@ -1,0 +1,158 @@
+<%=content_for :mylittlecss do%>
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.mystyleimg {
+    animation: blink 1s;
+    animation-iteration-count: infinite;
+
+}
+.entrecesdeuximglgbt {
+border-image: url('/assets/secondgayprideflag.png') 30;
+width: 200px;
+height:200px;
+display:block;
+float:left;
+text-align:center;
+margin:0 auto;
+}
+.entrecesdeuximg {
+width: 200px;
+height:200px;
+display:block;
+float:left;
+text-align:center;
+margin:0 auto;
+}
+.entrecesdeux {
+display:inline-block;
+width:100%;
+clear:both;
+}
+.entrecesdeuximg1 {
+width:70px;
+}
+.entrecesdeuximg1 {
+width:70px;
+}
+.entrecesdeuximg1 > span {
+
+
+vertical-align:middle;
+margin: 0 auto;
+position: relative;
+float: left;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}
+<%end%>
+
+
+
+<p id="notice"><%= notice %></p>
+<%if @betterperson.attitude.sailors.length > 0%>
+<%=t('entrecesdeuxpersonattitudesleader', attitude: @betterperson.attitude.name,leaders: @betterperson.attitude.sailors.pluck(:name).to_sentence)%>
+<%else%>
+<%=t('entrecesdeuxpersonattitudes', attitude: @betterperson.attitude.name)%>
+<%end%>
+<%=form_with html:{method:'get', class: "entrecesdeux"} do |form|%>
+<%if !params['lgbt.x']%>
+  <input id="im1" type="image" class="entrecesdeuximg" src="<%=@betterperson.twoperson.person.image %>" name="person" title="<%=@betterperson.twoperson.person.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>ou</span>
+</div>
+  <input id="im2" type="image" class="entrecesdeuximg" src="<%=@betterperson.twoperson.otherperson.image %>" name="otherperson" title="<%=@betterperson.twoperson.otherperson.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>?</span>
+</div>
+<br>
+<br>
+<br>
+<br>
+ou 
+
+  <input style="" id="im3" type="image" width="50" height="50" src="/assets/flaggaypride.gif" name="lgbt" title="">
+<%elsif params['lgbt.x']%>
+si t'es guddu choisis ton avatar parmi les personnes que tu connais
+<div class="field">
+<%=render "form/radiobutton", form: form, fieldname: 'personid', collec: [], mesmodele:"people"%>
+</div>
+
+ vote avec les images quand le drapeau clignote :
+  <input id="im5" type="image" class="entrecesdeuximglgbt" src="<%=@betterperson.twoperson.person.image %>" name="personlgbt" title="<%=@betterperson.twoperson.person.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>ou</span>
+</div>
+  <input id="im6" type="image" class="entrecesdeuximglgbt" src="<%=@betterperson.twoperson.otherperson.image %>" name="otherpersonlgbt" title="<%=@betterperson.twoperson.otherperson.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>?</span>
+</div>
+  <img width="50" height="50" src="/assets/secondgayprideflag.png" class="mystyleimg" title=""/>
+
+<%end%>
+<input type="hidden" name="userid" value="<%=current_user.id%>">
+<%end%>
+
+
+
+<p>
+  Proposé par <%= @betterperson.user.name %>
+</p>
+<%if @betterperson.findthemostlgbts.length > 0 %>
+<ul>
+<%@betterperson.findthemostlgbts.each do |t|%>
+<li><%=render 'aliases/alias', a: t.alias%> a repondu 
+<%case t.themost%>
+<%when 1%>
+<%=render @betterperson.twoperson.person%>
+<%when 2%>
+<%=render @betterperson.twoperson.otherperson%>
+<%end%>
+mais il/elle ne peut pas choisir (il/elle n'est pas hétéro)
+</li>
+<%end%>
+</ul>
+<%end%>
+<%if @betterperson.findthemost.length > 0 %>
+<ul>
+
+<%@betterperson.findthemost.each do |t|%>
+<li><%=t.user.name%> a repondu 
+<%case t.themost%>
+<%when 1%>
+<%=render @betterperson.twoperson.person%>
+<%when 2%>
+<%=render @betterperson.twoperson.otherperson%>
+<%end%>
+<%if t.user.id = current_user.id%>
+<form>
+  <input id="cancelvote1" type="image" class="calcelvote" src="/assets/cancelmyvote.png" name="cancel" title="cancel my vote for this question">
+</form>
+<%end%>
+</li>
+
+<%end%>
+</ul>
+<%end%>
+<%= link_to 'Edit', edit_betterperson_path(@betterperson) %> |
+<%= link_to 'Back', betterpeople_path %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people1_betterpeople_path]%>
+<%@search =[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

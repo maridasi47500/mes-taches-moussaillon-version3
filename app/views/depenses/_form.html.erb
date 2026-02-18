@@ -1,0 +1,36 @@
+<%= form_with(model: depense, local: true) do |form| %>
+  <% if depense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(depense.errors.count, "error") %> prohibited this depense from being saved:</h2>
+
+      <ul>
+        <% depense.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%if depense.new_record?%>
+    <%= form.hidden_field :user_id %>
+  <%end%>
+
+  <div class="field">
+    <%= form.label :somme %>
+    <%= form.number_field :somme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motif %>
+    <%= form.text_area :motif %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

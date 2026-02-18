@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Attitudes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attitudes.each do |attitude| %>
+      <tr>
+        <td><%= attitude.name %></td>
+        <td><%= link_to 'Show', attitude %></td>
+        <td><%= link_to 'Edit', edit_attitude_path(attitude.id) %></td>
+        <td><%= link_to 'Destroy', attitude, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attitude', new_attitude_path %>

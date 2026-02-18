@@ -1,0 +1,52 @@
+<%= form_with(model: idolcomment, local: true) do |form| %>
+  <% if idolcomment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(idolcomment.errors.count, "error") %> prohibited this idolcomment from being saved:</h2>
+
+      <ul>
+        <% idolcomment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<%=render "form/radiobuttonwithpreselect", form: form, fieldname: "tvserieshaveactor_id", collec: Tvserieshaveactor.findbyid(idolcomment.tvserieshaveactor_id),preselect: actors.map{|x|[x.id,x.actor.name]}, mesmodele:"actor"%>
+
+
+  </div>
+
+  <div class="field">
+<%=render "form/radiobutton", form: form, fieldname: "alias_id", collec: [], mesmodele:"user"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_fr %>
+    <%= form.text_area :content_fr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_de %>
+    <%= form.text_field :content_de %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_en %>
+    <%= form.text_field :content_en %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[jsonactor_idolcomments_path,personjson_albums_path]%>
+<%@select=[actor_idolcomments_path,user_idolcomments_path]%>
+
+<%@nom=['actor','user']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

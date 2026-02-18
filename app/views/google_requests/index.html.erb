@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Google Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @google_requests.each do |google_request| %>
+      <tr>
+        <td><%= google_request.name %></td>
+        <td><%= link_to 'Show', google_request %></td>
+        <td><%= link_to 'Edit', edit_google_request_path(google_request) %></td>
+        <td><%= link_to 'Destroy', google_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Google Request', new_google_request_path %>

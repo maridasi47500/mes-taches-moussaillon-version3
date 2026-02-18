@@ -1,0 +1,22 @@
+<%= form_with(model: peoplecar, url: (peoplecar.persisted? ? car_peoplecar_path(peoplecar.id, car_id: peoplecar.car_id) : car_peoplecars_path), local: true) do |form| %>
+  <% if peoplecar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(peoplecar.errors.count, "error") %> prohibited this peoplecar from being saved:</h2>
+
+      <ul>
+        <% peoplecar.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :myphotos %>
+    <%= form.file_field :myphotos, multiple: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<%= form_with(model: factory, local: true) do |form| %>
+<%factory.factorieshavenights.each_with_index do |myf,myid|%>
+<%=form.fields_for :factorieshavenights,myf do |f|%>
+  <div class="field">
+<%=render "form/radiobuttonnb",nb: myid,sousmodel: :factorieshavenights, form: f, fieldname: "hotel_id", collec: Hotel.findbyid(myf.hotel_id), mesmodele:"hotels"%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttonnb",nb: myid,sousmodel: :factorieshavenights, form: f, fieldname: "restaurant_id", collec: Restaurant.findbyid(myf.hotel_id), mesmodele:"restaurants"%>
+</div>
+
+  <div class="field">
+<%=render "form/radiobuttonnb",nb: myid,sousmodel: :factorieshavenights, form: f, fieldname: "alias_id", collec: Alias.findbyid(myf.alias_id), mesmodele:"aliases"%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttonnb",nb: myid,sousmodel: :factorieshavenights, form: f, fieldname: "dish_id", collec: Dish.findbyid(myf.dish_id), mesmodele:"dishes"%>
+</div>
+  <div class="field">
+<%=render "form/radiobuttonnb",nb: myid,sousmodel: :factorieshavenights, form: f, fieldname: "laundryjiramaperson_id", collec: Laundryjiramaperson.findbyid(myf.laundryjiramaperson_id), mesmodele:"laundryjiramapeople"%>
+</div>
+<%end%>
+<%end%>
+  <div class="field">
+    <%= form.submit %>
+  </div>
+
+<%end%>
+<%=content_for :myjscode do%>
+<script>
+<%@search=[json_hotels_path,json_restaurants_path,json_dishes_path,personjson_albums_path,json_laundryjiramapeople_path]%>
+<%@select=[hotels_factories_path,restaurants_factories_path,dishes_factories_path,aliases_factories_path,laundryjiramapeople_factories_path]%>
+
+
+<%@nom=['hotels','restaurants','dishes','aliases','laundryjiramapeople']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

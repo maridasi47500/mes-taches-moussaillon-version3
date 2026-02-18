@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Argents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Mois</th>
+      <th>Annee</th>
+      <th>Paye</th>
+      <th>Apayer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @argents.each do |argent| %>
+      <tr>
+        <td><%= argent.username %></td>
+        <td><%= argent.mois %></td>
+        <td><%= argent.annee %></td>
+        <td><%= argent.paye %></td>
+        <td><%= argent.apayer %></td>
+        <td><%= link_to 'Show', argent %></td>
+        <td><%= link_to 'Edit', edit_argent_path(argent) %></td>
+        <td><%= link_to 'Destroy', argent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Argent', new_argent_path %>

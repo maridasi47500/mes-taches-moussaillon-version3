@@ -1,0 +1,34 @@
+<%=fields_for :basic_guyacadeau, BasicGuyacadeau.new do |form|%>
+<div class="field">
+<%= form.fields_for :address,@address do |f|%>
+<div>
+<%= f.fields_for :city do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+<div>
+<%= f.fields_for :country do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+<div>
+<%= f.fields_for :state do |ff|%>
+<%=ff.label :name_fr%>
+<%=ff.text_field :name_fr%>
+<%end%>
+</div>
+<div>
+<%= f.fields_for :place do |ff|%>
+<%=ff.label :name%>
+<%=ff.text_field :name%>
+<%end%>
+</div>
+<div>
+<%=f.label :address%>
+<%=f.text_field :address%>
+</div>
+<%end%>
+</div>
+<%end%>

@@ -1,0 +1,8 @@
+<%=fields_for :posts_surname do |form|%>
+<%=form.collection_radio_buttons(:surnamedestinataire_id, @surnames,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.radio_button%>
+<%=rad.label%>
+
+<%end%>
+<%end%>
+

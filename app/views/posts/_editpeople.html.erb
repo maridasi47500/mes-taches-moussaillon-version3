@@ -1,0 +1,11 @@
+<div>
+<%=  person.name%> 
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+<%= form_with(model: Post.find(params[:id]), local: true) do |form| %>
+    <%=  form.select("double_ids", Double.all.collect {|p| [ p.usurpation.name, p.id ] }, { include_blank: true }, required: true) %>
+<%end%>    
+   
+  
+<%= render partial: "people", collection: @post.doublesdesdoubles, as: :person %>
+
+</div>

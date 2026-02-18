@@ -1,0 +1,49 @@
+window.onload=function(){
+function chercher<%=t[0]%><%=findex%>(field,al){
+if (field.value.trim() !== ''){
+$.ajax({url: '<%=t[1]%>?name='+field.value, 
+success:function(data){
+console.log(data);
+if (data.length > 0 && typeof data == "object") {
+al.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name||data[i].name_<%=I18n.locale%>||data[i].content||data[i].content_<%=I18n.locale%>||data[i].nom;
+al.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+} else {
+al.outerHTML=al.outerHTML+data;
+mylastbtn.click();
+
+}
+}});
+}
+};
+function select<%=t[0]%><%=findex%>(field,greatpeople){
+
+
+
+
+if (field.value !== ''){
+var namediv="mysectorscounter";
+if ($("#"+namediv).length === 0){
+var newDiv=document.createElement("div");
+newDiv.id= namediv;
+newDiv.hidden=true;
+newDiv.innerHTML="<%=form.object.sectors.length%>";
+document.body.appendChild(newDiv);
+var mydiv=document.getElementById(namediv);
+}else{
+
+var mydiv=document.getElementById(namediv);
+mydiv.innerHTML=Number(mydiv.innerHTML)+1;
+}
+$.ajax({url: ($("[name='textorcheck']:checked").val() == 'check' ? '<%=t[2][0]%>' : '<%=t[2][1]%>')+'?id='+field.value+"&idinput="+mydiv.innerHTML, 
+success:function(data){
+greatpeople.innerHTML+=data;
+}});
+};
+};
+
+}

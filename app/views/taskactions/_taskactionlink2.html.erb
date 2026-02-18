@@ -1,0 +1,14 @@
+<div class="card">
+<h5><%=taskaction.name%></h5>
+<%if taskaction.image%>
+<p><%=image_tag "/assets/"+taskaction.image, class: "imageprofilethread"%></p>
+<%end%>
+<%if t.taskactionsailorjob && t.taskactionsailorjob.people.length > 0%>
+<p><%=t('display.withsailor', sailor: t.taskactionsailorjob.people.take(3).pluck(:name).to_sentence)%></p>
+<%end%>
+<p><input id="<%=t.taskaction.name.to_s.parameterize+t.id.to_s%>" name="<%=t.id%>task" type="image" width="100" height="100" alt="<%=t.sailorjob.task.name%>"
+       src="/assets/<%=t.taskaction.image%>">
+
+
+</p>
+</div>

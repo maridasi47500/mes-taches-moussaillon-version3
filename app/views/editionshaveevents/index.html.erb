@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Editionshaveevents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edition</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Olympicevent</th>
+      <th>Sexe</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editionshaveevents.each do |editionshaveevent| %>
+      <tr>
+        <td><%= editionshaveevent.edition %></td>
+        <td><%= editionshaveevent.city.try(:name) %></td>
+        <td><%= editionshaveevent.country.try(:name) %></td>
+        <td><%= editionshaveevent.olympicevent.try(:name) %></td>
+        <td><%= editionshaveevent.sexe %></td>
+        <td><%= editionshaveevent.date %></td>
+        <td><%= link_to 'Show', editionshaveevent %></td>
+        <td><%= link_to 'Edit', edit_editionshaveevent_path(editionshaveevent) %></td>
+        <td><%= link_to 'Destroy', editionshaveevent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Editionshaveevent', new_editionshaveevent_path %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @setoftask.title %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @setoftask.tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= link_to 'See', setoftask_task_path(task.id, setoftask_id: @setoftask.id) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Edit', edit_setoftask_path(@setoftask) %> |
+<%= link_to 'Back', setoftasks_path %>

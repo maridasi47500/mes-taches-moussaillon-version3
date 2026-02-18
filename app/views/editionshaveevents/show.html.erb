@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+
+
+<p>
+  <strong>Olympicevent:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>Sexe:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%=  %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @editionshaveevent.city.try(:name) %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @editionshaveevent.country.try(:name) %>
+</p>
+<p>
+  <strong>Jeux olympiques:</strong>
+  <%= @editionshaveevent.edition.try(:name) %>
+</p>
+
+<%@editionshaveevent.roundtypes.distinct.each do |roundtype|%>
+<p><%=roundtype.name%></p>
+<%Olympicresult.olres(roundtype.id, @editionshaveevent.id).group_by{|j|j.heat}.to_a.each do |heat,myresults|%>
+
+<p><%=heat.to_i > 0 ? "heat #{heat}" : heat%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>pos</th>
+      <th>lane</th>
+      <th>athlete</th>
+      <th>country</th>
+      <th>noc</th>
+
+      <th>reaction</th>
+<%Olympicresult.mydistances[0..myresults[0].olympicsplits.length].each do |y|%>
+      <th><%=y[1..]%></th>
+<%end%>
+
+      <th>result time</th>
+      <th>couleur de la médaille</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+
+<%myresults.each do |result|%>
+
+      <tr>
+
+        <td><%=result.pos%></td>
+        <td><%=result.lane%></td>
+        <td><%= result.athlete.name %></td>
+        <td><%=result.noccountryname%></td>
+        <td><%=result.noccountrycode%></td>
+
+        <td><%= result.reaction%></td>
+        <% result.myolympicsplits.each do |res|%>
+        <td><%= res.time ? (res.time < 1.minute ? l(res.time, format: :olympicsmall) : l(res.time, format: :olympic)) : "-" %></td>
+        <%end%>
+        <td><%= result.time ? (result.time < 1.minute ? l(result.time, format: :olympicsmall) : l(result.time, format: :olympic)) : "-" %></td>
+        <td><%= result.medal.try(:colorname)%></td>
+
+      </tr>
+<%rescue => e%>
+<%=e.message%>
+    <% end %>
+  </tbody>
+</table>
+    <% end %>
+
+<%end%>
+<%= link_to 'ajouter une médaille', ajouterunemedaillerelay_editionshaveevent_path(@editionshaveevent.id) %> |
+
+<%= link_to 'Edit', edit_editionshaveevent_path(@editionshaveevent) %> |
+<%= link_to 'Back', editionshaveevents_path %>

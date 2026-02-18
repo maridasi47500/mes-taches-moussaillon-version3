@@ -1,0 +1,13 @@
+<%=fields_for :posts_surname, PostsSurname.new do |f|%>
+      <%= f.label :speaklike_id, "comme si il-elle était-en se prenant pour " %>
+      <%= f.collection_radio_buttons(@fieldname, @people, :id, :name) do |ff| %>
+        <%=ff.radio_button%>
+<%if params[:classname]=='Person'%>
+<%=render partial: "people/personradiobutton",locals: {personid:ff.value}%>
+<%elsif params[:classname]=='PostsSurname'%>
+<%=render partial: "posts_surnames/mypostssurnames",locals: {person:PostsSurname.find(ff.value)}%>
+<%end%>
+
+                            <%end%>
+<%=  f.radio_button( "speaklike_id", nil)%><%= f.label "speaklike_id", "personne"%>
+<%end%>

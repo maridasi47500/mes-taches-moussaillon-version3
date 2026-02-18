@@ -1,0 +1,241 @@
+<h1>Ce que vous pensez de <%=@person.name%></h1>
+<%@love=['un peu','beaucoup','passionnement','a la folie','pas du tout']%>
+
+<%if @person.lgbtgens.length > 0%>
+<span title="<%=@person.lgbtgens.pluck(:name).join(', ') %>">
+<%=@person.lgbtgens.length%>
+<%="personne".pluralize(@person.lgbtgens.length)%>
+</span>
+<%="pense que".pluralize(@person.lgbtgens.length)%>
+<%=@person.name%>
+fait partie de la communauté lgbt.
+<%end%>
+<%if @person.voituregens.length > 0%>
+<span title="<%=@person.voituregens.pluck(:name).join(', ') %>">
+<%=@person.voituregens.length%>
+<%="personne".pluralize(@person.voituregens.length)%>
+</span>
+<%="pense que".pluralize(@person.voituregens.length)%>
+<%=@person.name%>
+est une voiture.
+<%end%>
+<%if @person.braceletgens.length > 0%>
+<span title="<%=@person.braceletgens.pluck(:name).join(', ') %>">
+<%=@person.braceletgens.length%>
+<%="personne".pluralize(@person.braceletgens.length)%>
+</span>
+<%="pense que".pluralize(@person.braceletgens.length)%>
+<%=@person.name%>
+fait partie des bracelets rouges.
+<%end%>
+<%if @person.robotgens.length > 0%>
+<span title="<%=@person.robotgens.pluck(:name).join(', ') %>">
+<%=@person.robotgens.length%>
+<%="personne".pluralize(@person.robotgens.length)%>
+</span>
+<%="pense que".pluralize(@person.robotgens.length)%>
+<%=@person.name%>
+est un robot.
+<%end%>
+<%if @person.croyantgens.length > 0%>
+<span title="<%=@person.croyantgens.pluck(:name).join(', ') %>">
+<%=@person.croyantgens.length%>
+<%="personne".pluralize(@person.croyantgens.length)%>
+</span>
+<%="pense que".pluralize(@person.croyantgens.length)%>
+<%=@person.name%>
+est croyant(e).
+<%end%>
+<%if @person.sauvegens.length > 0%>
+<span title="<%=@person.sauvegens.pluck(:name).join(', ') %>">
+<%=@person.sauvegens.length%>
+<%="personne".pluralize(@person.sauvegens.length)%>
+</span>
+<%="pense que".pluralize(@person.sauvegens.length)%>
+<%=@person.name%> est sauvé(e).
+<%end%>
+<%@person.answerpeople.group_by {|x|x.question_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.pluck(:name).join(', ') %>">
+<%=z.pluck(:user_id).uniq.length%>
+<%="personne".pluralize(z.pluck(:user_id).uniq.length)%>
+</span>
+<%="pensent que".pluralize(z.pluck(:user_id).uniq.length)%>
+
+<%=@person.name%>
+sait répondre à la question 
+"<%=Question.find(y).text%>"
+(<%Answer.where(id: z.pluck(:answer_id)).distinct.each do |a|%>
+<span title="<%if a.good%>(学霸 xué bà)<%else%>(学渣xué zhā)<%end%>"><%=a.text%></span>,
+<%end%>)
+
+.
+<%end%>
+<%@person.peoplecars.group_by {|x|x.car_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.pluck(:name).join(', ') %>">
+<%=z.length%>
+<%="personne".pluralize(z.length)%>
+</span>
+<%="pensent que".pluralize(z.length)%>
+
+la voiture de 
+<%=@person.name%>
+est une 
+<%=Car.find(y).name%>
+
+.
+<%end%>
+<%@person.inloves.group_by {|x|x.intensity}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.pluck(:name).join(', ') %>">
+<%=z.length%>
+<%="personne".pluralize(z.length)%>
+</span>
+<%="pensent que".pluralize(z.length)%>
+<%=Person.where(id: z.pluck(:otherperson_id)).distinct.pluck(:name).map {|x|x+"  + "+@person.name}.join(' ou ')%>
+=
+on s'aime 
+<%=@love[(y.to_i-1)]%>
+.
+
+<%end%>
+<%@person.inloves.each do |z|%>
+<%=link_to "Effacer ce sentiment amoureux de #{z.otherperson.name} dit par #{z.user.name}", deleteentry_path(id:@person.id, lovefeeling: z.id)%>
+<%end%>
+
+<%@person.peoplelike.group_by {|x|x.intensity}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).pluck(:name).join(', ') %>">
+<%=z.length%>
+<%="personne".pluralize(z.length)%>
+</span>
+<%="aime".pluralize(z.length)%>
+<%=@person.name%>
+<%=@love[(y.to_i-1)]%>
+.
+<%end%>
+
+<%if @person.aimepasgens.length > 0%>
+<span title="<%=@person.aimepasgens.pluck(:name).join(', ') %>">
+<%=@person.aimepasgens.length%>
+<%="personne".pluralize(@person.aimepasgens.length)%>
+</span>
+<%="n'aime pas".pluralize(@person.aimepasgens.length)%>
+<%=@person.name%>.
+<%end%>
+
+<%if @person.musicianpeople.length > 0%>
+<h2>Musical practice</h2>
+<p>Nombre d'instruments : 1 instrument = pas beaucoup pratiqué; 5 instruments = beaucoup pratiqué.</p>
+<table>
+<tr>
+<th>jour de pratique</th>
+<th>User </th>
+<th>instrument</th>
+<th>pratique</th>
+<th>commentaires</th>
+</tr>
+<% @person.musicianpeople.each do |m|%>
+<tr>
+<td>
+<%=m.created_at.to_date%>
+</td>
+<td>
+<%=m.user.name%>
+</td>
+<td>
+<%=m.musicalinstrument.name%>
+</td>
+<td>
+<%(1..m.practice).to_a.each do |p|%>
+<img id="imagepractice<%=p%>" width="50" height="50" alt="musical instrument practice <%=p%>" 
+
+       src="<%=m.musicalinstrument.image%>">
+<%end%>
+
+</td>
+<td>
+<%=t("musicalinstrument.#{m.practice}", instrument: m.musicalinstrument.name)%>
+</td>
+</tr>
+<%end%>
+
+</table>
+<%end%>
+
+<%if @person.geekpeople.length > 0%>
+<h2>Langage de programmation</h2>
+<p>Nombre de logos : 1 logo = pas beaucoup pratiqué; 5 logos = beaucoup pratiqué.</p>
+<table>
+<tr>
+<th>jour de pratique</th>
+<th>User </th>
+<th>langage</th>
+<th>pratique</th>
+<th>commentaires</th>
+</tr>
+<% @person.geekpeople.each do |m|%>
+<tr>
+<td>
+<%=m.created_at.to_date%>
+</td>
+<td>
+<%=m.user.name%>
+</td>
+<td>
+<%=m.programminglanguage.name%>
+</td>
+<td>
+<%(1..m.practice).to_a.each do |p|%>
+<img id="imagepractice<%=p%>" width="50" height="50" alt="musical instrument practice <%=p%>" 
+
+       src="<%=m.programminglanguage.image%>">
+<%end%>
+
+</td>
+<td>
+<%=t("programminglanguage.#{m.practice}", instrument: m.programminglanguage.name)%>
+</td>
+</tr>
+<%end%>
+
+</table>
+<%end%>
+<%if @person.artisticpeople.length > 0%>
+<h2>Artistic practice</h2>
+<p>Nombre d'ustensiles : 1 ustensile = pas beaucoup pratiqué; 5 ustensiles = beaucoup pratiqué.</p>
+<table>
+<tr>
+<th>jour de pratique</th>
+<th>User </th>
+<th>instrument</th>
+<th>pratique</th>
+<th>commentaires</th>
+</tr>
+<% @person.artisticpeople.each do |m|%>
+<tr>
+<td>
+<%=m.created_at.to_date%>
+</td>
+<td>
+<%=m.user.name%>
+</td>
+<td>
+<%=m.ustensile.name%>
+</td>
+<td>
+<%(1..m.practice).to_a.each do |p|%>
+<img id="imagepractice<%=p%>" width="50" height="50" alt="musical instrument practice <%=p%>" 
+
+       src="<%=m.ustensile.image%>">
+<%end%>
+
+</td>
+<td>
+<%=t("musicalinstrument.#{m.practice}", instrument: m.ustensile.name)%>
+</td>
+<td>
+<%=link_to "Supprimer cette entrée du journal", deleteentry_path(artistepeople: m.id)%>
+</td>
+</tr>
+<%end%>
+
+</table>
+<%end%>

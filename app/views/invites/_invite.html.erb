@@ -1,0 +1,5 @@
+<a href="<%=invite_path(invite.id)%>" onclick="<%if params[:action]=='index' && invite.connected(current_user.id).length == 0%>toaster('<%=j invite.namegroup%>');return false;<%elsif params[:action] == 'show'%>return false;<%end%>" class="<%if params[:action] == 'show'%>cardvip <%end%>containersubtitle">
+<%=image_tag "/assets/"+invite.image, class:"inviteimage"%>
+
+<div class="subtitle"><%=invite.vipassname%> VIP pass</div>
+</a>

@@ -1,0 +1,20 @@
+<%if task.thingsisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%task.thingsisaid(current_user.id).each do |t|%>
+<p><%=t('pagesshow.task.usefortaskwithoutsailor',task:task.name,count: t.use, thing:t.thing.name)%></p>
+<p><%=t('pagesshow.task.qtymoy',task:task.name,count: t.nb, thing:t.thing.name.pluralize(t.nb))%></p>
+<%end%>
+<%end%>
+<%if task.drinksisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%task.drinksisaid(current_user.id).each do |t|%>
+<%if t.qty.to_i > 0%>
+<p><%=t('pagesshow.task.qtymoyboisson',task:task.name,count: t.qty, thing:t.drink.name)%>
+<%if t.person%>
+(<%=link_to(t.person.name, t.person)%>)
+<%end%>
+</p>
+<%end%>
+<%end%>
+<%end%>
+

@@ -1,0 +1,7 @@
+<div class="card">
+<h5><%=selfie.title%></h5>
+  <%= image_tag "/assets/"+selfie.name %>
+<%=link_to "voir", selfie%>
+
+<%= button_to 'Destroy', selfie, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

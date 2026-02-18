@@ -1,0 +1,14 @@
+select a sailor 
+<br>
+
+<%=form_with url: searchsailorjobticket_tasks_path do |form|%>
+<%=form.hidden_field :taskid, value: @task.id%>
+<%@task.sailors.each do |t|%>
+<input id="<%=t.name.parameterize+t.id.to_s%>" name="<%=t.id%>person" type="image" width="100" height="100" alt="<%=t.name%>"
+       src="<%=t.image%>">
+<%end%>
+
+<%end%>
+
+
+

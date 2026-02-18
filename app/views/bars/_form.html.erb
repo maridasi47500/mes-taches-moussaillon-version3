@@ -1,0 +1,85 @@
+<%= form_with(model: bar, local: true) do |form| %>
+  <% if bar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bar.errors.count, "error") %> prohibited this bar from being saved:</h2>
+
+      <ul>
+        <% bar.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :image %>
+    <%= render "form/imagefield", form: form, myfield: "image", apercu: "apercu", onchange: "imagesPreview(this, imagesbar); return false;" %>
+  </div>
+<div id="imagesbar">
+<%if bar.image%>
+<%=image_tag "/assets/"+bar.image%>
+<%end%>
+
+</div>
+
+  <div class="field">
+    <%=render bar.musicalscore %>
+    <%= form.hidden_field :musicalscore_id %>
+  </div>
+<%if @seeinstrument%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'musicalinstrument_ids', collec: musicalscore.musicalinstruments, mesmodele:"musicalinstruments"%>
+</div>
+
+<%end%>
+<%if @seekey%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'musicalkey_ids', collec: musicalscore.musicalkeys, mesmodele:"keys"%>
+</div>
+<%end%>
+
+  <div class="field">
+    <%= form.label :correct_id %>
+<%=render partial: "formrecord/recordrecordingspecial", locals: {textcontent: bar.musicalscore.name,mylabel: "record the correct sample", myfield: "correctsample", form: form, modelderails: bar}%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nb %>
+    <%= form.number_field :nb %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do %>
+<script>
+<%@cherche=[json_musicalkeys_path,json_musicalinstruments_path]%>
+<%@choisis=[keys_bars_path,musicalinstruments_bars_path]%>
+<%@nom=['musicalkeys','bars']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@cherche, @choisis), as: :t%>
+
+    var imagesPreview = function(input, ImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    var img=$($.parseHTML('<img>')).attr('class', 'imgload').attr('src', event.target.result);
+$(img).appendTo(ImagePreview);
+}
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+</script>
+<%end%>

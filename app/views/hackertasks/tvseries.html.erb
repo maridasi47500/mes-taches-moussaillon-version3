@@ -1,0 +1,10 @@
+<%=fields_for :hackertask do |form|%>
+<%=form.collection_check_boxes(:tvseries_ids, @tvseries,:id, :name, {include_hidden:false}) do |rad|%>
+<%=rad.check_box%>
+<%=rad.label do%>
+<%=render partial: 'things/thingsimple', collection:[Thing.find(rad.value)], as: :thing%>
+<%end%>
+
+<%end%>
+<%end%>
+

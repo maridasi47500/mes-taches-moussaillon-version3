@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Shakti Gauwain's statements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shaktistatements.each do |shaktistatement| %>
+      <tr>
+        <td><%= shaktistatement.content %></td>
+        <td><%= link_to 'Show', shaktistatement %></td>
+        <td><%= link_to 'Edit', edit_shaktistatement_path(shaktistatement) %></td>
+        <td><%= link_to 'Destroy', shaktistatement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shaktistatement', new_shaktistatement_path %>

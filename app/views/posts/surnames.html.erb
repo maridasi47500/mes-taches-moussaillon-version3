@@ -1,0 +1,91 @@
+<h1>Add surnames</h1>
+<%=render @post%>
+<%= form_with(model: @post, local: true) do |form| %>
+<div class="field">
+  <%=form.label :inverse_hacking, "Inverser la relation de hacking"%>
+  <%=form.check_box :inverse_hacking%>
+</div>
+<div class="field">
+    <%if @post.posts_surnames.where.not(id:nil).last%>
+    <%=link_to "hacker", usurp_post_path(id: @post.id,idsurname: @post.posts_surnames.where.not(id:nil).last.id) %>
+    <%end%>
+    <div>
+            <%@post.moussaillonsdecepost.each do |moussaillon|%>
+
+<%=render partial: 'people', collection: [moussaillon], as: :person%>
+<%end%>
+
+        <%= form.fields_for :posts_surnames do |f| %>
+
+        <div>
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+            <div>
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+                                        <div class="field">
+
+                                          <%= f.label :thing_id, "related stuff"%>
+                        <%= f.collection_radio_buttons(:thing_id, [], :id, :name) do |ff| %>
+                        <div class='stuffpost card'><%=ff.radio_button%><%=render Thing.find(ff.value)%></div>
+                        <%end%>
+                        </div>
+
+                <div class="field">
+
+      <%= f.label :person_id, "Sailors " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_radio_buttons(:person_id, Person.all, :id, :name) do |ff| %>
+                        <%=ff.radio_button%><%=render Person.find(ff.value)%>
+                        <%end%>
+                        <%=  f.radio_button( "person_id", value: nil)%><%= f.label "person_id", "personne"%>
+
+                    </div>
+
+      </div>
+
+      </div>
+    
+
+</div>
+
+    <%=f.hidden_field :sailor_ids, value: @moussaillons.pluck(:id).join(',') %>
+    <% @post.moussaillonsdecepost.each_with_index do |mouss,i| %>
+      <div class="field">
+        <p>Hacking <%=render mouss%></p>
+        <%= f.label :people_hacked_ids, "Hacking sailor N°#{i+1} " %>
+                    <button type="button" onclick="$(this).parent().children('.allthesailors-list').toggle('.sailors-list');">See all the Sailors</button>
+                    <div class="sailors-list allthesailors-list"> 
+
+      <%= f.collection_check_boxes(:people_hacked_ids, Person.all, :id, :name) do |ff| %>
+                        <%=ff.check_box%><%=render Person.find(ff.value)%>
+                        <%end%>
+      </div>
+
+    <%end%>
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+
+        </div>
+<%end%>
+    </div>
+
+</div>
+  <div class="field actions">
+    <%= form.submit (@post.authors.include?(current_user) ? "Update Post" : "Participate in this post") %>
+  </div>
+<%end%>
