@@ -18,7 +18,7 @@
   <tbody>
     <% @editionshaveevents.each do |editionshaveevent| %>
       <tr>
-        <td><%= editionshaveevent.edition %></td>
+        <td><%= editionshaveevent.edition.try(:name) %></td>
         <td><%= editionshaveevent.city.try(:name) %></td>
         <td><%= editionshaveevent.country.try(:name) %></td>
         <td><%= editionshaveevent.olympicevent.try(:name) %></td>
