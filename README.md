@@ -4,4 +4,4 @@ mes taches moussaillon
 - ruby jeuxol
 - ruby olympicgame
 ![alt text](./pic1.png)
-![alt text](./pic2.png)
+![alt text](./mypic2.png)
